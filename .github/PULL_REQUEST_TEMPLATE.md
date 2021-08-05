@@ -1,4 +1,4 @@
-https://github.com/nimbl3/ios-templates/issues/
+#
 
 ## What happened
 
@@ -6,7 +6,7 @@ Describe the big picture of your changes here to communicate to the team why we 
  
 ## Insight
 
-Describe in details how to test the changes; referenced documentation is welcome as well.
+Describe in detail how to test the changes; referenced documentation is welcome as well.
  
 ## Proof Of Work
 
