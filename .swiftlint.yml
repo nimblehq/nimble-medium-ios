@@ -1,0 +1,10 @@
+line_length:
+  ignores_comments: true
+
+custom_rules:
+  decimal_point:
+    included: ".*\\.swift"
+    name: "Decimal Point"
+    regex: "(CGFloat|Double) = (.[0-9]*)\n"
+    capture_group: 0
+    message: "For non-integer types use decimal point explicitly."
