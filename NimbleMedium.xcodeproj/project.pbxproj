@@ -3,18 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2D467C3D26BCD58D008F11E1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D467C3C26BCD58D008F11E1 /* HomeView.swift */; };
-		2D467C4226BCD808008F11E1 /* AlamofireNetworkActivityLogger in Frameworks */ = {isa = PBXBuildFile; productRef = 2D467C4126BCD808008F11E1 /* AlamofireNetworkActivityLogger */; };
-		2D467C4526BCD825008F11E1 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2D467C4426BCD825008F11E1 /* Alamofire */; };
 		2DB2674E26BBEC4300FF05BB /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2674D26BBEC4300FF05BB /* App.swift */; };
 		2DB2675226BBEC4400FF05BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DB2675126BBEC4400FF05BB /* Assets.xcassets */; };
 		2DB2675526BBEC4400FF05BB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DB2675426BBEC4400FF05BB /* Preview Assets.xcassets */; };
 		2DB2676026BBEC4500FF05BB /* NimbleMediumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2675F26BBEC4500FF05BB /* NimbleMediumTests.swift */; };
 		2DB2676B26BBEC4500FF05BB /* NimbleMediumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2676A26BBEC4500FF05BB /* NimbleMediumUITests.swift */; };
+		50CD01A577A1A5CB6812AF2E /* Pods_NimbleMedium_NimbleMediumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 901D8FC4774E2CF838738DEF /* Pods_NimbleMedium_NimbleMediumUITests.framework */; };
+		7DB2A8DC1F8863DD01F7D438 /* Pods_NimbleMedium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8319E63645C8E624FA94506E /* Pods_NimbleMedium.framework */; };
+		B56F45E43AAEF74BD71B4158 /* Pods_NimbleMediumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBC77E99D264744421CC502 /* Pods_NimbleMediumTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1FB4ECE354F839DF02D6976B /* Pods-NimbleMedium.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.staging.xcconfig"; sourceTree = "<group>"; };
+		21851292A064EB97674233A2 /* Pods-NimbleMediumTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.staging.xcconfig"; sourceTree = "<group>"; };
 		2D467C3C26BCD58D008F11E1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		2DB2674A26BBEC4300FF05BB /* Nimble Medium - stag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nimble Medium - stag.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DB2674D26BBEC4300FF05BB /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -47,6 +50,13 @@
 		2DB2676626BBEC4500FF05BB /* NimbleMediumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbleMediumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DB2676A26BBEC4500FF05BB /* NimbleMediumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NimbleMediumUITests.swift; sourceTree = "<group>"; };
 		2DB2676C26BBEC4500FF05BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		664F4E0BC9D9E468E0506C22 /* Pods-NimbleMediumTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.production.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.production.xcconfig"; sourceTree = "<group>"; };
+		6E41E63B326C526EFD5BA685 /* Pods-NimbleMedium.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.production.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.production.xcconfig"; sourceTree = "<group>"; };
+		8319E63645C8E624FA94506E /* Pods_NimbleMedium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleMedium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		901D8FC4774E2CF838738DEF /* Pods_NimbleMedium_NimbleMediumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleMedium_NimbleMediumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7FB373E4466876E4BD8212F /* Pods-NimbleMedium-NimbleMediumUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium-NimbleMediumUITests.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium-NimbleMediumUITests/Pods-NimbleMedium-NimbleMediumUITests.staging.xcconfig"; sourceTree = "<group>"; };
+		B350D67E0CE0AD97820184FA /* Pods-NimbleMedium-NimbleMediumUITests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium-NimbleMediumUITests.production.xcconfig"; path = "Target Support Files/Pods-NimbleMedium-NimbleMediumUITests/Pods-NimbleMedium-NimbleMediumUITests.production.xcconfig"; sourceTree = "<group>"; };
+		EDBC77E99D264744421CC502 /* Pods_NimbleMediumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleMediumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D467C4226BCD808008F11E1 /* AlamofireNetworkActivityLogger in Frameworks */,
-				2D467C4526BCD825008F11E1 /* Alamofire in Frameworks */,
+				7DB2A8DC1F8863DD01F7D438 /* Pods_NimbleMedium.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B56F45E43AAEF74BD71B4158 /* Pods_NimbleMediumTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +80,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50CD01A577A1A5CB6812AF2E /* Pods_NimbleMedium_NimbleMediumUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1EE4D3D1E95A20B898233A6B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8319E63645C8E624FA94506E /* Pods_NimbleMedium.framework */,
+				901D8FC4774E2CF838738DEF /* Pods_NimbleMedium_NimbleMediumUITests.framework */,
+				EDBC77E99D264744421CC502 /* Pods_NimbleMediumTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2D467C3E26BCD591008F11E1 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +119,8 @@
 				2DB2675E26BBEC4500FF05BB /* NimbleMediumTests */,
 				2DB2676926BBEC4500FF05BB /* NimbleMediumUITests */,
 				2DB2674B26BBEC4300FF05BB /* Products */,
+				6BCBF057E18C8FD57CD13FD1 /* Pods */,
+				1EE4D3D1E95A20B898233A6B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -190,6 +213,19 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
+		6BCBF057E18C8FD57CD13FD1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1FB4ECE354F839DF02D6976B /* Pods-NimbleMedium.staging.xcconfig */,
+				6E41E63B326C526EFD5BA685 /* Pods-NimbleMedium.production.xcconfig */,
+				A7FB373E4466876E4BD8212F /* Pods-NimbleMedium-NimbleMediumUITests.staging.xcconfig */,
+				B350D67E0CE0AD97820184FA /* Pods-NimbleMedium-NimbleMediumUITests.production.xcconfig */,
+				21851292A064EB97674233A2 /* Pods-NimbleMediumTests.staging.xcconfig */,
+				664F4E0BC9D9E468E0506C22 /* Pods-NimbleMediumTests.production.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -197,10 +233,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2DB2676F26BBEC4500FF05BB /* Build configuration list for PBXNativeTarget "NimbleMedium" */;
 			buildPhases = (
+				E04254B9DADFA4DADB8744F5 /* [CP] Check Pods Manifest.lock */,
 				2DB2674626BBEC4300FF05BB /* Sources */,
 				2DB2674726BBEC4300FF05BB /* Frameworks */,
 				2DB2674826BBEC4300FF05BB /* Resources */,
 				2D467C4626BCDAA9008F11E1 /* ShellScript */,
+				76B7F7643F3D9F1792479914 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -208,8 +246,6 @@
 			);
 			name = NimbleMedium;
 			packageProductDependencies = (
-				2D467C4126BCD808008F11E1 /* AlamofireNetworkActivityLogger */,
-				2D467C4426BCD825008F11E1 /* Alamofire */,
 			);
 			productName = NimbleMedium;
 			productReference = 2DB2674A26BBEC4300FF05BB /* Nimble Medium - stag.app */;
@@ -219,9 +255,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2DB2677226BBEC4500FF05BB /* Build configuration list for PBXNativeTarget "NimbleMediumTests" */;
 			buildPhases = (
+				1653ABDC70E8396F0BCD4DA6 /* [CP] Check Pods Manifest.lock */,
 				2DB2675726BBEC4500FF05BB /* Sources */,
 				2DB2675826BBEC4500FF05BB /* Frameworks */,
 				2DB2675926BBEC4500FF05BB /* Resources */,
+				F97F661B2D345D630E7FA7E8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -237,9 +275,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2DB2677526BBEC4500FF05BB /* Build configuration list for PBXNativeTarget "NimbleMediumUITests" */;
 			buildPhases = (
+				70D4ED73D3FABDF90D65AB83 /* [CP] Check Pods Manifest.lock */,
 				2DB2676226BBEC4500FF05BB /* Sources */,
 				2DB2676326BBEC4500FF05BB /* Frameworks */,
 				2DB2676426BBEC4500FF05BB /* Resources */,
+				F04566B3E68A9E1A02E10A6C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -283,8 +323,6 @@
 			);
 			mainGroup = 2DB2674126BBEC4300FF05BB;
 			packageReferences = (
-				2D467C4026BCD807008F11E1 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */,
-				2D467C4326BCD825008F11E1 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 2DB2674B26BBEC4300FF05BB /* Products */;
 			projectDirPath = "";
@@ -324,6 +362,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1653ABDC70E8396F0BCD4DA6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NimbleMediumTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2D467C4626BCDAA9008F11E1 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -339,7 +399,102 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		70D4ED73D3FABDF90D65AB83 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NimbleMedium-NimbleMediumUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76B7F7643F3D9F1792479914 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E04254B9DADFA4DADB8744F5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NimbleMedium-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F04566B3E68A9E1A02E10A6C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NimbleMedium-NimbleMediumUITests/Pods-NimbleMedium-NimbleMediumUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NimbleMedium-NimbleMediumUITests/Pods-NimbleMedium-NimbleMediumUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NimbleMedium-NimbleMediumUITests/Pods-NimbleMedium-NimbleMediumUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F97F661B2D345D630E7FA7E8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -444,6 +599,7 @@
 		};
 		2DB2677126BBEC4500FF05BB /* Production */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E41E63B326C526EFD5BA685 /* Pods-NimbleMedium.production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -466,6 +622,7 @@
 		};
 		2DB2677426BBEC4500FF05BB /* Production */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 664F4E0BC9D9E468E0506C22 /* Pods-NimbleMediumTests.production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -488,6 +645,7 @@
 		};
 		2DB2677726BBEC4500FF05BB /* Production */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B350D67E0CE0AD97820184FA /* Pods-NimbleMedium-NimbleMediumUITests.production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -570,6 +728,7 @@
 		};
 		2DB2677926BBEE9D00FF05BB /* Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1FB4ECE354F839DF02D6976B /* Pods-NimbleMedium.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -593,6 +752,7 @@
 		};
 		2DB2677A26BBEE9D00FF05BB /* Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21851292A064EB97674233A2 /* Pods-NimbleMediumTests.staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -615,6 +775,7 @@
 		};
 		2DB2677B26BBEE9D00FF05BB /* Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A7FB373E4466876E4BD8212F /* Pods-NimbleMedium-NimbleMediumUITests.staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -673,38 +834,6 @@
 			defaultConfigurationName = Production;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		2D467C4026BCD807008F11E1 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/konkab/AlamofireNetworkActivityLogger.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.4.0;
-			};
-		};
-		2D467C4326BCD825008F11E1 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.4.3;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		2D467C4126BCD808008F11E1 /* AlamofireNetworkActivityLogger */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2D467C4026BCD807008F11E1 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */;
-			productName = AlamofireNetworkActivityLogger;
-		};
-		2D467C4426BCD825008F11E1 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2D467C4326BCD825008F11E1 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2DB2674226BBEC4300FF05BB /* Project object */;
 }

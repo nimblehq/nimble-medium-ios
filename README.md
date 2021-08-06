@@ -1,9 +1,30 @@
-A project for implementing all features of <https://github.com/gothinkster/realworld>. It is a medium-clone application that requires to use both MVVM and Combine.
+A project for implementing all features of <https://github.com/gothinkster/realworld>. It is a medium-clone application that requires to use both MVVM and RxSwift.
 
 ## Getting Started
 
-- Checkout the repository
-- Run the app with the desire app schema
+- Clone the project
+
+  ```shell
+  $ git clone https://github.com/nimblehq/nimble-medium-ios.git
+  ```
+
+  Navigate to the project directory
+
+  ```shell
+  $ cd nimble-medium-ios
+  ```
+
+  Install Bundle
+
+  ```bash
+  $ bundle install
+  ```
+
+  Install the latest Pods
+
+  ```shell
+  $ bundle exec pod install
+  ```
 
 ## About
 
