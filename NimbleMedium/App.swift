@@ -10,17 +10,17 @@ import AlamofireNetworkActivityLogger
 
 @main
 struct App: SwiftUI.App {
+    var body: some Scene {
+        WindowGroup {
+            HomeView()
+        }
+    }
+
     init() {
         #if DEBUG
         // Print alamofire request & response log
         NetworkActivityLogger.shared.level = .debug
         NetworkActivityLogger.shared.startLogging()
         #endif
-    }
-
-    var body: some Scene {
-        WindowGroup {
-            HomeView()
-        }
     }
 }
