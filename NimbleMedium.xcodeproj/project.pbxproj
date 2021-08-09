@@ -39,7 +39,7 @@
 		1FB4ECE354F839DF02D6976B /* Pods-NimbleMedium.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.staging.xcconfig"; sourceTree = "<group>"; };
 		21851292A064EB97674233A2 /* Pods-NimbleMediumTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.staging.xcconfig"; sourceTree = "<group>"; };
 		2D467C3C26BCD58D008F11E1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		2DB2674A26BBEC4300FF05BB /* Nimble Medium - stag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nimble Medium - stag.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DB2674A26BBEC4300FF05BB /* Nimble Medium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nimble Medium.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DB2674D26BBEC4300FF05BB /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		2DB2675126BBEC4400FF05BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DB2675426BBEC4400FF05BB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 		2DB2674B26BBEC4300FF05BB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2DB2674A26BBEC4300FF05BB /* Nimble Medium - stag.app */,
+				2DB2674A26BBEC4300FF05BB /* Nimble Medium.app */,
 				2DB2675B26BBEC4500FF05BB /* NimbleMediumTests.xctest */,
 				2DB2676626BBEC4500FF05BB /* NimbleMediumUITests.xctest */,
 			);
@@ -248,7 +248,7 @@
 			packageProductDependencies = (
 			);
 			productName = NimbleMedium;
-			productReference = 2DB2674A26BBEC4300FF05BB /* Nimble Medium - stag.app */;
+			productReference = 2DB2674A26BBEC4300FF05BB /* Nimble Medium.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2DB2675A26BBEC4500FF05BB /* NimbleMediumTests */ = {
@@ -614,6 +614,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.nimble-medium";
+				PRODUCT_MODULE_NAME = NimbleMedium;
 				PRODUCT_NAME = "Nimble Medium";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -639,7 +640,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NimbleMedium.app/NimbleMedium";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nimble Medium.app/Nimble Medium";
 			};
 			name = Production;
 		};
@@ -744,7 +745,8 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.nimble-medium-stag";
-				PRODUCT_NAME = "Nimble Medium - stag";
+				PRODUCT_MODULE_NAME = NimbleMedium;
+				PRODUCT_NAME = "Nimble Medium";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -756,6 +758,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"BUNDLE_LOADER[arch=*]" = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4TWS7E2EPE;
 				INFOPLIST_FILE = NimbleMediumTests/Info.plist;
@@ -769,7 +772,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NimbleMedium.app/NimbleMedium";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nimble Medium.app/Nimble Medium";
 			};
 			name = Staging;
 		};
