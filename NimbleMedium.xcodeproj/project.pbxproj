@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		2D467C3D26BCD58D008F11E1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D467C3C26BCD58D008F11E1 /* HomeView.swift */; };
+		2D64E92026C11B48008C80B0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D64E92226C11B48008C80B0 /* Localizable.strings */; };
 		2DB2674E26BBEC4300FF05BB /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2674D26BBEC4300FF05BB /* App.swift */; };
 		2DB2675226BBEC4400FF05BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DB2675126BBEC4400FF05BB /* Assets.xcassets */; };
 		2DB2675526BBEC4400FF05BB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DB2675426BBEC4400FF05BB /* Preview Assets.xcassets */; };
 		2DB2676026BBEC4500FF05BB /* NimbleMediumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2675F26BBEC4500FF05BB /* NimbleMediumTests.swift */; };
 		2DB2676B26BBEC4500FF05BB /* NimbleMediumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2676A26BBEC4500FF05BB /* NimbleMediumUITests.swift */; };
+		2DB726B926C1188500C16716 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB726B826C1188500C16716 /* R.generated.swift */; };
 		50CD01A577A1A5CB6812AF2E /* Pods_NimbleMedium_NimbleMediumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 901D8FC4774E2CF838738DEF /* Pods_NimbleMedium_NimbleMediumUITests.framework */; };
 		7DB2A8DC1F8863DD01F7D438 /* Pods_NimbleMedium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8319E63645C8E624FA94506E /* Pods_NimbleMedium.framework */; };
 		B56F45E43AAEF74BD71B4158 /* Pods_NimbleMediumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBC77E99D264744421CC502 /* Pods_NimbleMediumTests.framework */; };
@@ -39,6 +41,7 @@
 		1FB4ECE354F839DF02D6976B /* Pods-NimbleMedium.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.staging.xcconfig"; sourceTree = "<group>"; };
 		21851292A064EB97674233A2 /* Pods-NimbleMediumTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.staging.xcconfig"; sourceTree = "<group>"; };
 		2D467C3C26BCD58D008F11E1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		2D64E92126C11B48008C80B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2DB2674A26BBEC4300FF05BB /* Nimble Medium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nimble Medium.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DB2674D26BBEC4300FF05BB /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		2DB2675126BBEC4400FF05BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -50,6 +53,7 @@
 		2DB2676626BBEC4500FF05BB /* NimbleMediumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbleMediumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DB2676A26BBEC4500FF05BB /* NimbleMediumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NimbleMediumUITests.swift; sourceTree = "<group>"; };
 		2DB2676C26BBEC4500FF05BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2DB726B826C1188500C16716 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		664F4E0BC9D9E468E0506C22 /* Pods-NimbleMediumTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.production.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.production.xcconfig"; sourceTree = "<group>"; };
 		6E41E63B326C526EFD5BA685 /* Pods-NimbleMedium.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.production.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.production.xcconfig"; sourceTree = "<group>"; };
 		8319E63645C8E624FA94506E /* Pods_NimbleMedium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleMedium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +148,7 @@
 				2DB2677E26BBF13400FF05BB /* Modules */,
 				2DB2674D26BBEC4300FF05BB /* App.swift */,
 				2DB2675626BBEC4400FF05BB /* Info.plist */,
+				2DB726B826C1188500C16716 /* R.generated.swift */,
 				2DB2675326BBEC4400FF05BB /* Preview Content */,
 			);
 			path = NimbleMedium;
@@ -178,6 +183,7 @@
 		2DB2677C26BBF12500FF05BB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2D64E92226C11B48008C80B0 /* Localizable.strings */,
 				2DB2675126BBEC4400FF05BB /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -234,11 +240,12 @@
 			buildConfigurationList = 2DB2676F26BBEC4500FF05BB /* Build configuration list for PBXNativeTarget "NimbleMedium" */;
 			buildPhases = (
 				E04254B9DADFA4DADB8744F5 /* [CP] Check Pods Manifest.lock */,
+				2DB726B726C117D500C16716 /* R.swift */,
 				2DB2674626BBEC4300FF05BB /* Sources */,
 				2DB2674726BBEC4300FF05BB /* Frameworks */,
 				2DB2674826BBEC4300FF05BB /* Resources */,
-				2D467C4626BCDAA9008F11E1 /* ShellScript */,
 				76B7F7643F3D9F1792479914 /* [CP] Embed Pods Frameworks */,
+				2D467C4626BCDAA9008F11E1 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -341,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DB2675526BBEC4400FF05BB /* Preview Assets.xcassets in Resources */,
+				2D64E92026C11B48008C80B0 /* Localizable.strings in Resources */,
 				2DB2675226BBEC4400FF05BB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,7 +392,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2D467C4626BCDAA9008F11E1 /* ShellScript */ = {
+		2D467C4626BCDAA9008F11E1 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -393,6 +401,7 @@
 			);
 			inputPaths = (
 			);
+			name = SwiftLint;
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -400,6 +409,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		2DB726B726C117D500C16716 /* R.swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			name = R.swift;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
 		};
 		70D4ED73D3FABDF90D65AB83 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -505,6 +534,7 @@
 			files = (
 				2D467C3D26BCD58D008F11E1 /* HomeView.swift in Sources */,
 				2DB2674E26BBEC4300FF05BB /* App.swift in Sources */,
+				2DB726B926C1188500C16716 /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,6 +568,17 @@
 			targetProxy = 2DB2676726BBEC4500FF05BB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2D64E92226C11B48008C80B0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2D64E92126C11B48008C80B0 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		2DB2676E26BBEC4500FF05BB /* Production */ = {

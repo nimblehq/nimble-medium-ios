@@ -14,6 +14,7 @@ target 'NimbleMedium' do
   pod 'RxGesture'
   pod 'SwiftLint'
   pod 'AlamofireNetworkActivityLogger'
+  pod 'R.swift'
   
   target 'NimbleMediumTests' do
     inherit! :search_paths
