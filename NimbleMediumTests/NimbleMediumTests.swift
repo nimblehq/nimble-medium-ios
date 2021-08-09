@@ -6,6 +6,6 @@
 //
 
 import XCTest
-@testable import Nimble_Medium
+@testable import NimbleMedium
 
 class NimbleMediumTests: XCTestCase {}
