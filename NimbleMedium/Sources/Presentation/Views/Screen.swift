@@ -26,7 +26,7 @@ struct Screen<Content>: View where Content: View {
         NavigationView {
             content
                 .navigationBarTitle(
-                    title ?? "",
+                    title ?? EMPTY_STRING,
                     displayMode: .inline
                 )
                 .navigationBarColor(

@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
 
     var body: some View {
+        // TODO: Update the title and its content in Home integrate task
         Screen(title: Localizable.homeTitle()) {
             Text("This is home")
         }
