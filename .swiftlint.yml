@@ -1,6 +1,7 @@
 excluded:
   - NimbleMediumTests/Sources/Mocks/Sourcery/AutoMockable.generated.swift
   - Pods
+  - R.generated.swift
 
 opt_in_rules:
   - anyobject_protocol

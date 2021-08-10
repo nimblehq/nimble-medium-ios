@@ -9,13 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        #if PRODUCTION
-        Text("Hello, production build")
+        Text(Localizable.homeTitle())
             .padding()
-        #elseif STAGING
-        Text("Hello, staging build")
-            .padding()
-        #endif
     }
 }
 
