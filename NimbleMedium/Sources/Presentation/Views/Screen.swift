@@ -7,16 +7,18 @@
 
 import SwiftUI
 
-struct Screen<Content>: View where Content: View {
+struct Screen<Content: View>: View {
 
     private let content: Content
     private let title: String?
     private let titleColor: Color
-
+    
     // swiftlint:disable type_contents_order
-    init(title: String? = nil,
-         titleColor: Color = .white,
-         @ViewBuilder content: () -> Content) {
+    init(
+        title: String? = nil,
+        titleColor: Color = .white,
+        @ViewBuilder content: () -> Content
+    ) {
         self.content = content()
         self.title = title
         self.titleColor = titleColor

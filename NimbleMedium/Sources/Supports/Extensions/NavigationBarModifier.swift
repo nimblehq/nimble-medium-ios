@@ -50,8 +50,9 @@ extension View {
 
     func navigationBarColor(
         backgroundColor: Color = .clear,
-        titleColor: Color = .white) -> some View {
-        self.modifier(
+        titleColor: Color = .white
+    ) -> some View {
+        modifier(
             NavigationBarModifier(
                 backgroundColor: backgroundColor,
                 titleColor: titleColor
