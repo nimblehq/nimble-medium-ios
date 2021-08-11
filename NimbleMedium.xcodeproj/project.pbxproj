@@ -19,7 +19,7 @@
 		2DB2674E26BBEC4300FF05BB /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2674D26BBEC4300FF05BB /* App.swift */; };
 		2DB2675226BBEC4400FF05BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DB2675126BBEC4400FF05BB /* Assets.xcassets */; };
 		2DB2675526BBEC4400FF05BB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DB2675426BBEC4400FF05BB /* Preview Assets.xcassets */; };
-		2DBE36AE26C3B0C500DA3511 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBE36AD26C3B0C500DA3511 /* FeedView.swift */; };
+		2DBE36AE26C3B0C500DA3511 /* FeedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBE36AD26C3B0C500DA3511 /* FeedsView.swift */; };
 		2DE3B9B526C1339200272775 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3B9B426C1339200272775 /* Typealias.swift */; };
 		50CD01A577A1A5CB6812AF2E /* Pods_NimbleMedium_NimbleMediumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 901D8FC4774E2CF838738DEF /* Pods_NimbleMedium_NimbleMediumUITests.framework */; };
 		7DB2A8DC1F8863DD01F7D438 /* Pods_NimbleMedium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8319E63645C8E624FA94506E /* Pods_NimbleMedium.framework */; };
@@ -64,7 +64,7 @@
 		2DB2676126BBEC4500FF05BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DB2676626BBEC4500FF05BB /* NimbleMediumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbleMediumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DB2676C26BBEC4500FF05BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2DBE36AD26C3B0C500DA3511 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		2DBE36AD26C3B0C500DA3511 /* FeedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsView.swift; sourceTree = "<group>"; };
 		2DE3B9B426C1339200272775 /* Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
 		664F4E0BC9D9E468E0506C22 /* Pods-NimbleMediumTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.production.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.production.xcconfig"; sourceTree = "<group>"; };
 		6E41E63B326C526EFD5BA685 /* Pods-NimbleMedium.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.production.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.production.xcconfig"; sourceTree = "<group>"; };
@@ -542,7 +542,7 @@
 		2DB2677E26BBF13400FF05BB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				2DBE36AC26C3B0B500DA3511 /* Feed */,
+				2DBE36AC26C3B0B500DA3511 /* Feeds */,
 				2D467C3E26BCD591008F11E1 /* Home */,
 			);
 			path = Modules;
@@ -555,12 +555,12 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
-		2DBE36AC26C3B0B500DA3511 /* Feed */ = {
+		2DBE36AC26C3B0B500DA3511 /* Feeds */ = {
 			isa = PBXGroup;
 			children = (
-				2DBE36AD26C3B0C500DA3511 /* FeedView.swift */,
+				2DBE36AD26C3B0C500DA3511 /* FeedsView.swift */,
 			);
-			path = Feed;
+			path = Feeds;
 			sourceTree = "<group>";
 		};
 		2DE3B9B226C1336300272775 /* Supports */ = {
@@ -897,7 +897,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D303B3B26C28AC200EEF1C0 /* Constant+String.swift in Sources */,
-				2DBE36AE26C3B0C500DA3511 /* FeedView.swift in Sources */,
+				2DBE36AE26C3B0C500DA3511 /* FeedsView.swift in Sources */,
 				2D72E47E26C2185400861239 /* Constants.swift in Sources */,
 				2D2F456026C25911002C0331 /* View+NavigationBar.swift in Sources */,
 				2D467C3D26BCD58D008F11E1 /* HomeView.swift in Sources */,

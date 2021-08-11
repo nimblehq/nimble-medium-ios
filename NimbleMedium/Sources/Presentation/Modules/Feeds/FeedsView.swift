@@ -1,5 +1,5 @@
 //
-//  FeedView.swift
+//  FeedsView.swift
 //  NimbleMedium
 //
 //  Created by Mark G on 11/08/2021.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FeedView: View {
+struct FeedsView: View {
     
     var body: some View {
         NavigationView {
@@ -31,8 +31,8 @@ struct FeedView: View {
     }
 }
 
-struct FeedView_Previews: PreviewProvider {
+struct FeedsView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedView()
+        FeedsView()
     }
 }
