@@ -7,34 +7,32 @@
 
 import SwiftUI
 
-struct Screen<Content: View>: View {
+struct Screen<V1: ToolbarContent, V2: View>: View {
 
-    private let content: Content
-    private let title: String?
-    private let titleColor: Color
-    
+    private let content: TupleView<(NavigationBar<V1>, V2)>
+
     // swiftlint:disable type_contents_order
-    init(
-        title: String? = nil,
-        titleColor: Color = .white,
-        @ViewBuilder content: () -> Content
-    ) {
+    init(@ViewBuilder content: () -> TupleView<(NavigationBar<V1>, V2)>) {
         self.content = content()
-        self.title = title
-        self.titleColor = titleColor
     }
 
     var body: some View {
-        NavigationView {
-            content
+        let navigationBar = content.value.0
+        let body = content.value.1
+        
+        return NavigationView {
+            body
                 .navigationBarTitle(
-                    title.orEmpty(),
+                    navigationBar.title ?? .empty,
                     displayMode: .inline
                 )
                 .navigationBarColor(
                     backgroundColor: .green,
-                    titleColor: titleColor
+                    titleColor: .white
                 )
+                .ifNotNil(navigationBar.content) { view, toolbarContent in
+                    view.toolbar { toolbarContent }
+                }
         }
     }
 }
