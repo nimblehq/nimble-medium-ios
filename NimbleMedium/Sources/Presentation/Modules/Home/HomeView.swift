@@ -10,10 +10,12 @@ import SwiftUI
 struct HomeView: View {
 
     var body: some View {
-        // TODO: Remove example code in UI task of this screen
-        Screen {
-            NavigationBar(title: "Home")
-            Text("This is content")
+        // TODO: Remove example code
+        NavigationView {
+            Text("This is home")
+                .navigationTitle("Home")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarColor(backgroundColor: .green)
         }
     }
 }

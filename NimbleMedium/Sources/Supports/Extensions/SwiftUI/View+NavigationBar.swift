@@ -12,7 +12,7 @@ struct NavigationBarModifier: ViewModifier {
     var backgroundColor: Color
     var titleColor: Color
 
-    init(backgroundColor: Color = .clear, titleColor: Color = .white) {
+    init(backgroundColor: Color, titleColor: Color = .white) {
         self.backgroundColor = backgroundColor
         self.titleColor = titleColor
         
@@ -49,7 +49,7 @@ struct NavigationBarModifier: ViewModifier {
 extension View {
 
     func navigationBarColor(
-        backgroundColor: Color = .clear,
+        backgroundColor: Color,
         titleColor: Color = .white
     ) -> some View {
         modifier(
