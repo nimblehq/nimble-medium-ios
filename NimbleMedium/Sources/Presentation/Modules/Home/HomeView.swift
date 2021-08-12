@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct HomeView: View {
+
     var body: some View {
-        Text(Localizable.homeTitle())
-            .padding()
+        // TODO: Remove example code
+        NavigationView {
+            Text("This is home")
+                .navigationTitle("Home")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarColor(backgroundColor: .green)
+        }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
+    
     static var previews: some View {
         HomeView()
     }
