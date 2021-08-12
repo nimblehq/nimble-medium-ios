@@ -10,13 +10,7 @@ import SwiftUI
 struct HomeView: View {
 
     var body: some View {
-        // TODO: Remove example code
-        NavigationView {
-            Text("This is home")
-                .navigationTitle("Home")
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationBarColor(backgroundColor: .green)
-        }
+        FeedsView()
     }
 }
 
