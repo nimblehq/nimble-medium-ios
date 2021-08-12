@@ -11,8 +11,16 @@ import AlamofireNetworkActivityLogger
 @main
 struct App: SwiftUI.App {
     var body: some Scene {
-        WindowGroup {
-            HomeView()
+
+        // TODO: Implement DI
+        let sideMenuViewModel = SideMenuViewModel()
+        let feedsViewModel = FeedsViewModel(sideMenuToggleResponder: sideMenuViewModel)
+
+        return WindowGroup {
+            HomeView(
+                feedsViewModel: feedsViewModel,
+                sideMenuViewModel: sideMenuViewModel
+            )
         }
     }
 

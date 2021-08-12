@@ -9,17 +9,28 @@ import SwiftUI
 
 struct HomeView: View {
 
+    let feedsViewModel: FeedsViewModel
+    let sideMenuViewModel: SideMenuViewModel
+
     var body: some View {
         ZStack {
-            FeedsView()
-            SideMenuView()
+            FeedsView(viewModel: feedsViewModel)
+            SideMenuView(viewModel: sideMenuViewModel)
         }
     }
 }
 
+#if DEBUG
 struct HomeView_Previews: PreviewProvider {
-    
+
     static var previews: some View {
-        HomeView()
+        let sideMenuViewModel = SideMenuViewModel()
+        let feedsViewModel = FeedsViewModel(sideMenuToggleResponder: sideMenuViewModel)
+
+        return HomeView(
+            feedsViewModel: feedsViewModel,
+            sideMenuViewModel: sideMenuViewModel
+        )
     }
 }
+#endif

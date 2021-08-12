@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct FeedsView: View {
-    
+
+    @ObservedObject var viewModel: FeedsViewModel
+
     var body: some View {
         NavigationView {
-            Text("This is feed content") // TODO: Update it in Integrate task
+            // TODO: Implement feeds content UI
+            Text("This is feed content")
                 .navigationTitle(Localizable.feedTitle())
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarColor(backgroundColor: .green)
@@ -22,7 +25,9 @@ struct FeedsView: View {
     var navigationBarLeadingContent: some ToolbarContent {
         ToolbarItem(placement: .navigationBarLeading) {
             Button(
-                action: {},
+                action: {
+                    viewModel.toggleSideMenu()
+                },
                 label: {
                     Image(R.image.menuIcon.name)
                 }
@@ -31,8 +36,13 @@ struct FeedsView: View {
     }
 }
 
+#if DEBUG
 struct FeedsView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedsView()
+        let sideMenuViewModel = SideMenuViewModel()
+        let feedsViewModel = FeedsViewModel(sideMenuToggleResponder: sideMenuViewModel)
+
+        return FeedsView(viewModel: feedsViewModel)
     }
 }
+#endif
