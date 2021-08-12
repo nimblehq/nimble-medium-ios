@@ -15,16 +15,16 @@ struct FeedsView: View {
                 .navigationTitle(Localizable.feedTitle())
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarColor(backgroundColor: .green)
-                .toolbar { navMenuToolbarItem }
+                .toolbar { navigationBarLeadingContent }
         }
     }
 
-    var navMenuToolbarItem: some ToolbarContent {
+    var navigationBarLeadingContent: some ToolbarContent {
         ToolbarItem(placement: .navigationBarLeading) {
             Button(
                 action: {},
                 label: {
-                    Image(R.image.navMenuBtn.name)
+                    Image(R.image.menuIcon.name)
                 }
             )
         }
