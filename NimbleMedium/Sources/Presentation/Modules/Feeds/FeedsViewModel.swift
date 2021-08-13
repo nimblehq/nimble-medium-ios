@@ -30,10 +30,10 @@ final class FeedsViewModel: FeedsViewModelProtocol {
     init(homeViewModelInput: HomeViewModelInput) {
         self.homeViewModelInput = homeViewModelInput
     }
-
 }
 
 extension FeedsViewModel: FeedsViewModelInput {
+
     func toggleSideMenu() {
         homeViewModelInput.toggleSideMenu(true)
     }
