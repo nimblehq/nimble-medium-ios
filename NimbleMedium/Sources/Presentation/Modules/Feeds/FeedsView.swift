@@ -7,13 +7,18 @@
 
 import SwiftUI
 
-struct FeedsView: View {
+struct FeedsView<ViewModel: FeedsViewModelProtocol>: View {
 
-    @ObservedObject var viewModel: FeedsViewModel
+    @ObservedObject private var viewModel: ViewModel
 
+    // swiftlint:disable type_contents_order
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
         NavigationView {
-            // TODO: Implement feeds content UI
+            // TODO: Implement Feeds UI
             Text("This is feed content")
                 .navigationTitle(Localizable.feedTitle())
                 .navigationBarTitleDisplayMode(.inline)
@@ -26,7 +31,7 @@ struct FeedsView: View {
         ToolbarItem(placement: .navigationBarLeading) {
             Button(
                 action: {
-                    viewModel.toggleSideMenu()
+                    viewModel.input.toggleSideMenu()
                 },
                 label: {
                     Image(R.image.menuIcon.name)
@@ -39,10 +44,10 @@ struct FeedsView: View {
 #if DEBUG
 struct FeedsView_Previews: PreviewProvider {
     static var previews: some View {
-        let sideMenuViewModel = SideMenuViewModel()
-        let feedsViewModel = FeedsViewModel(sideMenuToggleResponder: sideMenuViewModel)
+        let homeViewModel = HomeViewModel()
+        let viewModel = FeedsViewModel(homeViewModelInput: homeViewModel.input)
 
-        return FeedsView(viewModel: feedsViewModel)
+        return FeedsView(viewModel: viewModel)
     }
 }
 #endif

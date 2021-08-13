@@ -13,13 +13,12 @@ struct App: SwiftUI.App {
     var body: some Scene {
 
         // TODO: Implement DI
-        let sideMenuViewModel = SideMenuViewModel()
-        let feedsViewModel = FeedsViewModel(sideMenuToggleResponder: sideMenuViewModel)
-
+        let homeViewModel = HomeViewModel()
+        let feedsViewModel = FeedsViewModel(homeViewModelInput: homeViewModel.input)
         return WindowGroup {
             HomeView(
-                feedsViewModel: feedsViewModel,
-                sideMenuViewModel: sideMenuViewModel
+                viewModel: homeViewModel,
+                feedsViewModel: feedsViewModel
             )
         }
     }
