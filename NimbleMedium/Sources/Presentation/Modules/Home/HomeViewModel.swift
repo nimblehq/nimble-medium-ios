@@ -5,7 +5,8 @@
 //  Created by Mark G on 13/08/2021.
 //
 
-import Combine
+import RxCocoa
+import RxSwift
 
 protocol HomeViewModelInput {
     
@@ -14,10 +15,11 @@ protocol HomeViewModelInput {
 
 protocol HomeViewModelOutput {
 
-    var isSideMenuOpen: Bool { get }
+    var isSideMenuOpen: Driver<Bool> { get }
+    var feedsViewModel: Driver<FeedsViewModelProtocol> { get }
 }
 
-protocol HomeViewModelProtocol: ObservableObject {
+protocol HomeViewModelProtocol {
 
     var input: HomeViewModelInput { get }
     var output: HomeViewModelOutput { get }
@@ -25,16 +27,29 @@ protocol HomeViewModelProtocol: ObservableObject {
 
 final class HomeViewModel: HomeViewModelProtocol {
 
+    private let disposeBag = DisposeBag()
+
     var input: HomeViewModelInput { self }
     var output: HomeViewModelOutput { self }
 
-    @Published var isSideMenuOpen: Bool = false
+    @BehaviorRelayProperty(value: false) var isSideMenuOpen: Driver<Bool>
+    let feedsViewModel: Driver<FeedsViewModelProtocol>
+
+    init(feedsViewModel: FeedsViewModelProtocol) {
+        self.feedsViewModel = Driver.just(feedsViewModel)
+        feedsViewModel.output.didToggleSideMenu
+            .withUnretained(self)
+            .bind {
+                $0.0.toggleSideMenu(true)
+            }
+            .disposed(by: disposeBag)
+    }
 }
 
 extension HomeViewModel: HomeViewModelInput {
 
     func toggleSideMenu(_ value: Bool) {
-        isSideMenuOpen = value
+        $isSideMenuOpen.accept(value)
     }
 }
 

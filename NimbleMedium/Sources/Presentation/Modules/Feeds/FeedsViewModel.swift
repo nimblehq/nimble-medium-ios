@@ -5,16 +5,19 @@
 //  Created by Mark G on 12/08/2021.
 //
 
-import Combine
+import RxSwift
 
 protocol FeedsViewModelInput {
 
     func toggleSideMenu()
 }
 
-protocol FeedsViewModelOutput {}
+protocol FeedsViewModelOutput {
 
-protocol FeedsViewModelProtocol: ObservableObject {
+    var didToggleSideMenu: Observable<Void> { get }
+}
+
+protocol FeedsViewModelProtocol {
 
     var input: FeedsViewModelInput { get }
     var output: FeedsViewModelOutput { get }
@@ -22,20 +25,17 @@ protocol FeedsViewModelProtocol: ObservableObject {
 
 final class FeedsViewModel: FeedsViewModelProtocol {
 
-    private let homeViewModelInput: HomeViewModelInput
+    @PublishRelayProperty var didToggleSideMenu: Observable<Void>
 
     var input: FeedsViewModelInput { self }
     var output: FeedsViewModelOutput { self }
 
-    init(homeViewModelInput: HomeViewModelInput) {
-        self.homeViewModelInput = homeViewModelInput
-    }
 }
 
 extension FeedsViewModel: FeedsViewModelInput {
 
     func toggleSideMenu() {
-        homeViewModelInput.toggleSideMenu(true)
+        $didToggleSideMenu.accept(())
     }
 }
 

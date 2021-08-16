@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct FeedsView<ViewModel: FeedsViewModelProtocol>: View {
+struct FeedsView: View {
 
-    @ObservedObject private var viewModel: ViewModel
+    private let viewModel: FeedsViewModelProtocol
 
     // swiftlint:disable type_contents_order
-    init(viewModel: ViewModel) {
+    init(viewModel: FeedsViewModelProtocol) {
         self.viewModel = viewModel
     }
     
@@ -44,8 +44,7 @@ struct FeedsView<ViewModel: FeedsViewModelProtocol>: View {
 #if DEBUG
 struct FeedsView_Previews: PreviewProvider {
     static var previews: some View {
-        let homeViewModel = HomeViewModel()
-        let viewModel = FeedsViewModel(homeViewModelInput: homeViewModel.input)
+        let viewModel = FeedsViewModel()
 
         return FeedsView(viewModel: viewModel)
     }
