@@ -12,6 +12,7 @@ struct MenuOptionButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .padding()
-            .background(configuration.isPressed ? Color.green.opacity(0.7) : Color.clear)
+            .foregroundColor(configuration.isPressed ? .green : .black)
+            .background(configuration.isPressed ? Color.green.opacity(0.4) : Color.clear)
     }
 }

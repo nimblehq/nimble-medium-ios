@@ -9,19 +9,20 @@ import SwiftUI
 
 struct SideMenuActionsView: View {
 
-    @State private var unAuthenticated = true
+    @State private var isAuthenticated = false
 
     var body: some View {
         VStack(alignment: .leading) {
-            if unAuthenticated {
+            if !isAuthenticated {
                 Button(
                     action: {
                         print("Login button was tapped")
                     }, label: {
                         HStack(spacing: 10) {
-                            Image( "icon-login").resizable()
+                            Image(R.image.iconLogin.name)
+                                .resizable()
                                 .frame(width: 25.0, height: 25.0)
-                            Text(Localizable.menuOptionLogin()).foregroundColor(Color.black)
+                            Text(Localizable.menuOptionLogin())
                                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                         }
                     }
