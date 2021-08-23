@@ -13,6 +13,6 @@ struct MenuOptionButtonStyle: ButtonStyle {
         configuration.label
             .padding()
             .foregroundColor(configuration.isPressed ? .green : .black)
-            .background(configuration.isPressed ? Color.green.opacity(0.4) : Color.clear)
+            .background(configuration.isPressed ? Color.green.opacity(0.3) : Color.clear)
     }
 }
