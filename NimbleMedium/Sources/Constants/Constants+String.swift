@@ -1,6 +1,6 @@
 //  swiftlint:disable:this file_name
 //
-//  Constant+String.swift
+//  Constants+String.swift
 //  NimbleMedium
 //
 //  Created by Mark G on 10/08/2021.

@@ -10,8 +10,10 @@ import SwiftUI
 struct SideMenuView: View {
     
     var body: some View {
-        // TODO: Implement Side Menu UI
-        Text("This is side menu content")
+        VStack(alignment: .center) {
+            // TODO: Implement Menu Header UI
+            SideMenuActionsView()
+        }
     }
 }
 
