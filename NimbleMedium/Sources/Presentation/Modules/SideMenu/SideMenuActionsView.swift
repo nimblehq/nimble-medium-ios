@@ -25,7 +25,7 @@ struct SideMenuActionsView: View {
                                 .frame(width: 25.0, height: 25.0)
                             Text(Localizable.menuOptionLogin())
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                        }
+                        }.contentShape(Rectangle())
                     }
                 ).buttonStyle(MenuOptionButtonStyle())
                 Button(
@@ -38,12 +38,10 @@ struct SideMenuActionsView: View {
                                 .frame(width: 25.0, height: 25.0)
                             Text(Localizable.menuOptionSignup())
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-
+                        }.contentShape(Rectangle())
                     }
                 ).buttonStyle(MenuOptionButtonStyle())
             }
-
         }
     }
 }
