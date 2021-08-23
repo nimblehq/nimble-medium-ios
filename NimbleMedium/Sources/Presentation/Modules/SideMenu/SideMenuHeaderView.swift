@@ -10,7 +10,6 @@ import SwiftUI
 struct SideMenuHeaderView: View {
 
     var body: some View {
-
         ZStack(alignment: .center) {
             Color.green.edgesIgnoringSafeArea(.all)
             VStack(alignment: .center) {
