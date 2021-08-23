@@ -11,6 +11,7 @@ struct SideMenuActionsView: View {
 
     @State private var isAuthenticated = false
 
+    // swiftlint:disable closure_body_length
     var body: some View {
         VStack(alignment: .leading) {
             if !isAuthenticated {
@@ -23,8 +24,22 @@ struct SideMenuActionsView: View {
                                 .resizable()
                                 .frame(width: 25.0, height: 25.0)
                             Text(Localizable.menuOptionLogin())
-                                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
                         }
+                    }
+                ).buttonStyle(MenuOptionButtonStyle())
+                Button(
+                    action: {
+                        print("Signup button was tapped")
+                    }, label: {
+                        HStack(spacing: 10) {
+                            Image(R.image.iconSignup.name)
+                                .resizable()
+                                .frame(width: 25.0, height: 25.0)
+                            Text(Localizable.menuOptionSignup())
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+
                     }
                 ).buttonStyle(MenuOptionButtonStyle())
             }
