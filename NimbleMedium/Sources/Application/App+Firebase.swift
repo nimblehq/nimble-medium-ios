@@ -6,6 +6,7 @@
 //
 
 import Firebase
+
 extension App {
     
     func configureFirebase() {
