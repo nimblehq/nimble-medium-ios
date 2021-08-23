@@ -8,4 +8,8 @@
 
 "feed.title" = "Feed";
 
+"menu.header.title" = "Nimble Medium";
+
+"menu.header.description" = "A place to share your knowledge";
+
 "menu.option.login" = "Login";
