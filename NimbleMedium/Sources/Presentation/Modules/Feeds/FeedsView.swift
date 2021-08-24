@@ -15,7 +15,7 @@ struct FeedsView: View {
     init(viewModel: FeedsViewModelProtocol) {
         self.viewModel = viewModel
     }
-    
+
     var body: some View {
         NavigationView {
             // TODO: Implement Feeds UI
@@ -44,9 +44,7 @@ struct FeedsView: View {
 #if DEBUG
 struct FeedsView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = FeedsViewModel()
-
-        return FeedsView(viewModel: viewModel)
+        FeedsView(viewModel: FeedsViewModel())
     }
 }
 #endif

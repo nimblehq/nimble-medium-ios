@@ -10,18 +10,20 @@ import SwiftUI
 struct SideMenuView: View {
 
     private var factory: ViewModelFactoryProtocol
+    private var onSelectOptionItem: (() -> Void)?
 
     var body: some View {
         GeometryReader { metrics in
             VStack(alignment: .center) {
                 SideMenuHeaderView().frame(height: metrics.size.height * 0.3)
-                SideMenuActionsView(factory: factory)
+                SideMenuActionsView(factory: factory) { onSelectOptionItem?() }
             }
         }
     }
 
-    init(factory: ViewModelFactoryProtocol) {
+    init(factory: ViewModelFactoryProtocol, onSelectOptionItem: (() -> Void)? = nil) {
         self.factory = factory
+        self.onSelectOptionItem = onSelectOptionItem
     }
 }
 

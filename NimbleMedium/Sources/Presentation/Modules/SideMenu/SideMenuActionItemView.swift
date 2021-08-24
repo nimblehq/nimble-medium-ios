@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct SideMenuActionItemView: View {
-    var text: String
-    var iconName: String
-    var action: (() -> Void)
-    
+
+    private var text: String
+    private var iconName: String
+    private var action: (() -> Void)
+
     var body: some View {
         Button(action: action) {
             HStack(spacing: 10.0) {
@@ -22,5 +23,11 @@ struct SideMenuActionItemView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
             }.contentShape(Rectangle())
         }.buttonStyle(MenuOptionButtonStyle())
+    }
+
+    init(text: String, iconName: String, action: @escaping (() -> Void)) {
+        self.text = text
+        self.iconName = iconName
+        self.action = action
     }
 }

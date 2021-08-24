@@ -42,7 +42,9 @@ struct HomeView: View {
 
             HStack {
                 GeometryReader { geo in
-                    SideMenuView(factory: factory)
+                    SideMenuView(factory: factory) {
+                        viewModel.input.toggleSideMenu(false)
+                    }
                         .frame(width: geo.size.width * 2.0 / 3.0, height: geo.size.height)
                         .background(Color.white)
                         .offset(x: isSideMenuOpen ? 0.0 : -geo.size.width * 2.0 / 3.0)
@@ -52,24 +54,21 @@ struct HomeView: View {
         }
         .ignoresSafeArea()
         .onReceive(viewModel.output.isSideMenuOpen) {
-            self.isSideMenuOpen = $0
+            isSideMenuOpen = $0
         }
         .onReceive(viewModel.output.feedsViewModel) {
-            self.feedsViewModel = $0
+            feedsViewModel = $0
         }
     }
 }
 
 #if DEBUG
 struct HomeView_Previews: PreviewProvider {
-
     static var previews: some View {
         let feedsViewModel = FeedsViewModel()
         let homeViewModel = HomeViewModel(feedsViewModel: feedsViewModel)
-
-        return HomeView(
-            factory: DependencyFactory(), viewModel: homeViewModel
-        )
+        let factory = DependencyFactory()
+        return HomeView(factory: factory, viewModel: homeViewModel)
     }
 }
 #endif

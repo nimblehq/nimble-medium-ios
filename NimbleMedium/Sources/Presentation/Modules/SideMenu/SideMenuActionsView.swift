@@ -10,6 +10,7 @@ import SwiftUI
 struct SideMenuActionsView: View {
 
     private var factory: ViewModelFactoryProtocol
+    private var onSelectOptionItem: (() -> Void)?
 
     @State private var isAuthenticated = false
     @State private var isShowingLoginScreen = false
@@ -21,6 +22,7 @@ struct SideMenuActionsView: View {
                     text: Localizable.menuOptionLogin(),
                     iconName: R.image.iconLogin.name
                 ) {
+                    onSelectOptionItem?()
                     isShowingLoginScreen.toggle()
                 }
                 .fullScreenCover(isPresented: $isShowingLoginScreen) {
@@ -37,8 +39,9 @@ struct SideMenuActionsView: View {
         }
     }
 
-    init(factory: ViewModelFactoryProtocol) {
+    init(factory: ViewModelFactoryProtocol, onSelectOptionItem: (() -> Void)? = nil) {
         self.factory = factory
+        self.onSelectOptionItem = onSelectOptionItem
     }
 }
 
