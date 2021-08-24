@@ -11,12 +11,11 @@
 "feed.title" = "Feed";
 
 "login.title" = "Login";
-"login.textfield.email.hint" = "Email";
-"login.textfield.password.hint" = "Password";
-"login.needaccount.title" = "Need an account?";
+"login.textFieldEmail.placeholder" = "Email";
+"login.textfieldPassword.placeholder" = "Password";
+"login.needAccount.title" = "Need an account?";
 
 "menu.header.title" = "Nimble Medium";
 "menu.header.description" = "A place to share your knowledge";
 "menu.option.login" = "Login";
-
 "menu.option.signup" = "Signup";

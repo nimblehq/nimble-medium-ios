@@ -23,7 +23,7 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 15.0) {
-                TextField(Localizable.loginTextfieldEmailHint(), text: $email)
+                TextField(Localizable.loginTextFieldEmailPlaceholder(), text: $email)
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8.0)
@@ -31,7 +31,7 @@ struct LoginView: View {
                     )
                     .keyboardType(.emailAddress)
                     .accentColor(.black)
-                SecureField(Localizable.loginTextfieldPasswordHint(), text: $password)
+                SecureField(Localizable.loginTextfieldPasswordPlaceholder(), text: $password)
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8.0)
@@ -47,12 +47,12 @@ struct LoginView: View {
                     }
                 )
                 .background(Color.green)
-                .cornerRadius(8)
+                .cornerRadius(8.0)
                 Button(
                     action: {
                         // TODO: Implement in integrate task
                     }, label: {
-                        Text(Localizable.loginNeedaccountTitle())
+                        Text(Localizable.loginNeedAccountTitle())
                             .frame(height: 25.0)
                     }
                 )
