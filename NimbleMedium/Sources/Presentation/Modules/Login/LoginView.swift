@@ -74,7 +74,7 @@ struct LoginView: View {
                     // TODO: Implement in integrate task
                 },
                 label: {
-                    Image(systemName: "xmark")
+                    Image(systemName: SystemImageName.xmark.rawValue)
                 }
             )
         }

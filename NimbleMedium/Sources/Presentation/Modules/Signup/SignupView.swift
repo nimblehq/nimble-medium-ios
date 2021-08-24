@@ -24,26 +24,26 @@ struct SignupView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 15.0) {
-                TextField(Localizable.signupTexfieldUsernameHint(), text: $username)
+                TextField(Localizable.signupTextFieldUsernamePlaceholder(), text: $username)
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8.0)
-                            .stroke(Color(UIColor.lightGray), lineWidth: 1.0)
+                            .stroke(Color(.lightGray), lineWidth: 1.0)
                     )
                     .accentColor(.black)
-                TextField(Localizable.signupTexfieldEmailHint(), text: $email)
+                TextField(Localizable.signupTextFieldEmailPlaceholder(), text: $email)
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8.0)
-                            .stroke(Color(UIColor.lightGray), lineWidth: 1.0)
+                            .stroke(Color(.lightGray), lineWidth: 1.0)
                     )
                     .keyboardType(.emailAddress)
                     .accentColor(.black)
-                SecureField(Localizable.signupTexfieldPasswordHint(), text: $password)
+                SecureField(Localizable.signupTextFieldPasswordPlaceholder(), text: $password)
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8.0)
-                            .stroke(Color(UIColor.lightGray), lineWidth: 1.0)
+                            .stroke(Color(.lightGray), lineWidth: 1.0)
                     )
                     .accentColor(.black)
                 Button(
@@ -55,12 +55,12 @@ struct SignupView: View {
                     }
                 )
                 .background(Color.green)
-                .cornerRadius(8)
+                .cornerRadius(8.0)
                 Button(
                     action: {
                         // TODO: Implement in integrate task
                     }, label: {
-                        Text(Localizable.signupHaveaccountTitle())
+                        Text(Localizable.signupHaveAccountTitle())
                             .frame(height: 25.0)
                     }
                 )
@@ -73,7 +73,7 @@ struct SignupView: View {
             .toolbar { navigationBarLeadingContent }
         }
         .accentColor(.white)
-        .onTapGesture { UIApplication.shared.endEditing() }
+        .onTapGesture { hideKeyboard() }
     }
 
     var navigationBarLeadingContent: some ToolbarContent {
@@ -83,7 +83,7 @@ struct SignupView: View {
                     // TODO: Implement in integrate task
                 },
                 label: {
-                    Image(systemName: "xmark")
+                    Image(systemName: SystemImageName.xmark.rawValue)
                 }
             )
         }
@@ -94,7 +94,6 @@ struct SignupView: View {
 struct SignupView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = SignupViewModel()
-
         return SignupView(viewModel: viewModel)
     }
 }

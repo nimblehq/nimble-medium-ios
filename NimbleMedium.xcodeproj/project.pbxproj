@@ -13,7 +13,8 @@
 		246A8FB826D39C24009F9753 /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246A8FB726D39C24009F9753 /* SideMenuHeaderView.swift */; };
 		249042E726D4D14F00E970B6 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249042E526D4D14F00E970B6 /* SignupViewModel.swift */; };
 		249042E826D4D14F00E970B6 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249042E626D4D14F00E970B6 /* SignupView.swift */; };
-		249042EA26D4D61300E970B6 /* UIApplication+UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249042E926D4D61300E970B6 /* UIApplication+UIResponder.swift */; };
+		249042EA26D4D61300E970B6 /* View+UIResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249042E926D4D61300E970B6 /* View+UIResponder.swift */; };
+		249042F026D5042D00E970B6 /* SystemImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249042EF26D5042D00E970B6 /* SystemImageName.swift */; };
 		2497356126D34F3200177A7C /* SideMenuActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497356026D34F3200177A7C /* SideMenuActionsView.swift */; };
 		2497356326D35BBD00177A7C /* MenuOptionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497356226D35BBD00177A7C /* MenuOptionButtonStyle.swift */; };
 		2D2F456026C25911002C0331 /* View+NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F455F26C25911002C0331 /* View+NavigationBar.swift */; };
@@ -67,7 +68,8 @@
 		246A8FB726D39C24009F9753 /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
 		249042E526D4D14F00E970B6 /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		249042E626D4D14F00E970B6 /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
-		249042E926D4D61300E970B6 /* UIApplication+UIResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+UIResponder.swift"; sourceTree = "<group>"; };
+		249042E926D4D61300E970B6 /* View+UIResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+UIResponder.swift"; sourceTree = "<group>"; };
+		249042EF26D5042D00E970B6 /* SystemImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemImageName.swift; sourceTree = "<group>"; };
 		2497356026D34F3200177A7C /* SideMenuActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuActionsView.swift; sourceTree = "<group>"; };
 		2497356226D35BBD00177A7C /* MenuOptionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionButtonStyle.swift; sourceTree = "<group>"; };
 		2D2F455F26C25911002C0331 /* View+NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+NavigationBar.swift"; sourceTree = "<group>"; };
@@ -164,7 +166,6 @@
 		2D303B3C26C28AE900EEF1C0 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				249042E926D4D61300E970B6 /* UIApplication+UIResponder.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -175,6 +176,7 @@
 				2DB04AD626C3A4AC003E65F4 /* Color+UIColor.swift */,
 				2D2F455F26C25911002C0331 /* View+NavigationBar.swift */,
 				2D5485BB26CA077600FFE707 /* View+RxDriver.swift */,
+				249042E926D4D61300E970B6 /* View+UIResponder.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -238,6 +240,7 @@
 			children = (
 				2D72E47D26C2185400861239 /* Constants.swift */,
 				2D303B3A26C28AC200EEF1C0 /* Constants+String.swift */,
+				249042EF26D5042D00E970B6 /* SystemImageName.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -973,7 +976,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				249042EA26D4D61300E970B6 /* UIApplication+UIResponder.swift in Sources */,
+				249042EA26D4D61300E970B6 /* View+UIResponder.swift in Sources */,
 				2D303B3B26C28AC200EEF1C0 /* Constants+String.swift in Sources */,
 				249042E726D4D14F00E970B6 /* SignupViewModel.swift in Sources */,
 				246A8FB826D39C24009F9753 /* SideMenuHeaderView.swift in Sources */,
@@ -992,6 +995,7 @@
 				2424B22C26D4A22B00CF07B5 /* LoginView.swift in Sources */,
 				2D5485BC26CA077600FFE707 /* View+RxDriver.swift in Sources */,
 				2DB2674E26BBEC4300FF05BB /* App.swift in Sources */,
+				249042F026D5042D00E970B6 /* SystemImageName.swift in Sources */,
 				2D5485BE26CA0D2C00FFE707 /* PublishRelayProperty.swift in Sources */,
 				241B4EEA26D3B3F4000409CC /* SideMenuActionItemView.swift in Sources */,
 				2D4ADCC926C61192008F8843 /* FeedsViewModel.swift in Sources */,
