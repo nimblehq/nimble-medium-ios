@@ -13,3 +13,5 @@
 "menu.header.description" = "A place to share your knowledge";
 
 "menu.option.login" = "Login";
+
+"menu.option.signup" = "Signup";
