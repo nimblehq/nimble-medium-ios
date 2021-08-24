@@ -28,14 +28,17 @@ struct LoginView: View {
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color(UIColor.lightGray), lineWidth: 2)
+                            .stroke(Color(UIColor.lightGray), lineWidth: 1)
                     )
-                TextField(Localizable.loginTextfieldPasswordHint(), text: $password)
+                    .keyboardType(.emailAddress)
+                    .accentColor(.black)
+                SecureField(Localizable.loginTextfieldPasswordHint(), text: $password)
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color(UIColor.lightGray), lineWidth: 2)
+                            .stroke(Color(UIColor.lightGray), lineWidth: 1)
                     )
+                    .accentColor(.black)
                 Button(
                     action: {
                         // TODO: Implement in integrate task
