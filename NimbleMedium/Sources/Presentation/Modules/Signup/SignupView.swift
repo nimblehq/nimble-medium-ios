@@ -71,8 +71,9 @@ struct SignupView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarColor(backgroundColor: .green)
             .toolbar { navigationBarLeadingContent }
-        }.accentColor(.white)
-
+        }
+        .accentColor(.white)
+        .onTapGesture { UIApplication.shared.endEditing() }
     }
 
     var navigationBarLeadingContent: some ToolbarContent {
