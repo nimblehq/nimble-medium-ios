@@ -13,13 +13,15 @@ import RxCombine
 struct HomeView: View {
 
     private var viewModel: HomeViewModelProtocol
+    private var factory: ViewModelFactoryProtocol
     private let disposeBag = DisposeBag()
 
     @State private var isSideMenuOpen: Bool = false
     @State private var feedsViewModel: FeedsViewModelProtocol?
 
     // swiftlint:disable type_contents_order
-    init (viewModel: HomeViewModelProtocol) {
+    init (factory: ViewModelFactoryProtocol, viewModel: HomeViewModelProtocol) {
+        self.factory = factory
         self.viewModel = viewModel
     }
 
@@ -40,7 +42,7 @@ struct HomeView: View {
 
             HStack {
                 GeometryReader { geo in
-                    SideMenuView()
+                    SideMenuView(factory: factory)
                         .frame(width: geo.size.width * 2.0 / 3.0, height: geo.size.height)
                         .background(Color.white)
                         .offset(x: isSideMenuOpen ? 0.0 : -geo.size.width * 2.0 / 3.0)
@@ -66,7 +68,7 @@ struct HomeView_Previews: PreviewProvider {
         let homeViewModel = HomeViewModel(feedsViewModel: feedsViewModel)
 
         return HomeView(
-            viewModel: homeViewModel
+            factory: DependencyFactory(), viewModel: homeViewModel
         )
     }
 }

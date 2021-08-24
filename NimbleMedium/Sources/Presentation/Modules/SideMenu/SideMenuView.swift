@@ -8,21 +8,27 @@
 import SwiftUI
 
 struct SideMenuView: View {
-    
+
+    private var factory: ViewModelFactoryProtocol
+
     var body: some View {
         GeometryReader { metrics in
             VStack(alignment: .center) {
                 SideMenuHeaderView().frame(height: metrics.size.height * 0.3)
-                SideMenuActionsView()
+                SideMenuActionsView(factory: factory)
             }
         }
+    }
+
+    init(factory: ViewModelFactoryProtocol) {
+        self.factory = factory
     }
 }
 
 #if DEBUG
 struct SideMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuView()
+        SideMenuView(factory: DependencyFactory())
     }
 }
 #endif

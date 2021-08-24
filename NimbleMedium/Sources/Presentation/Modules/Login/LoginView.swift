@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
 
+    @Environment(\.presentationMode) var presentationMode
     @State private var email = ""
     @State private var password = ""
 
@@ -73,7 +74,7 @@ struct LoginView: View {
         ToolbarItem(placement: .navigationBarLeading) {
             Button(
                 action: {
-                    // TODO: Implement in integrate task
+                    presentationMode.wrappedValue.dismiss()
                 },
                 label: {
                     Image(systemName: SystemImageName.xmark.rawValue)

@@ -9,7 +9,10 @@ import SwiftUI
 
 struct SideMenuActionsView: View {
 
+    private var factory: ViewModelFactoryProtocol
+
     @State private var isAuthenticated = false
+    @State private var isShowingLoginScreen = false
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -18,8 +21,12 @@ struct SideMenuActionsView: View {
                     text: Localizable.menuOptionLogin(),
                     iconName: R.image.iconLogin.name
                 ) {
-                    print("Login button was tapped")
+                    isShowingLoginScreen.toggle()
                 }
+                .fullScreenCover(isPresented: $isShowingLoginScreen) {
+                    LoginView(viewModel: factory.loginViewModel())
+                }
+
                 SideMenuActionItemView(
                     text: Localizable.menuOptionSignup(),
                     iconName: R.image.iconSignup.name
@@ -29,12 +36,16 @@ struct SideMenuActionsView: View {
             }
         }
     }
+
+    init(factory: ViewModelFactoryProtocol) {
+        self.factory = factory
+    }
 }
 
 #if DEBUG
 struct SideMenuActionsView_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuActionsView()
+        SideMenuActionsView(factory: DependencyFactory())
     }
 }
 #endif
