@@ -63,7 +63,9 @@ struct LoginView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarColor(backgroundColor: .green)
             .toolbar { navigationBarLeadingContent }
-        }.accentColor(.white)
+        }
+        .accentColor(.white)
+        .onTapGesture { hideKeyboard() }
 
     }
 
