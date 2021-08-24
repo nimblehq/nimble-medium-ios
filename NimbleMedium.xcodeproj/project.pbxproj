@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		246A8FB826D39C24009F9753 /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246A8FB726D39C24009F9753 /* SideMenuHeaderView.swift */; };
 		241B4EEA26D3B3F4000409CC /* SideMenuActionItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B4EE926D3B3F4000409CC /* SideMenuActionItemView.swift */; };
+		2424B22C26D4A22B00CF07B5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2424B22B26D4A22B00CF07B5 /* LoginView.swift */; };
+		2424B22F26D4A2EF00CF07B5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2424B22E26D4A2EF00CF07B5 /* LoginViewModel.swift */; };
+		246A8FB826D39C24009F9753 /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246A8FB726D39C24009F9753 /* SideMenuHeaderView.swift */; };
 		2497356126D34F3200177A7C /* SideMenuActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497356026D34F3200177A7C /* SideMenuActionsView.swift */; };
 		2497356326D35BBD00177A7C /* MenuOptionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497356226D35BBD00177A7C /* MenuOptionButtonStyle.swift */; };
 		2D2F456026C25911002C0331 /* View+NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F455F26C25911002C0331 /* View+NavigationBar.swift */; };
@@ -56,8 +58,10 @@
 /* Begin PBXFileReference section */
 		1FB4ECE354F839DF02D6976B /* Pods-NimbleMedium.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.staging.xcconfig"; sourceTree = "<group>"; };
 		21851292A064EB97674233A2 /* Pods-NimbleMediumTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.staging.xcconfig"; sourceTree = "<group>"; };
-		246A8FB726D39C24009F9753 /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
 		241B4EE926D3B3F4000409CC /* SideMenuActionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuActionItemView.swift; sourceTree = "<group>"; };
+		2424B22B26D4A22B00CF07B5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		2424B22E26D4A2EF00CF07B5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		246A8FB726D39C24009F9753 /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
 		2497356026D34F3200177A7C /* SideMenuActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuActionsView.swift; sourceTree = "<group>"; };
 		2497356226D35BBD00177A7C /* MenuOptionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionButtonStyle.swift; sourceTree = "<group>"; };
 		2D2F455F26C25911002C0331 /* View+NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+NavigationBar.swift"; sourceTree = "<group>"; };
@@ -131,6 +135,15 @@
 				EDBC77E99D264744421CC502 /* Pods_NimbleMediumTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2424B22D26D4A23100CF07B5 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2424B22B26D4A22B00CF07B5 /* LoginView.swift */,
+				2424B22E26D4A2EF00CF07B5 /* LoginViewModel.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		2D303B3C26C28AE900EEF1C0 /* Foundation */ = {
@@ -574,8 +587,9 @@
 			isa = PBXGroup;
 			children = (
 				2DBE36AC26C3B0B500DA3511 /* Feeds */,
-				2DBE36AF26C3B32B00DA3511 /* SideMenu */,
 				2D467C3E26BCD591008F11E1 /* Home */,
+				2424B22D26D4A23100CF07B5 /* Login */,
+				2DBE36AF26C3B32B00DA3511 /* SideMenu */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -600,7 +614,7 @@
 			isa = PBXGroup;
 			children = (
 				2497356226D35BBD00177A7C /* MenuOptionButtonStyle.swift */,
-                241B4EE926D3B3F4000409CC /* SideMenuActionItemView.swift */,
+				241B4EE926D3B3F4000409CC /* SideMenuActionItemView.swift */,
 				2497356026D34F3200177A7C /* SideMenuActionsView.swift */,
 				246A8FB726D39C24009F9753 /* SideMenuHeaderView.swift */,
 				2DBE36B026C3B33700DA3511 /* SideMenuView.swift */,
@@ -955,11 +969,13 @@
 				2D69824426C22DC700860A98 /* R.generated.swift in Sources */,
 				2DB04AD726C3A4AC003E65F4 /* Color+UIColor.swift in Sources */,
 				2497356126D34F3200177A7C /* SideMenuActionsView.swift in Sources */,
+				2424B22C26D4A22B00CF07B5 /* LoginView.swift in Sources */,
 				2D5485BC26CA077600FFE707 /* View+RxDriver.swift in Sources */,
 				2DB2674E26BBEC4300FF05BB /* App.swift in Sources */,
 				2D5485BE26CA0D2C00FFE707 /* PublishRelayProperty.swift in Sources */,
 				241B4EEA26D3B3F4000409CC /* SideMenuActionItemView.swift in Sources */,
 				2D4ADCC926C61192008F8843 /* FeedsViewModel.swift in Sources */,
+				2424B22F26D4A2EF00CF07B5 /* LoginViewModel.swift in Sources */,
 				2DE3B9B526C1339200272775 /* Typealias.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
