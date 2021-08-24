@@ -10,9 +10,11 @@ import SwiftUI
 struct SideMenuView: View {
     
     var body: some View {
-        VStack(alignment: .center) {
-            // TODO: Implement Menu Header UI
-            SideMenuActionsView()
+        GeometryReader { metrics in
+            VStack(alignment: .center) {
+                SideMenuHeaderView().frame(height: metrics.size.height * 0.3)
+                SideMenuActionsView()
+            }
         }
     }
 }
