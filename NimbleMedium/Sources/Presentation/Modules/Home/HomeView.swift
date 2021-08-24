@@ -41,9 +41,9 @@ struct HomeView: View {
             HStack {
                 GeometryReader { geo in
                     SideMenuView()
-                        .frame(width: geo.size.width * 2 / 3, height: geo.size.height)
+                        .frame(width: geo.size.width * 2.0 / 3.0, height: geo.size.height)
                         .background(Color.white)
-                        .offset(x: isSideMenuOpen ? 0 : -geo.size.width * 2 / 3)
+                        .offset(x: isSideMenuOpen ? 0.0 : -geo.size.width * 2.0 / 3.0)
                         .animation(.easeIn(duration: 0.5))
                 }
             }

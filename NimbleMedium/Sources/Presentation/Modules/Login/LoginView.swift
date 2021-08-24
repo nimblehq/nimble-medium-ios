@@ -17,26 +17,25 @@ struct LoginView: View {
     // swiftlint:disable type_contents_order
     init(viewModel: LoginViewModelProtocol) {
         self.viewModel = viewModel
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UIToolbar.self]).tintColor = .white
     }
 
     // swiftlint:disable closure_body_length
     var body: some View {
         NavigationView {
-            VStack(spacing: 15) {
+            VStack(spacing: 15.0) {
                 TextField(Localizable.loginTextfieldEmailHint(), text: $email)
                     .padding()
                     .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color(UIColor.lightGray), lineWidth: 1)
+                        RoundedRectangle(cornerRadius: 8.0)
+                            .stroke(Color(UIColor.lightGray), lineWidth: 1.0)
                     )
                     .keyboardType(.emailAddress)
                     .accentColor(.black)
                 SecureField(Localizable.loginTextfieldPasswordHint(), text: $password)
                     .padding()
                     .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color(UIColor.lightGray), lineWidth: 1)
+                        RoundedRectangle(cornerRadius: 8.0)
+                            .stroke(Color(UIColor.lightGray), lineWidth: 1.0)
                     )
                     .accentColor(.black)
                 Button(
@@ -44,7 +43,7 @@ struct LoginView: View {
                         // TODO: Implement in integrate task
                     }, label: {
                         Text(Localizable.actionLogin())
-                            .frame(width: 100, height: 50)
+                            .frame(width: 100.0, height: 50.0)
                     }
                 )
                 .background(Color.green)
@@ -54,7 +53,7 @@ struct LoginView: View {
                         // TODO: Implement in integrate task
                     }, label: {
                         Text(Localizable.loginNeedaccountTitle())
-                            .frame(height: 25)
+                            .frame(height: 25.0)
                     }
                 )
                 .foregroundColor(.green)
