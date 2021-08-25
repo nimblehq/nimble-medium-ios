@@ -6,14 +6,17 @@
 //
 
 import SwiftUI
+import RxSwift
 
 struct SideMenuActionsView: View {
 
-    private var factory: ViewModelFactoryProtocol
-    private var onSelectOptionItem: (() -> Void)?
+    private let disposeBag = DisposeBag()
+
+    private var viewModel: SideMenuActionsViewModelProtocol
 
     @State private var isAuthenticated = false
     @State private var isShowingLoginScreen = false
+    @State private var loginViewModel: LoginViewModelProtocol?
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -22,11 +25,12 @@ struct SideMenuActionsView: View {
                     text: Localizable.menuOptionLogin(),
                     iconName: R.image.iconLogin.name
                 ) {
-                    onSelectOptionItem?()
-                    isShowingLoginScreen.toggle()
+                    viewModel.input.selectLoginOption()
                 }
                 .fullScreenCover(isPresented: $isShowingLoginScreen) {
-                    LoginView(viewModel: factory.loginViewModel())
+                    if let loginViewModel = loginViewModel {
+                        LoginView(viewModel: loginViewModel)
+                    }
                 }
 
                 SideMenuActionItemView(
@@ -37,18 +41,23 @@ struct SideMenuActionsView: View {
                 }
             }
         }
+        .onReceive(viewModel.output.didSelectLoginOption) {
+            isShowingLoginScreen = $0
+        }
+        .onReceive(viewModel.output.loginViewModel) {
+            loginViewModel = $0
+        }
     }
 
-    init(factory: ViewModelFactoryProtocol, onSelectOptionItem: (() -> Void)? = nil) {
-        self.factory = factory
-        self.onSelectOptionItem = onSelectOptionItem
+    init(viewModel: SideMenuActionsViewModelProtocol) {
+        self.viewModel = viewModel
     }
 }
 
 #if DEBUG
 struct SideMenuActionsView_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuActionsView(factory: DependencyFactory())
+        SideMenuActionsView(viewModel: SideMenuActionsViewModel(factory: DependencyFactory()))
     }
 }
 #endif

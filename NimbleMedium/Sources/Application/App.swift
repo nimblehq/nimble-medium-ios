@@ -11,16 +11,11 @@ import AlamofireNetworkActivityLogger
 @main
 struct App: SwiftUI.App {
 
-    private var factory: ViewModelFactoryProtocol
+    private var factory: ModuleFactoryProtocol
 
     var body: some Scene {
-
-        // TODO: Implement DI
-        let feedsViewModel = FeedsViewModel()
-        let homeViewModel = HomeViewModel(feedsViewModel: feedsViewModel)
-
-        return WindowGroup {
-            HomeView(factory: factory, viewModel: homeViewModel)
+        WindowGroup {
+            HomeView(viewModel: factory.homeViewModel())
         }
     }
 
@@ -31,6 +26,6 @@ struct App: SwiftUI.App {
         NetworkActivityLogger.shared.startLogging()
         #endif
 
-        self.factory = DependencyFactory()
+        factory = DependencyFactory()
     }
 }

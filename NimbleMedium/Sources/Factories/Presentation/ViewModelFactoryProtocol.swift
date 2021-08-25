@@ -7,5 +7,13 @@
 
 protocol ViewModelFactoryProtocol {
 
+    func feedsViewModel() -> FeedsViewModelProtocol
+
+    func homeViewModel() -> HomeViewModelProtocol
+    
     func loginViewModel() -> LoginViewModelProtocol
+
+    func sideMenuActionsViewModel() -> SideMenuActionsViewModelProtocol
+
+    func sideMenuViewModel() -> SideMenuViewModelProtocol
 }

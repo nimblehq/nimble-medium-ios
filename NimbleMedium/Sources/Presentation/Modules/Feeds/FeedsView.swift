@@ -11,11 +11,6 @@ struct FeedsView: View {
 
     private let viewModel: FeedsViewModelProtocol
 
-    // swiftlint:disable type_contents_order
-    init(viewModel: FeedsViewModelProtocol) {
-        self.viewModel = viewModel
-    }
-
     var body: some View {
         NavigationView {
             // TODO: Implement Feeds UI
@@ -38,6 +33,10 @@ struct FeedsView: View {
                 }
             )
         }
+    }
+
+    init(viewModel: FeedsViewModelProtocol) {
+        self.viewModel = viewModel
     }
 }
 

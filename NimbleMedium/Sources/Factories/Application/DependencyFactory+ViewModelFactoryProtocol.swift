@@ -7,7 +7,23 @@
 
 extension DependencyFactory: ViewModelFactoryProtocol {
 
+    func feedsViewModel() -> FeedsViewModelProtocol {
+        FeedsViewModel()
+    }
+
+    func homeViewModel() -> HomeViewModelProtocol {
+        HomeViewModel(factory: self)
+    }
+
     func loginViewModel() -> LoginViewModelProtocol {
         LoginViewModel()
+    }
+
+    func sideMenuActionsViewModel() -> SideMenuActionsViewModelProtocol {
+        SideMenuActionsViewModel(factory: self)
+    }
+
+    func sideMenuViewModel() -> SideMenuViewModelProtocol {
+        SideMenuViewModel(factory: self)
     }
 }
