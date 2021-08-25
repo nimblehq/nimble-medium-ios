@@ -16,8 +16,8 @@ protocol HomeViewModelInput {
 protocol HomeViewModelOutput {
 
     var isSideMenuOpen: Driver<Bool> { get }
-    var feedsViewModel: Driver<FeedsViewModelProtocol> { get }
-    var sideMenuViewModel: Driver<SideMenuViewModelProtocol> { get }
+    var feedsViewModel: FeedsViewModelProtocol { get }
+    var sideMenuViewModel: SideMenuViewModelProtocol { get }
 }
 
 protocol HomeViewModelProtocol {
@@ -35,14 +35,12 @@ final class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutput {
 
     @BehaviorRelayProperty(value: false) var isSideMenuOpen: Driver<Bool>
 
-    let feedsViewModel: Driver<FeedsViewModelProtocol>
-    let sideMenuViewModel: Driver<SideMenuViewModelProtocol>
+    let feedsViewModel: FeedsViewModelProtocol
+    let sideMenuViewModel: SideMenuViewModelProtocol
 
     init(factory: ModuleFactoryProtocol) {
-        let feedsViewModel = factory.feedsViewModel()
-        self.feedsViewModel = Driver.just(feedsViewModel)
-        let sideMenuViewModel = factory.sideMenuViewModel()
-        self.sideMenuViewModel = Driver.just(sideMenuViewModel)
+        feedsViewModel = factory.feedsViewModel()
+        sideMenuViewModel = factory.sideMenuViewModel()
 
         feedsViewModel.output.didToggleSideMenu
             .withUnretained(self)

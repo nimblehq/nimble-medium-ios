@@ -16,7 +16,7 @@ protocol SideMenuViewModelInput {
 protocol SideMenuViewModelOutput {
 
     var didSelectMenuOption: Observable<Void> { get }
-    var sideMenuActionsViewModel: Driver<SideMenuActionsViewModelProtocol> { get }
+    var sideMenuActionsViewModel: SideMenuActionsViewModelProtocol { get }
 }
 
 protocol SideMenuViewModelProtocol {
@@ -32,13 +32,12 @@ final class SideMenuViewModel: SideMenuViewModelProtocol {
 
     private let disposeBag = DisposeBag()
 
-    let sideMenuActionsViewModel: Driver<SideMenuActionsViewModelProtocol>
+    let sideMenuActionsViewModel: SideMenuActionsViewModelProtocol
 
     @PublishRelayProperty var didSelectMenuOption: Observable<Void>
 
     init(factory: ModuleFactoryProtocol) {
-        let sideMenuActionsViewModel = factory.sideMenuActionsViewModel()
-        self.sideMenuActionsViewModel = Driver.just(sideMenuActionsViewModel)
+        sideMenuActionsViewModel = factory.sideMenuActionsViewModel()
         sideMenuActionsViewModel.output.didSelectLoginOption.asObservable()
             .withUnretained(self)
             .bind { _ in

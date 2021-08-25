@@ -16,7 +16,7 @@ protocol SideMenuActionsViewModelInput {
 protocol SideMenuActionsViewModelOutput {
 
     var didSelectLoginOption: Driver<Bool> { get }
-    var loginViewModel: Driver<LoginViewModelProtocol> { get }
+    var loginViewModel: LoginViewModelProtocol { get }
 }
 
 protocol SideMenuActionsViewModelProtocol {
@@ -32,10 +32,10 @@ final class SideMenuActionsViewModel: SideMenuActionsViewModelProtocol {
 
     @BehaviorRelayProperty(value: false) var didSelectLoginOption: Driver<Bool>
 
-    let loginViewModel: Driver<LoginViewModelProtocol>
+    let loginViewModel: LoginViewModelProtocol
 
     init(factory: ModuleFactoryProtocol) {
-        self.loginViewModel = Driver.just(factory.loginViewModel())
+        loginViewModel = factory.loginViewModel()
     }
 }
 

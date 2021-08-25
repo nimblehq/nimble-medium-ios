@@ -13,10 +13,10 @@ import RxCombine
 struct HomeView: View {
 
     private var viewModel: HomeViewModelProtocol
+    private var feedsViewModel: FeedsViewModelProtocol
+    private var sideMenuViewModel: SideMenuViewModelProtocol
 
     @State private var isSideMenuOpen: Bool = false
-    @State private var feedsViewModel: FeedsViewModelProtocol?
-    @State private var sideMenuViewModel: SideMenuViewModelProtocol?
 
     var body: some View {
         ZStack {
@@ -49,16 +49,12 @@ struct HomeView: View {
         .onReceive(viewModel.output.isSideMenuOpen) {
             isSideMenuOpen = $0
         }
-        .onReceive(viewModel.output.feedsViewModel) {
-            feedsViewModel = $0
-        }
-        .onReceive(viewModel.output.sideMenuViewModel) {
-            sideMenuViewModel = $0
-        }
     }
 
     init (viewModel: HomeViewModelProtocol) {
         self.viewModel = viewModel
+        feedsViewModel = viewModel.output.feedsViewModel
+        sideMenuViewModel = viewModel.output.sideMenuViewModel
     }
 }
 

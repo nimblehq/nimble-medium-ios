@@ -10,8 +10,7 @@ import SwiftUI
 struct SideMenuView: View {
 
     private var viewModel: SideMenuViewModelProtocol
-
-    @State private var sideMenuActionsViewModel: SideMenuActionsViewModelProtocol?
+    private var sideMenuActionsViewModel: SideMenuActionsViewModelProtocol
 
     var body: some View {
         GeometryReader { metrics in
@@ -22,13 +21,11 @@ struct SideMenuView: View {
                 }
             }
         }
-        .onReceive(viewModel.output.sideMenuActionsViewModel) {
-            sideMenuActionsViewModel = $0
-        }
     }
 
     init(viewModel: SideMenuViewModelProtocol) {
         self.viewModel = viewModel
+        sideMenuActionsViewModel = viewModel.output.sideMenuActionsViewModel
     }
 }
 

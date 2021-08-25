@@ -10,13 +10,11 @@ import RxSwift
 
 struct SideMenuActionsView: View {
 
-    private let disposeBag = DisposeBag()
-
     private var viewModel: SideMenuActionsViewModelProtocol
+    private var loginViewModel: LoginViewModelProtocol
 
     @State private var isAuthenticated = false
     @State private var isShowingLoginScreen = false
-    @State private var loginViewModel: LoginViewModelProtocol?
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -41,16 +39,15 @@ struct SideMenuActionsView: View {
                 }
             }
         }
-        .onReceive(viewModel.output.loginViewModel) {
-            loginViewModel = $0
-        }
         .onReceive(viewModel.output.didSelectLoginOption) {
             isShowingLoginScreen = $0
         }
     }
 
     init(viewModel: SideMenuActionsViewModelProtocol) {
+        print("init SideMenuActionsView")
         self.viewModel = viewModel
+        loginViewModel = viewModel.output.loginViewModel
     }
 }
 
