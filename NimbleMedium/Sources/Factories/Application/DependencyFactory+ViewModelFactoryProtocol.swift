@@ -26,4 +26,8 @@ extension DependencyFactory: ViewModelFactoryProtocol {
     func sideMenuViewModel() -> SideMenuViewModelProtocol {
         SideMenuViewModel(factory: self)
     }
+
+    func signupViewModel() -> SignupViewModelProtocol {
+        SignupViewModel()
+    }
 }

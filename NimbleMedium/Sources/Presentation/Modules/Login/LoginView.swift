@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginView: View {
 
     @Environment(\.presentationMode) var presentationMode
+
     @State private var email = ""
     @State private var password = ""
 

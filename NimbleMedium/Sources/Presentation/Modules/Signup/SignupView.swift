@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SignupView: View {
 
+    @Environment(\.presentationMode) var presentationMode
+
     @State private var email = ""
     @State private var password = ""
     @State private var username = ""
@@ -18,62 +20,64 @@ struct SignupView: View {
     // swiftlint:disable closure_body_length
     var body: some View {
         NavigationView {
-            VStack(spacing: 15.0) {
-                TextField(Localizable.signupTextFieldUsernamePlaceholder(), text: $username)
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8.0)
-                            .stroke(Color(.lightGray), lineWidth: 1.0)
+            Background {
+                VStack(spacing: 15.0) {
+                    TextField(Localizable.signupTextFieldUsernamePlaceholder(), text: $username)
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8.0)
+                                .stroke(Color(.lightGray), lineWidth: 1.0)
+                        )
+                        .accentColor(.black)
+                    TextField(Localizable.signupTextFieldEmailPlaceholder(), text: $email)
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8.0)
+                                .stroke(Color(.lightGray), lineWidth: 1.0)
+                        )
+                        .keyboardType(.emailAddress)
+                        .accentColor(.black)
+                    SecureField(Localizable.signupTextFieldPasswordPlaceholder(), text: $password)
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8.0)
+                                .stroke(Color(.lightGray), lineWidth: 1.0)
+                        )
+                        .accentColor(.black)
+                    Button(
+                        action: {
+                            // TODO: Implement in integrate task
+                        }, label: {
+                            Text(Localizable.actionSignup())
+                                .frame(width: 100.0, height: 50.0)
+                        }
                     )
-                    .accentColor(.black)
-                TextField(Localizable.signupTextFieldEmailPlaceholder(), text: $email)
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8.0)
-                            .stroke(Color(.lightGray), lineWidth: 1.0)
+                    .background(Color.green)
+                    .cornerRadius(8.0)
+                    Button(
+                        action: {
+                            // TODO: Implement in integrate task
+                        }, label: {
+                            Text(Localizable.signupHaveAccountTitle())
+                                .frame(height: 25.0)
+                        }
                     )
-                    .keyboardType(.emailAddress)
-                    .accentColor(.black)
-                SecureField(Localizable.signupTextFieldPasswordPlaceholder(), text: $password)
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8.0)
-                            .stroke(Color(.lightGray), lineWidth: 1.0)
-                    )
-                    .accentColor(.black)
-                Button(
-                    action: {
-                        // TODO: Implement in integrate task
-                    }, label: {
-                        Text(Localizable.actionSignup())
-                            .frame(width: 100.0, height: 50.0)
-                    }
-                )
-                .background(Color.green)
-                .cornerRadius(8.0)
-                Button(
-                    action: {
-                        // TODO: Implement in integrate task
-                    }, label: {
-                        Text(Localizable.signupHaveAccountTitle())
-                            .frame(height: 25.0)
-                    }
-                )
-                .foregroundColor(.green)
+                    .foregroundColor(.green)
+                }
             }
+            .onTapGesture { hideKeyboard() }
             .navigationBarTitle(Localizable.signupTitle(), displayMode: .inline)
             .navigationBarColor(backgroundColor: .green)
             .toolbar { navigationBarLeadingContent }
         }
         .accentColor(.white)
-        .onTapGesture { hideKeyboard() }
     }
 
     var navigationBarLeadingContent: some ToolbarContent {
         ToolbarItem(placement: .navigationBarLeading) {
             Button(
                 action: {
-                    // TODO: Implement in integrate task
+                    presentationMode.wrappedValue.dismiss()
                 },
                 label: {
                     Image(systemName: SystemImageName.xmark.rawValue)

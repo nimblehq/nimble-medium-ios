@@ -14,6 +14,7 @@ struct SideMenuActionsView: View {
 
     @State private var isAuthenticated = false
     @State private var isShowingLoginScreen = false
+    @State private var isShowingSignupScreen = false
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -32,12 +33,18 @@ struct SideMenuActionsView: View {
                     text: Localizable.menuOptionSignup(),
                     iconName: R.image.iconSignup.name
                 ) {
-                    print("Signup button was tapped")
+                    viewModel.input.selectSignupOption()
+                }
+                .fullScreenCover(isPresented: $isShowingSignupScreen) {
+                    SignupView(viewModel: viewModel.output.signupViewModel)
                 }
             }
         }
         .onReceive(viewModel.output.didSelectLoginOption) {
             isShowingLoginScreen = $0
+        }
+        .onReceive(viewModel.output.didSelectSignupOption) {
+            isShowingSignupScreen = $0
         }
     }
 
