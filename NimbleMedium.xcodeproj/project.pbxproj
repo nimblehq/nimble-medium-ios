@@ -157,6 +157,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		24204CA326D6465C00534314 /* SideMenuActions */ = {
+			isa = PBXGroup;
+			children = (
+				2497356226D35BBD00177A7C /* MenuOptionButtonStyle.swift */,
+				2497356026D34F3200177A7C /* SideMenuActionsView.swift */,
+				24204C9F26D625D300534314 /* SideMenuActionsViewModel.swift */,
+				241B4EE926D3B3F4000409CC /* SideMenuActionItemView.swift */,
+			);
+			path = SideMenuActions;
+			sourceTree = "<group>";
+		};
+		24204CA426D6467400534314 /* SideMenuMain */ = {
+			isa = PBXGroup;
+			children = (
+				2DBE36B026C3B33700DA3511 /* SideMenuView.swift */,
+				24204CA126D62B6900534314 /* SideMenuViewModel.swift */,
+			);
+			path = SideMenuMain;
+			sourceTree = "<group>";
+		};
+		24204CA526D646DB00534314 /* SideMenuHeader */ = {
+			isa = PBXGroup;
+			children = (
+				246A8FB726D39C24009F9753 /* SideMenuHeaderView.swift */,
+			);
+			path = SideMenuHeader;
+			sourceTree = "<group>";
+		};
 		2424B22D26D4A23100CF07B5 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -673,13 +701,9 @@
 		2DBE36AF26C3B32B00DA3511 /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
-				2497356226D35BBD00177A7C /* MenuOptionButtonStyle.swift */,
-				241B4EE926D3B3F4000409CC /* SideMenuActionItemView.swift */,
-				2497356026D34F3200177A7C /* SideMenuActionsView.swift */,
-				24204C9F26D625D300534314 /* SideMenuActionsViewModel.swift */,
-				246A8FB726D39C24009F9753 /* SideMenuHeaderView.swift */,
-				2DBE36B026C3B33700DA3511 /* SideMenuView.swift */,
-				24204CA126D62B6900534314 /* SideMenuViewModel.swift */,
+				24204CA326D6465C00534314 /* SideMenuActions */,
+				24204CA526D646DB00534314 /* SideMenuHeader */,
+				24204CA426D6467400534314 /* SideMenuMain */,
 			);
 			path = SideMenu;
 			sourceTree = "<group>";

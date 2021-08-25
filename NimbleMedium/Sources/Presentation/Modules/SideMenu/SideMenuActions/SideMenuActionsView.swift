@@ -41,11 +41,11 @@ struct SideMenuActionsView: View {
                 }
             }
         }
-        .onReceive(viewModel.output.didSelectLoginOption) {
-            isShowingLoginScreen = $0
-        }
         .onReceive(viewModel.output.loginViewModel) {
             loginViewModel = $0
+        }
+        .onReceive(viewModel.output.didSelectLoginOption) {
+            isShowingLoginScreen = $0
         }
     }
 
