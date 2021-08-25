@@ -6,12 +6,16 @@
   
 */
 
+"action.login" = "Login";
+
 "feed.title" = "Feed";
 
+"login.title" = "Login";
+"login.textFieldEmail.placeholder" = "Email";
+"login.textfieldPassword.placeholder" = "Password";
+"login.needAccount.title" = "Need an account?";
+
 "menu.header.title" = "Nimble Medium";
-
 "menu.header.description" = "A place to share your knowledge";
-
 "menu.option.login" = "Login";
-
 "menu.option.signup" = "Signup";

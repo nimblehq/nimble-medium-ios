@@ -14,7 +14,7 @@ struct SideMenuActionItemView: View {
     
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 10) {
+            HStack(spacing: 10.0) {
                 Image(iconName)
                     .resizable()
                     .frame(width: 25.0, height: 25.0)
