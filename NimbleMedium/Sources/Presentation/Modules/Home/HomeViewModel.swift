@@ -17,6 +17,7 @@ protocol HomeViewModelInput {
 protocol HomeViewModelOutput {
 
     var isSideMenuOpen: Bool { get }
+    var isSideMenuOpenDidChange: Signal<Bool> { get }
     var feedsViewModel: FeedsViewModelProtocol { get }
     var sideMenuViewModel: SideMenuViewModelProtocol { get }
 }
@@ -27,7 +28,7 @@ protocol HomeViewModelProtocol: ObservableViewModel {
     var output: HomeViewModelOutput { get }
 }
 
-final class HomeViewModel: ObservableObject, HomeViewModelProtocol, HomeViewModelOutput {
+final class HomeViewModel: ObservableObject, HomeViewModelProtocol {
 
     private let disposeBag = DisposeBag()
 
@@ -62,5 +63,12 @@ extension HomeViewModel: HomeViewModelInput {
 
     func toggleSideMenu(_ value: Bool) {
         isSideMenuOpen = value
+    }
+}
+
+extension HomeViewModel: HomeViewModelOutput {
+
+    var isSideMenuOpenDidChange: Signal<Bool> {
+        $isSideMenuOpen.asSignal()
     }
 }
