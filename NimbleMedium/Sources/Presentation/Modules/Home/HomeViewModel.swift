@@ -16,7 +16,8 @@ protocol HomeViewModelInput {
 protocol HomeViewModelOutput {
 
     var isSideMenuOpen: Driver<Bool> { get }
-    var feedsViewModel: Driver<FeedsViewModelProtocol> { get }
+    var feedsViewModel: FeedsViewModelProtocol { get }
+    var sideMenuViewModel: SideMenuViewModelProtocol { get }
 }
 
 protocol HomeViewModelProtocol {
@@ -25,7 +26,7 @@ protocol HomeViewModelProtocol {
     var output: HomeViewModelOutput { get }
 }
 
-final class HomeViewModel: HomeViewModelProtocol {
+final class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutput {
 
     private let disposeBag = DisposeBag()
 
@@ -33,14 +34,25 @@ final class HomeViewModel: HomeViewModelProtocol {
     var output: HomeViewModelOutput { self }
 
     @BehaviorRelayProperty(value: false) var isSideMenuOpen: Driver<Bool>
-    let feedsViewModel: Driver<FeedsViewModelProtocol>
 
-    init(feedsViewModel: FeedsViewModelProtocol) {
-        self.feedsViewModel = Driver.just(feedsViewModel)
+    let feedsViewModel: FeedsViewModelProtocol
+    let sideMenuViewModel: SideMenuViewModelProtocol
+
+    init(factory: ModuleFactoryProtocol) {
+        feedsViewModel = factory.feedsViewModel()
+        sideMenuViewModel = factory.sideMenuViewModel()
+
         feedsViewModel.output.didToggleSideMenu
             .withUnretained(self)
             .bind {
                 $0.0.toggleSideMenu(true)
+            }
+            .disposed(by: disposeBag)
+
+        sideMenuViewModel.output.didSelectMenuOption
+            .withUnretained(self)
+            .bind {
+                $0.0.toggleSideMenu(false)
             }
             .disposed(by: disposeBag)
     }
@@ -52,5 +64,3 @@ extension HomeViewModel: HomeViewModelInput {
         $isSideMenuOpen.accept(value)
     }
 }
-
-extension HomeViewModel: HomeViewModelOutput {}

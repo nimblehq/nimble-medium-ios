@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import RxSwift
 
 struct SideMenuActionsView: View {
 
+    private var viewModel: SideMenuActionsViewModelProtocol
+    private var loginViewModel: LoginViewModelProtocol
+
     @State private var isAuthenticated = false
+    @State private var isShowingLoginScreen = false
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -18,8 +23,14 @@ struct SideMenuActionsView: View {
                     text: Localizable.menuOptionLogin(),
                     iconName: R.image.iconLogin.name
                 ) {
-                    print("Login button was tapped")
+                    viewModel.input.selectLoginOption()
                 }
+                .fullScreenCover(isPresented: $isShowingLoginScreen) {
+                    if let loginViewModel = loginViewModel {
+                        LoginView(viewModel: loginViewModel)
+                    }
+                }
+
                 SideMenuActionItemView(
                     text: Localizable.menuOptionSignup(),
                     iconName: R.image.iconSignup.name
@@ -28,13 +39,22 @@ struct SideMenuActionsView: View {
                 }
             }
         }
+        .onReceive(viewModel.output.didSelectLoginOption) {
+            isShowingLoginScreen = $0
+        }
+    }
+
+    init(viewModel: SideMenuActionsViewModelProtocol) {
+        print("init SideMenuActionsView")
+        self.viewModel = viewModel
+        loginViewModel = viewModel.output.loginViewModel
     }
 }
 
 #if DEBUG
 struct SideMenuActionsView_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuActionsView()
+        SideMenuActionsView(viewModel: SideMenuActionsViewModel(factory: DependencyFactory()))
     }
 }
 #endif

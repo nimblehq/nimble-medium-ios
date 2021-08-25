@@ -13,15 +13,10 @@ import RxCombine
 struct HomeView: View {
 
     private var viewModel: HomeViewModelProtocol
-    private let disposeBag = DisposeBag()
+    private var feedsViewModel: FeedsViewModelProtocol
+    private var sideMenuViewModel: SideMenuViewModelProtocol
 
     @State private var isSideMenuOpen: Bool = false
-    @State private var feedsViewModel: FeedsViewModelProtocol?
-
-    // swiftlint:disable type_contents_order
-    init (viewModel: HomeViewModelProtocol) {
-        self.viewModel = viewModel
-    }
 
     var body: some View {
         ZStack {
@@ -40,34 +35,33 @@ struct HomeView: View {
 
             HStack {
                 GeometryReader { geo in
-                    SideMenuView()
-                        .frame(width: geo.size.width * 2.0 / 3.0, height: geo.size.height)
-                        .background(Color.white)
-                        .offset(x: isSideMenuOpen ? 0.0 : -geo.size.width * 2.0 / 3.0)
-                        .animation(.easeIn(duration: 0.5))
+                    if let sideMenuViewModel = sideMenuViewModel {
+                        SideMenuView(viewModel: sideMenuViewModel)
+                            .frame(width: geo.size.width * 2.0 / 3.0, height: geo.size.height)
+                            .background(Color.white)
+                            .offset(x: isSideMenuOpen ? 0.0 : -geo.size.width * 2.0 / 3.0)
+                            .animation(.easeIn(duration: 0.5))
+                    }
                 }
             }
         }
         .ignoresSafeArea()
         .onReceive(viewModel.output.isSideMenuOpen) {
-            self.isSideMenuOpen = $0
+            isSideMenuOpen = $0
         }
-        .onReceive(viewModel.output.feedsViewModel) {
-            self.feedsViewModel = $0
-        }
+    }
+
+    init (viewModel: HomeViewModelProtocol) {
+        self.viewModel = viewModel
+        feedsViewModel = viewModel.output.feedsViewModel
+        sideMenuViewModel = viewModel.output.sideMenuViewModel
     }
 }
 
 #if DEBUG
 struct HomeView_Previews: PreviewProvider {
-
     static var previews: some View {
-        let feedsViewModel = FeedsViewModel()
-        let homeViewModel = HomeViewModel(feedsViewModel: feedsViewModel)
-
-        return HomeView(
-            viewModel: homeViewModel
-        )
+        HomeView(viewModel: HomeViewModel(factory: DependencyFactory()))
     }
 }
 #endif

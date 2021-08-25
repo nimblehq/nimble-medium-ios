@@ -13,12 +13,7 @@ struct SignupView: View {
     @State private var password = ""
     @State private var username = ""
 
-    private let viewModel: SignupViewModelProtocol
-
-    // swiftlint:disable type_contents_order
-    init(viewModel: SignupViewModelProtocol) {
-        self.viewModel = viewModel
-    }
+    private var viewModel: SignupViewModelProtocol
 
     // swiftlint:disable closure_body_length
     var body: some View {
@@ -66,9 +61,7 @@ struct SignupView: View {
                 )
                 .foregroundColor(.green)
             }
-            .padding()
-            .navigationTitle(Localizable.signupTitle())
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitle(Localizable.signupTitle(), displayMode: .inline)
             .navigationBarColor(backgroundColor: .green)
             .toolbar { navigationBarLeadingContent }
         }
@@ -88,13 +81,16 @@ struct SignupView: View {
             )
         }
     }
+
+    init(viewModel: SignupViewModelProtocol) {
+        self.viewModel = viewModel
+    }
 }
 
 #if DEBUG
 struct SignupView_Previews: PreviewProvider {
     static var previews: some View {
-        let viewModel = SignupViewModel()
-        return SignupView(viewModel: viewModel)
+        SignupView(viewModel: SignupViewModel())
     }
 }
 #endif
