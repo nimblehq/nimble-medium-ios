@@ -40,7 +40,6 @@ PODS:
   - GoogleUtilities/UserDefaults (7.5.1):
     - GoogleUtilities/Logger
   - JSONMapper (1.0.2)
-  - KeychainAccess (4.2.2)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
@@ -88,12 +87,12 @@ PODS:
     - RxSwift (= 6.2.0)
   - Sourcery (1.4.2)
   - SwiftLint (0.43.1)
+  - Wormholy (1.6.4)
 
 DEPENDENCIES:
   - AlamofireNetworkActivityLogger
   - Firebase/Crashlytics
   - JSONMapper (from `https://github.com/nimblehq/JSONMapper.git`, branch `feature/setup-cocoapods`)
-  - KeychainAccess
   - Nimble
   - Quick
   - R.swift
@@ -107,6 +106,7 @@ DEPENDENCIES:
   - RxSwift
   - Sourcery
   - SwiftLint
+  - Wormholy
 
 SPEC REPOS:
   trunk:
@@ -120,7 +120,6 @@ SPEC REPOS:
     - FirebaseInstallations
     - GoogleDataTransport
     - GoogleUtilities
-    - KeychainAccess
     - nanopb
     - Nimble
     - PromisesObjC
@@ -139,6 +138,7 @@ SPEC REPOS:
     - RxTest
     - Sourcery
     - SwiftLint
+    - Wormholy
 
 EXTERNAL SOURCES:
   JSONMapper:
@@ -162,7 +162,6 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
   GoogleUtilities: 3df19e3c24f7bbc291d8b5809aa6b0d41e642437
   JSONMapper: c18485462ef20cc3da1f9bf1911022130248d1d6
-  KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
@@ -181,7 +180,8 @@ SPEC CHECKSUMS:
   RxTest: 0c692fa672b694373ba86d2b00033595297a2831
   Sourcery: 43d8addc35ca31c2ab331cfd34b02421fa53bb7f
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
+  Wormholy: 2e70f64227e010d363f8d33268369f77faf12471
 
-PODFILE CHECKSUM: 80a5fd26ddcf84cd439e4d129a0560e479db68bb
+PODFILE CHECKSUM: 83812cf5cf6d5c37a2babbe6bc4365d2de17deca
 
 COCOAPODS: 1.10.1

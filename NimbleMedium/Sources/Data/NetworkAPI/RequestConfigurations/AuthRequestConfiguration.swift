@@ -19,7 +19,7 @@ extension AuthRequestConfiguration: RequestConfiguration {
     var endpoint: String {
         switch self {
         case .login:
-            return "/api/users/login"
+            return "/users/login"
         }
     }
 

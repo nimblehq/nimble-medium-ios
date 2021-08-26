@@ -18,6 +18,7 @@ target 'NimbleMedium' do
   pod 'RxGesture'
   pod 'RxSwift'
   pod 'SwiftLint'
+  pod 'Wormholy'
 
   target 'NimbleMediumTests' do
     inherit! :search_paths
