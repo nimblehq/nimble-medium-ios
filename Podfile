@@ -7,24 +7,25 @@ target 'NimbleMedium' do
   inhibit_all_warnings!
 
   # Pods for NimbleMedium
-  pod 'RxSwift'
-  pod 'RxCocoa'
-  pod 'RxDataSources'
-  pod 'RxAlamofire'
-  pod 'RxGesture'
-  pod 'SwiftLint'
   pod 'AlamofireNetworkActivityLogger'
-  pod 'R.swift'
-  pod 'RxCombine'
   pod 'Firebase/Crashlytics'
+  pod 'JSONMapper', :git => 'https://github.com/nimblehq/JSONMapper.git', :branch => 'feature/setup-cocoapods'
+  pod 'R.swift'
+  pod 'RxAlamofire'
+  pod 'RxCocoa'
+  pod 'RxCombine'
+  pod 'RxDataSources'
+  pod 'RxGesture'
+  pod 'RxSwift'
+  pod 'SwiftLint'
 
   target 'NimbleMediumTests' do
     inherit! :search_paths
     # Pods for testing
-    pod 'RxSwift'
-    pod 'Quick'
     pod 'Nimble'
+    pod 'Quick'
     pod 'RxNimble', subspecs: ['RxBlocking', 'RxTest']
+    pod 'RxSwift'
     pod 'Sourcery'
   end
 

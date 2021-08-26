@@ -29,7 +29,9 @@ struct SideMenuView: View {
 #if DEBUG
 struct SideMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuView(viewModel: SideMenuViewModel(factory: DependencyFactory()))
+        let factory = DependencyFactory(networkAPI: NetworkAPI())
+        let viewModel = SideMenuViewModel(factory: factory)
+        return SideMenuView(viewModel: viewModel)
     }
 }
 #endif
