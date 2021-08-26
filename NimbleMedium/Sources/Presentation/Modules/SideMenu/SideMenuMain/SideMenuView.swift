@@ -10,21 +10,19 @@ import SwiftUI
 struct SideMenuView: View {
 
     @ObservedViewModel private var viewModel: SideMenuViewModelProtocol
-    private let sideMenuActionsViewModel: SideMenuActionsViewModelProtocol
 
     var body: some View {
         GeometryReader { metrics in
             VStack(alignment: .center) {
                 SideMenuHeaderView()
                     .frame(height: metrics.size.height * 0.3)
-                SideMenuActionsView(viewModel: sideMenuActionsViewModel)
+                SideMenuActionsView(viewModel: viewModel.output.sideMenuActionsViewModel)
             }
         }
     }
 
     init(viewModel: SideMenuViewModelProtocol) {
         self.viewModel = viewModel
-        sideMenuActionsViewModel = viewModel.output.sideMenuActionsViewModel
     }
 }
 

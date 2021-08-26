@@ -13,12 +13,10 @@ import RxCombine
 struct HomeView: View {
 
     @ObservedViewModel private var viewModel: HomeViewModelProtocol
-    private let feedsViewModel: FeedsViewModelProtocol
-    private let sideMenuViewModel: SideMenuViewModelProtocol
 
     var body: some View {
         ZStack {
-            FeedsView(viewModel: feedsViewModel)
+            FeedsView(viewModel: viewModel.output.feedsViewModel)
             GeometryReader { _ in
                 EmptyView()
             }
@@ -31,7 +29,7 @@ struct HomeView: View {
 
             HStack {
                 GeometryReader { geo in
-                    SideMenuView(viewModel: sideMenuViewModel)
+                    SideMenuView(viewModel: viewModel.output.sideMenuViewModel)
                         .frame(width: geo.size.width * 2.0 / 3.0, height: geo.size.height)
                         .background(Color.white)
                         .offset(x: viewModel.output.isSideMenuOpen ? 0.0 : -geo.size.width * 2.0 / 3.0)
@@ -44,8 +42,6 @@ struct HomeView: View {
 
     init (viewModel: HomeViewModelProtocol) {
         self.viewModel = viewModel
-        feedsViewModel = viewModel.output.feedsViewModel
-        sideMenuViewModel = viewModel.output.sideMenuViewModel
     }
 }
 
