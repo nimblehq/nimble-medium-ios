@@ -20,14 +20,6 @@ struct BehaviorRelayProperty<Element, Wrapped> {
         projectedValue = BehaviorRelay(value: value)
         wrappedValue = transform(projectedValue)
     }
-
-    func register(_ observableObject: ObservableViewModel) {
-        projectedValue
-            .bind { _ in
-                observableObject.objectWillChange.send()
-            }
-            .disposed(by: disposeBag)
-    }
 }
 
 // MARK: - Observable

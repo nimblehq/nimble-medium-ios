@@ -44,16 +44,15 @@ final class HomeViewModel: ObservableObject, HomeViewModelProtocol, HomeViewMode
         sideMenuViewModel = factory.sideMenuViewModel()
 
         feedsViewModel.output.didToggleSideMenu
-            .withUnretained(self)
-            .emit {
-                $0.0.toggleSideMenu(true)
+            .emit(with: self) { viewModel, _ in
+                viewModel.toggleSideMenu(true)
             }
             .disposed(by: disposeBag)
 
         sideMenuViewModel.output.didSelectMenuOption
             .withUnretained(self)
-            .emit {
-                $0.0.toggleSideMenu(false)
+            .emit(with: self) { viewModel, _ in
+                viewModel.toggleSideMenu(false)
             }
             .disposed(by: disposeBag)
     }
