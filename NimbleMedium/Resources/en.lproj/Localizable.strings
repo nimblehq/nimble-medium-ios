@@ -9,6 +9,8 @@
 "action.login" = "Login";
 "action.signup" = "Signup";
 
+"error.generic" = "Something went wrong.\nPlease try again later.";
+
 "feed.title" = "Feed";
 
 "login.title" = "Login";

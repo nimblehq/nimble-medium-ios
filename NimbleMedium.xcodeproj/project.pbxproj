@@ -27,7 +27,6 @@
 		2459B32B26D7542100ABCE61 /* DependencyFactory+UseCaseFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B32A26D7542100ABCE61 /* DependencyFactory+UseCaseFactoryProtocol.swift */; };
 		2459B32E26D754C900ABCE61 /* RepositoryFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B32D26D754C900ABCE61 /* RepositoryFactoryProtocol.swift */; };
 		2459B33126D7551F00ABCE61 /* UseCaseFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B33026D7551F00ABCE61 /* UseCaseFactoryProtocol.swift */; };
-		2459B35326D7A1B600ABCE61 /* RxActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B35226D7A1B600ABCE61 /* RxActivityIndicator.swift */; };
 		2459B35526D7A1DE00ABCE61 /* RxErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B35426D7A1DE00ABCE61 /* RxErrorTracker.swift */; };
 		2459B35826D7A21C00ABCE61 /* ObservableType+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B35726D7A21C00ABCE61 /* ObservableType+Error.swift */; };
 		2459B35B26D7A7C500ABCE61 /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2459B35A26D7A7C500ABCE61 /* ToastUI */; };
@@ -118,7 +117,6 @@
 		2459B32A26D7542100ABCE61 /* DependencyFactory+UseCaseFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DependencyFactory+UseCaseFactoryProtocol.swift"; sourceTree = "<group>"; };
 		2459B32D26D754C900ABCE61 /* RepositoryFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryFactoryProtocol.swift; sourceTree = "<group>"; };
 		2459B33026D7551F00ABCE61 /* UseCaseFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseFactoryProtocol.swift; sourceTree = "<group>"; };
-		2459B35226D7A1B600ABCE61 /* RxActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxActivityIndicator.swift; sourceTree = "<group>"; };
 		2459B35426D7A1DE00ABCE61 /* RxErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxErrorTracker.swift; sourceTree = "<group>"; };
 		2459B35726D7A21C00ABCE61 /* ObservableType+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Error.swift"; sourceTree = "<group>"; };
 		246A8FB726D39C24009F9753 /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
@@ -420,7 +418,6 @@
 			children = (
 				2D5485B626C9FAAC00FFE707 /* BehaviorRelayProperty.swift */,
 				2D5485BD26CA0D2C00FFE707 /* PublishRelayProperty.swift */,
-				2459B35226D7A1B600ABCE61 /* RxActivityIndicator.swift */,
 				2459B35426D7A1DE00ABCE61 /* RxErrorTracker.swift */,
 			);
 			path = Rx;
@@ -1328,7 +1325,6 @@
 				2DBE36AE26C3B0C500DA3511 /* FeedsView.swift in Sources */,
 				2459B31926D74E5100ABCE61 /* APIUser.swift in Sources */,
 				249042E826D4D14F00E970B6 /* SignupView.swift in Sources */,
-				2459B35326D7A1B600ABCE61 /* RxActivityIndicator.swift in Sources */,
 				2DBE36B126C3B33700DA3511 /* SideMenuView.swift in Sources */,
 				24204CA026D625D300534314 /* SideMenuActionsViewModel.swift in Sources */,
 				2459B30F26D7494800ABCE61 /* RequestConfiguration.swift in Sources */,

@@ -33,9 +33,10 @@ struct LoginView: View {
                         placeholder: Localizable.loginTextfieldPasswordPlaceholder(),
                         text: $password)
                     AppMainButton(title: Localizable.actionLogin()) {
+                        hideKeyboard()
                         viewModel.input.didTapLoginButton(email: email, password: password)
                     }
-                    .disabled(email.isEmpty || password.isEmpty)
+                    .disabled(email.isEmpty || password.isEmpty || loadingToast)
                     Button(
                         action: {
                             // TODO: Implement in integrate task
@@ -53,21 +54,25 @@ struct LoginView: View {
             .navigationBarTitle(Localizable.loginTitle(), displayMode: .inline)
             .navigationBarColor(backgroundColor: .green)
             .toolbar { navigationBarLeadingContent }
-            .toast(isPresented: $errorToast, dismissAfter: 2.0) {
-                ToastView(errorMessage)
+            .toast(isPresented: $errorToast, dismissAfter: 3.0) {
+                ToastView(errorMessage) { } background: {
+                    Color.clear
+                }
             }
             .toast(isPresented: $loadingToast) {
-                ToastView(String.empty)
+                ToastView(String.empty) { }
                     .toastViewStyle(IndefiniteProgressToastViewStyle())
             }
         }
         .accentColor(.white)
         .onReceive(viewModel.output.didLogin) { _ in
+            loadingToast = false
             presentationMode.wrappedValue.dismiss()
         }
-        .onReceive(viewModel.output.errorMessage) {
-            errorMessage = $0
-            errorToast.toggle()
+        .onReceive(viewModel.output.errorMessage) { _ in
+            loadingToast = false
+            errorMessage = Localizable.errorGeneric()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { errorToast = true }
         }
         .onReceive(viewModel.output.isLoading) {
             loadingToast = $0

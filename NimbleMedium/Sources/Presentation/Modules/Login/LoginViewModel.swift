@@ -35,19 +35,17 @@ final class LoginViewModel: ObservableObject, LoginViewModelProtocol {
     var input: LoginViewModelInput { self }
     var output: LoginViewModelOutput { self }
     var didLogin: Driver<HomeViewModelProtocol>
-
-    var isLoading: Driver<Bool>
     var errorMessage: Driver<String>
 
+    @BehaviorRelayProperty(value: false) var isLoading: Driver<Bool>
+
     init(factory: ModuleFactoryProtocol) {
-        let indicator = RxActivityIndicator()
         let error = RxErrorTracker()
         let loginUseCase = factory.loginUseCase()
         didLogin = loginTrigger
             .flatMapLatest { inputs in
                 loginUseCase
                     .login(email: inputs.email, password: inputs.password)
-                    .trackIndicator(indicator)
                     .trackError(error)
                     .materialize()
             }
@@ -55,13 +53,13 @@ final class LoginViewModel: ObservableObject, LoginViewModelProtocol {
             .map { _ in factory.homeViewModel() }
             .asDriverOrEmptyIfError()
         errorMessage = error.asDriver().map(\.detail)
-        isLoading = indicator.asDriver()
     }
 }
 
 extension LoginViewModel: LoginViewModelInput {
 
     func didTapLoginButton(email: String, password: String) {
+        $isLoading.accept(true)
         loginTrigger.accept((email: email, password: password))
     }
 }
