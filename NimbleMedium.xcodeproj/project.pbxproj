@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,6 +27,10 @@
 		2459B32B26D7542100ABCE61 /* DependencyFactory+UseCaseFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B32A26D7542100ABCE61 /* DependencyFactory+UseCaseFactoryProtocol.swift */; };
 		2459B32E26D754C900ABCE61 /* RepositoryFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B32D26D754C900ABCE61 /* RepositoryFactoryProtocol.swift */; };
 		2459B33126D7551F00ABCE61 /* UseCaseFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B33026D7551F00ABCE61 /* UseCaseFactoryProtocol.swift */; };
+		2459B35326D7A1B600ABCE61 /* RxActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B35226D7A1B600ABCE61 /* RxActivityIndicator.swift */; };
+		2459B35526D7A1DE00ABCE61 /* RxErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B35426D7A1DE00ABCE61 /* RxErrorTracker.swift */; };
+		2459B35826D7A21C00ABCE61 /* ObservableType+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B35726D7A21C00ABCE61 /* ObservableType+Error.swift */; };
+		2459B35B26D7A7C500ABCE61 /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2459B35A26D7A7C500ABCE61 /* ToastUI */; };
 		246A8FB826D39C24009F9753 /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246A8FB726D39C24009F9753 /* SideMenuHeaderView.swift */; };
 		249042E726D4D14F00E970B6 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249042E526D4D14F00E970B6 /* SignupViewModel.swift */; };
 		249042E826D4D14F00E970B6 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249042E626D4D14F00E970B6 /* SignupView.swift */; };
@@ -114,6 +118,9 @@
 		2459B32A26D7542100ABCE61 /* DependencyFactory+UseCaseFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DependencyFactory+UseCaseFactoryProtocol.swift"; sourceTree = "<group>"; };
 		2459B32D26D754C900ABCE61 /* RepositoryFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryFactoryProtocol.swift; sourceTree = "<group>"; };
 		2459B33026D7551F00ABCE61 /* UseCaseFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseFactoryProtocol.swift; sourceTree = "<group>"; };
+		2459B35226D7A1B600ABCE61 /* RxActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxActivityIndicator.swift; sourceTree = "<group>"; };
+		2459B35426D7A1DE00ABCE61 /* RxErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxErrorTracker.swift; sourceTree = "<group>"; };
+		2459B35726D7A21C00ABCE61 /* ObservableType+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Error.swift"; sourceTree = "<group>"; };
 		246A8FB726D39C24009F9753 /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
 		249042E526D4D14F00E970B6 /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		249042E626D4D14F00E970B6 /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
@@ -186,6 +193,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2459B35B26D7A7C500ABCE61 /* ToastUI in Frameworks */,
 				7DB2A8DC1F8863DD01F7D438 /* Pods_NimbleMedium.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,6 +329,14 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
+		2459B35626D7A20500ABCE61 /* Rx */ = {
+			isa = PBXGroup;
+			children = (
+				2459B35726D7A21C00ABCE61 /* ObservableType+Error.swift */,
+			);
+			path = Rx;
+			sourceTree = "<group>";
+		};
 		249042E426D4D14F00E970B6 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,6 +420,8 @@
 			children = (
 				2D5485B626C9FAAC00FFE707 /* BehaviorRelayProperty.swift */,
 				2D5485BD26CA0D2C00FFE707 /* PublishRelayProperty.swift */,
+				2459B35226D7A1B600ABCE61 /* RxActivityIndicator.swift */,
+				2459B35426D7A1DE00ABCE61 /* RxErrorTracker.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -502,9 +520,10 @@
 		2D72E48426C21A9900861239 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2D7BF28C26DCB4CC00A30747 /* Combine */,
-				2D303B3D26C28B6500EEF1C0 /* SwiftUI */,
+                2D7BF28C26DCB4CC00A30747 /* Combine */,
 				2D303B3C26C28AE900EEF1C0 /* Foundation */,
+				2459B35626D7A20500ABCE61 /* Rx */,
+				2D303B3D26C28B6500EEF1C0 /* SwiftUI */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -974,6 +993,9 @@
 			dependencies = (
 			);
 			name = NimbleMedium;
+			packageProductDependencies = (
+				2459B35A26D7A7C500ABCE61 /* ToastUI */,
+			);
 			productName = NimbleMedium;
 			productReference = 2DB2674A26BBEC4300FF05BB /* Nimble Medium - Staging.app */;
 			productType = "com.apple.product-type.application";
@@ -1051,6 +1073,9 @@
 				Base,
 			);
 			mainGroup = 2DB2674126BBEC4300FF05BB;
+			packageReferences = (
+				2459B35926D7A7C500ABCE61 /* XCRemoteSwiftPackageReference "ToastUI" */,
+			);
 			productRefGroup = 2DB2674B26BBEC4300FF05BB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1303,9 +1328,11 @@
 				2DBE36AE26C3B0C500DA3511 /* FeedsView.swift in Sources */,
 				2459B31926D74E5100ABCE61 /* APIUser.swift in Sources */,
 				249042E826D4D14F00E970B6 /* SignupView.swift in Sources */,
+				2459B35326D7A1B600ABCE61 /* RxActivityIndicator.swift in Sources */,
 				2DBE36B126C3B33700DA3511 /* SideMenuView.swift in Sources */,
 				24204CA026D625D300534314 /* SideMenuActionsViewModel.swift in Sources */,
 				2459B30F26D7494800ABCE61 /* RequestConfiguration.swift in Sources */,
+				2459B35526D7A1DE00ABCE61 /* RxErrorTracker.swift in Sources */,
 				2459B30726D747DF00ABCE61 /* Constants+API.swift in Sources */,
 				2459B30D26D748F100ABCE61 /* NetworkAPIProtocol.swift in Sources */,
 				2459B30926D748B700ABCE61 /* NetworkAPI.swift in Sources */,
@@ -1341,6 +1368,7 @@
 				241B4EEA26D3B3F4000409CC /* SideMenuActionItemView.swift in Sources */,
 				2DD4805826D73C67005225CF /* ObservedViewModel.swift in Sources */,
 				2D4ADCC926C61192008F8843 /* FeedsViewModel.swift in Sources */,
+				2459B35826D7A21C00ABCE61 /* ObservableType+Error.swift in Sources */,
 				2424B22F26D4A2EF00CF07B5 /* LoginViewModel.swift in Sources */,
 				2DE3B9B526C1339200272775 /* Typealias.swift in Sources */,
 				2459B32B26D7542100ABCE61 /* DependencyFactory+UseCaseFactoryProtocol.swift in Sources */,
@@ -1989,6 +2017,25 @@
 			defaultConfigurationName = "Debug Staging";
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2459B35926D7A7C500ABCE61 /* XCRemoteSwiftPackageReference "ToastUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/quanshousio/ToastUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2459B35A26D7A7C500ABCE61 /* ToastUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2459B35926D7A7C500ABCE61 /* XCRemoteSwiftPackageReference "ToastUI" */;
+			productName = ToastUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2DB2674226BBEC4300FF05BB /* Project object */;
 }

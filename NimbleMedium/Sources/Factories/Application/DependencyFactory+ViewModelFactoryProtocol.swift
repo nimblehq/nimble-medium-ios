@@ -16,7 +16,7 @@ extension DependencyFactory: ViewModelFactoryProtocol {
     }
 
     func loginViewModel() -> LoginViewModelProtocol {
-        LoginViewModel()
+        LoginViewModel(factory: self)
     }
 
     func sideMenuActionsViewModel() -> SideMenuActionsViewModelProtocol {

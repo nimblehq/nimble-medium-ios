@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ToastUI
 
 struct LoginView: View {
 
@@ -13,6 +14,9 @@ struct LoginView: View {
 
     @State private var email = ""
     @State private var password = ""
+    @State private var loadingToast: Bool = false
+    @State private var errorToast: Bool = false
+    @State private var errorMessage = ""
 
     @ObservedViewModel var viewModel: LoginViewModelProtocol
 
@@ -29,8 +33,9 @@ struct LoginView: View {
                         placeholder: Localizable.loginTextfieldPasswordPlaceholder(),
                         text: $password)
                     AppMainButton(title: Localizable.actionLogin()) {
-                        // TODO: Implement in integrate task
+                        viewModel.input.didTapLoginButton(email: email, password: password)
                     }
+                    .disabled(email.isEmpty || password.isEmpty)
                     Button(
                         action: {
                             // TODO: Implement in integrate task
@@ -41,14 +46,32 @@ struct LoginView: View {
                     )
                     .foregroundColor(.green)
                 }
+                .padding()
 
             }
             .onTapGesture { hideKeyboard() }
             .navigationBarTitle(Localizable.loginTitle(), displayMode: .inline)
             .navigationBarColor(backgroundColor: .green)
             .toolbar { navigationBarLeadingContent }
+            .toast(isPresented: $errorToast, dismissAfter: 2.0) {
+                ToastView(errorMessage)
+            }
+            .toast(isPresented: $loadingToast) {
+                ToastView(String.empty)
+                    .toastViewStyle(IndefiniteProgressToastViewStyle())
+            }
         }
         .accentColor(.white)
+        .onReceive(viewModel.output.didLogin) { _ in
+            presentationMode.wrappedValue.dismiss()
+        }
+        .onReceive(viewModel.output.errorMessage) {
+            errorMessage = $0
+            errorToast.toggle()
+        }
+        .onReceive(viewModel.output.isLoading) {
+            loadingToast = $0
+        }
     }
 
     var navigationBarLeadingContent: some ToolbarContent {
@@ -72,7 +95,9 @@ struct LoginView: View {
 #if DEBUG
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(viewModel: LoginViewModel())
+        let factory = DependencyFactory(networkAPI: NetworkAPI())
+        let viewModel = LoginViewModel(factory: factory)
+        return LoginView(viewModel: viewModel)
     }
 }
 #endif
