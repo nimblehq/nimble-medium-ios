@@ -10,8 +10,8 @@ import RxSwift
 
 struct SideMenuActionsView: View {
 
-    private var viewModel: SideMenuActionsViewModelProtocol
-    private var loginViewModel: LoginViewModelProtocol
+    @ObservedViewModel private var viewModel: SideMenuActionsViewModelProtocol
+    private let loginViewModel: LoginViewModelProtocol
 
     @State private var isAuthenticated = false
     @State private var isShowingLoginScreen = false
@@ -26,9 +26,7 @@ struct SideMenuActionsView: View {
                     viewModel.input.selectLoginOption()
                 }
                 .fullScreenCover(isPresented: $isShowingLoginScreen) {
-                    if let loginViewModel = loginViewModel {
-                        LoginView(viewModel: loginViewModel)
-                    }
+                    LoginView(viewModel: loginViewModel)
                 }
 
                 SideMenuActionItemView(

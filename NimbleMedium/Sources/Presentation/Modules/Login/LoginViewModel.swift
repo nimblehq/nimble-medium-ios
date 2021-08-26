@@ -6,6 +6,7 @@
 //
 
 import RxSwift
+import Combine
 
 protocol LoginViewModelInput {
 
@@ -17,13 +18,13 @@ protocol LoginViewModelOutput {
     // TODO: To be implemented
 }
 
-protocol LoginViewModelProtocol {
+protocol LoginViewModelProtocol: ObservableViewModel {
 
     var input: LoginViewModelInput { get }
     var output: LoginViewModelOutput { get }
 }
 
-final class LoginViewModel: LoginViewModelProtocol {
+final class LoginViewModel: ObservableObject, LoginViewModelProtocol {
 
     var input: LoginViewModelInput { self }
     var output: LoginViewModelOutput { self }
