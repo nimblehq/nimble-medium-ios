@@ -35,6 +35,8 @@
 		2D69823E26C226D800860A98 /* NimbleMediumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5EA95326C22140008C79A7 /* NimbleMediumTests.swift */; };
 		2D69824426C22DC700860A98 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D69824326C22DC700860A98 /* R.generated.swift */; };
 		2D72E47E26C2185400861239 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D72E47D26C2185400861239 /* Constants.swift */; };
+		2DA4ABBF26CF90D000CF7D68 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA4ABBE26CF90D000CF7D68 /* Environment.swift */; };
+		2DA4ABC126CF91E200CF7D68 /* App+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA4ABC026CF91E200CF7D68 /* App+Firebase.swift */; };
 		2DB04AD726C3A4AC003E65F4 /* Color+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB04AD626C3A4AC003E65F4 /* Color+UIColor.swift */; };
 		2DB04AD926C3A6F8003E65F4 /* NimbleMediumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB04AD826C3A6F8003E65F4 /* NimbleMediumUITests.swift */; };
 		2DB2674E26BBEC4300FF05BB /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2674D26BBEC4300FF05BB /* App.swift */; };
@@ -96,6 +98,10 @@
 		2D64E92126C11B48008C80B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2D69824326C22DC700860A98 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		2D72E47D26C2185400861239 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2DA4ABBA26CF901700CF7D68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "NimbleMedium/Configurations/Plists/GoogleService/Production/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		2DA4ABBB26CF901700CF7D68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "NimbleMedium/Configurations/Plists/GoogleService/Staging/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		2DA4ABBE26CF90D000CF7D68 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		2DA4ABC026CF91E200CF7D68 /* App+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Firebase.swift"; sourceTree = "<group>"; };
 		2DB04AD626C3A4AC003E65F4 /* Color+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+UIColor.swift"; sourceTree = "<group>"; };
 		2DB04AD826C3A6F8003E65F4 /* NimbleMediumUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NimbleMediumUITests.swift; sourceTree = "<group>"; };
 		2DB2674A26BBEC4300FF05BB /* Nimble Medium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nimble Medium.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -275,7 +281,7 @@
 		2D72E47926C217DC00861239 /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
-				2DB2675626BBEC4400FF05BB /* Info.plist */,
+				2DA4ABC326CF94BE00CF7D68 /* Plists */,
 			);
 			path = Configurations;
 			sourceTree = "<group>";
@@ -298,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				2DB2674D26BBEC4300FF05BB /* App.swift */,
+				2DA4ABC026CF91E200CF7D68 /* App+Firebase.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -591,6 +598,40 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		2DA4ABC326CF94BE00CF7D68 /* Plists */ = {
+			isa = PBXGroup;
+			children = (
+				2DA4ABC426CF94C900CF7D68 /* GoogleService */,
+				2DB2675626BBEC4400FF05BB /* Info.plist */,
+			);
+			path = Plists;
+			sourceTree = "<group>";
+		};
+		2DA4ABC426CF94C900CF7D68 /* GoogleService */ = {
+			isa = PBXGroup;
+			children = (
+				2DA4ABC626CF94E900CF7D68 /* Production */,
+				2DA4ABC526CF94DD00CF7D68 /* Staging */,
+			);
+			path = GoogleService;
+			sourceTree = "<group>";
+		};
+		2DA4ABC526CF94DD00CF7D68 /* Staging */ = {
+			isa = PBXGroup;
+			children = (
+				2DA4ABBB26CF901700CF7D68 /* GoogleService-Info.plist */,
+			);
+			path = Staging;
+			sourceTree = "<group>";
+		};
+		2DA4ABC626CF94E900CF7D68 /* Production */ = {
+			isa = PBXGroup;
+			children = (
+				2DA4ABBA26CF901700CF7D68 /* GoogleService-Info.plist */,
+			);
+			path = Production;
+			sourceTree = "<group>";
+		};
 		2DB2674126BBEC4300FF05BB = {
 			isa = PBXGroup;
 			children = (
@@ -723,6 +764,7 @@
 				2D5485B526C9FA9A00FFE707 /* Rx */,
 				2D69824326C22DC700860A98 /* R.generated.swift */,
 				2DE3B9B426C1339200272775 /* Typealias.swift */,
+				2DA4ABBE26CF90D000CF7D68 /* Environment.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -754,6 +796,8 @@
 				2DB2674826BBEC4300FF05BB /* Resources */,
 				76B7F7643F3D9F1792479914 /* [CP] Embed Pods Frameworks */,
 				2D467C4626BCDAA9008F11E1 /* SwiftLint */,
+				2DA4ABC226CF94A000CF7D68 /* Copy GoogleService-Info.plist */,
+				2DA4ABB926CF8EF200CF7D68 /* Firebase Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -920,6 +964,44 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
+		2DA4ABB926CF8EF200CF7D68 /* Firebase Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Firebase Crashlytics";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
+		2DA4ABC226CF94A000CF7D68 /* Copy GoogleService-Info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy GoogleService-Info.plist";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PATH_TO_GOOGLE_PLISTS=\"$SRCROOT/$PROJECT_NAME/Configurations/Plists/GoogleService\"\n\ncase \"${CONFIGURATION}\" in\n  \"Staging\" )\n    cp -r \"$PATH_TO_GOOGLE_PLISTS/Staging/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    ;;\n  \"Production\" )\n    cp -r \"$PATH_TO_GOOGLE_PLISTS/Production/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    ;;\n  *)\n    ;;\nesac\n";
+		};
 		2DB726B726C117D500C16716 /* R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1063,10 +1145,12 @@
 				2497356126D34F3200177A7C /* SideMenuActionsView.swift in Sources */,
 				2424B22C26D4A22B00CF07B5 /* LoginView.swift in Sources */,
 				249042F626D50FF300E970B6 /* ViewModelFactoryProtocol.swift in Sources */,
+				2DA4ABBF26CF90D000CF7D68 /* Environment.swift in Sources */,
 				2D5485BC26CA077600FFE707 /* View+RxDriver.swift in Sources */,
 				24204C9E26D5289900534314 /* Background.swift in Sources */,
 				2DB2674E26BBEC4300FF05BB /* App.swift in Sources */,
 				249042F026D5042D00E970B6 /* SystemImageName.swift in Sources */,
+				2DA4ABC126CF91E200CF7D68 /* App+Firebase.swift in Sources */,
 				2D5485BE26CA0D2C00FFE707 /* PublishRelayProperty.swift in Sources */,
 				249042FA26D510A300E970B6 /* DependencyFactory+ViewModelFactoryProtocol.swift in Sources */,
 				241B4EEA26D3B3F4000409CC /* SideMenuActionItemView.swift in Sources */,
@@ -1182,19 +1266,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "\"NimbleMedium/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 4TWS7E2EPE;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = NimbleMedium/Configurations/Info.plist;
+				INFOPLIST_FILE = NimbleMedium/Configurations/Plists/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.nimble-medium";
 				PRODUCT_MODULE_NAME = NimbleMedium;
 				PRODUCT_NAME = "Nimble Medium";
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc co.nimblehq.nimble-medium";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1315,20 +1402,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"NimbleMedium/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 4TWS7E2EPE;
 				ENABLE_BITCODE = NO;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = NimbleMedium/Configurations/Info.plist;
+				INFOPLIST_FILE = NimbleMedium/Configurations/Plists/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.nimble-medium-stag";
 				PRODUCT_MODULE_NAME = NimbleMedium;
 				PRODUCT_NAME = "Nimble Medium";
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc co.nimblehq.nimble-medium-stag";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

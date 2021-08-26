@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>551877598585-lcg3lbmdko413dvtrhncni2jo53p44eu.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.551877598585-lcg3lbmdko413dvtrhncni2jo53p44eu</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC1Z2ANm8-yFmjI78aFYvaI40AwvTOWknI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>551877598585</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>co.nimblehq.nimble-medium-stag</string>
+	<key>PROJECT_ID</key>
+	<string>nimble-medium-staging</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nimble-medium-staging.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:551877598585:ios:56491a798de96b093da3a8</string>
+</dict>
+</plist>

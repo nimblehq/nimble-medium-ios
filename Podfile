@@ -16,7 +16,8 @@ target 'NimbleMedium' do
   pod 'AlamofireNetworkActivityLogger'
   pod 'R.swift'
   pod 'RxCombine'
-  
+  pod 'Firebase/Crashlytics'
+
   target 'NimbleMediumTests' do
     inherit! :search_paths
     # Pods for testing
