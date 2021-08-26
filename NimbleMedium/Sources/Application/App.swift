@@ -13,19 +13,16 @@ struct App: SwiftUI.App {
 
     private var factory: ModuleFactoryProtocol
 
+    // swiftlint:disable type_contents_order
+    init() {
+        factory = DependencyFactory()
+        configureFirebase()
+        configureNetworkLogger()
+    }
+
     var body: some Scene {
         WindowGroup {
             HomeView(viewModel: factory.homeViewModel())
         }
-    }
-
-    init() {
-        #if DEBUG
-        // Print alamofire request & response log
-        NetworkActivityLogger.shared.level = .debug
-        NetworkActivityLogger.shared.startLogging()
-        #endif
-
-        factory = DependencyFactory()
     }
 }
