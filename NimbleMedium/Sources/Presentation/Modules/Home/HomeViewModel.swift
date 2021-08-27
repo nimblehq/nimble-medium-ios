@@ -7,6 +7,7 @@
 
 import RxCocoa
 import RxSwift
+import Combine
 
 protocol HomeViewModelInput {
     
@@ -15,25 +16,25 @@ protocol HomeViewModelInput {
 
 protocol HomeViewModelOutput {
 
-    var isSideMenuOpen: Driver<Bool> { get }
+    var isSideMenuOpen: Bool { get }
     var feedsViewModel: FeedsViewModelProtocol { get }
     var sideMenuViewModel: SideMenuViewModelProtocol { get }
 }
 
-protocol HomeViewModelProtocol {
+protocol HomeViewModelProtocol: ObservableViewModel {
 
     var input: HomeViewModelInput { get }
     var output: HomeViewModelOutput { get }
 }
 
-final class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutput {
+final class HomeViewModel: ObservableObject, HomeViewModelProtocol, HomeViewModelOutput {
 
     private let disposeBag = DisposeBag()
 
     var input: HomeViewModelInput { self }
     var output: HomeViewModelOutput { self }
 
-    @BehaviorRelayProperty(value: false) var isSideMenuOpen: Driver<Bool>
+    @Published var isSideMenuOpen: Bool = false
 
     let feedsViewModel: FeedsViewModelProtocol
     let sideMenuViewModel: SideMenuViewModelProtocol
@@ -43,16 +44,15 @@ final class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutput {
         sideMenuViewModel = factory.sideMenuViewModel()
 
         feedsViewModel.output.didToggleSideMenu
-            .withUnretained(self)
-            .bind {
-                $0.0.toggleSideMenu(true)
+            .emit(with: self) { viewModel, _ in
+                viewModel.toggleSideMenu(true)
             }
             .disposed(by: disposeBag)
 
         sideMenuViewModel.output.didSelectMenuOption
             .withUnretained(self)
-            .bind {
-                $0.0.toggleSideMenu(false)
+            .emit(with: self) { viewModel, _ in
+                viewModel.toggleSideMenu(false)
             }
             .disposed(by: disposeBag)
     }
@@ -61,6 +61,6 @@ final class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutput {
 extension HomeViewModel: HomeViewModelInput {
 
     func toggleSideMenu(_ value: Bool) {
-        $isSideMenuOpen.accept(value)
+        isSideMenuOpen = value
     }
 }

@@ -12,22 +12,16 @@ import RxCombine
 
 struct HomeView: View {
 
-    private var viewModel: HomeViewModelProtocol
-    private var feedsViewModel: FeedsViewModelProtocol
-    private var sideMenuViewModel: SideMenuViewModelProtocol
-
-    @State private var isSideMenuOpen: Bool = false
+    @ObservedViewModel private var viewModel: HomeViewModelProtocol
 
     var body: some View {
         ZStack {
-            if let feedsViewModel = feedsViewModel {
-                FeedsView(viewModel: feedsViewModel)
-            }
+            FeedsView(viewModel: viewModel.output.feedsViewModel)
             GeometryReader { _ in
                 EmptyView()
             }
             .background(Color.black.opacity(0.7))
-            .opacity(isSideMenuOpen ? 1.0 : 0.0)
+            .opacity(viewModel.output.isSideMenuOpen ? 1.0 : 0.0)
             .animation(.easeIn(duration: 0.5))
             .onTapGesture {
                 viewModel.input.toggleSideMenu(false)
@@ -35,26 +29,19 @@ struct HomeView: View {
 
             HStack {
                 GeometryReader { geo in
-                    if let sideMenuViewModel = sideMenuViewModel {
-                        SideMenuView(viewModel: sideMenuViewModel)
-                            .frame(width: geo.size.width * 2.0 / 3.0, height: geo.size.height)
-                            .background(Color.white)
-                            .offset(x: isSideMenuOpen ? 0.0 : -geo.size.width * 2.0 / 3.0)
-                            .animation(.easeIn(duration: 0.5))
-                    }
+                    SideMenuView(viewModel: viewModel.output.sideMenuViewModel)
+                        .frame(width: geo.size.width * 2.0 / 3.0, height: geo.size.height)
+                        .background(Color.white)
+                        .offset(x: viewModel.output.isSideMenuOpen ? 0.0 : -geo.size.width * 2.0 / 3.0)
+                        .animation(.easeIn(duration: 0.5))
                 }
             }
         }
         .ignoresSafeArea()
-        .onReceive(viewModel.output.isSideMenuOpen) {
-            isSideMenuOpen = $0
-        }
     }
 
     init (viewModel: HomeViewModelProtocol) {
         self.viewModel = viewModel
-        feedsViewModel = viewModel.output.feedsViewModel
-        sideMenuViewModel = viewModel.output.sideMenuViewModel
     }
 }
 

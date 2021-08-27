@@ -6,6 +6,8 @@
 //
 
 import RxSwift
+import RxCocoa
+import Combine
 
 protocol FeedsViewModelInput {
 
@@ -14,18 +16,18 @@ protocol FeedsViewModelInput {
 
 protocol FeedsViewModelOutput {
 
-    var didToggleSideMenu: Observable<Void> { get }
+    var didToggleSideMenu: Signal<Void> { get }
 }
 
-protocol FeedsViewModelProtocol {
+protocol FeedsViewModelProtocol: ObservableViewModel {
 
     var input: FeedsViewModelInput { get }
     var output: FeedsViewModelOutput { get }
 }
 
-final class FeedsViewModel: FeedsViewModelProtocol {
+final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
 
-    @PublishRelayProperty var didToggleSideMenu: Observable<Void>
+    @PublishRelayProperty var didToggleSideMenu: Signal<Void>
 
     var input: FeedsViewModelInput { self }
     var output: FeedsViewModelOutput { self }

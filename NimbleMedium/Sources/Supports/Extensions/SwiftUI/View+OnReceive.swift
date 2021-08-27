@@ -13,9 +13,9 @@ extension View {
 
     @inlinable
     func onReceive<Element>(
-        _ driver: Driver<Element>,
+        _ signal: Signal<Element>,
         perform action: @escaping (Element) -> Void
     ) -> some View {
-        onReceive(driver.publisher.assertNoFailure(), perform: action)
+        onReceive(signal.publisher.assertNoFailure(), perform: action)
     }
 }

@@ -7,6 +7,7 @@
 
 import RxCocoa
 import RxSwift
+import Combine
 
 protocol SideMenuViewModelInput {
 
@@ -15,17 +16,17 @@ protocol SideMenuViewModelInput {
 
 protocol SideMenuViewModelOutput {
 
-    var didSelectMenuOption: Observable<Void> { get }
+    var didSelectMenuOption: Signal<Void> { get }
     var sideMenuActionsViewModel: SideMenuActionsViewModelProtocol { get }
 }
 
-protocol SideMenuViewModelProtocol {
+protocol SideMenuViewModelProtocol: ObservableViewModel {
 
     var input: SideMenuViewModelInput { get }
     var output: SideMenuViewModelOutput { get }
 }
 
-final class SideMenuViewModel: SideMenuViewModelProtocol {
+final class SideMenuViewModel: ObservableObject, SideMenuViewModelProtocol {
 
     var input: SideMenuViewModelInput { self }
     var output: SideMenuViewModelOutput { self }
@@ -34,7 +35,7 @@ final class SideMenuViewModel: SideMenuViewModelProtocol {
 
     let sideMenuActionsViewModel: SideMenuActionsViewModelProtocol
 
-    @PublishRelayProperty var didSelectMenuOption: Observable<Void>
+    @PublishRelayProperty var didSelectMenuOption: Signal<Void>
 
     init(factory: ModuleFactoryProtocol) {
         sideMenuActionsViewModel = factory.sideMenuActionsViewModel()

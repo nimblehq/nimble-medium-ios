@@ -12,10 +12,10 @@ import RxSwift
 struct PublishRelayProperty<WrappedElement> {
 
     let projectedValue: PublishRelay<WrappedElement>
-    let wrappedValue: Observable<WrappedElement>
+    let wrappedValue: Signal<WrappedElement>
 
     init() {
         projectedValue = PublishRelay()
-        wrappedValue = projectedValue.asObservable()
+        wrappedValue = projectedValue.asSignal()
     }
 }

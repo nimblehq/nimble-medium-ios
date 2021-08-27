@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FeedsView: View {
 
-    private let viewModel: FeedsViewModelProtocol
+    @ObservedViewModel private var viewModel: FeedsViewModelProtocol
 
     var body: some View {
         NavigationView {

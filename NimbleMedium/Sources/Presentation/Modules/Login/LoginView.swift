@@ -13,7 +13,7 @@ struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
 
-    var viewModel: LoginViewModelProtocol
+    @ObservedViewModel var viewModel: LoginViewModelProtocol
 
     // swiftlint:disable closure_body_length
     var body: some View {

@@ -7,6 +7,7 @@
 
 import RxSwift
 import RxCocoa
+import Combine
 
 protocol SideMenuActionsViewModelInput {
 
@@ -15,22 +16,22 @@ protocol SideMenuActionsViewModelInput {
 
 protocol SideMenuActionsViewModelOutput {
 
-    var didSelectLoginOption: Driver<Bool> { get }
+    var didSelectLoginOption: Signal<Bool> { get }
     var loginViewModel: LoginViewModelProtocol { get }
 }
 
-protocol SideMenuActionsViewModelProtocol {
+protocol SideMenuActionsViewModelProtocol: ObservableViewModel {
 
     var input: SideMenuActionsViewModelInput { get }
     var output: SideMenuActionsViewModelOutput { get }
 }
 
-final class SideMenuActionsViewModel: SideMenuActionsViewModelProtocol {
+final class SideMenuActionsViewModel: ObservableObject, SideMenuActionsViewModelProtocol {
 
     var input: SideMenuActionsViewModelInput { self }
     var output: SideMenuActionsViewModelOutput { self }
 
-    @BehaviorRelayProperty(value: false) var didSelectLoginOption: Driver<Bool>
+    @PublishRelayProperty var didSelectLoginOption: Signal<Bool>
 
     let loginViewModel: LoginViewModelProtocol
 
