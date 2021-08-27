@@ -265,6 +265,7 @@
 		2459B30A26D748D800ABCE61 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				2459B30826D748B700ABCE61 /* NetworkAPI.swift */,
 				2459B30C26D748F100ABCE61 /* NetworkAPIProtocol.swift */,
 				2459B30E26D7494800ABCE61 /* RequestConfiguration.swift */,
 			);
@@ -408,7 +409,6 @@
 				2459B30A26D748D800ABCE61 /* Core */,
 				2459B31726D74E3700ABCE61 /* Models */,
 				2459B31626D74E1800ABCE61 /* RequestConfigurations */,
-				2459B30826D748B700ABCE61 /* NetworkAPI.swift */,
 			);
 			path = NetworkAPI;
 			sourceTree = "<group>";

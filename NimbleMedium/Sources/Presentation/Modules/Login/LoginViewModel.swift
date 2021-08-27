@@ -37,7 +37,7 @@ final class LoginViewModel: ObservableObject, LoginViewModelProtocol {
     var didLogin: Driver<HomeViewModelProtocol>
     var errorMessage: Driver<String>
 
-    @BehaviorRelayProperty(value: false) var isLoading: Driver<Bool>
+    @BehaviorRelayProperty(false) var isLoading: Driver<Bool>
 
     init(factory: ModuleFactoryProtocol) {
         let error = RxErrorTracker()
