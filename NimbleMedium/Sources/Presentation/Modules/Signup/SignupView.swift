@@ -22,38 +22,21 @@ struct SignupView: View {
         NavigationView {
             Background {
                 VStack(spacing: 15.0) {
-                    TextField(Localizable.signupTextFieldUsernamePlaceholder(), text: $username)
-                        .padding()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8.0)
-                                .stroke(Color(.lightGray), lineWidth: 1.0)
-                        )
-                        .accentColor(.black)
-                    TextField(Localizable.signupTextFieldEmailPlaceholder(), text: $email)
-                        .padding()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8.0)
-                                .stroke(Color(.lightGray), lineWidth: 1.0)
-                        )
-                        .keyboardType(.emailAddress)
-                        .accentColor(.black)
-                    SecureField(Localizable.signupTextFieldPasswordPlaceholder(), text: $password)
-                        .padding()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8.0)
-                                .stroke(Color(.lightGray), lineWidth: 1.0)
-                        )
-                        .accentColor(.black)
-                    Button(
-                        action: {
-                            // TODO: Implement in integrate task
-                        }, label: {
-                            Text(Localizable.actionSignup())
-                                .frame(width: 100.0, height: 50.0)
-                        }
+                    AuthTextFieldView(
+                        placeHolderText: Localizable.signupTextFieldUsernamePlaceholder(),
+                        text: $username
                     )
-                    .background(Color.green)
-                    .cornerRadius(8.0)
+                    AuthTextFieldView(
+                        placeHolderText: Localizable.signupTextFieldEmailPlaceholder(),
+                        text: $email,
+                        supportEmailKeyboard: true
+                    )
+                    AuthSecureFieldView(
+                        placeHolderText: Localizable.signupTextFieldPasswordPlaceholder(),
+                        text: $password)
+                    AppMainButton(title: Localizable.actionSignup()) {
+                        // TODO: Implement in integrate task
+                    }
                     Button(
                         action: {
                             // TODO: Implement in integrate task

@@ -16,36 +16,21 @@ struct LoginView: View {
 
     @ObservedViewModel var viewModel: LoginViewModelProtocol
 
-    // swiftlint:disable closure_body_length
     var body: some View {
         NavigationView {
             Background {
                 VStack(spacing: 15.0) {
-                    TextField(Localizable.loginTextFieldEmailPlaceholder(), text: $email)
-                        .padding()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8.0)
-                                .stroke(Color(UIColor.lightGray), lineWidth: 1.0)
-                        )
-                        .keyboardType(.emailAddress)
-                        .accentColor(.black)
-                    SecureField(Localizable.loginTextfieldPasswordPlaceholder(), text: $password)
-                        .padding()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8.0)
-                                .stroke(Color(UIColor.lightGray), lineWidth: 1.0)
-                        )
-                        .accentColor(.black)
-                    Button(
-                        action: {
-                            // TODO: Implement in integrate task
-                        }, label: {
-                            Text(Localizable.actionLogin())
-                                .frame(width: 100.0, height: 50.0)
-                        }
+                    AuthTextFieldView(
+                        placeHolderText: Localizable.loginTextFieldEmailPlaceholder(),
+                        text: $email,
+                        supportEmailKeyboard: true
                     )
-                    .background(Color.green)
-                    .cornerRadius(8.0)
+                    AuthSecureFieldView(
+                        placeHolderText: Localizable.loginTextfieldPasswordPlaceholder(),
+                        text: $password)
+                    AppMainButton(title: Localizable.actionLogin()) {
+                        // TODO: Implement in integrate task
+                    }
                     Button(
                         action: {
                             // TODO: Implement in integrate task
@@ -64,7 +49,6 @@ struct LoginView: View {
             .toolbar { navigationBarLeadingContent }
         }
         .accentColor(.white)
-
     }
 
     var navigationBarLeadingContent: some ToolbarContent {
