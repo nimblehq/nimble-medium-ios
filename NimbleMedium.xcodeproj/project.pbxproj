@@ -85,6 +85,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		182CA8AF5AD16C128ADBB7D6 /* Pods-NimbleMediumTests.debug production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.debug production.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.debug production.xcconfig"; sourceTree = "<group>"; };
 		1FB4ECE354F839DF02D6976B /* Pods-NimbleMedium.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.staging.xcconfig"; sourceTree = "<group>"; };
 		21851292A064EB97674233A2 /* Pods-NimbleMediumTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.staging.xcconfig"; sourceTree = "<group>"; };
 		241B4EE926D3B3F4000409CC /* SideMenuActionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuActionItemView.swift; sourceTree = "<group>"; };
@@ -150,13 +151,18 @@
 		2DD4805626D73C67005225CF /* ObservedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservedViewModel.swift; sourceTree = "<group>"; };
 		2DDAD39F26D37E02007F845A /* App+NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+NetworkLogger.swift"; sourceTree = "<group>"; };
 		2DE3B9B426C1339200272775 /* Typealias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
+		44CDBEC74AB6205DBE05C61C /* Pods-NimbleMedium.debug staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.debug staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.debug staging.xcconfig"; sourceTree = "<group>"; };
+		458DD8FDDDFB794337C4FC53 /* Pods-NimbleMedium-NimbleMediumUITests.debug staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium-NimbleMediumUITests.debug staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium-NimbleMediumUITests/Pods-NimbleMedium-NimbleMediumUITests.debug staging.xcconfig"; sourceTree = "<group>"; };
 		664F4E0BC9D9E468E0506C22 /* Pods-NimbleMediumTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.production.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.production.xcconfig"; sourceTree = "<group>"; };
 		6E41E63B326C526EFD5BA685 /* Pods-NimbleMedium.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.production.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.production.xcconfig"; sourceTree = "<group>"; };
+		6FED2492E982E731BBE5E9E3 /* Pods-NimbleMediumTests.debug staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.debug staging.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.debug staging.xcconfig"; sourceTree = "<group>"; };
+		74B1A182D909036C2150D5D4 /* Pods-NimbleMedium.debug production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.debug production.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.debug production.xcconfig"; sourceTree = "<group>"; };
 		8319E63645C8E624FA94506E /* Pods_NimbleMedium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleMedium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		901D8FC4774E2CF838738DEF /* Pods_NimbleMedium_NimbleMediumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleMedium_NimbleMediumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FB373E4466876E4BD8212F /* Pods-NimbleMedium-NimbleMediumUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium-NimbleMediumUITests.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium-NimbleMediumUITests/Pods-NimbleMedium-NimbleMediumUITests.staging.xcconfig"; sourceTree = "<group>"; };
 		B350D67E0CE0AD97820184FA /* Pods-NimbleMedium-NimbleMediumUITests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium-NimbleMediumUITests.production.xcconfig"; path = "Target Support Files/Pods-NimbleMedium-NimbleMediumUITests/Pods-NimbleMedium-NimbleMediumUITests.production.xcconfig"; sourceTree = "<group>"; };
 		EDBC77E99D264744421CC502 /* Pods_NimbleMediumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleMediumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8C7D82B80C1CA5F14A914F4 /* Pods-NimbleMedium-NimbleMediumUITests.debug production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium-NimbleMediumUITests.debug production.xcconfig"; path = "Target Support Files/Pods-NimbleMedium-NimbleMediumUITests/Pods-NimbleMedium-NimbleMediumUITests.debug production.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -901,6 +907,12 @@
 				B350D67E0CE0AD97820184FA /* Pods-NimbleMedium-NimbleMediumUITests.production.xcconfig */,
 				21851292A064EB97674233A2 /* Pods-NimbleMediumTests.staging.xcconfig */,
 				664F4E0BC9D9E468E0506C22 /* Pods-NimbleMediumTests.production.xcconfig */,
+				44CDBEC74AB6205DBE05C61C /* Pods-NimbleMedium.debug staging.xcconfig */,
+				74B1A182D909036C2150D5D4 /* Pods-NimbleMedium.debug production.xcconfig */,
+				458DD8FDDDFB794337C4FC53 /* Pods-NimbleMedium-NimbleMediumUITests.debug staging.xcconfig */,
+				F8C7D82B80C1CA5F14A914F4 /* Pods-NimbleMedium-NimbleMediumUITests.debug production.xcconfig */,
+				6FED2492E982E731BBE5E9E3 /* Pods-NimbleMediumTests.debug staging.xcconfig */,
+				182CA8AF5AD16C128ADBB7D6 /* Pods-NimbleMediumTests.debug production.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -927,8 +939,6 @@
 			dependencies = (
 			);
 			name = NimbleMedium;
-			packageProductDependencies = (
-			);
 			productName = NimbleMedium;
 			productReference = 2DB2674A26BBEC4300FF05BB /* Nimble Medium.app */;
 			productType = "com.apple.product-type.application";
@@ -1006,8 +1016,6 @@
 				Base,
 			);
 			mainGroup = 2DB2674126BBEC4300FF05BB;
-			packageReferences = (
-			);
 			productRefGroup = 2DB2674B26BBEC4300FF05BB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1123,7 +1131,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH_TO_GOOGLE_PLISTS=\"$SRCROOT/$PROJECT_NAME/Configurations/Plists/GoogleService\"\n\ncase \"${CONFIGURATION}\" in\n  \"Staging\" )\n    cp -r \"$PATH_TO_GOOGLE_PLISTS/Staging/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    ;;\n  \"Production\" )\n    cp -r \"$PATH_TO_GOOGLE_PLISTS/Production/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    ;;\n  *)\n    ;;\nesac\n";
+			shellScript = "PATH_TO_GOOGLE_PLISTS=\"$SRCROOT/$PROJECT_NAME/Configurations/Plists/GoogleService\"\n\ncase \"${CONFIGURATION}\" in\n  \"Staging\" )\n    cp -r \"$PATH_TO_GOOGLE_PLISTS/Staging/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    ;;\n  \"Debug Staging\" )\n    cp -r \"$PATH_TO_GOOGLE_PLISTS/Staging/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    ;;\n  \"Debug Production\" )\n    cp -r \"$PATH_TO_GOOGLE_PLISTS/Production/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    ;;\n  \"Production\" )\n    cp -r \"$PATH_TO_GOOGLE_PLISTS/Production/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    ;;\n  *)\n    ;;\nesac\n";
 		};
 		2DB726B726C117D500C16716 /* R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1343,138 +1351,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		2DB2676E26BBEC4500FF05BB /* Production */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				PRODUCT_NAME = "Nimble Medium";
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = PRODUCTION;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Production;
-		};
-		2DB2677126BBEC4500FF05BB /* Production */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E41E63B326C526EFD5BA685 /* Pods-NimbleMedium.production.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_ASSET_PATHS = "\"NimbleMedium/Resources/Preview Content\"";
-				DEVELOPMENT_TEAM = 4TWS7E2EPE;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = NimbleMedium/Configurations/Plists/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.nimble-medium";
-				PRODUCT_MODULE_NAME = NimbleMedium;
-				PRODUCT_NAME = "Nimble Medium";
-				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc co.nimblehq.nimble-medium";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Production;
-		};
-		2DB2677426BBEC4500FF05BB /* Production */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 664F4E0BC9D9E468E0506C22 /* Pods-NimbleMediumTests.production.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4TWS7E2EPE;
-				INFOPLIST_FILE = NimbleMediumTests/Configurations/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.nimblehq.NimbleMediumTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nimble Medium.app/Nimble Medium";
-			};
-			name = Production;
-		};
-		2DB2677726BBEC4500FF05BB /* Production */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B350D67E0CE0AD97820184FA /* Pods-NimbleMedium-NimbleMediumUITests.production.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4TWS7E2EPE;
-				INFOPLIST_FILE = NimbleMediumUITests/Configurations/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.nimblehq.NimbleMediumUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = NimbleMedium;
-			};
-			name = Production;
-		};
-		2DB2677826BBEE9D00FF05BB /* Staging */ = {
+		24C9393E26D8D21200547800 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1536,7 +1413,7 @@
 			};
 			name = Staging;
 		};
-		2DB2677926BBEE9D00FF05BB /* Staging */ = {
+		24C9393F26D8D21200547800 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1FB4ECE354F839DF02D6976B /* Pods-NimbleMedium.staging.xcconfig */;
 			buildSettings = {
@@ -1565,7 +1442,7 @@
 			};
 			name = Staging;
 		};
-		2DB2677A26BBEE9D00FF05BB /* Staging */ = {
+		24C9394026D8D21200547800 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 21851292A064EB97674233A2 /* Pods-NimbleMediumTests.staging.xcconfig */;
 			buildSettings = {
@@ -1591,7 +1468,7 @@
 			};
 			name = Staging;
 		};
-		2DB2677B26BBEE9D00FF05BB /* Staging */ = {
+		24C9394126D8D21200547800 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A7FB373E4466876E4BD8212F /* Pods-NimbleMedium-NimbleMediumUITests.staging.xcconfig */;
 			buildSettings = {
@@ -1615,14 +1492,419 @@
 			};
 			name = Staging;
 		};
+		24C9394226D8D22000547800 /* Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "Nimble Medium";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = PRODUCTION;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Production;
+		};
+		24C9394326D8D22000547800 /* Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E41E63B326C526EFD5BA685 /* Pods-NimbleMedium.production.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_ASSET_PATHS = "\"NimbleMedium/Resources/Preview Content\"";
+				DEVELOPMENT_TEAM = 4TWS7E2EPE;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = NimbleMedium/Configurations/Plists/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.nimble-medium";
+				PRODUCT_MODULE_NAME = NimbleMedium;
+				PRODUCT_NAME = "Nimble Medium";
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc co.nimblehq.nimble-medium";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Production;
+		};
+		24C9394426D8D22000547800 /* Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 664F4E0BC9D9E468E0506C22 /* Pods-NimbleMediumTests.production.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4TWS7E2EPE;
+				INFOPLIST_FILE = NimbleMediumTests/Configurations/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.nimblehq.NimbleMediumTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nimble Medium.app/Nimble Medium";
+			};
+			name = Production;
+		};
+		24C9394526D8D22000547800 /* Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B350D67E0CE0AD97820184FA /* Pods-NimbleMedium-NimbleMediumUITests.production.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4TWS7E2EPE;
+				INFOPLIST_FILE = NimbleMediumUITests/Configurations/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.nimblehq.NimbleMediumUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NimbleMedium;
+			};
+			name = Production;
+		};
+		2DB2676E26BBEC4500FF05BB /* Debug Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "Nimble Medium";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = PRODUCTION;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Debug Production";
+		};
+		2DB2677126BBEC4500FF05BB /* Debug Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74B1A182D909036C2150D5D4 /* Pods-NimbleMedium.debug production.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"NimbleMedium/Resources/Preview Content\"";
+				DEVELOPMENT_TEAM = 4TWS7E2EPE;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = NimbleMedium/Configurations/Plists/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.nimble-medium";
+				PRODUCT_MODULE_NAME = NimbleMedium;
+				PRODUCT_NAME = "Nimble Medium";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug Production";
+		};
+		2DB2677426BBEC4500FF05BB /* Debug Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 182CA8AF5AD16C128ADBB7D6 /* Pods-NimbleMediumTests.debug production.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4TWS7E2EPE;
+				INFOPLIST_FILE = NimbleMediumTests/Configurations/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.nimblehq.NimbleMediumTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nimble Medium.app/Nimble Medium";
+			};
+			name = "Debug Production";
+		};
+		2DB2677726BBEC4500FF05BB /* Debug Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8C7D82B80C1CA5F14A914F4 /* Pods-NimbleMedium-NimbleMediumUITests.debug production.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4TWS7E2EPE;
+				INFOPLIST_FILE = NimbleMediumUITests/Configurations/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.nimblehq.NimbleMediumUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NimbleMedium;
+			};
+			name = "Debug Production";
+		};
+		2DB2677826BBEE9D00FF05BB /* Debug Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "Nimble Medium - stag";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG STAGING";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = "Debug Staging";
+		};
+		2DB2677926BBEE9D00FF05BB /* Debug Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44CDBEC74AB6205DBE05C61C /* Pods-NimbleMedium.debug staging.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "\"NimbleMedium/Resources/Preview Content\"";
+				DEVELOPMENT_TEAM = 4TWS7E2EPE;
+				ENABLE_BITCODE = NO;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = NimbleMedium/Configurations/Plists/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.nimble-medium-stag";
+				PRODUCT_MODULE_NAME = NimbleMedium;
+				PRODUCT_NAME = "Nimble Medium";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Debug Staging";
+		};
+		2DB2677A26BBEE9D00FF05BB /* Debug Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FED2492E982E731BBE5E9E3 /* Pods-NimbleMediumTests.debug staging.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"BUNDLE_LOADER[arch=*]" = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4TWS7E2EPE;
+				INFOPLIST_FILE = NimbleMediumTests/Configurations/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.nimblehq.NimbleMediumTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nimble Medium.app/Nimble Medium";
+			};
+			name = "Debug Staging";
+		};
+		2DB2677B26BBEE9D00FF05BB /* Debug Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 458DD8FDDDFB794337C4FC53 /* Pods-NimbleMedium-NimbleMediumUITests.debug staging.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4TWS7E2EPE;
+				INFOPLIST_FILE = NimbleMediumUITests/Configurations/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.nimblehq.NimbleMediumUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = NimbleMedium;
+			};
+			name = "Debug Staging";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		2DB2674526BBEC4300FF05BB /* Build configuration list for PBXProject "NimbleMedium" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2DB2677826BBEE9D00FF05BB /* Staging */,
-				2DB2676E26BBEC4500FF05BB /* Production */,
+				2DB2677826BBEE9D00FF05BB /* Debug Staging */,
+				24C9393E26D8D21200547800 /* Staging */,
+				2DB2676E26BBEC4500FF05BB /* Debug Production */,
+				24C9394226D8D22000547800 /* Production */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Production;
@@ -1630,8 +1912,10 @@
 		2DB2676F26BBEC4500FF05BB /* Build configuration list for PBXNativeTarget "NimbleMedium" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2DB2677926BBEE9D00FF05BB /* Staging */,
-				2DB2677126BBEC4500FF05BB /* Production */,
+				2DB2677926BBEE9D00FF05BB /* Debug Staging */,
+				24C9393F26D8D21200547800 /* Staging */,
+				2DB2677126BBEC4500FF05BB /* Debug Production */,
+				24C9394326D8D22000547800 /* Production */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Production;
@@ -1639,8 +1923,10 @@
 		2DB2677226BBEC4500FF05BB /* Build configuration list for PBXNativeTarget "NimbleMediumTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2DB2677A26BBEE9D00FF05BB /* Staging */,
-				2DB2677426BBEC4500FF05BB /* Production */,
+				2DB2677A26BBEE9D00FF05BB /* Debug Staging */,
+				24C9394026D8D21200547800 /* Staging */,
+				2DB2677426BBEC4500FF05BB /* Debug Production */,
+				24C9394426D8D22000547800 /* Production */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Production;
@@ -1648,8 +1934,10 @@
 		2DB2677526BBEC4500FF05BB /* Build configuration list for PBXNativeTarget "NimbleMediumUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2DB2677B26BBEE9D00FF05BB /* Staging */,
-				2DB2677726BBEC4500FF05BB /* Production */,
+				2DB2677B26BBEE9D00FF05BB /* Debug Staging */,
+				24C9394126D8D21200547800 /* Staging */,
+				2DB2677726BBEC4500FF05BB /* Debug Production */,
+				24C9394526D8D22000547800 /* Production */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Production;
