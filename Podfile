@@ -9,7 +9,6 @@ target 'NimbleMedium' do
   # Pods for NimbleMedium
   pod 'AlamofireNetworkActivityLogger'
   pod 'Firebase/Crashlytics'
-  pod 'JSONMapper', :git => 'https://github.com/nimblehq/JSONMapper.git', :branch => 'feature/setup-cocoapods'
   pod 'R.swift'
   pod 'RxAlamofire'
   pod 'RxCocoa'

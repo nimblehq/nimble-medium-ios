@@ -39,7 +39,6 @@ PODS:
     - GoogleUtilities/Environment
   - GoogleUtilities/UserDefaults (7.5.1):
     - GoogleUtilities/Logger
-  - JSONMapper (1.0.2)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
@@ -92,7 +91,6 @@ PODS:
 DEPENDENCIES:
   - AlamofireNetworkActivityLogger
   - Firebase/Crashlytics
-  - JSONMapper (from `https://github.com/nimblehq/JSONMapper.git`, branch `feature/setup-cocoapods`)
   - Nimble
   - Quick
   - R.swift
@@ -140,16 +138,6 @@ SPEC REPOS:
     - SwiftLint
     - Wormholy
 
-EXTERNAL SOURCES:
-  JSONMapper:
-    :branch: feature/setup-cocoapods
-    :git: https://github.com/nimblehq/JSONMapper.git
-
-CHECKOUT OPTIONS:
-  JSONMapper:
-    :commit: 9eb65286ab30acbb0011bc3d277e48109cbb4e6c
-    :git: https://github.com/nimblehq/JSONMapper.git
-
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   AlamofireNetworkActivityLogger: 162ab8aee00e6267a4304d7cc134e13ccfe3bcc5
@@ -161,7 +149,6 @@ SPEC CHECKSUMS:
   FirebaseInstallations: 0ede6ffcd215b8f93c19d9b06c1c54e2d4107e98
   GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
   GoogleUtilities: 3df19e3c24f7bbc291d8b5809aa6b0d41e642437
-  JSONMapper: c18485462ef20cc3da1f9bf1911022130248d1d6
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   Nimble: 4f4a345c80b503b3ea13606a4f98405974ee4d0b
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
@@ -182,6 +169,6 @@ SPEC CHECKSUMS:
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
   Wormholy: 2e70f64227e010d363f8d33268369f77faf12471
 
-PODFILE CHECKSUM: 83812cf5cf6d5c37a2babbe6bc4365d2de17deca
+PODFILE CHECKSUM: c0cfdded8a676d7ce1e418c050de21ebf9174ca9
 
 COCOAPODS: 1.10.1

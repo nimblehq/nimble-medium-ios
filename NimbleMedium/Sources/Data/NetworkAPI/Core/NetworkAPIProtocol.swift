@@ -51,12 +51,9 @@ extension NetworkAPIProtocol {
 extension ObservableType where Element == (HTTPURLResponse, Data) {
 
     fileprivate func validate() -> Observable<Data> {
-        map { response, data -> Data in
-            guard
-                response.mimeType == "text/plain",
-                200...299 ~= response.statusCode
-            else { return data }
-            return Data("{\"data\":{\"id\":\"\",\"type\":\"\"}}".utf8)
+        map { _, data -> Data in
+            // Handle addition data check here if needed
+            return data
         }
     }
 }

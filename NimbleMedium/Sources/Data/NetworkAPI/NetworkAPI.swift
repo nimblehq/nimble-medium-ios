@@ -7,7 +7,6 @@
 
 import Foundation
 import Alamofire
-import JSONMapper
 import RxSwift
 
 final class NetworkAPI: NetworkAPIProtocol {
@@ -15,7 +14,7 @@ final class NetworkAPI: NetworkAPIProtocol {
     private let decoder: JSONDecoder
     private let session: Session
 
-    init(decoder: JSONDecoder = JSONAPIDecoder.default) {
+    init(decoder: JSONDecoder = JSONDecoder.default) {
         self.decoder = decoder
         session = Session()
     }
@@ -33,10 +32,5 @@ final class NetworkAPI: NetworkAPIProtocol {
 
 extension Error {
 
-    var detail: String {
-        guard let errors = self as? [JSONAPIError], let detail = errors.first?.detail else {
-            return localizedDescription
-        }
-        return detail
-    }
+    var detail: String { localizedDescription }
 }

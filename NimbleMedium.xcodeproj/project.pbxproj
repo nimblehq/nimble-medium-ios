@@ -17,7 +17,7 @@
 		2459B30926D748B700ABCE61 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B30826D748B700ABCE61 /* NetworkAPI.swift */; };
 		2459B30D26D748F100ABCE61 /* NetworkAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B30C26D748F100ABCE61 /* NetworkAPIProtocol.swift */; };
 		2459B30F26D7494800ABCE61 /* RequestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B30E26D7494800ABCE61 /* RequestConfiguration.swift */; };
-		2459B31126D74B3100ABCE61 /* JSONAPIDecoder+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B31026D74B3100ABCE61 /* JSONAPIDecoder+Default.swift */; };
+		2459B31126D74B3100ABCE61 /* JSONDecoder+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B31026D74B3100ABCE61 /* JSONDecoder+Default.swift */; };
 		2459B31926D74E5100ABCE61 /* APIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B31826D74E5100ABCE61 /* APIUser.swift */; };
 		2459B31C26D74F4700ABCE61 /* AuthRequestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B31B26D74F4700ABCE61 /* AuthRequestConfiguration.swift */; };
 		2459B31F26D7503A00ABCE61 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B31E26D7503A00ABCE61 /* AuthRepository.swift */; };
@@ -97,7 +97,7 @@
 		2459B30826D748B700ABCE61 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
 		2459B30C26D748F100ABCE61 /* NetworkAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPIProtocol.swift; sourceTree = "<group>"; };
 		2459B30E26D7494800ABCE61 /* RequestConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfiguration.swift; sourceTree = "<group>"; };
-		2459B31026D74B3100ABCE61 /* JSONAPIDecoder+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONAPIDecoder+Default.swift"; sourceTree = "<group>"; };
+		2459B31026D74B3100ABCE61 /* JSONDecoder+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Default.swift"; sourceTree = "<group>"; };
 		2459B31826D74E5100ABCE61 /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
 		2459B31B26D74F4700ABCE61 /* AuthRequestConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestConfiguration.swift; sourceTree = "<group>"; };
 		2459B31E26D7503A00ABCE61 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
@@ -340,7 +340,7 @@
 		2D303B3C26C28AE900EEF1C0 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				2459B31026D74B3100ABCE61 /* JSONAPIDecoder+Default.swift */,
+				2459B31026D74B3100ABCE61 /* JSONDecoder+Default.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1296,7 +1296,7 @@
 				2424B22F26D4A2EF00CF07B5 /* LoginViewModel.swift in Sources */,
 				2DE3B9B526C1339200272775 /* Typealias.swift in Sources */,
 				2459B32B26D7542100ABCE61 /* DependencyFactory+UseCaseFactoryProtocol.swift in Sources */,
-				2459B31126D74B3100ABCE61 /* JSONAPIDecoder+Default.swift in Sources */,
+				2459B31126D74B3100ABCE61 /* JSONDecoder+Default.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
