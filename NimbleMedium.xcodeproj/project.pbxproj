@@ -86,6 +86,7 @@
 
 /* Begin PBXFileReference section */
 		182CA8AF5AD16C128ADBB7D6 /* Pods-NimbleMediumTests.debug production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.debug production.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.debug production.xcconfig"; sourceTree = "<group>"; };
+		1B8DA573BF5543E0BD2D9E94 /* Pods-NimbleMediumTests.release production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.release production.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.release production.xcconfig"; sourceTree = "<group>"; };
 		1FB4ECE354F839DF02D6976B /* Pods-NimbleMedium.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.staging.xcconfig"; sourceTree = "<group>"; };
 		21851292A064EB97674233A2 /* Pods-NimbleMediumTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.staging.xcconfig"; sourceTree = "<group>"; };
 		241B4EE926D3B3F4000409CC /* SideMenuActionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuActionItemView.swift; sourceTree = "<group>"; };
@@ -154,13 +155,18 @@
 		44CDBEC74AB6205DBE05C61C /* Pods-NimbleMedium.debug staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.debug staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.debug staging.xcconfig"; sourceTree = "<group>"; };
 		458DD8FDDDFB794337C4FC53 /* Pods-NimbleMedium-NimbleMediumUITests.debug staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium-NimbleMediumUITests.debug staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium-NimbleMediumUITests/Pods-NimbleMedium-NimbleMediumUITests.debug staging.xcconfig"; sourceTree = "<group>"; };
 		664F4E0BC9D9E468E0506C22 /* Pods-NimbleMediumTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.production.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.production.xcconfig"; sourceTree = "<group>"; };
+		6C74D9380DB6E2E950FBE751 /* Pods-NimbleMedium-NimbleMediumUITests.release production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium-NimbleMediumUITests.release production.xcconfig"; path = "Target Support Files/Pods-NimbleMedium-NimbleMediumUITests/Pods-NimbleMedium-NimbleMediumUITests.release production.xcconfig"; sourceTree = "<group>"; };
+		6D135778E77723C90B50C7AE /* Pods-NimbleMedium-NimbleMediumUITests.release staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium-NimbleMediumUITests.release staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium-NimbleMediumUITests/Pods-NimbleMedium-NimbleMediumUITests.release staging.xcconfig"; sourceTree = "<group>"; };
 		6E41E63B326C526EFD5BA685 /* Pods-NimbleMedium.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.production.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.production.xcconfig"; sourceTree = "<group>"; };
 		6FED2492E982E731BBE5E9E3 /* Pods-NimbleMediumTests.debug staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.debug staging.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.debug staging.xcconfig"; sourceTree = "<group>"; };
 		74B1A182D909036C2150D5D4 /* Pods-NimbleMedium.debug production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.debug production.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.debug production.xcconfig"; sourceTree = "<group>"; };
+		7721D3A180343F97BC0BD592 /* Pods-NimbleMedium.release production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.release production.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.release production.xcconfig"; sourceTree = "<group>"; };
 		8319E63645C8E624FA94506E /* Pods_NimbleMedium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleMedium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		901D8FC4774E2CF838738DEF /* Pods_NimbleMedium_NimbleMediumUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleMedium_NimbleMediumUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7FB373E4466876E4BD8212F /* Pods-NimbleMedium-NimbleMediumUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium-NimbleMediumUITests.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium-NimbleMediumUITests/Pods-NimbleMedium-NimbleMediumUITests.staging.xcconfig"; sourceTree = "<group>"; };
+		A91E5DE669974AF035856583 /* Pods-NimbleMediumTests.release staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.release staging.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.release staging.xcconfig"; sourceTree = "<group>"; };
 		B350D67E0CE0AD97820184FA /* Pods-NimbleMedium-NimbleMediumUITests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium-NimbleMediumUITests.production.xcconfig"; path = "Target Support Files/Pods-NimbleMedium-NimbleMediumUITests/Pods-NimbleMedium-NimbleMediumUITests.production.xcconfig"; sourceTree = "<group>"; };
+		BE1BC57CAF7CE750801CC99B /* Pods-NimbleMedium.release staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.release staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.release staging.xcconfig"; sourceTree = "<group>"; };
 		EDBC77E99D264744421CC502 /* Pods_NimbleMediumTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NimbleMediumTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8C7D82B80C1CA5F14A914F4 /* Pods-NimbleMedium-NimbleMediumUITests.debug production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium-NimbleMediumUITests.debug production.xcconfig"; path = "Target Support Files/Pods-NimbleMedium-NimbleMediumUITests/Pods-NimbleMedium-NimbleMediumUITests.debug production.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -913,6 +919,12 @@
 				F8C7D82B80C1CA5F14A914F4 /* Pods-NimbleMedium-NimbleMediumUITests.debug production.xcconfig */,
 				6FED2492E982E731BBE5E9E3 /* Pods-NimbleMediumTests.debug staging.xcconfig */,
 				182CA8AF5AD16C128ADBB7D6 /* Pods-NimbleMediumTests.debug production.xcconfig */,
+				BE1BC57CAF7CE750801CC99B /* Pods-NimbleMedium.release staging.xcconfig */,
+				7721D3A180343F97BC0BD592 /* Pods-NimbleMedium.release production.xcconfig */,
+				6D135778E77723C90B50C7AE /* Pods-NimbleMedium-NimbleMediumUITests.release staging.xcconfig */,
+				6C74D9380DB6E2E950FBE751 /* Pods-NimbleMedium-NimbleMediumUITests.release production.xcconfig */,
+				A91E5DE669974AF035856583 /* Pods-NimbleMediumTests.release staging.xcconfig */,
+				1B8DA573BF5543E0BD2D9E94 /* Pods-NimbleMediumTests.release production.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1131,7 +1143,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH_TO_GOOGLE_PLISTS=\"$SRCROOT/$PROJECT_NAME/Configurations/Plists/GoogleService\"\n\ncase \"${CONFIGURATION}\" in\n  \"Staging\" )\n    cp -r \"$PATH_TO_GOOGLE_PLISTS/Staging/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    ;;\n  \"Debug Staging\" )\n    cp -r \"$PATH_TO_GOOGLE_PLISTS/Staging/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    ;;\n  \"Debug Production\" )\n    cp -r \"$PATH_TO_GOOGLE_PLISTS/Production/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    ;;\n  \"Production\" )\n    cp -r \"$PATH_TO_GOOGLE_PLISTS/Production/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    ;;\n  *)\n    ;;\nesac\n";
+			shellScript = "PATH_TO_GOOGLE_PLISTS=\"$SRCROOT/$PROJECT_NAME/Configurations/Plists/GoogleService\"\n\ncase \"${CONFIGURATION}\" in\n  \"Release Staging\" )\n    cp -r \"$PATH_TO_GOOGLE_PLISTS/Staging/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    ;;\n  \"Debug Staging\" )\n    cp -r \"$PATH_TO_GOOGLE_PLISTS/Staging/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    ;;\n  \"Debug Production\" )\n    cp -r \"$PATH_TO_GOOGLE_PLISTS/Production/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    ;;\n  \"Release Production\" )\n    cp -r \"$PATH_TO_GOOGLE_PLISTS/Production/GoogleService-Info.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    ;;\n  *)\n    ;;\nesac\n";
 		};
 		2DB726B726C117D500C16716 /* R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1147,7 +1159,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/$PROJECT_NAME/Sources/Supports/Helpers/R.generated.swift,
+				"$SRCROOT/$PROJECT_NAME/Sources/Supports/Helpers/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1351,7 +1363,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		24C9393E26D8D21200547800 /* Staging */ = {
+		24C9393E26D8D21200547800 /* Release Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1411,11 +1423,11 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG STAGING";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
-			name = Staging;
+			name = "Release Staging";
 		};
-		24C9393F26D8D21200547800 /* Staging */ = {
+		24C9393F26D8D21200547800 /* Release Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1FB4ECE354F839DF02D6976B /* Pods-NimbleMedium.staging.xcconfig */;
+			baseConfigurationReference = BE1BC57CAF7CE750801CC99B /* Pods-NimbleMedium.release staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1440,11 +1452,11 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Staging;
+			name = "Release Staging";
 		};
-		24C9394026D8D21200547800 /* Staging */ = {
+		24C9394026D8D21200547800 /* Release Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21851292A064EB97674233A2 /* Pods-NimbleMediumTests.staging.xcconfig */;
+			baseConfigurationReference = A91E5DE669974AF035856583 /* Pods-NimbleMediumTests.release staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1466,11 +1478,11 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nimble Medium.app/Nimble Medium";
 			};
-			name = Staging;
+			name = "Release Staging";
 		};
-		24C9394126D8D21200547800 /* Staging */ = {
+		24C9394126D8D21200547800 /* Release Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7FB373E4466876E4BD8212F /* Pods-NimbleMedium-NimbleMediumUITests.staging.xcconfig */;
+			baseConfigurationReference = 6D135778E77723C90B50C7AE /* Pods-NimbleMedium-NimbleMediumUITests.release staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -1490,9 +1502,9 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = NimbleMedium;
 			};
-			name = Staging;
+			name = "Release Staging";
 		};
-		24C9394226D8D22000547800 /* Production */ = {
+		24C9394226D8D22000547800 /* Release Production */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1547,11 +1559,11 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Production;
+			name = "Release Production";
 		};
-		24C9394326D8D22000547800 /* Production */ = {
+		24C9394326D8D22000547800 /* Release Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E41E63B326C526EFD5BA685 /* Pods-NimbleMedium.production.xcconfig */;
+			baseConfigurationReference = 7721D3A180343F97BC0BD592 /* Pods-NimbleMedium.release production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1574,11 +1586,11 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Production;
+			name = "Release Production";
 		};
-		24C9394426D8D22000547800 /* Production */ = {
+		24C9394426D8D22000547800 /* Release Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 664F4E0BC9D9E468E0506C22 /* Pods-NimbleMediumTests.production.xcconfig */;
+			baseConfigurationReference = 1B8DA573BF5543E0BD2D9E94 /* Pods-NimbleMediumTests.release production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1598,11 +1610,11 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nimble Medium.app/Nimble Medium";
 			};
-			name = Production;
+			name = "Release Production";
 		};
-		24C9394526D8D22000547800 /* Production */ = {
+		24C9394526D8D22000547800 /* Release Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B350D67E0CE0AD97820184FA /* Pods-NimbleMedium-NimbleMediumUITests.production.xcconfig */;
+			baseConfigurationReference = 6C74D9380DB6E2E950FBE751 /* Pods-NimbleMedium-NimbleMediumUITests.release production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -1621,7 +1633,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = NimbleMedium;
 			};
-			name = Production;
+			name = "Release Production";
 		};
 		2DB2676E26BBEC4500FF05BB /* Debug Production */ = {
 			isa = XCBuildConfiguration;
@@ -1902,45 +1914,45 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2DB2677826BBEE9D00FF05BB /* Debug Staging */,
-				24C9393E26D8D21200547800 /* Staging */,
+				24C9393E26D8D21200547800 /* Release Staging */,
 				2DB2676E26BBEC4500FF05BB /* Debug Production */,
-				24C9394226D8D22000547800 /* Production */,
+				24C9394226D8D22000547800 /* Release Production */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Production;
+			defaultConfigurationName = "Debug Staging";
 		};
 		2DB2676F26BBEC4500FF05BB /* Build configuration list for PBXNativeTarget "NimbleMedium" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2DB2677926BBEE9D00FF05BB /* Debug Staging */,
-				24C9393F26D8D21200547800 /* Staging */,
+				24C9393F26D8D21200547800 /* Release Staging */,
 				2DB2677126BBEC4500FF05BB /* Debug Production */,
-				24C9394326D8D22000547800 /* Production */,
+				24C9394326D8D22000547800 /* Release Production */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Production;
+			defaultConfigurationName = "Debug Staging";
 		};
 		2DB2677226BBEC4500FF05BB /* Build configuration list for PBXNativeTarget "NimbleMediumTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2DB2677A26BBEE9D00FF05BB /* Debug Staging */,
-				24C9394026D8D21200547800 /* Staging */,
+				24C9394026D8D21200547800 /* Release Staging */,
 				2DB2677426BBEC4500FF05BB /* Debug Production */,
-				24C9394426D8D22000547800 /* Production */,
+				24C9394426D8D22000547800 /* Release Production */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Production;
+			defaultConfigurationName = "Debug Staging";
 		};
 		2DB2677526BBEC4500FF05BB /* Build configuration list for PBXNativeTarget "NimbleMediumUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2DB2677B26BBEE9D00FF05BB /* Debug Staging */,
-				24C9394126D8D21200547800 /* Staging */,
+				24C9394126D8D21200547800 /* Release Staging */,
 				2DB2677726BBEC4500FF05BB /* Debug Production */,
-				24C9394526D8D22000547800 /* Production */,
+				24C9394526D8D22000547800 /* Release Production */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Production;
+			defaultConfigurationName = "Debug Staging";
 		};
 /* End XCConfigurationList section */
 	};
