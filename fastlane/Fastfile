@@ -39,7 +39,7 @@ end
 default_platform(:ios)
 
 platform :ios do
-  
+
   desc "Sync development match signing"
   lane :sync_development_signing do
     match(type: "development", readonly: true)
@@ -47,7 +47,7 @@ platform :ios do
 
   desc "Sync AdHoc match signing"
   lane :sync_adhoc_signing do
-    match(type: "adhoc", readonly: false)
+    match(type: "adhoc", readonly: true)
   end
 
   desc "Sync Adhoc match signing on CI"
