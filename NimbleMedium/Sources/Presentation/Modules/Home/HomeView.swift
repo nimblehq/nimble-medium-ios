@@ -11,11 +11,11 @@ import RxCocoa
 import RxCombine
 
 struct HomeView: View {
-    static let sideMenuCoordinateSpaceName = "SideMenu"
 
     @ObservedViewModel private var viewModel: HomeViewModelProtocol
     @State private var displaySideMenuProgress: CGFloat = 0.0
     private let draggingAnimator = SideMenuDraggingAnimator()
+    private let sideMenuCoordinateSpaceName = "SideMenu"
 
     var body: some View {
         GeometryReader { geo in
@@ -26,38 +26,23 @@ struct HomeView: View {
                     SideMenuView(viewModel: viewModel.output.sideMenuViewModel)
                         .frame(width: geo.size.width * 2.0 / 3.0, height: geo.size.height)
                         .background(Color.white)
-                        .offset(x: (1 - displaySideMenuProgress) * -geo.size.width * 2 / 3)
-                        .coordinateSpace(name: Self.sideMenuCoordinateSpaceName)
+                        .offset(x: (1 - displaySideMenuProgress) * -geo.size.width * 2.0 / 3.0)
+                        .coordinateSpace(name: sideMenuCoordinateSpaceName)
                 }
             }
             .ignoresSafeArea()
             .onReceive(viewModel.output.isSideMenuOpenDidChange) { isOpen in
                 withAnimation {
-                    self.displaySideMenuProgress = isOpen ? 1.0 : 0.0
+                    displaySideMenuProgress = isOpen ? 1.0 : 0.0
                 }
 
-                self.draggingAnimator.reset(isOpen: isOpen)
+                draggingAnimator.reset(isOpen: isOpen)
             }
-            .gesture(
-                DragGesture(coordinateSpace: .named(Self.sideMenuCoordinateSpaceName))
-                    .onChanged { gesture in
-                        // FIXME: It should return current size of SideMenu
-                        let width = geo.frame(in: .named(Self.sideMenuCoordinateSpaceName)).width * 2 / 3
-
-                        draggingAnimator.onDraggingChanged(gesture, width) {
-                            displaySideMenuProgress = $1
-                        }
-                    }
-                    .onEnded { _ in
-                        draggingAnimator.onDraggingEnded { isOpen, _ in
-                            self.viewModel.input.toggleSideMenu(isOpen)
-                        }
-                    }
-            )
+            .gesture(dragGesture(geo: geo))
         }
     }
 
-    var sideMenuDimmedBackground: some View {
+    private var sideMenuDimmedBackground: some View {
         GeometryReader { _ in
             EmptyView()
         }
@@ -70,6 +55,23 @@ struct HomeView: View {
 
     init (viewModel: HomeViewModelProtocol) {
         self.viewModel = viewModel
+    }
+
+    private func dragGesture(geo: GeometryProxy) -> some Gesture {
+        DragGesture(coordinateSpace: .named(sideMenuCoordinateSpaceName))
+            .onChanged { gesture in
+                // FIXME: It should return current size of SideMenu
+                let width = geo.frame(in: .named(sideMenuCoordinateSpaceName)).width * 2.0 / 3.0
+
+                draggingAnimator.onDraggingChanged(gesture, width) {
+                    displaySideMenuProgress = $1
+                }
+            }
+            .onEnded { _ in
+                draggingAnimator.onDraggingEnded { isOpen, _ in
+                    viewModel.input.toggleSideMenu(isOpen)
+                }
+            }
     }
 }
 

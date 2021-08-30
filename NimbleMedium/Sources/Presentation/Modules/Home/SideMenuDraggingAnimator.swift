@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class SideMenuDraggingAnimator {
+final class SideMenuDraggingAnimator {
 
     typealias OnUpdateCallback = (_ isOpen: Bool, _ progress: CGFloat) -> Void
 

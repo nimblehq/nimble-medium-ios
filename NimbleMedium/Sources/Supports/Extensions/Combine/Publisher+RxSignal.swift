@@ -13,7 +13,7 @@ import RxCocoa
 extension Published.Publisher {
 
     func asSignal() -> Signal<Value> {
-        self.asObservable()
+        asObservable()
             .skip(1)
             .asSignal(onErrorSignalWith: .empty())
     }
