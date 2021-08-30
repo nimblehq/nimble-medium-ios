@@ -15,7 +15,7 @@ struct App: SwiftUI.App {
 
     // swiftlint:disable type_contents_order
     init() {
-        factory = DependencyFactory()
+        factory = DependencyFactory(networkAPI: NetworkAPI())
         configureFirebase()
         configureNetworkLogger()
     }

@@ -48,7 +48,9 @@ struct HomeView: View {
 #if DEBUG
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(viewModel: HomeViewModel(factory: DependencyFactory()))
+        let factory = DependencyFactory(networkAPI: NetworkAPI())
+        let viewModel = HomeViewModel(factory: factory)
+        return HomeView(viewModel: viewModel)
     }
 }
 #endif

@@ -6,12 +6,23 @@
 //
 
 // TODO: Support more protocols later
-protocol ModuleFactoryProtocol: ViewModelFactoryProtocol {}
+protocol ModuleFactoryProtocol: ViewModelFactoryProtocol, UseCaseFactoryProtocol {}
 
 final class DependencyFactory {
 
-    init() {
-        // TODO: To be implemented
+    private let networkAPI: NetworkAPIProtocol
+
+    init(networkAPI: NetworkAPIProtocol) {
+        self.networkAPI = networkAPI
+    }
+}
+
+// MARK: - RepositoryFactoryProtocol
+
+extension DependencyFactory: RepositoryFactoryProtocol {
+
+    func authRepository() -> AuthRepositoryProtocol {
+        AuthRepository(networkAPI: networkAPI)
     }
 }
 
