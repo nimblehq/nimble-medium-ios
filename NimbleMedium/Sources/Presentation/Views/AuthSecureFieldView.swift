@@ -9,11 +9,11 @@ import SwiftUI
 
 struct AuthSecureFieldView: View {
 
-    private var placeHolderText: String
+    private var placeholder: String
     private var text: Binding<String>
 
     var body: some View {
-        SecureField(placeHolderText, text: text)
+        SecureField(placeholder, text: text)
             .padding()
             .overlay(
                 RoundedRectangle(cornerRadius: 8.0)
@@ -22,8 +22,8 @@ struct AuthSecureFieldView: View {
             .accentColor(.black)
     }
 
-    init(placeHolderText: String, text: Binding<String>) {
-        self.placeHolderText = placeHolderText
+    init(placeholder: String, text: Binding<String>) {
+        self.placeholder = placeholder
         self.text = text
     }
 }

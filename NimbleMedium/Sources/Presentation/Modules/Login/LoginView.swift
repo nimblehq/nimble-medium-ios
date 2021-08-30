@@ -21,12 +21,12 @@ struct LoginView: View {
             Background {
                 VStack(spacing: 15.0) {
                     AuthTextFieldView(
-                        placeHolderText: Localizable.loginTextFieldEmailPlaceholder(),
+                        placeholder: Localizable.loginTextFieldEmailPlaceholder(),
                         text: $email,
                         supportEmailKeyboard: true
                     )
                     AuthSecureFieldView(
-                        placeHolderText: Localizable.loginTextfieldPasswordPlaceholder(),
+                        placeholder: Localizable.loginTextfieldPasswordPlaceholder(),
                         text: $password)
                     AppMainButton(title: Localizable.actionLogin()) {
                         // TODO: Implement in integrate task

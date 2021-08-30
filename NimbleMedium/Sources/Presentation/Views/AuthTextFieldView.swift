@@ -9,12 +9,12 @@ import SwiftUI
 
 struct AuthTextFieldView: View {
 
-    private var placeHolderText: String
+    private var placeholder: String
     private var text: Binding<String>
     private var supportEmailKeyboard: Bool
 
     var body: some View {
-        TextField(placeHolderText, text: text)
+        TextField(placeholder, text: text)
             .padding()
             .overlay(
                 RoundedRectangle(cornerRadius: 8.0)
@@ -24,8 +24,8 @@ struct AuthTextFieldView: View {
             .accentColor(.black)
     }
 
-    init(placeHolderText: String, text: Binding<String>, supportEmailKeyboard: Bool = false) {
-        self.placeHolderText = placeHolderText
+    init(placeholder: String, text: Binding<String>, supportEmailKeyboard: Bool = false) {
+        self.placeholder = placeholder
         self.text = text
         self.supportEmailKeyboard = supportEmailKeyboard
     }

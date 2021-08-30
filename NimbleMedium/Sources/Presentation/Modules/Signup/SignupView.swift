@@ -23,16 +23,16 @@ struct SignupView: View {
             Background {
                 VStack(spacing: 15.0) {
                     AuthTextFieldView(
-                        placeHolderText: Localizable.signupTextFieldUsernamePlaceholder(),
+                        placeholder: Localizable.signupTextFieldUsernamePlaceholder(),
                         text: $username
                     )
                     AuthTextFieldView(
-                        placeHolderText: Localizable.signupTextFieldEmailPlaceholder(),
+                        placeholder: Localizable.signupTextFieldEmailPlaceholder(),
                         text: $email,
                         supportEmailKeyboard: true
                     )
                     AuthSecureFieldView(
-                        placeHolderText: Localizable.signupTextFieldPasswordPlaceholder(),
+                        placeholder: Localizable.signupTextFieldPasswordPlaceholder(),
                         text: $password)
                     AppMainButton(title: Localizable.actionSignup()) {
                         // TODO: Implement in integrate task
