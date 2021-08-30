@@ -66,13 +66,11 @@ struct LoginView: View {
         }
         .accentColor(.white)
         .onReceive(viewModel.output.didLogin) { _ in
-            loadingToast = false
             presentationMode.wrappedValue.dismiss()
         }
         .onReceive(viewModel.output.errorMessage) { _ in
-            loadingToast = false
             errorMessage = Localizable.errorGeneric()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { errorToast = true }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { errorToast.toggle() }
         }
         .onReceive(viewModel.output.isLoading) {
             loadingToast = $0

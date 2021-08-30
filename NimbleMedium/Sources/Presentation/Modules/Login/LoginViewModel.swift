@@ -16,8 +16,8 @@ protocol LoginViewModelInput {
 
 protocol LoginViewModelOutput {
 
-    var didLogin: Driver<HomeViewModelProtocol> { get }
-    var errorMessage: Driver<String> { get }
+    var didLogin: Signal<Void> { get }
+    var errorMessage: Signal<String> { get }
     var isLoading: Driver<Bool> { get }
 }
 
@@ -30,29 +30,30 @@ protocol LoginViewModelProtocol: ObservableViewModel {
 final class LoginViewModel: ObservableObject, LoginViewModelProtocol {
 
     private let disposeBag = DisposeBag()
-    private let loginTrigger = PublishRelay<(email: String, password: String)>()
+    private let loginUseCase: LoginUseCaseProtocol
 
     var input: LoginViewModelInput { self }
     var output: LoginViewModelOutput { self }
-    var didLogin: Driver<HomeViewModelProtocol>
-    var errorMessage: Driver<String>
 
+    @PublishRelayProperty var errorMessage: Signal<String>
+    @PublishRelayProperty var didLogin: Signal<Void>
     @BehaviorRelayProperty(false) var isLoading: Driver<Bool>
 
     init(factory: ModuleFactoryProtocol) {
-        let error = RxErrorTracker()
-        let loginUseCase = factory.loginUseCase()
-        didLogin = loginTrigger
-            .flatMapLatest { inputs in
-                loginUseCase
-                    .login(email: inputs.email, password: inputs.password)
-                    .trackError(error)
-                    .materialize()
-            }
-            .filter { $0.isCompleted }
-            .map { _ in factory.homeViewModel() }
-            .asDriverOrEmptyIfError()
-        errorMessage = error.asDriver().map(\.detail)
+        loginUseCase = factory.loginUseCase()
+    }
+
+    private func login(email: String, password: String) {
+        loginUseCase
+            .login(email: email, password: password)
+            .subscribe(onCompleted: { [weak self] in
+                self?.$isLoading.accept(false)
+                self?.$didLogin.accept(())
+            }, onError: { [weak self] in
+                self?.$isLoading.accept(false)
+                self?.$errorMessage.accept($0.detail)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -60,8 +61,8 @@ extension LoginViewModel: LoginViewModelInput {
 
     func didTapLoginButton(email: String, password: String) {
         $isLoading.accept(true)
-        loginTrigger.accept((email: email, password: password))
+        login(email: email, password: password)
     }
 }
 
-extension LoginViewModel: LoginViewModelOutput { }
+extension LoginViewModel: LoginViewModelOutput {}
