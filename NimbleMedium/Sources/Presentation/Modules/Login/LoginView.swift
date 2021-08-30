@@ -48,6 +48,7 @@ struct LoginView: View {
         }
     }
 
+    // swiftlint:disable closure_body_length
     var navBackgroundContent: some View {
         Background {
             VStack(spacing: 15.0) {
@@ -66,7 +67,8 @@ struct LoginView: View {
                 .disabled(email.isEmpty || password.isEmpty || loadingToast)
                 Button(
                     action: {
-                        // TODO: Implement in integrate task
+                        presentationMode.wrappedValue.dismiss()
+                        viewModel.input.didTapNoAccountButton()
                     }, label: {
                         Text(Localizable.loginNeedAccountTitle())
                             .frame(height: 25.0)

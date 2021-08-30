@@ -31,6 +31,8 @@ protocol SideMenuActionsViewModelProtocol: ObservableViewModel {
 
 final class SideMenuActionsViewModel: ObservableObject, SideMenuActionsViewModelProtocol {
 
+    private let disposeBag = DisposeBag()
+
     var input: SideMenuActionsViewModelInput { self }
     var output: SideMenuActionsViewModelOutput { self }
 
@@ -43,6 +45,13 @@ final class SideMenuActionsViewModel: ObservableObject, SideMenuActionsViewModel
     init(factory: ModuleFactoryProtocol) {
         loginViewModel = factory.loginViewModel()
         signupViewModel = factory.signupViewModel()
+
+        loginViewModel.output.didSelectNoAccount.asObservable()
+            .withUnretained(self)
+            .bind { _ in
+                self.$didSelectSignupOption.accept(true)
+            }
+            .disposed(by: disposeBag)
     }
 }
 

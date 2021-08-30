@@ -18,7 +18,7 @@ final class AuthRepository: AuthRepositoryProtocol {
     func login(email: String, password: String) -> Single<User> {
         let requestConfiguration = AuthRequestConfiguration.login(email: email, password: password)
         return networkAPI
-            .performRequest(requestConfiguration, for: APIUser.self)
-            .map { $0 as User }
+            .performRequest(requestConfiguration, for: APIUserResponse.self)
+            .map { $0.user as User }
     }
 }
