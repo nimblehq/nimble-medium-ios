@@ -102,8 +102,7 @@ struct LoginView: View {
 #if DEBUG
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        let factory = DependencyFactory(networkAPI: NetworkAPI())
-        let viewModel = LoginViewModel(factory: factory)
+        let viewModel = LoginViewModel(factory: App().factory)
         return LoginView(viewModel: viewModel)
     }
 }

@@ -42,6 +42,11 @@
 		24C9393B26D8A1A200547800 /* AuthSecureFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393A26D8A1A200547800 /* AuthSecureFieldView.swift */; };
 		24C9393D26D8A26300547800 /* AppMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393C26D8A26300547800 /* AppMainButton.swift */; };
 		24F3D7AA26DCE54C00DE2420 /* APIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7A926DCE54C00DE2420 /* APIUser.swift */; };
+		24F3D7AC26DCE84A00DE2420 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7AB26DCE84A00DE2420 /* Keychain.swift */; };
+		24F3D7AE26DCE85F00DE2420 /* KeychainKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7AD26DCE85F00DE2420 /* KeychainKey.swift */; };
+		24F3D7B126DCE8DA00DE2420 /* UserSessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7B026DCE8DA00DE2420 /* UserSessionRepository.swift */; };
+		24F3D7B426DCE96200DE2420 /* UserSessionRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7B326DCE96200DE2420 /* UserSessionRepositoryProtocol.swift */; };
+		24F3D7B726DCEA0300DE2420 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 24F3D7B626DCEA0300DE2420 /* KeychainAccess */; };
 		2D2F456026C25911002C0331 /* View+NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F455F26C25911002C0331 /* View+NavigationBar.swift */; };
 		2D303B3B26C28AC200EEF1C0 /* Constants+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D303B3A26C28AC200EEF1C0 /* Constants+String.swift */; };
 		2D467C3D26BCD58D008F11E1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D467C3C26BCD58D008F11E1 /* HomeView.swift */; };
@@ -130,6 +135,10 @@
 		24C9393A26D8A1A200547800 /* AuthSecureFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSecureFieldView.swift; sourceTree = "<group>"; };
 		24C9393C26D8A26300547800 /* AppMainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainButton.swift; sourceTree = "<group>"; };
 		24F3D7A926DCE54C00DE2420 /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
+		24F3D7AB26DCE84A00DE2420 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		24F3D7AD26DCE85F00DE2420 /* KeychainKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKey.swift; sourceTree = "<group>"; };
+		24F3D7B026DCE8DA00DE2420 /* UserSessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionRepository.swift; sourceTree = "<group>"; };
+		24F3D7B326DCE96200DE2420 /* UserSessionRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionRepositoryProtocol.swift; sourceTree = "<group>"; };
 		2D2F455F26C25911002C0331 /* View+NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+NavigationBar.swift"; sourceTree = "<group>"; };
 		2D303B3A26C28AC200EEF1C0 /* Constants+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+String.swift"; sourceTree = "<group>"; };
 		2D467C3C26BCD58D008F11E1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -191,6 +200,7 @@
 			files = (
 				2459B35B26D7A7C500ABCE61 /* ToastUI in Frameworks */,
 				7DB2A8DC1F8863DD01F7D438 /* Pods_NimbleMedium.framework in Frameworks */,
+				24F3D7B726DCEA0300DE2420 /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				2459B32326D750ED00ABCE61 /* Auth */,
+				24F3D7B226DCE94D00DE2420 /* User */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -363,6 +374,22 @@
 				249042F526D50FF300E970B6 /* ViewModelFactoryProtocol.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		24F3D7AF26DCE8BB00DE2420 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				24F3D7B026DCE8DA00DE2420 /* UserSessionRepository.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		24F3D7B226DCE94D00DE2420 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				24F3D7B326DCE96200DE2420 /* UserSessionRepositoryProtocol.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		2D303B3C26C28AE900EEF1C0 /* Foundation */ = {
@@ -675,6 +702,8 @@
 		2D72E49926C21CEB00861239 /* Keychain */ = {
 			isa = PBXGroup;
 			children = (
+				24F3D7AB26DCE84A00DE2420 /* Keychain.swift */,
+				24F3D7AD26DCE85F00DE2420 /* KeychainKey.swift */,
 			);
 			path = Keychain;
 			sourceTree = "<group>";
@@ -879,6 +908,7 @@
 			isa = PBXGroup;
 			children = (
 				2459B31D26D7500D00ABCE61 /* Auth */,
+				24F3D7AF26DCE8BB00DE2420 /* User */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -981,6 +1011,7 @@
 			name = NimbleMedium;
 			packageProductDependencies = (
 				2459B35A26D7A7C500ABCE61 /* ToastUI */,
+				24F3D7B626DCEA0300DE2420 /* KeychainAccess */,
 			);
 			productName = NimbleMedium;
 			productReference = 2DB2674A26BBEC4300FF05BB /* Nimble Medium - Staging.app */;
@@ -1061,6 +1092,7 @@
 			mainGroup = 2DB2674126BBEC4300FF05BB;
 			packageReferences = (
 				2459B35926D7A7C500ABCE61 /* XCRemoteSwiftPackageReference "ToastUI" */,
+				24F3D7B526DCEA0300DE2420 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 2DB2674B26BBEC4300FF05BB /* Products */;
 			projectDirPath = "";
@@ -1311,6 +1343,7 @@
 				246A8FB826D39C24009F9753 /* SideMenuHeaderView.swift in Sources */,
 				2459B32226D750E200ABCE61 /* AuthRepositoryProtocol.swift in Sources */,
 				2DC212BE26CB6586000C7558 /* SideMenuDraggingAnimator.swift in Sources */,
+				24F3D7AE26DCE85F00DE2420 /* KeychainKey.swift in Sources */,
 				2DBE36AE26C3B0C500DA3511 /* FeedsView.swift in Sources */,
 				2459B31926D74E5100ABCE61 /* APIUserResponse.swift in Sources */,
 				249042E826D4D14F00E970B6 /* SignupView.swift in Sources */,
@@ -1324,6 +1357,7 @@
 				2459B32E26D754C900ABCE61 /* RepositoryFactoryProtocol.swift in Sources */,
 				2DDAD3A026D37E02007F845A /* App+NetworkLogger.swift in Sources */,
 				2D2F456026C25911002C0331 /* View+NavigationBar.swift in Sources */,
+				24F3D7B426DCE96200DE2420 /* UserSessionRepositoryProtocol.swift in Sources */,
 				2D467C3D26BCD58D008F11E1 /* HomeView.swift in Sources */,
 				2459B32626D7512300ABCE61 /* User.swift in Sources */,
 				2D4ADCC426C60940008F8843 /* HomeViewModel.swift in Sources */,
@@ -1339,6 +1373,7 @@
 				2459B32826D751E300ABCE61 /* LoginUseCase.swift in Sources */,
 				2424B22C26D4A22B00CF07B5 /* LoginView.swift in Sources */,
 				24C9393926D89FA300547800 /* AuthTextFieldView.swift in Sources */,
+				24F3D7B126DCE8DA00DE2420 /* UserSessionRepository.swift in Sources */,
 				249042F626D50FF300E970B6 /* ViewModelFactoryProtocol.swift in Sources */,
 				2DA4ABBF26CF90D000CF7D68 /* AppEnvironment.swift in Sources */,
 				2D5485BC26CA077600FFE707 /* View+OnReceive.swift in Sources */,
@@ -1352,6 +1387,7 @@
 				249042FA26D510A300E970B6 /* DependencyFactory+ViewModelFactoryProtocol.swift in Sources */,
 				241B4EEA26D3B3F4000409CC /* SideMenuActionItemView.swift in Sources */,
 				2DD4805826D73C67005225CF /* ObservedViewModel.swift in Sources */,
+				24F3D7AC26DCE84A00DE2420 /* Keychain.swift in Sources */,
 				2D4ADCC926C61192008F8843 /* FeedsViewModel.swift in Sources */,
 				2424B22F26D4A2EF00CF07B5 /* LoginViewModel.swift in Sources */,
 				2DE3B9B526C1339200272775 /* Typealias.swift in Sources */,
@@ -2014,6 +2050,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		24F3D7B526DCEA0300DE2420 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2021,6 +2065,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2459B35926D7A7C500ABCE61 /* XCRemoteSwiftPackageReference "ToastUI" */;
 			productName = ToastUI;
+		};
+		24F3D7B626DCEA0300DE2420 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24F3D7B526DCEA0300DE2420 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

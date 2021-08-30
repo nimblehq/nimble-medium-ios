@@ -10,9 +10,14 @@ protocol ModuleFactoryProtocol: ViewModelFactoryProtocol, UseCaseFactoryProtocol
 
 final class DependencyFactory {
 
+    private let keychain: KeychainProtocol
     private let networkAPI: NetworkAPIProtocol
 
-    init(networkAPI: NetworkAPIProtocol) {
+    init(
+        keychain: KeychainProtocol,
+        networkAPI: NetworkAPIProtocol
+    ) {
+        self.keychain = keychain
         self.networkAPI = networkAPI
     }
 }
@@ -23,6 +28,10 @@ extension DependencyFactory: RepositoryFactoryProtocol {
 
     func authRepository() -> AuthRepositoryProtocol {
         AuthRepository(networkAPI: networkAPI)
+    }
+
+    func userSessionRepository() -> UserSessionRepositoryProtocol {
+        UserSessionRepository(keychain: keychain)
     }
 }
 
