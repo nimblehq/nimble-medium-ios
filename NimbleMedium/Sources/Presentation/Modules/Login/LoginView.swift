@@ -21,49 +21,7 @@ struct LoginView: View {
     @ObservedViewModel var viewModel: LoginViewModelProtocol
 
     var body: some View {
-        NavigationView {
-            Background {
-                VStack(spacing: 15.0) {
-                    AuthTextFieldView(
-                        placeholder: Localizable.loginTextFieldEmailPlaceholder(),
-                        text: $email,
-                        supportEmailKeyboard: true
-                    )
-                    AuthSecureFieldView(
-                        placeholder: Localizable.loginTextfieldPasswordPlaceholder(),
-                        text: $password)
-                    AppMainButton(title: Localizable.actionLogin()) {
-                        hideKeyboard()
-                        viewModel.input.didTapLoginButton(email: email, password: password)
-                    }
-                    .disabled(email.isEmpty || password.isEmpty || loadingToast)
-                    Button(
-                        action: {
-                            // TODO: Implement in integrate task
-                        }, label: {
-                            Text(Localizable.loginNeedAccountTitle())
-                                .frame(height: 25.0)
-                        }
-                    )
-                    .foregroundColor(.green)
-                }
-                .padding()
-
-            }
-            .onTapGesture { hideKeyboard() }
-            .navigationBarTitle(Localizable.loginTitle(), displayMode: .inline)
-            .navigationBarColor(backgroundColor: .green)
-            .toolbar { navigationBarLeadingContent }
-            .toast(isPresented: $errorToast, dismissAfter: 3.0) {
-                ToastView(errorMessage) { } background: {
-                    Color.clear
-                }
-            }
-            .toast(isPresented: $loadingToast) {
-                ToastView(String.empty) { }
-                    .toastViewStyle(IndefiniteProgressToastViewStyle())
-            }
-        }
+        NavigationView { navBackgroundContent }
         .accentColor(.white)
         .onReceive(viewModel.output.didLogin) { _ in
             presentationMode.wrappedValue.dismiss()
@@ -87,6 +45,50 @@ struct LoginView: View {
                     Image(systemName: SystemImageName.xmark.rawValue)
                 }
             )
+        }
+    }
+
+    var navBackgroundContent: some View {
+        Background {
+            VStack(spacing: 15.0) {
+                AuthTextFieldView(
+                    placeholder: Localizable.loginTextFieldEmailPlaceholder(),
+                    text: $email,
+                    supportEmailKeyboard: true
+                )
+                AuthSecureFieldView(
+                    placeholder: Localizable.loginTextfieldPasswordPlaceholder(),
+                    text: $password)
+                AppMainButton(title: Localizable.actionLogin()) {
+                    hideKeyboard()
+                    viewModel.input.didTapLoginButton(email: email, password: password)
+                }
+                .disabled(email.isEmpty || password.isEmpty || loadingToast)
+                Button(
+                    action: {
+                        // TODO: Implement in integrate task
+                    }, label: {
+                        Text(Localizable.loginNeedAccountTitle())
+                            .frame(height: 25.0)
+                    }
+                )
+                .foregroundColor(.green)
+            }
+            .padding()
+
+        }
+        .onTapGesture { hideKeyboard() }
+        .navigationBarTitle(Localizable.loginTitle(), displayMode: .inline)
+        .navigationBarColor(backgroundColor: .green)
+        .toolbar { navigationBarLeadingContent }
+        .toast(isPresented: $errorToast, dismissAfter: 3.0) {
+            ToastView(errorMessage) { } background: {
+                Color.clear
+            }
+        }
+        .toast(isPresented: $loadingToast) {
+            ToastView(String.empty) { }
+                .toastViewStyle(IndefiniteProgressToastViewStyle())
         }
     }
 

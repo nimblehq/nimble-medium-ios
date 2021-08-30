@@ -27,8 +27,6 @@
 		2459B32B26D7542100ABCE61 /* DependencyFactory+UseCaseFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B32A26D7542100ABCE61 /* DependencyFactory+UseCaseFactoryProtocol.swift */; };
 		2459B32E26D754C900ABCE61 /* RepositoryFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B32D26D754C900ABCE61 /* RepositoryFactoryProtocol.swift */; };
 		2459B33126D7551F00ABCE61 /* UseCaseFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B33026D7551F00ABCE61 /* UseCaseFactoryProtocol.swift */; };
-		2459B35526D7A1DE00ABCE61 /* RxErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B35426D7A1DE00ABCE61 /* RxErrorTracker.swift */; };
-		2459B35826D7A21C00ABCE61 /* ObservableType+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B35726D7A21C00ABCE61 /* ObservableType+Error.swift */; };
 		2459B35B26D7A7C500ABCE61 /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2459B35A26D7A7C500ABCE61 /* ToastUI */; };
 		246A8FB826D39C24009F9753 /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246A8FB726D39C24009F9753 /* SideMenuHeaderView.swift */; };
 		249042E726D4D14F00E970B6 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249042E526D4D14F00E970B6 /* SignupViewModel.swift */; };
@@ -117,8 +115,6 @@
 		2459B32A26D7542100ABCE61 /* DependencyFactory+UseCaseFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DependencyFactory+UseCaseFactoryProtocol.swift"; sourceTree = "<group>"; };
 		2459B32D26D754C900ABCE61 /* RepositoryFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryFactoryProtocol.swift; sourceTree = "<group>"; };
 		2459B33026D7551F00ABCE61 /* UseCaseFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseFactoryProtocol.swift; sourceTree = "<group>"; };
-		2459B35426D7A1DE00ABCE61 /* RxErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxErrorTracker.swift; sourceTree = "<group>"; };
-		2459B35726D7A21C00ABCE61 /* ObservableType+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Error.swift"; sourceTree = "<group>"; };
 		246A8FB726D39C24009F9753 /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
 		249042E526D4D14F00E970B6 /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		249042E626D4D14F00E970B6 /* SignupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
@@ -328,14 +324,6 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
-		2459B35626D7A20500ABCE61 /* Rx */ = {
-			isa = PBXGroup;
-			children = (
-				2459B35726D7A21C00ABCE61 /* ObservableType+Error.swift */,
-			);
-			path = Rx;
-			sourceTree = "<group>";
-		};
 		249042E426D4D14F00E970B6 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
@@ -418,7 +406,6 @@
 			children = (
 				2D5485B626C9FAAC00FFE707 /* BehaviorRelayProperty.swift */,
 				2D5485BD26CA0D2C00FFE707 /* PublishRelayProperty.swift */,
-				2459B35426D7A1DE00ABCE61 /* RxErrorTracker.swift */,
 			);
 			path = Rx;
 			sourceTree = "<group>";
@@ -519,7 +506,6 @@
 			children = (
                 2D7BF28C26DCB4CC00A30747 /* Combine */,
 				2D303B3C26C28AE900EEF1C0 /* Foundation */,
-				2459B35626D7A20500ABCE61 /* Rx */,
 				2D303B3D26C28B6500EEF1C0 /* SwiftUI */,
 			);
 			path = Extensions;
@@ -1328,7 +1314,6 @@
 				2DBE36B126C3B33700DA3511 /* SideMenuView.swift in Sources */,
 				24204CA026D625D300534314 /* SideMenuActionsViewModel.swift in Sources */,
 				2459B30F26D7494800ABCE61 /* RequestConfiguration.swift in Sources */,
-				2459B35526D7A1DE00ABCE61 /* RxErrorTracker.swift in Sources */,
 				2459B30726D747DF00ABCE61 /* Constants+API.swift in Sources */,
 				2459B30D26D748F100ABCE61 /* NetworkAPIProtocol.swift in Sources */,
 				2459B30926D748B700ABCE61 /* NetworkAPI.swift in Sources */,
@@ -1364,7 +1349,6 @@
 				241B4EEA26D3B3F4000409CC /* SideMenuActionItemView.swift in Sources */,
 				2DD4805826D73C67005225CF /* ObservedViewModel.swift in Sources */,
 				2D4ADCC926C61192008F8843 /* FeedsViewModel.swift in Sources */,
-				2459B35826D7A21C00ABCE61 /* ObservableType+Error.swift in Sources */,
 				2424B22F26D4A2EF00CF07B5 /* LoginViewModel.swift in Sources */,
 				2DE3B9B526C1339200272775 /* Typealias.swift in Sources */,
 				2459B32B26D7542100ABCE61 /* DependencyFactory+UseCaseFactoryProtocol.swift in Sources */,
@@ -1473,6 +1457,7 @@
 				PRODUCT_NAME = "Nimble Medium - stag";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG STAGING";
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = "Release Staging";
@@ -1728,6 +1713,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1739,6 +1725,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Nimble Medium";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = PRODUCTION;
