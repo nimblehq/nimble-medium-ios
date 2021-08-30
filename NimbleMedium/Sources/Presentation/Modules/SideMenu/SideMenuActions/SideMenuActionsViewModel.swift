@@ -12,12 +12,15 @@ import Combine
 protocol SideMenuActionsViewModelInput {
 
     func selectLoginOption()
+    func selectSignupOption()
 }
 
 protocol SideMenuActionsViewModelOutput {
 
     var didSelectLoginOption: Signal<Bool> { get }
+    var didSelectSignupOption: Signal<Bool> { get }
     var loginViewModel: LoginViewModelProtocol { get }
+    var signupViewModel: SignupViewModelProtocol { get }
 }
 
 protocol SideMenuActionsViewModelProtocol: ObservableViewModel {
@@ -32,11 +35,14 @@ final class SideMenuActionsViewModel: ObservableObject, SideMenuActionsViewModel
     var output: SideMenuActionsViewModelOutput { self }
 
     @PublishRelayProperty var didSelectLoginOption: Signal<Bool>
+    @PublishRelayProperty var didSelectSignupOption: Signal<Bool>
 
     let loginViewModel: LoginViewModelProtocol
+    let signupViewModel: SignupViewModelProtocol
 
     init(factory: ModuleFactoryProtocol) {
         loginViewModel = factory.loginViewModel()
+        signupViewModel = factory.signupViewModel()
     }
 }
 
@@ -44,6 +50,10 @@ extension SideMenuActionsViewModel: SideMenuActionsViewModelInput {
 
     func selectLoginOption() {
         $didSelectLoginOption.accept(true)
+    }
+
+    func selectSignupOption() {
+        $didSelectSignupOption.accept(true)
     }
 }
 

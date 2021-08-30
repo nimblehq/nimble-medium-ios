@@ -16,4 +16,6 @@ protocol ViewModelFactoryProtocol {
     func sideMenuActionsViewModel() -> SideMenuActionsViewModelProtocol
 
     func sideMenuViewModel() -> SideMenuViewModelProtocol
+
+    func signupViewModel() -> SignupViewModelProtocol
 }

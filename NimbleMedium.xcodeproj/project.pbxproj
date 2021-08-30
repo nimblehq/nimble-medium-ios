@@ -37,6 +37,9 @@
 		249042FA26D510A300E970B6 /* DependencyFactory+ViewModelFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249042F926D510A300E970B6 /* DependencyFactory+ViewModelFactoryProtocol.swift */; };
 		2497356126D34F3200177A7C /* SideMenuActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497356026D34F3200177A7C /* SideMenuActionsView.swift */; };
 		2497356326D35BBD00177A7C /* MenuOptionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497356226D35BBD00177A7C /* MenuOptionButtonStyle.swift */; };
+		24C9393926D89FA300547800 /* AuthTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393826D89FA300547800 /* AuthTextFieldView.swift */; };
+		24C9393B26D8A1A200547800 /* AuthSecureFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393A26D8A1A200547800 /* AuthSecureFieldView.swift */; };
+		24C9393D26D8A26300547800 /* AppMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393C26D8A26300547800 /* AppMainButton.swift */; };
 		2D2F456026C25911002C0331 /* View+NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F455F26C25911002C0331 /* View+NavigationBar.swift */; };
 		2D303B3B26C28AC200EEF1C0 /* Constants+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D303B3A26C28AC200EEF1C0 /* Constants+String.swift */; };
 		2D467C3D26BCD58D008F11E1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D467C3C26BCD58D008F11E1 /* HomeView.swift */; };
@@ -119,6 +122,9 @@
 		249042F926D510A300E970B6 /* DependencyFactory+ViewModelFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DependencyFactory+ViewModelFactoryProtocol.swift"; sourceTree = "<group>"; };
 		2497356026D34F3200177A7C /* SideMenuActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuActionsView.swift; sourceTree = "<group>"; };
 		2497356226D35BBD00177A7C /* MenuOptionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionButtonStyle.swift; sourceTree = "<group>"; };
+		24C9393826D89FA300547800 /* AuthTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextFieldView.swift; sourceTree = "<group>"; };
+		24C9393A26D8A1A200547800 /* AuthSecureFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSecureFieldView.swift; sourceTree = "<group>"; };
+		24C9393C26D8A26300547800 /* AppMainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainButton.swift; sourceTree = "<group>"; };
 		2D2F455F26C25911002C0331 /* View+NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+NavigationBar.swift"; sourceTree = "<group>"; };
 		2D303B3A26C28AC200EEF1C0 /* Constants+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+String.swift"; sourceTree = "<group>"; };
 		2D467C3C26BCD58D008F11E1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -480,6 +486,9 @@
 		2D72E48326C218D300861239 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				24C9393C26D8A26300547800 /* AppMainButton.swift */,
+				24C9393A26D8A1A200547800 /* AuthSecureFieldView.swift */,
+				24C9393826D89FA300547800 /* AuthTextFieldView.swift */,
 				24204C9D26D5289900534314 /* Background.swift */,
 			);
 			path = Views;
@@ -1272,6 +1281,7 @@
 				249042F826D5104E00E970B6 /* DependencyFactory.swift in Sources */,
 				2D303B3B26C28AC200EEF1C0 /* Constants+String.swift in Sources */,
 				24204CA226D62B6900534314 /* SideMenuViewModel.swift in Sources */,
+				24C9393B26D8A1A200547800 /* AuthSecureFieldView.swift in Sources */,
 				249042E726D4D14F00E970B6 /* SignupViewModel.swift in Sources */,
 				246A8FB826D39C24009F9753 /* SideMenuHeaderView.swift in Sources */,
 				2459B32226D750E200ABCE61 /* AuthRepositoryProtocol.swift in Sources */,
@@ -1292,6 +1302,7 @@
 				2459B32626D7512300ABCE61 /* User.swift in Sources */,
 				2D4ADCC426C60940008F8843 /* HomeViewModel.swift in Sources */,
 				2DD4805726D73C67005225CF /* ObservableViewModel.swift in Sources */,
+				24C9393D26D8A26300547800 /* AppMainButton.swift in Sources */,
 				2497356326D35BBD00177A7C /* MenuOptionButtonStyle.swift in Sources */,
 				2D5485B726C9FAAC00FFE707 /* BehaviorRelayProperty.swift in Sources */,
 				2D69824426C22DC700860A98 /* R.generated.swift in Sources */,
@@ -1300,6 +1311,7 @@
 				2497356126D34F3200177A7C /* SideMenuActionsView.swift in Sources */,
 				2459B32826D751E300ABCE61 /* LoginUseCase.swift in Sources */,
 				2424B22C26D4A22B00CF07B5 /* LoginView.swift in Sources */,
+				24C9393926D89FA300547800 /* AuthTextFieldView.swift in Sources */,
 				249042F626D50FF300E970B6 /* ViewModelFactoryProtocol.swift in Sources */,
 				2DA4ABBF26CF90D000CF7D68 /* AppEnvironment.swift in Sources */,
 				2D5485BC26CA077600FFE707 /* View+OnReceive.swift in Sources */,

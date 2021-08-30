@@ -45,6 +45,12 @@ final class SideMenuViewModel: ObservableObject, SideMenuViewModelProtocol {
                 self.$didSelectMenuOption.accept(())
             }
             .disposed(by: disposeBag)
+        sideMenuActionsViewModel.output.didSelectSignupOption.asObservable()
+            .withUnretained(self)
+            .bind { _ in
+                self.$didSelectMenuOption.accept(())
+            }
+            .disposed(by: disposeBag)
     }
 }
 
