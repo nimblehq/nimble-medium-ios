@@ -1445,6 +1445,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"NimbleMedium/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 4TWS7E2EPE;
@@ -1463,6 +1464,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc co.nimblehq.nimble-medium-stag";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = "Release Staging";
 		};
