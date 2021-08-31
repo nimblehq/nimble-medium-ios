@@ -5,15 +5,17 @@ class Constants
   #### PROJECT ####
   #################
 
-    #Project path
+  #Project path
   def self.PROJECT_PATH
     './NimbleMedium.xcodeproj'
   end
 
+  # a bundle id for Staging
   def self.BUNDLE_ID_STAGING
     'co.nimblehq.nimble-medium-stag'
   end
 
+  # a bundle id for Production
   def self.BUNDLE_ID_PRODUCTION
     'co.nimblehq.nimble-medium'
   end
