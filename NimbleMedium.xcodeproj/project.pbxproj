@@ -47,6 +47,9 @@
 		24F3D7B126DCE8DA00DE2420 /* UserSessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7B026DCE8DA00DE2420 /* UserSessionRepository.swift */; };
 		24F3D7B426DCE96200DE2420 /* UserSessionRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7B326DCE96200DE2420 /* UserSessionRepositoryProtocol.swift */; };
 		24F3D7B726DCEA0300DE2420 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 24F3D7B626DCEA0300DE2420 /* KeychainAccess */; };
+		24F3D7BE26DE041F00DE2420 /* LoginViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7BD26DE041F00DE2420 /* LoginViewModelSpec.swift */; };
+		24F3D7C226DE0B6900DE2420 /* AutoMockable.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7C126DE0B6900DE2420 /* AutoMockable.generated.swift */; };
+		24F3D7C426DE0FAE00DE2420 /* TestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7C326DE0FAE00DE2420 /* TestError.swift */; };
 		2D2F456026C25911002C0331 /* View+NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F455F26C25911002C0331 /* View+NavigationBar.swift */; };
 		2D303B3B26C28AC200EEF1C0 /* Constants+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D303B3A26C28AC200EEF1C0 /* Constants+String.swift */; };
 		2D467C3D26BCD58D008F11E1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D467C3C26BCD58D008F11E1 /* HomeView.swift */; };
@@ -56,7 +59,6 @@
 		2D5485BC26CA077600FFE707 /* View+OnReceive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5485BB26CA077600FFE707 /* View+OnReceive.swift */; };
 		2D5485BE26CA0D2C00FFE707 /* PublishRelayProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5485BD26CA0D2C00FFE707 /* PublishRelayProperty.swift */; };
 		2D64E92026C11B48008C80B0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D64E92226C11B48008C80B0 /* Localizable.strings */; };
-		2D69823E26C226D800860A98 /* NimbleMediumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5EA95326C22140008C79A7 /* NimbleMediumTests.swift */; };
 		2D69824426C22DC700860A98 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D69824326C22DC700860A98 /* R.generated.swift */; };
 		2D72E47E26C2185400861239 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D72E47D26C2185400861239 /* Constants.swift */; };
 		2D7BF28E26DCB4E200A30747 /* Publisher+RxSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7BF28D26DCB4E200A30747 /* Publisher+RxSignal.swift */; };
@@ -139,6 +141,9 @@
 		24F3D7AD26DCE85F00DE2420 /* KeychainKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKey.swift; sourceTree = "<group>"; };
 		24F3D7B026DCE8DA00DE2420 /* UserSessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionRepository.swift; sourceTree = "<group>"; };
 		24F3D7B326DCE96200DE2420 /* UserSessionRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionRepositoryProtocol.swift; sourceTree = "<group>"; };
+		24F3D7BD26DE041F00DE2420 /* LoginViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModelSpec.swift; sourceTree = "<group>"; };
+		24F3D7C126DE0B6900DE2420 /* AutoMockable.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoMockable.generated.swift; sourceTree = "<group>"; };
+		24F3D7C326DE0FAE00DE2420 /* TestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestError.swift; sourceTree = "<group>"; };
 		2D2F455F26C25911002C0331 /* View+NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+NavigationBar.swift"; sourceTree = "<group>"; };
 		2D303B3A26C28AC200EEF1C0 /* Constants+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+String.swift"; sourceTree = "<group>"; };
 		2D467C3C26BCD58D008F11E1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -147,7 +152,6 @@
 		2D5485B626C9FAAC00FFE707 /* BehaviorRelayProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BehaviorRelayProperty.swift; sourceTree = "<group>"; };
 		2D5485BB26CA077600FFE707 /* View+OnReceive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+OnReceive.swift"; sourceTree = "<group>"; };
 		2D5485BD26CA0D2C00FFE707 /* PublishRelayProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishRelayProperty.swift; sourceTree = "<group>"; };
-		2D5EA95326C22140008C79A7 /* NimbleMediumTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NimbleMediumTests.swift; sourceTree = "<group>"; };
 		2D64E92126C11B48008C80B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2D69824326C22DC700860A98 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		2D72E47D26C2185400861239 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -392,6 +396,22 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		24F3D7BC26DE041F00DE2420 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				24F3D7BD26DE041F00DE2420 /* LoginViewModelSpec.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		24F3D7C026DE0B6900DE2420 /* Sourcery */ = {
+			isa = PBXGroup;
+			children = (
+				24F3D7C126DE0B6900DE2420 /* AutoMockable.generated.swift */,
+			);
+			path = Sourcery;
+			sourceTree = "<group>";
+		};
 		2D303B3C26C28AE900EEF1C0 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -628,6 +648,7 @@
 		2D72E48F26C21C0500861239 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				24F3D7C026DE0B6900DE2420 /* Sourcery */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -673,6 +694,7 @@
 		2D72E49526C21C3B00861239 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				24F3D7BC26DE041F00DE2420 /* Login */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -695,6 +717,7 @@
 		2D72E49826C21C7100861239 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				24F3D7C326DE0FAE00DE2420 /* TestError.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -858,7 +881,6 @@
 				2D72E48526C21B3900861239 /* Configurations */,
 				2D72E48626C21B6C00861239 /* Resources */,
 				2D72E48726C21B7800861239 /* Sources */,
-				2D5EA95326C22140008C79A7 /* NimbleMediumTests.swift */,
 			);
 			path = NimbleMediumTests;
 			sourceTree = "<group>";
@@ -996,11 +1018,12 @@
 			buildPhases = (
 				E04254B9DADFA4DADB8744F5 /* [CP] Check Pods Manifest.lock */,
 				2DB726B726C117D500C16716 /* R.swift */,
+				24F3D7BF26DE068800DE2420 /* Sourcery */,
+				2D467C4626BCDAA9008F11E1 /* SwiftLint */,
 				2DB2674626BBEC4300FF05BB /* Sources */,
 				2DB2674726BBEC4300FF05BB /* Frameworks */,
 				2DB2674826BBEC4300FF05BB /* Resources */,
 				76B7F7643F3D9F1792479914 /* [CP] Embed Pods Frameworks */,
-				2D467C4626BCDAA9008F11E1 /* SwiftLint */,
 				2DA4ABC226CF94A000CF7D68 /* Copy GoogleService-Info.plist */,
 				2DA4ABB926CF8EF200CF7D68 /* Firebase Crashlytics */,
 			);
@@ -1154,6 +1177,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		24F3D7BF26DE068800DE2420 /* Sourcery */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Sourcery;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/Sourcery/bin/sourcery\"\n";
 		};
 		2D467C4626BCDAA9008F11E1 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1400,7 +1441,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D69823E26C226D800860A98 /* NimbleMediumTests.swift in Sources */,
+				24F3D7C426DE0FAE00DE2420 /* TestError.swift in Sources */,
+				24F3D7BE26DE041F00DE2420 /* LoginViewModelSpec.swift in Sources */,
+				24F3D7C226DE0B6900DE2420 /* AutoMockable.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
