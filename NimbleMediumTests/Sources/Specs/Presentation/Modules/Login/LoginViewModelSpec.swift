@@ -15,7 +15,6 @@ import RxTest
 
 final class LoginViewModelSpec: QuickSpec {
 
-    // swiftlint:disable function_body_length
     override func spec() {
         var viewModel: LoginViewModel!
         var factory: ModuleFactoryProtocolMock!
@@ -23,7 +22,6 @@ final class LoginViewModelSpec: QuickSpec {
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
 
-        // swiftlint:disable closure_body_length
         describe("a LoginViewModel") {
 
             beforeEach {
