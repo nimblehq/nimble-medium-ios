@@ -1587,6 +1587,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"NimbleMedium/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = 4TWS7E2EPE;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = NimbleMedium/Configurations/Plists/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
