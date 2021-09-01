@@ -33,98 +33,99 @@ final class LoginViewModelSpec: QuickSpec {
                 disposeBag = DisposeBag()
             }
 
-            context("when logging in with email and password returns success") {
+            describe("its LoginButton click") {
 
-                beforeEach {
-                    loginUseCase.loginEmailPasswordReturnValue = Completable.create { completable in
-                        scheduler.scheduleAt(100) {
-                            completable(.completed)
+                context("when logging in with email and password returns success") {
+
+                    beforeEach {
+                        loginUseCase.loginEmailPasswordReturnValue = Completable.create { completable in
+                            scheduler.scheduleAt(100) {
+                                completable(.completed)
+                            }
+                            return Disposables.create()
                         }
-                        return Disposables.create()
+
+                        scheduler.scheduleAt(50) {
+                            viewModel.input.didTapLoginButton(email: "test@nimblehq.co", password: "123456")
+                        }
                     }
 
-                    scheduler.scheduleAt(50) {
-                        viewModel.input.didTapLoginButton(email: "test@nimblehq.co", password: "123456")
+                    afterEach {
+                        scheduler = nil
+                    }
+
+                    it("returns output didLogin with non empty signal") {
+                        expect(viewModel.output.didLogin)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .notTo(beEmpty())
+                    }
+
+                    it("returns output isLoading with correct states") {
+                        expect(viewModel.output.isLoading)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .to(equal([
+                                .next(0, false),
+                                .next(50, true),
+                                .next(100, false)
+                            ]))
                     }
                 }
 
-                afterEach {
-                    scheduler = nil
-                }
+                context("when login with email and password returns failure") {
 
-                it("returns output didLogin with non empty signal") {
-                    expect(viewModel.output.didLogin)
-                        .events(scheduler: scheduler, disposeBag: disposeBag)
-                        .notTo(beEmpty())
-                }
+                    beforeEach {
+                        loginUseCase.loginEmailPasswordReturnValue = Completable.create { completable in
+                            scheduler.scheduleAt(100) {
+                                completable(.error(TestError.mock))
+                            }
+                            return Disposables.create()
+                        }
 
-                it("returns output isLoading with correct states") {
-                    expect(viewModel.output.isLoading)
-                        .events(scheduler: scheduler, disposeBag: disposeBag)
-                        .to(equal([
-                            .next(0, false),
-                            .next(50, true),
-                            .next(100, false)
-                        ]))
+                        scheduler.scheduleAt(50) {
+                            viewModel.input.didTapLoginButton(email: "test@nimblehq.co", password: "123456")
+                        }
+                    }
+
+                    afterEach {
+                        scheduler = nil
+                    }
+
+                    it("returns output didLogin with no signal") {
+                        expect(viewModel.output.didLogin)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .to(beEmpty())
+                    }
+
+                    it("returns output with correct errorMessage") {
+                        expect(viewModel.output.errorMessage)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .to(equal([.next(100, TestError.mock.detail)]))
+                    }
+
+                    it("returns output isLoading with correct states") {
+                        expect(viewModel.output.isLoading)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .to(equal([
+                                .next(0, false),
+                                .next(50, true),
+                                .next(100, false)
+                            ]))
+                    }
                 }
             }
 
-            context("when login with email and password returns failure") {
-
-                beforeEach {
-                    loginUseCase.loginEmailPasswordReturnValue = Completable.create { completable in
-                        scheduler.scheduleAt(100) {
-                            completable(.error(TestError.mock))
-                        }
-                        return Disposables.create()
-                    }
-
-                    scheduler.scheduleAt(50) {
-                        viewModel.input.didTapLoginButton(email: "test@nimblehq.co", password: "123456")
-                    }
-                }
-
-                afterEach {
-                    scheduler = nil
-                }
-
-                it("returns output didLogin with no signal") {
-                    expect(viewModel.output.didLogin)
-                        .events(scheduler: scheduler, disposeBag: disposeBag)
-                        .to(beEmpty())
-                }
-
-                it("returns output with correct errorMessage") {
-                    expect(viewModel.output.errorMessage)
-                        .events(scheduler: scheduler, disposeBag: disposeBag)
-                        .to(equal([.next(100, TestError.mock.detail)]))
-                }
-
-                it("returns output isLoading with correct states") {
-                    expect(viewModel.output.isLoading)
-                        .events(scheduler: scheduler, disposeBag: disposeBag)
-                        .to(equal([
-                            .next(0, false),
-                            .next(50, true),
-                            .next(100, false)
-                        ]))
-                }
-            }
-
-            context("when selecting no account button") {
-
-                afterEach {
-                    scheduler = nil
-                }
-
+            describe("its NoAccountButton click") {
+                
                 it("returns output didSelectNoAccount with non empty signal") {
                     scheduler.scheduleAt(50) {
                         viewModel.input.didTapNoAccountButton()
                     }
-
+                    
                     expect(viewModel.output.didSelectNoAccount)
                         .events(scheduler: scheduler, disposeBag: disposeBag)
                         .notTo(beEmpty())
+                    
+                    scheduler = nil
                 }
             }
         }
