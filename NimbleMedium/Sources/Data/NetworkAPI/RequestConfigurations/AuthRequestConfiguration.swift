@@ -10,6 +10,7 @@ import Alamofire
 enum AuthRequestConfiguration {
 
     case login(email: String, password: String)
+    case signup(username: String, email: String, password: String)
 }
 
 extension AuthRequestConfiguration: RequestConfiguration {
@@ -20,12 +21,14 @@ extension AuthRequestConfiguration: RequestConfiguration {
         switch self {
         case .login:
             return "/users/login"
+        case .signup:
+            return "/users"
         }
     }
 
     var method: HTTPMethod {
         switch self {
-        case .login:
+        case .login, .signup:
             return .post
         }
     }
@@ -35,6 +38,14 @@ extension AuthRequestConfiguration: RequestConfiguration {
         case .login(let email, let password):
             return [
                 "user": [
+                    "email": email,
+                    "password": password
+                ]
+            ]
+        case .signup(let username, let email, let password):
+            return [
+                "user": [
+                    "username": username,
                     "email": email,
                     "password": password
                 ]

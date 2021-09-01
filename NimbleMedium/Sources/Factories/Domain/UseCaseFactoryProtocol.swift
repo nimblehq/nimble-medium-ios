@@ -8,4 +8,6 @@
 protocol UseCaseFactoryProtocol {
 
     func loginUseCase() -> LoginUseCaseProtocol
+
+    func signupUseCase() -> SignupUseCaseProtocol
 }
