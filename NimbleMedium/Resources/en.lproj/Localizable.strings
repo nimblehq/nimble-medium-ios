@@ -15,7 +15,7 @@
 
 "login.title" = "Login";
 "login.textFieldEmail.placeholder" = "Email";
-"login.textfieldPassword.placeholder" = "Password";
+"login.textFieldPassword.placeholder" = "Password";
 "login.needAccount.title" = "Need an account?";
 
 "menu.header.description" = "A place to share your knowledge";

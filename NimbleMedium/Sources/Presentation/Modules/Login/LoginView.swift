@@ -13,10 +13,10 @@ struct LoginView: View {
     @Environment(\.presentationMode) var presentationMode
 
     @State private var email = ""
-    @State private var password = ""
-    @State private var loadingToast: Bool = false
-    @State private var errorToast: Bool = false
     @State private var errorMessage = ""
+    @State private var password = ""
+    @State private var errorToast = false
+    @State private var loadingToast = false
 
     @ObservedViewModel var viewModel: LoginViewModelProtocol
 
@@ -58,7 +58,7 @@ struct LoginView: View {
                     supportEmailKeyboard: true
                 )
                 AuthSecureFieldView(
-                    placeholder: Localizable.loginTextfieldPasswordPlaceholder(),
+                    placeholder: Localizable.loginTextFieldPasswordPlaceholder(),
                     text: $password)
                 AppMainButton(title: Localizable.actionLogin()) {
                     hideKeyboard()
