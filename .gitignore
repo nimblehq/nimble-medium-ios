@@ -75,4 +75,4 @@ Carthage/Build
 */fastlane/test_output
 
 .env
-R.generated.swift
+*.generated.swift
