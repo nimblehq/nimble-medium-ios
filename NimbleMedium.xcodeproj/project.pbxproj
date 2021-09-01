@@ -534,7 +534,7 @@
 		2D72E48426C21A9900861239 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-                2D7BF28C26DCB4CC00A30747 /* Combine */,
+				2D7BF28C26DCB4CC00A30747 /* Combine */,
 				2D303B3C26C28AE900EEF1C0 /* Foundation */,
 				2D303B3D26C28B6500EEF1C0 /* SwiftUI */,
 			);

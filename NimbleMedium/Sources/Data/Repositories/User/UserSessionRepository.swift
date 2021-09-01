@@ -15,10 +15,10 @@ final class UserSessionRepository: UserSessionRepositoryProtocol {
         self.keychain = keychain
     }
 
-    func saveUser(_ user: APIUser) -> Completable {
+    func saveUser(_ user: User) -> Completable {
         Completable.create { [weak self] observer in
             do {
-                try self?.keychain.set(user, for: .user)
+                try self?.keychain.set(APIUser(user: user), for: .user)
             } catch {
                 observer(.error(error))
             }

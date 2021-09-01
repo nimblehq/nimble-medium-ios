@@ -9,5 +9,5 @@ import RxSwift
 
 protocol UserSessionRepositoryProtocol: AnyObject {
 
-    func saveUser(_ user: APIUser) -> Completable
+    func saveUser(_ user: User) -> Completable
 }

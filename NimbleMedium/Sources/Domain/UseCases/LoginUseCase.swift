@@ -31,7 +31,7 @@ final class LoginUseCase: LoginUseCaseProtocol {
             .asObservable()
             .withUnretained(self)
             .flatMapLatest { owner, user -> Completable in
-                owner.userSessionRepository.saveUser(.init(user: user))
+                owner.userSessionRepository.saveUser(user)
             }
             .asCompletable()
     }
