@@ -49,13 +49,15 @@ final class LoginViewModel: ObservableObject, LoginViewModelProtocol {
     private func login(email: String, password: String) {
         loginUseCase
             .login(email: email, password: password)
-            .subscribe(onCompleted: { [weak self] in
-                self?.$isLoading.accept(false)
-                self?.$didLogin.accept(())
-            }, onError: { [weak self] in
-                self?.$isLoading.accept(false)
-                self?.$errorMessage.accept($0.detail)
-            })
+            .subscribe(
+                with: self,
+                onCompleted: { owner in
+                    owner.$isLoading.accept(false)
+                    owner.$didLogin.accept(())
+                }, onError: { owner, error  in
+                    owner.$isLoading.accept(false)
+                    owner.$errorMessage.accept(error.detail)
+                })
             .disposed(by: disposeBag)
     }
 }

@@ -47,10 +47,9 @@ final class SideMenuActionsViewModel: ObservableObject, SideMenuActionsViewModel
         signupViewModel = factory.signupViewModel()
 
         loginViewModel.output.didSelectNoAccount.asObservable()
-            .withUnretained(self)
-            .bind { _ in
-                self.$didSelectSignupOption.accept(true)
-            }
+            .subscribe(with: self, onNext: { owner, _ in
+                owner.$didSelectSignupOption.accept(true)
+            })
             .disposed(by: disposeBag)
     }
 }
