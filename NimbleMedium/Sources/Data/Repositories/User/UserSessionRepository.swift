@@ -18,7 +18,7 @@ final class UserSessionRepository: UserSessionRepositoryProtocol {
     func saveUser(_ user: User) -> Completable {
         Completable.create { [weak self] observer in
             do {
-                try self?.keychain.set(APIUser(user: user), for: .user)
+                try self?.keychain.set(CodableUser(user: user), for: .user)
             } catch {
                 observer(.error(error))
             }

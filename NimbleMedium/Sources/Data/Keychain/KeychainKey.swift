@@ -9,7 +9,7 @@ protocol KeychainKey {}
 
 extension KeychainKey {
 
-    static var user: Keychain.Key<APIUser> {
+    static var user: Keychain.Key<CodableUser> {
         Keychain.Key(key: "user")
     }
 }
