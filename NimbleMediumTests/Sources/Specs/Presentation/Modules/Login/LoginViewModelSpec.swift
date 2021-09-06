@@ -33,7 +33,7 @@ final class LoginViewModelSpec: QuickSpec {
                 disposeBag = DisposeBag()
             }
 
-            describe("its LoginButton click") {
+            describe("its didTapLoginButton() call") {
 
                 context("when logging in with email and password returns success") {
 
@@ -114,7 +114,7 @@ final class LoginViewModelSpec: QuickSpec {
                 }
             }
 
-            describe("its NoAccountButton click") {
+            describe("its didTapNoAccountButton() call") {
                 
                 it("returns output didSelectNoAccount with non empty signal") {
                     scheduler.scheduleAt(50) {
