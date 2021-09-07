@@ -5,7 +5,7 @@
 //  Created by Minh Pham on 24/08/2021.
 //
 
-// TODO: Support more protocols later
+// sourcery: AutoMockable
 protocol ModuleFactoryProtocol: ViewModelFactoryProtocol, UseCaseFactoryProtocol {}
 
 final class DependencyFactory {

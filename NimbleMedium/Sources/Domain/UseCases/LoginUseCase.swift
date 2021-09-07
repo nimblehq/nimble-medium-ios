@@ -7,6 +7,7 @@
 
 import RxSwift
 
+// sourcery: AutoMockable
 protocol LoginUseCaseProtocol: AnyObject {
 
     func login(email: String, password: String) -> Completable

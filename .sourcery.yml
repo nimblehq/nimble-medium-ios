@@ -1,0 +1,13 @@
+sources:
+  - NimbleMedium/Sources
+templates:
+  - tools/sourcery/templates
+output:
+  NimbleMediumTests/Sources/Mocks/Sourcery 
+args:
+  autoMockableTestableImports:
+    - NimbleMedium
+  autoMockableImports:
+    - RxSwift
+    - RxCocoa
+

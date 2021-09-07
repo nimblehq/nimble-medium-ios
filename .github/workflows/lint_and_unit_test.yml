@@ -55,9 +55,4 @@ jobs:
       shell: bash
 
     - name: Build and Test
-      uses: sersoft-gmbh/xcodebuild-action@v1
-      with:
-        workspace: NimbleMedium.xcworkspace
-        scheme: NimbleMedium Staging
-        destination: platform=iOS Simulator,name=iPhone 12
-        action: test
+      run: xcodebuild -workspace NimbleMedium.xcworkspace -scheme 'NimbleMedium Staging' -destination 'platform=iOS Simulator,name=iPhone 12' clean test | xcpretty && exit ${PIPESTATUS[0]}
