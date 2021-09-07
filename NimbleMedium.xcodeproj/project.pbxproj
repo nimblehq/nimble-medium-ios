@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,7 +18,7 @@
 		2459B30D26D748F100ABCE61 /* NetworkAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B30C26D748F100ABCE61 /* NetworkAPIProtocol.swift */; };
 		2459B30F26D7494800ABCE61 /* RequestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B30E26D7494800ABCE61 /* RequestConfiguration.swift */; };
 		2459B31126D74B3100ABCE61 /* JSONDecoder+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B31026D74B3100ABCE61 /* JSONDecoder+Default.swift */; };
-		2459B31926D74E5100ABCE61 /* APIUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B31826D74E5100ABCE61 /* APIUser.swift */; };
+		2459B31926D74E5100ABCE61 /* APIUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B31826D74E5100ABCE61 /* APIUserResponse.swift */; };
 		2459B31C26D74F4700ABCE61 /* AuthRequestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B31B26D74F4700ABCE61 /* AuthRequestConfiguration.swift */; };
 		2459B31F26D7503A00ABCE61 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B31E26D7503A00ABCE61 /* AuthRepository.swift */; };
 		2459B32226D750E200ABCE61 /* AuthRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B32126D750E200ABCE61 /* AuthRepositoryProtocol.swift */; };
@@ -27,6 +27,7 @@
 		2459B32B26D7542100ABCE61 /* DependencyFactory+UseCaseFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B32A26D7542100ABCE61 /* DependencyFactory+UseCaseFactoryProtocol.swift */; };
 		2459B32E26D754C900ABCE61 /* RepositoryFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B32D26D754C900ABCE61 /* RepositoryFactoryProtocol.swift */; };
 		2459B33126D7551F00ABCE61 /* UseCaseFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B33026D7551F00ABCE61 /* UseCaseFactoryProtocol.swift */; };
+		2459B35B26D7A7C500ABCE61 /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2459B35A26D7A7C500ABCE61 /* ToastUI */; };
 		246A8FB826D39C24009F9753 /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246A8FB726D39C24009F9753 /* SideMenuHeaderView.swift */; };
 		249042E726D4D14F00E970B6 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249042E526D4D14F00E970B6 /* SignupViewModel.swift */; };
 		249042E826D4D14F00E970B6 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249042E626D4D14F00E970B6 /* SignupView.swift */; };
@@ -40,6 +41,12 @@
 		24C9393926D89FA300547800 /* AuthTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393826D89FA300547800 /* AuthTextFieldView.swift */; };
 		24C9393B26D8A1A200547800 /* AuthSecureFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393A26D8A1A200547800 /* AuthSecureFieldView.swift */; };
 		24C9393D26D8A26300547800 /* AppMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393C26D8A26300547800 /* AppMainButton.swift */; };
+		24F3D7AA26DCE54C00DE2420 /* CodableUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7A926DCE54C00DE2420 /* CodableUser.swift */; };
+		24F3D7AC26DCE84A00DE2420 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7AB26DCE84A00DE2420 /* Keychain.swift */; };
+		24F3D7AE26DCE85F00DE2420 /* KeychainKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7AD26DCE85F00DE2420 /* KeychainKey.swift */; };
+		24F3D7B126DCE8DA00DE2420 /* UserSessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7B026DCE8DA00DE2420 /* UserSessionRepository.swift */; };
+		24F3D7B426DCE96200DE2420 /* UserSessionRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7B326DCE96200DE2420 /* UserSessionRepositoryProtocol.swift */; };
+		24F3D7B726DCEA0300DE2420 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 24F3D7B626DCEA0300DE2420 /* KeychainAccess */; };
 		2D2F456026C25911002C0331 /* View+NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F455F26C25911002C0331 /* View+NavigationBar.swift */; };
 		2D303B3B26C28AC200EEF1C0 /* Constants+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D303B3A26C28AC200EEF1C0 /* Constants+String.swift */; };
 		2D467C3D26BCD58D008F11E1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D467C3C26BCD58D008F11E1 /* HomeView.swift */; };
@@ -105,7 +112,7 @@
 		2459B30C26D748F100ABCE61 /* NetworkAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPIProtocol.swift; sourceTree = "<group>"; };
 		2459B30E26D7494800ABCE61 /* RequestConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfiguration.swift; sourceTree = "<group>"; };
 		2459B31026D74B3100ABCE61 /* JSONDecoder+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Default.swift"; sourceTree = "<group>"; };
-		2459B31826D74E5100ABCE61 /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
+		2459B31826D74E5100ABCE61 /* APIUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUserResponse.swift; sourceTree = "<group>"; };
 		2459B31B26D74F4700ABCE61 /* AuthRequestConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestConfiguration.swift; sourceTree = "<group>"; };
 		2459B31E26D7503A00ABCE61 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		2459B32126D750E200ABCE61 /* AuthRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepositoryProtocol.swift; sourceTree = "<group>"; };
@@ -127,6 +134,11 @@
 		24C9393826D89FA300547800 /* AuthTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextFieldView.swift; sourceTree = "<group>"; };
 		24C9393A26D8A1A200547800 /* AuthSecureFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSecureFieldView.swift; sourceTree = "<group>"; };
 		24C9393C26D8A26300547800 /* AppMainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainButton.swift; sourceTree = "<group>"; };
+		24F3D7A926DCE54C00DE2420 /* CodableUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableUser.swift; sourceTree = "<group>"; };
+		24F3D7AB26DCE84A00DE2420 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		24F3D7AD26DCE85F00DE2420 /* KeychainKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKey.swift; sourceTree = "<group>"; };
+		24F3D7B026DCE8DA00DE2420 /* UserSessionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionRepository.swift; sourceTree = "<group>"; };
+		24F3D7B326DCE96200DE2420 /* UserSessionRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionRepositoryProtocol.swift; sourceTree = "<group>"; };
 		2D2F455F26C25911002C0331 /* View+NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+NavigationBar.swift"; sourceTree = "<group>"; };
 		2D303B3A26C28AC200EEF1C0 /* Constants+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+String.swift"; sourceTree = "<group>"; };
 		2D467C3C26BCD58D008F11E1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -186,7 +198,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2459B35B26D7A7C500ABCE61 /* ToastUI in Frameworks */,
 				7DB2A8DC1F8863DD01F7D438 /* Pods_NimbleMedium.framework in Frameworks */,
+				24F3D7B726DCEA0300DE2420 /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +273,7 @@
 		2459B30A26D748D800ABCE61 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				2459B30826D748B700ABCE61 /* NetworkAPI.swift */,
 				2459B30C26D748F100ABCE61 /* NetworkAPIProtocol.swift */,
 				2459B30E26D7494800ABCE61 /* RequestConfiguration.swift */,
 			);
@@ -276,7 +291,8 @@
 		2459B31726D74E3700ABCE61 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2459B31826D74E5100ABCE61 /* APIUser.swift */,
+				24F3D7A926DCE54C00DE2420 /* CodableUser.swift */,
+				2459B31826D74E5100ABCE61 /* APIUserResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -293,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				2459B32326D750ED00ABCE61 /* Auth */,
+				24F3D7B226DCE94D00DE2420 /* User */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -359,6 +376,22 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
+		24F3D7AF26DCE8BB00DE2420 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				24F3D7B026DCE8DA00DE2420 /* UserSessionRepository.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		24F3D7B226DCE94D00DE2420 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				24F3D7B326DCE96200DE2420 /* UserSessionRepositoryProtocol.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		2D303B3C26C28AE900EEF1C0 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,7 +427,6 @@
 				2459B30A26D748D800ABCE61 /* Core */,
 				2459B31726D74E3700ABCE61 /* Models */,
 				2459B31626D74E1800ABCE61 /* RequestConfigurations */,
-				2459B30826D748B700ABCE61 /* NetworkAPI.swift */,
 			);
 			path = NetworkAPI;
 			sourceTree = "<group>";
@@ -503,8 +535,8 @@
 			isa = PBXGroup;
 			children = (
 				2D7BF28C26DCB4CC00A30747 /* Combine */,
-				2D303B3D26C28B6500EEF1C0 /* SwiftUI */,
 				2D303B3C26C28AE900EEF1C0 /* Foundation */,
+				2D303B3D26C28B6500EEF1C0 /* SwiftUI */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -670,6 +702,8 @@
 		2D72E49926C21CEB00861239 /* Keychain */ = {
 			isa = PBXGroup;
 			children = (
+				24F3D7AB26DCE84A00DE2420 /* Keychain.swift */,
+				24F3D7AD26DCE85F00DE2420 /* KeychainKey.swift */,
 			);
 			path = Keychain;
 			sourceTree = "<group>";
@@ -874,6 +908,7 @@
 			isa = PBXGroup;
 			children = (
 				2459B31D26D7500D00ABCE61 /* Auth */,
+				24F3D7AF26DCE8BB00DE2420 /* User */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -974,6 +1009,10 @@
 			dependencies = (
 			);
 			name = NimbleMedium;
+			packageProductDependencies = (
+				2459B35A26D7A7C500ABCE61 /* ToastUI */,
+				24F3D7B626DCEA0300DE2420 /* KeychainAccess */,
+			);
 			productName = NimbleMedium;
 			productReference = 2DB2674A26BBEC4300FF05BB /* Nimble Medium - Staging.app */;
 			productType = "com.apple.product-type.application";
@@ -1051,6 +1090,10 @@
 				Base,
 			);
 			mainGroup = 2DB2674126BBEC4300FF05BB;
+			packageReferences = (
+				2459B35926D7A7C500ABCE61 /* XCRemoteSwiftPackageReference "ToastUI" */,
+				24F3D7B526DCEA0300DE2420 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+			);
 			productRefGroup = 2DB2674B26BBEC4300FF05BB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1300,8 +1343,9 @@
 				246A8FB826D39C24009F9753 /* SideMenuHeaderView.swift in Sources */,
 				2459B32226D750E200ABCE61 /* AuthRepositoryProtocol.swift in Sources */,
 				2DC212BE26CB6586000C7558 /* SideMenuDraggingAnimator.swift in Sources */,
+				24F3D7AE26DCE85F00DE2420 /* KeychainKey.swift in Sources */,
 				2DBE36AE26C3B0C500DA3511 /* FeedsView.swift in Sources */,
-				2459B31926D74E5100ABCE61 /* APIUser.swift in Sources */,
+				2459B31926D74E5100ABCE61 /* APIUserResponse.swift in Sources */,
 				249042E826D4D14F00E970B6 /* SignupView.swift in Sources */,
 				2DBE36B126C3B33700DA3511 /* SideMenuView.swift in Sources */,
 				24204CA026D625D300534314 /* SideMenuActionsViewModel.swift in Sources */,
@@ -1313,6 +1357,7 @@
 				2459B32E26D754C900ABCE61 /* RepositoryFactoryProtocol.swift in Sources */,
 				2DDAD3A026D37E02007F845A /* App+NetworkLogger.swift in Sources */,
 				2D2F456026C25911002C0331 /* View+NavigationBar.swift in Sources */,
+				24F3D7B426DCE96200DE2420 /* UserSessionRepositoryProtocol.swift in Sources */,
 				2D467C3D26BCD58D008F11E1 /* HomeView.swift in Sources */,
 				2459B32626D7512300ABCE61 /* User.swift in Sources */,
 				2D4ADCC426C60940008F8843 /* HomeViewModel.swift in Sources */,
@@ -1328,6 +1373,7 @@
 				2459B32826D751E300ABCE61 /* LoginUseCase.swift in Sources */,
 				2424B22C26D4A22B00CF07B5 /* LoginView.swift in Sources */,
 				24C9393926D89FA300547800 /* AuthTextFieldView.swift in Sources */,
+				24F3D7B126DCE8DA00DE2420 /* UserSessionRepository.swift in Sources */,
 				249042F626D50FF300E970B6 /* ViewModelFactoryProtocol.swift in Sources */,
 				2DA4ABBF26CF90D000CF7D68 /* AppEnvironment.swift in Sources */,
 				2D5485BC26CA077600FFE707 /* View+OnReceive.swift in Sources */,
@@ -1335,11 +1381,13 @@
 				2DB2674E26BBEC4300FF05BB /* App.swift in Sources */,
 				249042F026D5042D00E970B6 /* SystemImageName.swift in Sources */,
 				2DA4ABC126CF91E200CF7D68 /* App+Firebase.swift in Sources */,
+				24F3D7AA26DCE54C00DE2420 /* CodableUser.swift in Sources */,
 				2D5485BE26CA0D2C00FFE707 /* PublishRelayProperty.swift in Sources */,
 				2459B31C26D74F4700ABCE61 /* AuthRequestConfiguration.swift in Sources */,
 				249042FA26D510A300E970B6 /* DependencyFactory+ViewModelFactoryProtocol.swift in Sources */,
 				241B4EEA26D3B3F4000409CC /* SideMenuActionItemView.swift in Sources */,
 				2DD4805826D73C67005225CF /* ObservedViewModel.swift in Sources */,
+				24F3D7AC26DCE84A00DE2420 /* Keychain.swift in Sources */,
 				2D4ADCC926C61192008F8843 /* FeedsViewModel.swift in Sources */,
 				2424B22F26D4A2EF00CF07B5 /* LoginViewModel.swift in Sources */,
 				2DE3B9B526C1339200272775 /* Typealias.swift in Sources */,
@@ -1449,6 +1497,7 @@
 				PRODUCT_NAME = "Nimble Medium - stag";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG STAGING";
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = "Release Staging";
@@ -1704,6 +1753,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1715,6 +1765,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Nimble Medium";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = PRODUCTION;
@@ -1989,6 +2040,38 @@
 			defaultConfigurationName = "Debug Staging";
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2459B35926D7A7C500ABCE61 /* XCRemoteSwiftPackageReference "ToastUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/quanshousio/ToastUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		24F3D7B526DCEA0300DE2420 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2459B35A26D7A7C500ABCE61 /* ToastUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2459B35926D7A7C500ABCE61 /* XCRemoteSwiftPackageReference "ToastUI" */;
+			productName = ToastUI;
+		};
+		24F3D7B626DCEA0300DE2420 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24F3D7B526DCEA0300DE2420 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2DB2674226BBEC4300FF05BB /* Project object */;
 }

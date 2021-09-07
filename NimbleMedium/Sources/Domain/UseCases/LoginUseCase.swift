@@ -15,17 +15,24 @@ protocol LoginUseCaseProtocol: AnyObject {
 final class LoginUseCase: LoginUseCaseProtocol {
 
     private let authRepository: AuthRepositoryProtocol
+    private let userSessionRepository: UserSessionRepositoryProtocol
 
     init(
-        authRepository: AuthRepositoryProtocol
+        authRepository: AuthRepositoryProtocol,
+        userSessionRepository: UserSessionRepositoryProtocol
     ) {
         self.authRepository = authRepository
+        self.userSessionRepository = userSessionRepository
     }
 
     func login(email: String, password: String) -> Completable {
-        // TODO: Store user data in integrate task
         authRepository
             .login(email: email, password: password)
+            .asObservable()
+            .withUnretained(self)
+            .flatMapLatest { owner, user -> Completable in
+                owner.userSessionRepository.saveUser(user)
+            }
             .asCompletable()
     }
 }

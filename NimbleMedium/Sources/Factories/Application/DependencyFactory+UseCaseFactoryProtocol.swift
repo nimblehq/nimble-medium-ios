@@ -8,6 +8,8 @@
 extension DependencyFactory: UseCaseFactoryProtocol {
 
     func loginUseCase() -> LoginUseCaseProtocol {
-        LoginUseCase(authRepository: authRepository())
+        LoginUseCase(
+            authRepository: authRepository(),
+            userSessionRepository: userSessionRepository())
     }
 }

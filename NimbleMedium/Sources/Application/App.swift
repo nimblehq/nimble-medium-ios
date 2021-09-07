@@ -11,18 +11,17 @@ import AlamofireNetworkActivityLogger
 @main
 struct App: SwiftUI.App {
 
-    private var factory: ModuleFactoryProtocol
-
-    // swiftlint:disable type_contents_order
-    init() {
-        factory = DependencyFactory(networkAPI: NetworkAPI())
-        configureFirebase()
-        configureNetworkLogger()
-    }
+    var factory: ModuleFactoryProtocol
 
     var body: some Scene {
         WindowGroup {
             HomeView(viewModel: factory.homeViewModel())
         }
+    }
+
+    init() {
+        factory = DependencyFactory(keychain: Keychain.default, networkAPI: NetworkAPI())
+        configureFirebase()
+        configureNetworkLogger()
     }
 }

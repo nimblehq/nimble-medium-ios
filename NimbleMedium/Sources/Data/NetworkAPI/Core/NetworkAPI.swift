@@ -14,7 +14,7 @@ final class NetworkAPI: NetworkAPIProtocol {
     private let decoder: JSONDecoder
     private let session: Session
 
-    init(decoder: JSONDecoder = JSONDecoder.default) {
+    init(decoder: JSONDecoder = .default) {
         self.decoder = decoder
         session = Session()
     }
