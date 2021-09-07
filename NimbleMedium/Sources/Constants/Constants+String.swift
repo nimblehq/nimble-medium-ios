@@ -9,4 +9,5 @@
 extension String {
 
     static let empty: String = ""
+    static let articleDateFormat: String = "MMMM dd, yyyy"
 }
