@@ -76,3 +76,4 @@ Carthage/Build
 
 .env
 *.generated.swift
+/cobertura.xml
