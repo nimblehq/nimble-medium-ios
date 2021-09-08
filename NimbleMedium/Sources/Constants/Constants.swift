@@ -8,4 +8,9 @@
 enum Constants {
 
     enum API { }
+
+    enum Article {
+
+        static let maxPerPage = 25
+    }
 }

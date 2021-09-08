@@ -18,4 +18,8 @@ extension DependencyFactory: UseCaseFactoryProtocol {
             authRepository: authRepository(),
             userSessionRepository: userSessionRepository())
     }
+
+    func listArticlesUseCase() -> ListArticlesUseCaseProtocol {
+        ListArticlesUseCase(articleRepository: articleRepository())
+    }
 }

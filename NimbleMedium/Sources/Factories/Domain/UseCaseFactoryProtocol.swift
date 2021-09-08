@@ -10,4 +10,6 @@ protocol UseCaseFactoryProtocol {
     func loginUseCase() -> LoginUseCaseProtocol
 
     func signupUseCase() -> SignupUseCaseProtocol
+
+    func listArticlesUseCase() -> ListArticlesUseCaseProtocol
 }

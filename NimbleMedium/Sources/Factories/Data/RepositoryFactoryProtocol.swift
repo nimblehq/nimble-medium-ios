@@ -8,4 +8,5 @@
 protocol RepositoryFactoryProtocol {
 
     func authRepository() -> AuthRepositoryProtocol
+    func articleRepository() -> ArticleRepositoryProtocol
 }

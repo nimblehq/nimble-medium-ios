@@ -33,6 +33,10 @@ extension DependencyFactory: RepositoryFactoryProtocol {
     func userSessionRepository() -> UserSessionRepositoryProtocol {
         UserSessionRepository(keychain: keychain)
     }
+
+    func articleRepository() -> ArticleRepositoryProtocol {
+        ArticleRepository(networkAPI: networkAPI)
+    }
 }
 
 extension DependencyFactory: ModuleFactoryProtocol {}

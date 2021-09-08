@@ -11,6 +11,7 @@ extension JSONDecoder {
     static let `default`: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .formatted(.iso8601Full)
         return decoder
     }()
 }
