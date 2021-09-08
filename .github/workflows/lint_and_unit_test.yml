@@ -55,4 +55,14 @@ jobs:
       shell: bash
 
     - name: Build and Test
-      run: xcodebuild -workspace NimbleMedium.xcworkspace -scheme 'NimbleMedium Staging' -destination 'platform=iOS Simulator,name=iPhone 12' clean test | xcpretty && exit ${PIPESTATUS[0]}
+      run: xcodebuild -workspace NimbleMedium.xcworkspace -scheme 'NimbleMedium Staging' -destination 'platform=iOS Simulator,name=iPhone 12' -enableCodeCoverage YES clean build test | xcpretty && exit ${PIPESTATUS[0]}
+
+    - name: Generate code coverage file
+      run: slather
+
+    - name: Upload code coverage to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        files: ./cobertura.xml
+        fail_ci_if_error: false
+        verbose: true
