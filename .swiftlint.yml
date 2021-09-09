@@ -1,6 +1,7 @@
 excluded:
   - NimbleMediumTests/Sources/Mocks/Sourcery/AutoMockable.generated.swift
   - Pods
+  - DerivedData
   - NimbleMedium/Sources/Supports/Helpers/R.generated.swift
 
 opt_in_rules:
