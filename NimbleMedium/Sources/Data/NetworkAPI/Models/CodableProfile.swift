@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import DefaultCodable
 
 struct CodableProfile: Profile, Codable, Equatable {
 
     let username: String
     let bio: String?
     let image: String?
-    @DecodableDefault.False var following: Bool
+    @Default<False> var following: Bool
 }

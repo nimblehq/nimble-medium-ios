@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "DefaultCodable",
+        "repositoryURL": "https://github.com/gonzalezreal/DefaultCodable",
+        "state": {
+          "branch": null,
+          "revision": "b75cdb44b772cdd278ea0d029d3f079384b0d87d",
+          "version": "1.2.1"
+        }
+      },
+      {
         "package": "KeychainAccess",
         "repositoryURL": "https://github.com/kishikawakatsumi/KeychainAccess.git",
         "state": {

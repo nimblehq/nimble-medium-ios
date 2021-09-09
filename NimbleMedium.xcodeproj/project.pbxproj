@@ -65,6 +65,7 @@
 		2D55E4AE26DF2FA800161052 /* FeedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D55E4AD26DF2FA800161052 /* FeedRow.swift */; };
 		2D64E92026C11B48008C80B0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D64E92226C11B48008C80B0 /* Localizable.strings */; };
 		2D69824426C22DC700860A98 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D69824326C22DC700860A98 /* R.generated.swift */; };
+		2D6EFE1B26E9EB8C006B9939 /* DefaultCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 2D6EFE1A26E9EB8C006B9939 /* DefaultCodable */; };
 		2D72E47E26C2185400861239 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D72E47D26C2185400861239 /* Constants.swift */; };
 		2D7BF28E26DCB4E200A30747 /* Publisher+RxSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7BF28D26DCB4E200A30747 /* Publisher+RxSignal.swift */; };
 		2D892BA726E8698700579856 /* NetworkAPIProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D892BA626E8698700579856 /* NetworkAPIProtocolMock.swift */; };
@@ -94,7 +95,6 @@
 		2DEF1F9826E6055A00EB93CC /* ListArticlesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEF1F9726E6055A00EB93CC /* ListArticlesUseCase.swift */; };
 		2DEF1F9A26E6092500EB93CC /* APIArticleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEF1F9926E6092500EB93CC /* APIArticleResponse.swift */; };
 		2DEF1F9C26E60B4300EB93CC /* DateFormatter+ISO8601Full.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEF1F9B26E60B4300EB93CC /* DateFormatter+ISO8601Full.swift */; };
-		2DEF1F9F26E60C7000EB93CC /* DecodableDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEF1F9E26E60C7000EB93CC /* DecodableDefault.swift */; };
 		2DEF1FA126E612B900EB93CC /* ArticleRepositorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEF1FA026E612B900EB93CC /* ArticleRepositorySpec.swift */; };
 		2DEF1FA326E617DC00EB93CC /* CodableArticle+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEF1FA226E617DC00EB93CC /* CodableArticle+Dummy.swift */; };
 		2DEF1FA626E6181F00EB93CC /* String+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEF1FA426E6181F00EB93CC /* String+Data.swift */; };
@@ -217,7 +217,6 @@
 		2DEF1F9726E6055A00EB93CC /* ListArticlesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListArticlesUseCase.swift; sourceTree = "<group>"; };
 		2DEF1F9926E6092500EB93CC /* APIArticleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIArticleResponse.swift; sourceTree = "<group>"; };
 		2DEF1F9B26E60B4300EB93CC /* DateFormatter+ISO8601Full.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+ISO8601Full.swift"; sourceTree = "<group>"; };
-		2DEF1F9E26E60C7000EB93CC /* DecodableDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableDefault.swift; sourceTree = "<group>"; };
 		2DEF1FA026E612B900EB93CC /* ArticleRepositorySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRepositorySpec.swift; sourceTree = "<group>"; };
 		2DEF1FA226E617DC00EB93CC /* CodableArticle+Dummy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CodableArticle+Dummy.swift"; sourceTree = "<group>"; };
 		2DEF1FA426E6181F00EB93CC /* String+Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Data.swift"; sourceTree = "<group>"; };
@@ -251,6 +250,7 @@
 				2DEF1F8426E5EFE600EB93CC /* Refresh in Frameworks */,
 				7DB2A8DC1F8863DD01F7D438 /* Pods_NimbleMedium.framework in Frameworks */,
 				24F3D7B726DCEA0300DE2420 /* KeychainAccess in Frameworks */,
+				2D6EFE1B26E9EB8C006B9939 /* DefaultCodable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1049,7 +1049,6 @@
 		2DE3B9B326C1337800272775 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				2DEF1F9D26E60C6300EB93CC /* Foundation */,
 				2DD4805426D73C67005225CF /* Combine */,
 				2D5485B526C9FA9A00FFE707 /* Rx */,
 				2D69824326C22DC700860A98 /* R.generated.swift */,
@@ -1073,14 +1072,6 @@
 				2DEF1F8F26E5FE8E00EB93CC /* ArticleRepositoryProtocol.swift */,
 			);
 			path = Article;
-			sourceTree = "<group>";
-		};
-		2DEF1F9D26E60C6300EB93CC /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-				2DEF1F9E26E60C7000EB93CC /* DecodableDefault.swift */,
-			);
-			path = Foundation;
 			sourceTree = "<group>";
 		};
 		6BCBF057E18C8FD57CD13FD1 /* Pods */ = {
@@ -1136,6 +1127,7 @@
 				24F3D7B626DCEA0300DE2420 /* KeychainAccess */,
 				2DEF1F8326E5EFE600EB93CC /* Refresh */,
 				2DEF1F8926E5FD0C00EB93CC /* SDWebImageSwiftUI */,
+				2D6EFE1A26E9EB8C006B9939 /* DefaultCodable */,
 			);
 			productName = NimbleMedium;
 			productReference = 2DB2674A26BBEC4300FF05BB /* Nimble Medium - Staging.app */;
@@ -1219,6 +1211,7 @@
 				24F3D7B526DCEA0300DE2420 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				2DEF1F8226E5EFE600EB93CC /* XCRemoteSwiftPackageReference "Refresh" */,
 				2DEF1F8826E5FD0C00EB93CC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				2D6EFE1926E9EB8C006B9939 /* XCRemoteSwiftPackageReference "DefaultCodable" */,
 			);
 			productRefGroup = 2DB2674B26BBEC4300FF05BB /* Products */;
 			projectDirPath = "";
@@ -1551,7 +1544,6 @@
 				2DE3B9B526C1339200272775 /* Typealias.swift in Sources */,
 				2459B32B26D7542100ABCE61 /* DependencyFactory+UseCaseFactoryProtocol.swift in Sources */,
 				2459B31126D74B3100ABCE61 /* JSONDecoder+Default.swift in Sources */,
-				2DEF1F9F26E60C7000EB93CC /* DecodableDefault.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2226,6 +2218,14 @@
 				minimumVersion = 4.2.2;
 			};
 		};
+		2D6EFE1926E9EB8C006B9939 /* XCRemoteSwiftPackageReference "DefaultCodable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/DefaultCodable";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
+			};
+		};
 		2DEF1F8226E5EFE600EB93CC /* XCRemoteSwiftPackageReference "Refresh" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/wxxsw/Refresh";
@@ -2254,6 +2254,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 24F3D7B526DCEA0300DE2420 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
+		};
+		2D6EFE1A26E9EB8C006B9939 /* DefaultCodable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D6EFE1926E9EB8C006B9939 /* XCRemoteSwiftPackageReference "DefaultCodable" */;
+			productName = DefaultCodable;
 		};
 		2DEF1F8326E5EFE600EB93CC /* Refresh */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -18,27 +18,6 @@ protocol ListArticlesUseCaseProtocol {
     ) -> Single<[Article]>
 }
 
-extension ListArticlesUseCaseProtocol {
-
-    // Create default value
-    func listArticles(
-        tag: String?,
-        author: String?,
-        favorited: String?,
-        limit: Int? = Constants.Article.maxPerPage,
-        offset: Int?
-    ) -> Single<[Article]> {
-
-        listArticles(
-            tag: tag,
-            author: author,
-            favorited: favorited,
-            limit: limit,
-            offset: offset
-        )
-    }
-}
-
 final class ListArticlesUseCase: ListArticlesUseCaseProtocol {
 
     private let articleRepository: ArticleRepositoryProtocol
@@ -57,6 +36,27 @@ final class ListArticlesUseCase: ListArticlesUseCaseProtocol {
         offset: Int?
     ) -> Single<[Article]> {
         articleRepository.listArticles(
+            tag: tag,
+            author: author,
+            favorited: favorited,
+            limit: limit,
+            offset: offset
+        )
+    }
+}
+
+extension ListArticlesUseCaseProtocol {
+
+    // Create default value
+    func listArticles(
+        tag: String?,
+        author: String?,
+        favorited: String?,
+        limit: Int? = Constants.Article.maxPerPage,
+        offset: Int?
+    ) -> Single<[Article]> {
+
+        listArticles(
             tag: tag,
             author: author,
             favorited: favorited,

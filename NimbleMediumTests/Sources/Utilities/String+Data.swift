@@ -1,6 +1,6 @@
 //
 //  String+Data.swift
-//  MVVMRxSwiftDemoTests
+//  NimbleMedium
 //
 //  Created by Bliss on 1/7/21.
 //

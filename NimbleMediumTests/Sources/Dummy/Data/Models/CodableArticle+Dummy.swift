@@ -1,8 +1,8 @@
 //
 //  APISurvey+Dummy.swift
-//  MVVMRxSwiftDemoTests
+//  NimbleMedium
 //
-//  Created by Bliss on 1/7/21.
+//  Created by Mark G on 10/08/2021.
 //
 
 @testable import NimbleMedium

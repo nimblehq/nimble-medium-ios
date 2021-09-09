@@ -35,5 +35,4 @@ class NetworkAPIProtocolMock: NetworkAPIProtocol {
     func getPerformRequestForReturnValue<T: Decodable>(for type: T.Type) -> Single<T> {
         performRequestForReturnValues["\(T.self)"] as! Single<T>
     }
-
 }

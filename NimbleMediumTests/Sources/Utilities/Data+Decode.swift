@@ -1,10 +1,10 @@
 //
 //  Data+Decode.swift
-//  MVVMRxSwiftDemoTests
+//  NimbleMedium
 //
 //  Created by Bliss on 1/7/21.
 //
-// swiftlint:disable force_try
+//  swiftlint:disable force_try
 
 import Foundation
 
