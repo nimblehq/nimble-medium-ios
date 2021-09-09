@@ -12,4 +12,10 @@ extension DependencyFactory: UseCaseFactoryProtocol {
             authRepository: authRepository(),
             userSessionRepository: userSessionRepository())
     }
+
+    func signupUseCase() -> SignupUseCaseProtocol {
+        SignupUseCase(
+            authRepository: authRepository(),
+            userSessionRepository: userSessionRepository())
+    }
 }
