@@ -31,7 +31,7 @@ protocol LoginViewModelProtocol: ObservableViewModel {
 final class LoginViewModel: ObservableObject, LoginViewModelProtocol {
 
     private let disposeBag = DisposeBag()
-    private let loginUseCase: LoginUseCaseProtocol
+    private let loginTrigger = PublishRelay<(email: String, password: String)>()
 
     var input: LoginViewModelInput { self }
     var output: LoginViewModelOutput { self }
@@ -42,22 +42,26 @@ final class LoginViewModel: ObservableObject, LoginViewModelProtocol {
     @BehaviorRelayProperty(false) var isLoading: Driver<Bool>
 
     init(factory: ModuleFactoryProtocol) {
-        loginUseCase = factory.loginUseCase()
-    }
+        let loginUseCase = factory.loginUseCase()
 
-    private func login(email: String, password: String) {
-        loginUseCase
-            .login(email: email, password: password)
-            .subscribe(
-                with: self,
-                onCompleted: { owner in
-                    owner.$isLoading.accept(false)
-                    owner.$didLogin.accept(())
-                }, onError: { owner, error  in
-                    owner.$isLoading.accept(false)
+        loginTrigger.flatMapLatest { inputs in
+            loginUseCase
+                .login(email: inputs.email, password: inputs.password)
+                .asObservable()
+                .materialize()
+        }
+        .subscribe(
+            with: self,
+            onNext: { owner, event in
+                owner.$isLoading.accept(false)
+                if let error = event.error {
                     owner.$errorMessage.accept(error.detail)
-                })
-            .disposed(by: disposeBag)
+                } else {
+                    owner.$didLogin.accept(())
+                }
+            }
+        )
+        .disposed(by: disposeBag)
     }
 }
 
@@ -65,7 +69,7 @@ extension LoginViewModel: LoginViewModelInput {
 
     func didTapLoginButton(email: String, password: String) {
         $isLoading.accept(true)
-        login(email: email, password: password)
+        loginTrigger.accept((email, password))
     }
 
     func didTapNoAccountButton() {

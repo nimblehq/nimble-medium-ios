@@ -31,7 +31,7 @@ protocol SignupViewModelProtocol {
 final class SignupViewModel: SignupViewModelProtocol {
 
     private let disposeBag = DisposeBag()
-    private let signupUseCase: SignupUseCaseProtocol
+    private let signupTrigger = PublishRelay<(username: String, email: String, password: String)>()
 
     var input: SignupViewModelInput { self }
     var output: SignupViewModelOutput { self }
@@ -42,22 +42,26 @@ final class SignupViewModel: SignupViewModelProtocol {
     @BehaviorRelayProperty(false) var isLoading: Driver<Bool>
 
     init(factory: ModuleFactoryProtocol) {
-        signupUseCase = factory.signupUseCase()
-    }
+        let signupUseCase = factory.signupUseCase()
 
-    private func signup(username: String, email: String, password: String) {
-        signupUseCase
-            .signup(username: username, email: email, password: password)
-            .subscribe(
-                with: self,
-                onCompleted: { owner in
-                    owner.$isLoading.accept(false)
-                    owner.$didSignup.accept(())
-                }, onError: { owner, error  in
-                    owner.$isLoading.accept(false)
+        signupTrigger.flatMapLatest { inputs in
+            signupUseCase
+                .signup(username: inputs.username, email: inputs.email, password: inputs.password)
+                .asObservable()
+                .materialize()
+        }
+        .subscribe(
+            with: self,
+            onNext: { owner, event in
+                owner.$isLoading.accept(false)
+                if let error = event.error {
                     owner.$errorMessage.accept(error.detail)
-                })
-            .disposed(by: disposeBag)
+                } else {
+                    owner.$didSignup.accept(())
+                }
+            }
+        )
+        .disposed(by: disposeBag)
     }
 }
 
@@ -65,7 +69,7 @@ extension SignupViewModel: SignupViewModelInput {
 
     func didTapSignupButton(username: String, email: String, password: String) {
         $isLoading.accept(true)
-        signup(username: username, email: email, password: password)
+        signupTrigger.accept((username, email, password))
     }
 
     func didTapHaveAccountButton() {

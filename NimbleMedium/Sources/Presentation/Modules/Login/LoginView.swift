@@ -21,7 +21,22 @@ struct LoginView: View {
     @ObservedViewModel var viewModel: LoginViewModelProtocol
 
     var body: some View {
-        NavigationView { navBackgroundContent }
+        NavigationView {
+            contentView
+                .onTapGesture { hideKeyboard() }
+                .navigationBarTitle(Localizable.loginTitle(), displayMode: .inline)
+                .navigationBarColor(backgroundColor: .green)
+                .toolbar { navigationBarLeadingContent }
+                .toast(isPresented: $errorToast, dismissAfter: 3.0) {
+                    ToastView(errorMessage) { } background: {
+                        Color.clear
+                    }
+                }
+                .toast(isPresented: $loadingToast) {
+                    ToastView(String.empty) { }
+                        .toastViewStyle(IndefiniteProgressToastViewStyle())
+                }
+        }
         .accentColor(.white)
         .onReceive(viewModel.output.didLogin) { _ in
             presentationMode.wrappedValue.dismiss()
@@ -49,7 +64,7 @@ struct LoginView: View {
     }
 
     // swiftlint:disable closure_body_length
-    var navBackgroundContent: some View {
+    var contentView: some View {
         Background {
             VStack(spacing: 15.0) {
                 AuthTextFieldView(
@@ -77,20 +92,6 @@ struct LoginView: View {
                 .foregroundColor(.green)
             }
             .padding()
-
-        }
-        .onTapGesture { hideKeyboard() }
-        .navigationBarTitle(Localizable.loginTitle(), displayMode: .inline)
-        .navigationBarColor(backgroundColor: .green)
-        .toolbar { navigationBarLeadingContent }
-        .toast(isPresented: $errorToast, dismissAfter: 3.0) {
-            ToastView(errorMessage) { } background: {
-                Color.clear
-            }
-        }
-        .toast(isPresented: $loadingToast) {
-            ToastView(String.empty) { }
-                .toastViewStyle(IndefiniteProgressToastViewStyle())
         }
     }
 
