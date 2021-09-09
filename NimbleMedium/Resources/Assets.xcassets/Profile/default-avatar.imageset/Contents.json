@@ -1,19 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "default-avatar.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "default-avatar@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "default-avatar@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "default-avatar.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {
