@@ -3,6 +3,7 @@ excluded:
   - Pods
   - DerivedData
   - NimbleMedium/Sources/Supports/Helpers/R.generated.swift
+  - NimbleMediumTests/Sources/Utilities/R.generated.swift
 
 opt_in_rules:
   - anyobject_protocol
