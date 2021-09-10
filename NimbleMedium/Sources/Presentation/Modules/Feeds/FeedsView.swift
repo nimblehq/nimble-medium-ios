@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Refresh
 
 struct FeedsView: View {
 
@@ -13,12 +14,32 @@ struct FeedsView: View {
 
     var body: some View {
         NavigationView {
-            // TODO: Implement Feeds UI
-            Text("This is feed content")
-                .navigationTitle(Localizable.feedTitle())
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationBarColor(backgroundColor: .green)
-                .toolbar { navigationBarLeadingContent }
+            ScrollView {
+                LazyVStack(alignment: .leading) {
+                    ForEach(1...3, id: \.self) { _ in
+                        FeedRow()
+                            .padding(.bottom, 16.0)
+                    }
+
+                    // TODO: Integrate load more
+                    RefreshFooter(
+                        refreshing: Binding.constant(true),
+                        action: {
+                            print("load more")
+                        },
+                        label: {
+                            ProgressView()
+                        }
+                    )
+                }
+                .padding(.all, 16.0)
+
+            }
+            .enableRefresh()
+            .navigationTitle(Localizable.feedTitle())
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarColor(backgroundColor: .green)
+            .toolbar { navigationBarLeadingContent }
         }
     }
 
