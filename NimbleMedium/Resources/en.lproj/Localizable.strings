@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  NimbleMedium
+
+  Created by Mark G on 09/08/2021.
+  
+*/
+
+"action.login" = "Login";
+"action.signup" = "Signup";
+
+"error.generic" = "Something went wrong.\nPlease try again later.";
+
+"feed.title" = "Feed";
+
+"login.title" = "Login";
+"login.textFieldEmail.placeholder" = "Email";
+"login.textFieldPassword.placeholder" = "Password";
+"login.needAccount.title" = "Need an account?";
+
+"menu.header.description" = "A place to share your knowledge";
+"menu.header.title" = "Nimble Medium";
+"menu.option.login" = "Login";
+"menu.option.signup" = "Signup";
+
+"signup.haveAccount.title" = "Have an account?";
+"signup.textFieldEmail.placeholder" = "Email";
+"signup.textFieldPassword.placeholder" = "Password";
+"signup.textFieldUsername.placeholder" = "Username";
+"signup.title" = "Signup";

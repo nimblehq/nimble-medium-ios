@@ -1,0 +1,61 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "DefaultCodable",
+        "repositoryURL": "https://github.com/gonzalezreal/DefaultCodable",
+        "state": {
+          "branch": null,
+          "revision": "b75cdb44b772cdd278ea0d029d3f079384b0d87d",
+          "version": "1.2.1"
+        }
+      },
+      {
+        "package": "KeychainAccess",
+        "repositoryURL": "https://github.com/kishikawakatsumi/KeychainAccess.git",
+        "state": {
+          "branch": null,
+          "revision": "84e546727d66f1adc5439debad16270d0fdd04e7",
+          "version": "4.2.2"
+        }
+      },
+      {
+        "package": "Refresh",
+        "repositoryURL": "https://github.com/wxxsw/Refresh",
+        "state": {
+          "branch": "master",
+          "revision": "05a4667b8250c7cce0156882bf6385a5108ae6f0",
+          "version": null
+        }
+      },
+      {
+        "package": "SDWebImage",
+        "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
+        "state": {
+          "branch": null,
+          "revision": "76dd4b49110b8624317fc128e7fa0d8a252018bc",
+          "version": "5.11.1"
+        }
+      },
+      {
+        "package": "SDWebImageSwiftUI",
+        "repositoryURL": "https://github.com/SDWebImage/SDWebImageSwiftUI",
+        "state": {
+          "branch": null,
+          "revision": "cd8625b7cf11a97698e180d28bb7d5d357196678",
+          "version": "2.0.2"
+        }
+      },
+      {
+        "package": "ToastUI",
+        "repositoryURL": "https://github.com/quanshousio/ToastUI",
+        "state": {
+          "branch": null,
+          "revision": "e1fd43336630b40a4273a346bd9e6c250151c88d",
+          "version": "2.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
