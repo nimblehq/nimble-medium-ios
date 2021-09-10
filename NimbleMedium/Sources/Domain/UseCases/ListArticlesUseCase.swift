@@ -47,7 +47,6 @@ final class ListArticlesUseCase: ListArticlesUseCaseProtocol {
 
 extension ListArticlesUseCaseProtocol {
 
-    // Create default value
     func listArticles(
         tag: String?,
         author: String?,
