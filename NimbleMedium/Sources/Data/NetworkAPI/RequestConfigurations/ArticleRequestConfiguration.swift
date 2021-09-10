@@ -45,35 +45,16 @@ extension ArticleRequestConfiguration: RequestConfiguration {
                 let limit,
                 let offset
         ):
-            var parameters = Parameters()
-
-            if let tag = tag {
-                parameters["tag"] = tag
-            }
-
-            if let author = author {
-                parameters["author"] = author
-            }
-
-            if let favorited = favorited {
-                parameters["favorited"] = favorited
-            }
-
-            if let limit = limit {
-                parameters["limit"] = limit
-            }
-
-            if let offset = offset {
-                parameters["offset"] = offset
-            }
-
-            return parameters
+            let parameters: [String: Any?] = [
+                "tag": tag,
+                "author": author,
+                "favorited": favorited,
+                "limit": limit,
+                "offset": offset
+            ]
+            return parameters.compactMapValues { $0 }
         }
     }
 
     var encoding: ParameterEncoding { URLEncoding.queryString }
-
-    var headers: HTTPHeaders? { nil }
-
-    var interceptor: RequestInterceptor? { nil }
 }

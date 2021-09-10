@@ -32,29 +32,59 @@ final class ArticleRepositorySpec: QuickSpec {
 
             describe("its listArticles() call") {
 
-                var outputArticles: TestableObserver<[CodableArticle]>!
-                let inputResponse = APIArticleResponse.dummy
-                
-                beforeEach {
-                    outputArticles = scheduler.createObserver([CodableArticle].self)
-                    networkAPI.setPerformRequestForReturnValue(Single.just(inputResponse))
-                    repository.listArticles(
-                        tag: nil,
-                        author: nil,
-                        favorited: nil,
-                        limit: nil,
-                        offset: nil
-                    )
-                    .asObservable()
-                    .map {
-                        $0.compactMap { $0 as? CodableArticle }
+                context("when the request returns success") {
+                    
+                    var outputArticles: TestableObserver<[DecodableArticle]>!
+                    let inputResponse = APIArticleResponse.dummy
+
+                    beforeEach {
+                        outputArticles = scheduler.createObserver([DecodableArticle].self)
+                        networkAPI.setPerformRequestForReturnValue(Single.just(inputResponse))
+                        repository.listArticles(
+                            tag: nil,
+                            author: nil,
+                            favorited: nil,
+                            limit: nil,
+                            offset: nil
+                        )
+                        .asObservable()
+                        .map {
+                            $0.compactMap { $0 as? DecodableArticle }
+                        }
+                        .bind(to: outputArticles)
+                        .disposed(by: disposeBag)
                     }
-                    .bind(to: outputArticles)
-                    .disposed(by: disposeBag)
+
+                    it("returns correct articles") {
+                        expect(outputArticles.events.first?.value.element) == inputResponse.articles
+                    }
                 }
 
-                it("returns correct articles") {
-                    expect(outputArticles.events.first?.value.element) == inputResponse.articles
+                context("when the request returns failure") {
+
+                    var outputError: TestableObserver<Error?>!
+
+                    beforeEach {
+                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        networkAPI.setPerformRequestForReturnValue(Single<APIArticleResponse>.error(TestError.mock))
+                        repository.listArticles(
+                            tag: nil,
+                            author: nil,
+                            favorited: nil,
+                            limit: nil,
+                            offset: nil
+                        )
+                        .asObservable()
+                        .materialize()
+                        .map { $0.error }
+                        .bind(to: outputError)
+                        .disposed(by: disposeBag)
+                    }
+
+                    it("returns correct error") {
+                        let error = outputError.events.first?.value.element as? TestError
+                        expect(error) == TestError.mock
+                    }
                 }
             }
         }

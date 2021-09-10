@@ -1,26 +1,16 @@
-//
-//  APISurvey+Dummy.swift
-//  NimbleMedium
-//
-//  Created by Mark G on 10/08/2021.
-//
-
-@testable import NimbleMedium
-
-extension CodableArticle {
-
-    static let dummy: CodableArticle = {
-        """
+{
+    "articlesCount" : 1,
+    "articles" : [
         {
             "slug" : "Welcome-to-RealWorld-project",
             "tagList" : [
-            "introduction",
-            "welcome"
+                "introduction",
+                "welcome"
             ],
             "author" : {
-            "bio" : null,
-            "username" : "Gerome",
-            "image" : "https://realworld-temp-api.herokuapp.com/images/demo-avatar.png"
+                "bio" : null,
+                "username" : "Gerome",
+                "image" : "https://realworld-temp-api.herokuapp.com/images/demo-avatar.png"
             },
             "comments" : [
 
@@ -33,8 +23,5 @@ extension CodableArticle {
             "body" : "See how the exact same Medium.com clone (called Conduit) is built using different frontends and backends. Yes, you can mix and match them, because they all adhere to the same API spec",
             "createdAt" : "2021-09-05T22:23:59.819Z"
         }
-        """
-            .utf8Data
-            .decoded()
-    }()
+    ]
 }

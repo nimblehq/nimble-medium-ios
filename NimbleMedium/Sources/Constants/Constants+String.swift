@@ -9,5 +9,4 @@
 extension String {
 
     static let empty: String = ""
-    static let iso8601FullDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
 }

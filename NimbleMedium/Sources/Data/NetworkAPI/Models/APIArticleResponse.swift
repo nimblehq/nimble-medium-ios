@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct APIArticleResponse: Codable, Equatable {
+struct APIArticleResponse: Decodable, Equatable {
 
     let articlesCount: Int
-    let articles: [CodableArticle]
+    let articles: [DecodableArticle]
 }

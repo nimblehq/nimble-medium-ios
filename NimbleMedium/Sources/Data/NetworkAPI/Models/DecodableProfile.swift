@@ -1,5 +1,5 @@
 //
-//  CodableProfile.swift
+//  DecodableProfile.swift
 //  NimbleMedium
 //
 //  Created by Mark G on 06/09/2021.
@@ -8,7 +8,7 @@
 import Foundation
 import DefaultCodable
 
-struct CodableProfile: Profile, Codable, Equatable {
+struct DecodableProfile: Profile, Decodable, Equatable {
 
     let username: String
     let bio: String?

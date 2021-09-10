@@ -1,5 +1,5 @@
 //
-//  APIArticle.swift
+//  DecodableArticle.swift
 //  NimbleMedium
 //
 //  Created by Mark G on 06/09/2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CodableArticle: Article, Codable, Equatable {
+struct DecodableArticle: Article, Decodable, Equatable {
 
     private enum CodingKeys: String, CodingKey {
         case slug, title, description, body, tagList, createdAt, updatedAt, favorited, favoritesCount
@@ -24,7 +24,7 @@ struct CodableArticle: Article, Codable, Equatable {
     let favorited: Bool
     let favoritesCount: Int
     
-    private let apiAuthor: CodableProfile
+    private let apiAuthor: DecodableProfile
     var author: Profile {
         apiAuthor
     }
