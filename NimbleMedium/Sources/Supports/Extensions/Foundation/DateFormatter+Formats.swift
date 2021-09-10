@@ -1,5 +1,5 @@
 //
-//  DateFormatter+MonthDayYear.swift
+//  DateFormatter+Formats.swift
 //  NimbleMedium
 //
 //  Created by Mark G on 10/09/2021.
@@ -9,7 +9,7 @@ import Foundation
 
 extension DateFormatter {
 
-    static let monthDayYear = DateFormatter(with: .monthDayYearDateFormat)
+    static let monthDayYear = DateFormatter(with: "MMMM dd, yyyy")
 
     convenience init(with format: String) {
         self.init()
