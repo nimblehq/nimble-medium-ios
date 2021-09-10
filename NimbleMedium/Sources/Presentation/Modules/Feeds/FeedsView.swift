@@ -11,7 +11,7 @@ import Refresh
 struct FeedsView: View {
 
     @ObservedViewModel private var viewModel: FeedsViewModelProtocol
-    
+
     var body: some View {
         NavigationView {
             ScrollView {
