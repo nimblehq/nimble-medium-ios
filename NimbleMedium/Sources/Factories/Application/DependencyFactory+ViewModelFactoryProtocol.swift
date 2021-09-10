@@ -28,6 +28,6 @@ extension DependencyFactory: ViewModelFactoryProtocol {
     }
 
     func signupViewModel() -> SignupViewModelProtocol {
-        SignupViewModel()
+        SignupViewModel(factory: self)
     }
 }

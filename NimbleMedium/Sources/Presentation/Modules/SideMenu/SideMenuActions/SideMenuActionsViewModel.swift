@@ -51,6 +51,12 @@ final class SideMenuActionsViewModel: ObservableObject, SideMenuActionsViewModel
                 owner.$didSelectSignupOption.accept(true)
             })
             .disposed(by: disposeBag)
+
+        signupViewModel.output.didSelectHaveAccount.asObservable()
+            .subscribe(with: self, onNext: { owner, _ in
+                owner.$didSelectLoginOption.accept(true)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
