@@ -8,20 +8,16 @@
 import SwiftUI
 import Refresh
 
-// swiftlint:disable file_types_order
 struct FeedsView: View {
 
     @ObservedViewModel private var viewModel: FeedsViewModelProtocol
-    let articles: [Article] = [Int](0...10).map { _ in
-        DummyArticle()
-    }
     
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVStack {
-                    ForEach(articles, id: \.title) { article in
-                        FeedRow(article: article)
+                LazyVStack(alignment: .leading) {
+                    ForEach(1...3, id: \.self) { _ in
+                        FeedRow()
                             .padding(.bottom, 16.0)
                     }
 
@@ -62,42 +58,6 @@ struct FeedsView: View {
 
     init(viewModel: FeedsViewModelProtocol) {
         self.viewModel = viewModel
-    }
-}
-
-// TODO: Remove dummy model in Integrate
-struct DummyProfile: Profile {
-
-    var username: String = DummyArticle.random()
-    var bio: String?  = DummyArticle.random()
-    // swiftlint:disable line_length
-    var image: String?  = "https://thumbs.dreamstime.com/b/vector-illustration-avatar-dummy-logo-collection-image-icon-stock-isolated-object-set-symbol-web-137160339.jpg"
-    var following: Bool = Bool.random()
-}
-
-struct DummyArticle: Article {
-
-    let slug: String = Self.random()
-    let title: String = Self.random(Int.random(in: 100...300))
-    let description: String = Self.random(Int.random(in: 100...500))
-    let body: String = Self.random(100)
-    let tagList: [String] = [Int](0...Int.random(in: 0...10)).map { _ in Self.random(10) }
-    let createdAt: Date = Date()
-    let updatedAt: Date = Date()
-    let favorited: Bool = Bool.random()
-    let favoritesCount: Int = Int.random(in: 0...100)
-    let author: Profile = DummyProfile()
-
-    static func random(_ length: Int = 20) -> String {
-        let base = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        var randomString: String = ""
-
-        for _ in 0..<length {
-            // swiftlint:disable legacy_random
-            let randomValue = arc4random_uniform(UInt32(base.count))
-            randomString += "\(base[base.index(base.startIndex, offsetBy: Int(randomValue))])"
-        }
-        return randomString
     }
 }
 

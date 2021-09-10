@@ -20,12 +20,3 @@ protocol Article {
     var favoritesCount: Int { get }
     var author: Profile { get }
 }
-
-extension Article {
-
-    var formattedUpdatedAt: String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = .articleDateFormat
-        return formatter.string(from: updatedAt)
-    }
-}

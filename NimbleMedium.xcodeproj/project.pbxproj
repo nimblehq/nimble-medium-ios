@@ -51,6 +51,7 @@
 		24F3D7B726DCEA0300DE2420 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 24F3D7B626DCEA0300DE2420 /* KeychainAccess */; };
 		24F3D7BE26DE041F00DE2420 /* LoginViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7BD26DE041F00DE2420 /* LoginViewModelSpec.swift */; };
 		24F3D7C426DE0FAE00DE2420 /* TestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7C326DE0FAE00DE2420 /* TestError.swift */; };
+		2D1D727426EB305F00431679 /* DateFormatter+MonthDayYear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D727326EB305F00431679 /* DateFormatter+MonthDayYear.swift */; };
 		2D2F456026C25911002C0331 /* View+NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F455F26C25911002C0331 /* View+NavigationBar.swift */; };
 		2D303B3B26C28AC200EEF1C0 /* Constants+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D303B3A26C28AC200EEF1C0 /* Constants+String.swift */; };
 		2D467C3D26BCD58D008F11E1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D467C3C26BCD58D008F11E1 /* HomeView.swift */; };
@@ -151,6 +152,7 @@
 		24F3D7B326DCE96200DE2420 /* UserSessionRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionRepositoryProtocol.swift; sourceTree = "<group>"; };
 		24F3D7BD26DE041F00DE2420 /* LoginViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModelSpec.swift; sourceTree = "<group>"; };
 		24F3D7C326DE0FAE00DE2420 /* TestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestError.swift; sourceTree = "<group>"; };
+		2D1D727326EB305F00431679 /* DateFormatter+MonthDayYear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+MonthDayYear.swift"; sourceTree = "<group>"; };
 		2D2F455F26C25911002C0331 /* View+NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+NavigationBar.swift"; sourceTree = "<group>"; };
 		2D303B3A26C28AC200EEF1C0 /* Constants+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+String.swift"; sourceTree = "<group>"; };
 		2D467C3C26BCD58D008F11E1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 			isa = PBXGroup;
 			children = (
 				2459B31026D74B3100ABCE61 /* JSONDecoder+Default.swift */,
+				2D1D727326EB305F00431679 /* DateFormatter+MonthDayYear.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1448,6 +1451,7 @@
 				24C9393926D89FA300547800 /* AuthTextFieldView.swift in Sources */,
 				24F3D7B126DCE8DA00DE2420 /* UserSessionRepository.swift in Sources */,
 				249042F626D50FF300E970B6 /* ViewModelFactoryProtocol.swift in Sources */,
+				2D1D727426EB305F00431679 /* DateFormatter+MonthDayYear.swift in Sources */,
 				2DA4ABBF26CF90D000CF7D68 /* AppEnvironment.swift in Sources */,
 				2D5485BC26CA077600FFE707 /* View+OnReceive.swift in Sources */,
 				24204C9E26D5289900534314 /* Background.swift in Sources */,
