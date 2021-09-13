@@ -68,6 +68,7 @@
 		2D69824426C22DC700860A98 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D69824326C22DC700860A98 /* R.generated.swift */; };
 		2D6EFE1B26E9EB8C006B9939 /* DefaultCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 2D6EFE1A26E9EB8C006B9939 /* DefaultCodable */; };
 		2D72E47E26C2185400861239 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D72E47D26C2185400861239 /* Constants.swift */; };
+		2D79A8F626EEF06A007B81D1 /* Refresh in Frameworks */ = {isa = PBXBuildFile; productRef = 2D79A8F526EEF06A007B81D1 /* Refresh */; };
 		2D7BF28E26DCB4E200A30747 /* Publisher+RxSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7BF28D26DCB4E200A30747 /* Publisher+RxSignal.swift */; };
 		2D87822F26EB3B3A0080FEF6 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D87822E26EB3B3A0080FEF6 /* R.generated.swift */; };
 		2D87823126EB3C110080FEF6 /* FileResource+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D87823026EB3C110080FEF6 /* FileResource+Decode.swift */; };
@@ -88,7 +89,6 @@
 		2DD4805826D73C67005225CF /* ObservedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD4805626D73C67005225CF /* ObservedViewModel.swift */; };
 		2DDAD3A026D37E02007F845A /* App+NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDAD39F26D37E02007F845A /* App+NetworkLogger.swift */; };
 		2DE3B9B526C1339200272775 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3B9B426C1339200272775 /* Typealias.swift */; };
-		2DEF1F8426E5EFE600EB93CC /* Refresh in Frameworks */ = {isa = PBXBuildFile; productRef = 2DEF1F8326E5EFE600EB93CC /* Refresh */; };
 		2DEF1F8A26E5FD0C00EB93CC /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2DEF1F8926E5FD0C00EB93CC /* SDWebImageSwiftUI */; };
 		2DEF1F8D26E5FE5300EB93CC /* ArticleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEF1F8C26E5FE5300EB93CC /* ArticleRepository.swift */; };
 		2DEF1F9026E5FE8E00EB93CC /* ArticleRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEF1F8F26E5FE8E00EB93CC /* ArticleRepositoryProtocol.swift */; };
@@ -245,9 +245,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D79A8F626EEF06A007B81D1 /* Refresh in Frameworks */,
 				2459B35B26D7A7C500ABCE61 /* ToastUI in Frameworks */,
 				2DEF1F8A26E5FD0C00EB93CC /* SDWebImageSwiftUI in Frameworks */,
-				2DEF1F8426E5EFE600EB93CC /* Refresh in Frameworks */,
 				7DB2A8DC1F8863DD01F7D438 /* Pods_NimbleMedium.framework in Frameworks */,
 				24F3D7B726DCEA0300DE2420 /* KeychainAccess in Frameworks */,
 				2D6EFE1B26E9EB8C006B9939 /* DefaultCodable in Frameworks */,
@@ -1141,9 +1141,9 @@
 			packageProductDependencies = (
 				2459B35A26D7A7C500ABCE61 /* ToastUI */,
 				24F3D7B626DCEA0300DE2420 /* KeychainAccess */,
-				2DEF1F8326E5EFE600EB93CC /* Refresh */,
 				2DEF1F8926E5FD0C00EB93CC /* SDWebImageSwiftUI */,
 				2D6EFE1A26E9EB8C006B9939 /* DefaultCodable */,
+				2D79A8F526EEF06A007B81D1 /* Refresh */,
 			);
 			productName = NimbleMedium;
 			productReference = 2DB2674A26BBEC4300FF05BB /* Nimble Medium - Staging.app */;
@@ -1226,9 +1226,9 @@
 			packageReferences = (
 				2459B35926D7A7C500ABCE61 /* XCRemoteSwiftPackageReference "ToastUI" */,
 				24F3D7B526DCEA0300DE2420 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
-				2DEF1F8226E5EFE600EB93CC /* XCRemoteSwiftPackageReference "Refresh" */,
 				2DEF1F8826E5FD0C00EB93CC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				2D6EFE1926E9EB8C006B9939 /* XCRemoteSwiftPackageReference "DefaultCodable" */,
+				2D79A8F426EEF06A007B81D1 /* XCRemoteSwiftPackageReference "Refresh" */,
 			);
 			productRefGroup = 2DB2674B26BBEC4300FF05BB /* Products */;
 			projectDirPath = "";
@@ -2263,9 +2263,9 @@
 				minimumVersion = 1.2.1;
 			};
 		};
-		2DEF1F8226E5EFE600EB93CC /* XCRemoteSwiftPackageReference "Refresh" */ = {
+		2D79A8F426EEF06A007B81D1 /* XCRemoteSwiftPackageReference "Refresh" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/wxxsw/Refresh";
+			repositoryURL = "https://github.com/markgravity/Refresh.git";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -2297,9 +2297,9 @@
 			package = 2D6EFE1926E9EB8C006B9939 /* XCRemoteSwiftPackageReference "DefaultCodable" */;
 			productName = DefaultCodable;
 		};
-		2DEF1F8326E5EFE600EB93CC /* Refresh */ = {
+		2D79A8F526EEF06A007B81D1 /* Refresh */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2DEF1F8226E5EFE600EB93CC /* XCRemoteSwiftPackageReference "Refresh" */;
+			package = 2D79A8F426EEF06A007B81D1 /* XCRemoteSwiftPackageReference "Refresh" */;
 			productName = Refresh;
 		};
 		2DEF1F8926E5FD0C00EB93CC /* SDWebImageSwiftUI */ = {
