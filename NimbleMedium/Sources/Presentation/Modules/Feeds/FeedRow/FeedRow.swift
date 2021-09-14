@@ -10,15 +10,17 @@ import SDWebImageSwiftUI
 
 struct FeedRow: View {
 
+    private let article: Article
+
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             author
             VStack(alignment: .leading) {
-                Text("title")
+                Text(article.title)
                     .fontWeight(.bold)
                     .lineLimit(1)
                     .truncationMode(.tail)
-                Text("description")
+                Text(article.description)
                     .foregroundColor(.gray)
             }
         }
@@ -26,8 +28,7 @@ struct FeedRow: View {
 
     var author: some View {
         HStack {
-            // swiftlint:disable line_length
-            if let url = try? "https://thumbs.dreamstime.com/b/vector-illustration-avatar-dummy-logo-collection-image-icon-stock-isolated-object-set-symbol-web-137160339.jpg".asURL() {
+            if let url = try? article.author.image?.asURL() {
                 // FIXME: It blocks UI
                 WebImage(url: url)
                     .placeholder { defaultAvatar }
@@ -37,8 +38,8 @@ struct FeedRow: View {
                 defaultAvatar
             }
             VStack(alignment: .leading) {
-                Text("author name")
-                Text("September 10, 2021")
+                Text(article.author.username)
+                Text(article.updatedAt.format(Constants.Article.dateFormat))
                     .foregroundColor(.gray)
             }
         }
@@ -48,5 +49,9 @@ struct FeedRow: View {
         Image(R.image.defaultAvatar.name)
             .resizable()
             .frame(width: 50.0, height: 50.0)
+    }
+
+    init(article: Article) {
+        self.article = article
     }
 }

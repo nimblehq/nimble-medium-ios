@@ -8,53 +8,135 @@
 import Refresh
 import Resolver
 import SwiftUI
+import ToastUI
 
 struct FeedsView: View {
 
     @ObservedViewModel private var viewModel: FeedsViewModelProtocol = Resolver.resolve()
+    @State private var isFirstLoad: Bool = true
+    @State private var isRefeshing: Bool = false
+    @State private var hasMore: Bool = true
+    @State private var isLoadingMore: Bool = false
+    @State private var articles: [Article] = []
+    @State private var isErrorToastPresented = false
 
     var body: some View {
-        NavigationView {
-            ScrollView {
+        Content(view: self)
+            .binding()
+            .onAppear {
+                viewModel.input.refresh()
+            }
+    }
+
+    init(viewModel: FeedsViewModelProtocol) {
+        self.viewModel = viewModel
+    }
+}
+
+// MARK: - Content
+private extension FeedsView {
+
+    struct Content: View {
+
+        let view: FeedsView
+        var viewModel: FeedsViewModelProtocol { view.viewModel }
+
+        var body: some View {
+            NavigationView {
+                Group {
+                    if view.isFirstLoad {
+                        ProgressView()
+                    } else {
+                        feedList
+                    }
+                }
+                .navigationTitle(Localizable.feedsTitle())
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarColor(backgroundColor: .green)
+                .toolbar { navigationBarLeadingContent }
+                .toast(isPresented: view.$isErrorToastPresented, dismissAfter: 3.0) {
+                    ToastView(Localizable.errorGeneric()) { } background: {
+                        Color.clear
+                    }
+                }
+            }
+        }
+
+        var navigationBarLeadingContent: some ToolbarContent {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(
+                    action: {
+                        viewModel.input.toggleSideMenu()
+                    },
+                    label: {
+                        Image(R.image.menuIcon.name)
+                    }
+                )
+            }
+        }
+
+        var feedRows: some View {
+            Group {
+                RefreshHeader(
+                    refreshing: view.$isRefeshing,
+                    action: { viewModel.input.refresh() },
+                    label: { _ in ProgressView() }
+                )
+
                 LazyVStack(alignment: .leading) {
-                    ForEach(1...3, id: \.self) { _ in
-                        FeedRow()
+                    ForEach(view.articles, id: \.slug) { article in
+                        FeedRow(article: article)
                             .padding(.bottom, 16.0)
                     }
-
-                    // TODO: Integrate load more
-                    RefreshFooter(
-                        refreshing: Binding.constant(true),
-                        action: {
-                            print("load more")
-                        },
-                        label: {
-                            ProgressView()
-                        }
-                    )
                 }
                 .padding(.all, 16.0)
 
+                if view.hasMore {
+                    RefreshFooter(
+                        refreshing: view.$isLoadingMore,
+                        action: { viewModel.input.loadMore() },
+                        label: { ProgressView() }
+                    )
+                }
             }
-            .enableRefresh()
-            .navigationTitle(Localizable.feedTitle())
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarColor(backgroundColor: .green)
-            .toolbar { navigationBarLeadingContent }
+        }
+
+        var feedList: some View {
+            Group {
+                if !view.articles.isEmpty {
+                    ScrollView {
+                        feedRows
+                    }
+                    .enableRefresh()
+                    .padding(.top, 16.0)
+                } else {
+                    Text(Localizable.feedsNoArticle())
+                }
+            }
         }
     }
+}
 
-    var navigationBarLeadingContent: some ToolbarContent {
-        ToolbarItem(placement: .navigationBarLeading) {
-            Button(
-                action: {
-                    viewModel.input.toggleSideMenu()
-                },
-                label: {
-                    Image(R.image.menuIcon.name)
-                }
-            )
+// MARK: - Binding
+extension FeedsView.Content {
+
+    func binding() -> some View {
+
+        onReceive(viewModel.output.didFinishRefresh) { _ in
+            if view.isFirstLoad {
+                view.isFirstLoad = false
+            }
+
+            view.isRefeshing = false
         }
+        .onReceive(viewModel.output.didFinishLoadMore) {
+            view.hasMore = $0
+            view.isLoadingMore = false
+        }
+        .onReceive(viewModel.output.didFailToLoadArticle) { _ in
+            view.isErrorToastPresented = true
+        }
+        .bind(viewModel.output.articles, to: view._articles)
     }
 }
 

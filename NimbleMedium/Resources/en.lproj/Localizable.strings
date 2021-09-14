@@ -11,7 +11,8 @@
 
 "error.generic" = "Something went wrong.\nPlease try again later.";
 
-"feed.title" = "Feed";
+"feeds.title" = "Feeds";
+"feeds.noArticle" = "No Article";
 
 "login.title" = "Login";
 "login.textFieldEmail.placeholder" = "Email";

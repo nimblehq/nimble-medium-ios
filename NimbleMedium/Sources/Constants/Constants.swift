@@ -12,5 +12,6 @@ enum Constants {
     enum Article {
 
         static let maxPerPage = 25
+        static let dateFormat = "MMMM, dd yyyy"
     }
 }

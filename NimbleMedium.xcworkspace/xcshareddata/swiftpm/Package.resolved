@@ -20,24 +20,6 @@
         }
       },
       {
-        "package": "Refresh",
-        "repositoryURL": "https://github.com/markgravity/Refresh.git",
-        "state": {
-          "branch": "master",
-          "revision": "feb243a0605ffb6bdca99d68bc5c10c5ddc5054c",
-          "version": null
-        }
-      },
-      {
-        "package": "Resolver",
-        "repositoryURL": "https://github.com/hmlongco/Resolver",
-        "state": {
-          "branch": null,
-          "revision": "609908e0b67911ebf7386609552a48d4ec07958e",
-          "version": "1.4.4"
-        }
-      },
-      {
         "package": "SDWebImage",
         "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
         "state": {
