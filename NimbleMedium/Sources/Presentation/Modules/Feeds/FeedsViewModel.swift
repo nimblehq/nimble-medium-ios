@@ -34,8 +34,8 @@ protocol FeedsViewModelProtocol: ObservableViewModel {
 final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
 
     let listArticlesUseCase: ListArticlesUseCaseProtocol
-    var currentOffset: Int = 0
-    let limit: Int = 10
+    var currentOffset = 0
+    let limit = 10
     let disposeBag = DisposeBag()
     let refreshTrigger = PublishRelay<Void>()
     let loadMoreTrigger = PublishRelay<Void>()
@@ -53,15 +53,17 @@ final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
         self.listArticlesUseCase = factory.listArticlesUseCase()
 
         refreshTrigger
-            .flatMapLatest { [weak self] in
-                self?.refreshTriggered() ?? .empty()
+            .withUnretained(self)
+            .flatMapLatest {
+                $0.0.refreshTriggered()
             }
             .subscribe()
             .disposed(by: disposeBag)
 
         loadMoreTrigger
-            .flatMapLatest { [weak self] in
-                self?.loadMoreTriggered() ?? .empty()
+            .withUnretained(self)
+            .flatMapLatest {
+                $0.0.loadMoreTriggered()
             }
             .subscribe()
             .disposed(by: disposeBag)

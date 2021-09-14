@@ -42,7 +42,7 @@ struct HomeView: View {
                 draggingAnimator.reset(isOpen: isOpen)
             }
             // TODO: Fix conflict with scrolling in FeedsView
-             .gesture(dragGesture(geo: geo))
+            .gesture(dragGesture(geo: geo))
         }
     }
 

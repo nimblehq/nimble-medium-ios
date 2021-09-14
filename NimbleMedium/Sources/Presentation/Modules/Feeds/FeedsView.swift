@@ -13,6 +13,7 @@ import ToastUI
 struct FeedsView: View {
 
     @ObservedViewModel private var viewModel: FeedsViewModelProtocol = Resolver.resolve()
+    
     @State private var isFirstLoad: Bool = true
     @State private var isRefeshing: Bool = false
     @State private var hasMore: Bool = true
