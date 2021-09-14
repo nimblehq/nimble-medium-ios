@@ -8,6 +8,7 @@
 import RxSwift
 import RxCocoa
 import Combine
+import Resolver
 
 protocol SideMenuActionsViewModelInput {
 
@@ -19,8 +20,6 @@ protocol SideMenuActionsViewModelOutput {
 
     var didSelectLoginOption: Signal<Bool> { get }
     var didSelectSignupOption: Signal<Bool> { get }
-    var loginViewModel: LoginViewModelProtocol { get }
-    var signupViewModel: SignupViewModelProtocol { get }
 }
 
 protocol SideMenuActionsViewModelProtocol: ObservableViewModel {
@@ -39,13 +38,10 @@ final class SideMenuActionsViewModel: ObservableObject, SideMenuActionsViewModel
     @PublishRelayProperty var didSelectLoginOption: Signal<Bool>
     @PublishRelayProperty var didSelectSignupOption: Signal<Bool>
 
-    let loginViewModel: LoginViewModelProtocol
-    let signupViewModel: SignupViewModelProtocol
+    @Injected var loginViewModel: LoginViewModelProtocol
+    @Injected var signupViewModel: SignupViewModelProtocol
 
-    init(factory: ModuleFactoryProtocol) {
-        loginViewModel = factory.loginViewModel()
-        signupViewModel = factory.signupViewModel()
-
+    init() {
         loginViewModel.output.didSelectNoAccount.asObservable()
             .subscribe(with: self, onNext: { owner, _ in
                 owner.$didSelectSignupOption.accept(true)

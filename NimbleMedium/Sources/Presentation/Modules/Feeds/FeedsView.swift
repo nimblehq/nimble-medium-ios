@@ -5,12 +5,13 @@
 //  Created by Mark G on 11/08/2021.
 //
 
-import SwiftUI
 import Refresh
+import Resolver
+import SwiftUI
 
 struct FeedsView: View {
 
-    @ObservedViewModel private var viewModel: FeedsViewModelProtocol
+    @ObservedViewModel private var viewModel: FeedsViewModelProtocol = Resolver.resolve()
 
     var body: some View {
         NavigationView {
@@ -55,16 +56,10 @@ struct FeedsView: View {
             )
         }
     }
-
-    init(viewModel: FeedsViewModelProtocol) {
-        self.viewModel = viewModel
-    }
 }
 
 #if DEBUG
 struct FeedsView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedsView(viewModel: FeedsViewModel())
-    }
+    static var previews: some View { FeedsView() }
 }
 #endif

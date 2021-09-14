@@ -7,6 +7,7 @@
 
 import RxSwift
 import RxCocoa
+import Resolver
 
 protocol LoginViewModelInput {
 
@@ -36,16 +37,16 @@ final class LoginViewModel: ObservableObject, LoginViewModelProtocol {
     var input: LoginViewModelInput { self }
     var output: LoginViewModelOutput { self }
 
+    @Injected var loginUseCase: LoginUseCaseProtocol
+
+    @BehaviorRelayProperty(false) var isLoading: Driver<Bool>
     @PublishRelayProperty var didLogin: Signal<Void>
     @PublishRelayProperty var didSelectNoAccount: Signal<Void>
     @PublishRelayProperty var errorMessage: Signal<String>
-    @BehaviorRelayProperty(false) var isLoading: Driver<Bool>
 
-    init(factory: ModuleFactoryProtocol) {
-        let loginUseCase = factory.loginUseCase()
-
+    init() {
         loginTrigger.flatMapLatest { inputs in
-            loginUseCase
+            self.loginUseCase
                 .login(email: inputs.email, password: inputs.password)
                 .asObservable()
                 .materialize()

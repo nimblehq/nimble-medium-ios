@@ -7,10 +7,11 @@
 
 import SwiftUI
 import RxSwift
+import Resolver
 
 struct SideMenuActionsView: View {
 
-    @ObservedViewModel private var viewModel: SideMenuActionsViewModelProtocol
+    @ObservedViewModel private var viewModel: SideMenuActionsViewModelProtocol = Resolver.resolve()
 
     @State private var isAuthenticated = false
     @State private var isShowingLoginScreen = false
@@ -26,7 +27,7 @@ struct SideMenuActionsView: View {
                     viewModel.input.selectLoginOption()
                 }
                 .fullScreenCover(isPresented: $isShowingLoginScreen) {
-                    LoginView(viewModel: viewModel.output.loginViewModel)
+                    LoginView()
                 }
 
                 SideMenuActionItemView(
@@ -36,7 +37,7 @@ struct SideMenuActionsView: View {
                     viewModel.input.selectSignupOption()
                 }
                 .fullScreenCover(isPresented: $isShowingSignupScreen) {
-                    SignupView(viewModel: viewModel.output.signupViewModel)
+                    SignupView()
                 }
             }
         }
@@ -47,17 +48,10 @@ struct SideMenuActionsView: View {
             isShowingSignupScreen = $0
         }
     }
-
-    init(viewModel: SideMenuActionsViewModelProtocol) {
-        self.viewModel = viewModel
-    }
 }
 
 #if DEBUG
 struct SideMenuActionsView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = SideMenuActionsViewModel(factory: App().factory)
-        return SideMenuActionsView(viewModel: viewModel)
-    }
+    static var previews: some View { SideMenuActionsView() }
 }
 #endif
