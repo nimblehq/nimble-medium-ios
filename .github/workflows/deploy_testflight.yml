@@ -2,7 +2,7 @@ name: Deploy to Test Flight (production)
 
 on:
   push:
-    branches: [ master, main ]
+     branches: [ master, main ]
 
 jobs:
   lint:
@@ -56,14 +56,14 @@ jobs:
       shell: bash
 
     - name: Build and Test
-      run: xcodebuild -workspace NimbleMedium.xcworkspace -scheme 'NimbleMedium' -destination 'platform=iOS Simulator,name=iPhone 12' clean test && exit ${PIPESTATUS[0]}
+      run: bundle exec fastlane build_and_test
 
     - name: Match AppStore
-      run: bundle exec fastlane sync_appstore_signing_ci
+      run: bundle exec fastlane sync_appstore_signing
       env:
         MATCH_PASSWORD: ${{ secrets.MATCH_PASS }}
 
     - name: Build App and Distribute to AppStore
-      run: bundle exec fastlane build_and_upload_testflight
+      run: bundle exec fastlane build_and_upload_appstore_app
       env:
         APPSTORE_CONNECT_API_KEY: ${{ secrets.APPSTORE_CONNECT_API_KEY }}

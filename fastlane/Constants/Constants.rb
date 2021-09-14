@@ -5,17 +5,17 @@ class Constants
   #### PROJECT ####
   #################
 
-  #Project path
+  # Project path
   def self.PROJECT_PATH
     './NimbleMedium.xcodeproj'
   end
 
-  # a bundle id for Staging
+  # bundle ID for Staging app
   def self.BUNDLE_ID_STAGING
     'co.nimblehq.nimble-medium-stag'
   end
 
-  # a bundle id for Production
+  # bundle ID for Production app
   def self.BUNDLE_ID_PRODUCTION
     'co.nimblehq.nimble-medium'
   end
@@ -43,9 +43,19 @@ class Constants
     ENV.fetch('DEVICE', 'iPhone 12 Pro Max')
   end
 
-  # a scheme name for unit testing
-  def self.UNIT_TESTS_SCHEME
+  # a scheme name for testing
+  def self.TESTS_SCHEME
     'NimbleMedium Staging'
+  end
+
+  # a target name for tests
+  def self.TESTS_TARGET
+    'NimbleMediumTests'
+  end
+
+  # a target name for UI tests
+  def self.UI_TESTS_TARGET
+    'NimbleMediumUITests'
   end
 
   ##################
@@ -82,8 +92,23 @@ class Constants
     '{PROJECT_FIREBASE_APP_ID}'
   end
 
+  # Firebase Tester group name, seperate by comma(,) string
   def self.FIREBASE_TESTER_GROUPS
     "nimble-dev"
+  end
+
+  #################
+  #### KEYCHAIN ####
+  #################
+
+  # Keychain name
+  def self.KEYCHAIN_NAME
+    'github_action_keychain'
+  end
+
+  # a scheme name for unit testing
+  def self.KEYCHAIN_PASSWORD
+    'password'
   end
 
   #################
@@ -103,11 +128,6 @@ class Constants
   # a Production environment scheme name
   def self.SCHEME_NAME_PRODUCTION
     'NimbleMedium'
-  end
-
-  # a App Store environment scheme name
-  def self.SCHEME_NAME_APP_STORE
-    'NimbleMedium AppStore'
   end
 
   # an staging product name
@@ -134,6 +154,7 @@ class Constants
   ### DEV PORTAL ###
   ##################
 
+  # Apple ID for Apple Developer Portal
   def self.DEV_PORTAL_APPLE_ID
     'thuong@nimblehq.co'
   end
@@ -144,12 +165,12 @@ class Constants
 
   # App Store Connect API Key ID
   def self.APP_STORE_KEY_ID
-    '{API_KEY_ID}'
+    'BKWJZ8S72V'
   end
 
   # App Store Connect API Issuer ID
   def self.APP_STORE_ISSUER_ID
-    '{ISSUER_ID}'
+    '69a6de82-b7cb-47e3-e053-5b8c7c11a4d1'
   end
 
 end

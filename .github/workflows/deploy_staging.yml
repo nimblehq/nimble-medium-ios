@@ -64,7 +64,7 @@ jobs:
       shell: bash
 
     - name: Build and Test
-      run: xcodebuild -workspace NimbleMedium.xcworkspace -scheme 'NimbleMedium Staging' -destination 'platform=iOS Simulator,name=iPhone 12' clean test && exit ${PIPESTATUS[0]}
+      run: bundle exec fastlane build_and_test
 
     - name: Generate code coverage file
       run: slather
@@ -77,7 +77,7 @@ jobs:
         verbose: true
 
     - name: Match Ad-hoc
-      run: bundle exec fastlane sync_adhoc_signing_ci
+      run: bundle exec fastlane sync_adhoc_signing
       env:
         MATCH_PASSWORD: ${{ secrets.MATCH_PASS }}
 
