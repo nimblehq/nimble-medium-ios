@@ -45,24 +45,26 @@ final class SignupViewModel: ObservableObject, SignupViewModelProtocol {
     @Injected var signupUseCase: SignupUseCaseProtocol
 
     init() {
-        signupTrigger.flatMapLatest { inputs in
-            self.signupUseCase
-                .signup(username: inputs.username, email: inputs.email, password: inputs.password)
-                .asObservable()
-                .materialize()
-        }
-        .subscribe(
-            with: self,
-            onNext: { owner, event in
-                owner.$isLoading.accept(false)
-                if let error = event.error {
-                    owner.$errorMessage.accept(error.detail)
-                } else {
-                    owner.$didSignup.accept(())
-                }
+        signupTrigger
+            .withUnretained(self)
+            .flatMapLatest { owner, inputs in
+                owner.signupUseCase
+                    .signup(username: inputs.username, email: inputs.email, password: inputs.password)
+                    .asObservable()
+                    .materialize()
             }
-        )
-        .disposed(by: disposeBag)
+            .subscribe(
+                with: self,
+                onNext: { owner, event in
+                    owner.$isLoading.accept(false)
+                    if let error = event.error {
+                        owner.$errorMessage.accept(error.detail)
+                    } else {
+                        owner.$didSignup.accept(())
+                    }
+                }
+            )
+            .disposed(by: disposeBag)
     }
 }
 

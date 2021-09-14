@@ -45,24 +45,26 @@ final class LoginViewModel: ObservableObject, LoginViewModelProtocol {
     @PublishRelayProperty var errorMessage: Signal<String>
 
     init() {
-        loginTrigger.flatMapLatest { inputs in
-            self.loginUseCase
-                .login(email: inputs.email, password: inputs.password)
-                .asObservable()
-                .materialize()
-        }
-        .subscribe(
-            with: self,
-            onNext: { owner, event in
-                owner.$isLoading.accept(false)
-                if let error = event.error {
-                    owner.$errorMessage.accept(error.detail)
-                } else {
-                    owner.$didLogin.accept(())
-                }
+        loginTrigger
+            .withUnretained(self)
+            .flatMapLatest { owner, inputs in
+                owner.loginUseCase
+                    .login(email: inputs.email, password: inputs.password)
+                    .asObservable()
+                    .materialize()
             }
-        )
-        .disposed(by: disposeBag)
+            .subscribe(
+                with: self,
+                onNext: { owner, event in
+                    owner.$isLoading.accept(false)
+                    if let error = event.error {
+                        owner.$errorMessage.accept(error.detail)
+                    } else {
+                        owner.$didLogin.accept(())
+                    }
+                }
+            )
+            .disposed(by: disposeBag)
     }
 }
 
