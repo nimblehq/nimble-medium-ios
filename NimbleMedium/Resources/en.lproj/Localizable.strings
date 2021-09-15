@@ -36,3 +36,5 @@
 
 "feedDetail.title" = "Article";
 "feedDetail.fetchFailure.message" = "Unable to load the article";
+
+"feedComments.title" = "Comments History";
