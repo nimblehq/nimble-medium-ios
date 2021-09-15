@@ -79,9 +79,17 @@ private extension FeedsView {
                 )
 
                 LazyVStack(alignment: .leading) {
-                    ForEach(view.feedRowModels, id: \.id) {
-                        FeedRow(model: $0)
-                            .padding(.bottom, 16.0)
+                    ForEach(view.feedViewModels, id: \.output.id) { viewModel in
+                        NavigationLink(
+                            destination: FeedDetailView(
+                                viewModel: viewModel.output
+                                    .getFeedDetailViewModel(for: article)
+                            ),
+                            label: {
+                                FeedRow(viewModel: $0)
+                                    .padding(.bottom, 16.0)
+                            }
+                        )
                     }
                 }
                 .padding(.all, 16.0)

@@ -100,6 +100,8 @@
 		2DB2674E26BBEC4300FF05BB /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB2674D26BBEC4300FF05BB /* App.swift */; };
 		2DB2675226BBEC4400FF05BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DB2675126BBEC4400FF05BB /* Assets.xcassets */; };
 		2DB2675526BBEC4400FF05BB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DB2675426BBEC4400FF05BB /* Preview Assets.xcassets */; };
+		2DB31D4E26F18EAB007254B9 /* FeedDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB31D4D26F18EAB007254B9 /* FeedDetailViewModel.swift */; };
+		2DB31D5126F1961A007254B9 /* FeedDetailViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB31D5026F1961A007254B9 /* FeedDetailViewModelSpec.swift */; };
 		2DBE36AE26C3B0C500DA3511 /* FeedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBE36AD26C3B0C500DA3511 /* FeedsView.swift */; };
 		2DBE36B126C3B33700DA3511 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBE36B026C3B33700DA3511 /* SideMenuView.swift */; };
 		2DC212BE26CB6586000C7558 /* SideMenuDraggingAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC212BD26CB6586000C7558 /* SideMenuDraggingAnimator.swift */; };
@@ -241,6 +243,8 @@
 		2DB2676126BBEC4500FF05BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DB2676626BBEC4500FF05BB /* NimbleMediumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NimbleMediumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DB2676C26BBEC4500FF05BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2DB31D4D26F18EAB007254B9 /* FeedDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailViewModel.swift; sourceTree = "<group>"; };
+		2DB31D5026F1961A007254B9 /* FeedDetailViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailViewModelSpec.swift; sourceTree = "<group>"; };
 		2DBE36AD26C3B0C500DA3511 /* FeedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsView.swift; sourceTree = "<group>"; };
 		2DBE36B026C3B33700DA3511 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		2DC212BD26CB6586000C7558 /* SideMenuDraggingAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDraggingAnimator.swift; sourceTree = "<group>"; };
@@ -824,6 +828,7 @@
 		2D72E49526C21C3B00861239 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				2DB31D4F26F1960B007254B9 /* FeedDetail */,
 				2D79A8FA26EF4A70007B81D1 /* Feeds */,
 				24F3D7BC26DE041F00DE2420 /* Login */,
 				246B387726F8A7BD003173FD /* SideMenuHeader */,
@@ -961,6 +966,7 @@
 			isa = PBXGroup;
 			children = (
 				2D9032CF26F04D96005CA3F5 /* FeedDetailView.swift */,
+				2DB31D4D26F18EAB007254B9 /* FeedDetailViewModel.swift */,
 			);
 			path = FeedDetail;
 			sourceTree = "<group>";
@@ -1101,6 +1107,14 @@
 				24F3D7AF26DCE8BB00DE2420 /* User */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		2DB31D4F26F1960B007254B9 /* FeedDetail */ = {
+			isa = PBXGroup;
+			children = (
+				2DB31D5026F1961A007254B9 /* FeedDetailViewModelSpec.swift */,
+			);
+			path = FeedDetail;
 			sourceTree = "<group>";
 		};
 		2DBE36AC26C3B0B500DA3511 /* Feeds */ = {
@@ -1664,6 +1678,7 @@
 				2459B31C26D74F4700ABCE61 /* AuthRequestConfiguration.swift in Sources */,
 				2D17E4F226F07996001D3F90 /* NavigationBarPrimaryStyle.swift in Sources */,
 				2DEF1F9426E6029200EB93CC /* DecodableArticle.swift in Sources */,
+				2DB31D4E26F18EAB007254B9 /* FeedDetailViewModel.swift in Sources */,
 				2D17E4F426F07ABA001D3F90 /* View+If.swift in Sources */,
 				241B4EEA26D3B3F4000409CC /* SideMenuActionItemView.swift in Sources */,
 				2DD4805826D73C67005225CF /* ObservedViewModel.swift in Sources */,
@@ -1697,6 +1712,7 @@
 				2D46FAF526F87B5D005DD323 /* Expectation+TestableObserver.swift in Sources */,
 				246B387D26F8AA95003173FD /* UserDummy.swift in Sources */,
 				2D892BA726E8698700579856 /* NetworkAPIProtocolMock.swift in Sources */,
+				2DB31D5126F1961A007254B9 /* FeedDetailViewModelSpec.swift in Sources */,
 				2D892BA926E89A6100579856 /* APIArticlesResponse+Dummy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

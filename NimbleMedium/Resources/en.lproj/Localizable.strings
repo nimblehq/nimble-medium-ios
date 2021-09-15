@@ -35,3 +35,4 @@
 "signup.title" = "Signup";
 
 "feedDetail.title" = "Article";
+"feedDetaul.fetchFailure.message" = "Unable to load the article";
