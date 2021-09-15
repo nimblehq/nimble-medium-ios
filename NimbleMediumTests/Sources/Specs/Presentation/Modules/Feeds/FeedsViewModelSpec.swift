@@ -10,25 +10,25 @@ import Nimble
 import RxNimble
 import RxSwift
 import RxTest
+import Resolver
 
 @testable import NimbleMedium
 
 final class FeedsViewModelSpec: QuickSpec {
 
+    @LazyInjected var listArticlesUseCase: ListArticlesUseCaseProtocolMock
+
     override func spec() {
         var viewModel: FeedsViewModel!
-        var factory: ModuleFactoryProtocolMock!
-        var listArticlesUseCase: ListArticlesUseCaseProtocolMock!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
 
         describe("a FeedsViewModel") {
 
             beforeEach {
-                listArticlesUseCase = ListArticlesUseCaseProtocolMock()
-                factory = ModuleFactoryProtocolMock()
-                factory.listArticlesUseCaseReturnValue = listArticlesUseCase
-                viewModel = FeedsViewModel(factory: factory)
+                Resolver.registerMockServices()
+
+                viewModel = FeedsViewModel()
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
             }
@@ -63,7 +63,8 @@ final class FeedsViewModelSpec: QuickSpec {
                         didFinishRefresh = scheduler.createObserver(Void.self)
                         outputArticles = scheduler.createObserver([DecodableArticle].self)
 
-                        listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(inputArticles)
+                        // swiftlint:disable line_length
+                        self.listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(inputArticles)
 
                         viewModel.output.articles
                             .asObservable()
@@ -101,7 +102,7 @@ final class FeedsViewModelSpec: QuickSpec {
                         outputError = scheduler.createObserver(Error.self)
 
                         // swiftlint:disable line_length
-                        listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .error(TestError.mock)
+                        self.listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .error(TestError.mock)
 
                         viewModel.output.didFailToLoadArticle
                             .asObservable()
@@ -140,7 +141,7 @@ final class FeedsViewModelSpec: QuickSpec {
                             didFinishLoadMore = scheduler.createObserver(Bool.self)
                             outputArticles = scheduler.createObserver([DecodableArticle].self)
 
-                            listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(inputArticles)
+                            self.listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(inputArticles)
 
                             viewModel.output.articles
                                 .asObservable()
@@ -178,7 +179,7 @@ final class FeedsViewModelSpec: QuickSpec {
                             didFinishLoadMore = scheduler.createObserver(Bool.self)
                             outputArticles = scheduler.createObserver([DecodableArticle].self)
 
-                            listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(inputArticles)
+                            self.listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(inputArticles)
 
                             viewModel.output.articles
                                 .asObservable()
@@ -217,7 +218,7 @@ final class FeedsViewModelSpec: QuickSpec {
                         outputError = scheduler.createObserver(Error.self)
 
                         // swiftlint:disable line_length
-                        listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .error(TestError.mock)
+                        self.listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .error(TestError.mock)
 
                         viewModel.output.didFailToLoadArticle
                             .asObservable()

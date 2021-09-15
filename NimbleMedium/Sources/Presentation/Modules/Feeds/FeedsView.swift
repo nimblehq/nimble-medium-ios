@@ -24,13 +24,7 @@ struct FeedsView: View {
     var body: some View {
         Content(view: self)
             .binding()
-            .onAppear {
-                viewModel.input.refresh()
-            }
-    }
-
-    init(viewModel: FeedsViewModelProtocol) {
-        self.viewModel = viewModel
+            .onAppear { viewModel.input.refresh() }
     }
 }
 
@@ -122,7 +116,6 @@ private extension FeedsView {
 extension FeedsView.Content {
 
     func binding() -> some View {
-
         onReceive(viewModel.output.didFinishRefresh) { _ in
             if view.isFirstLoad {
                 view.isFirstLoad = false

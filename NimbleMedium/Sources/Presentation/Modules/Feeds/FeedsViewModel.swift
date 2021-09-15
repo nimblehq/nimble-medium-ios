@@ -8,6 +8,7 @@
 import RxSwift
 import RxCocoa
 import SwiftUI
+import Resolver
 
 protocol FeedsViewModelInput {
 
@@ -33,7 +34,7 @@ protocol FeedsViewModelProtocol: ObservableViewModel {
 
 final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
 
-    let listArticlesUseCase: ListArticlesUseCaseProtocol
+    let listArticlesUseCase: ListArticlesUseCaseProtocol = Resolver.resolve()
     var currentOffset = 0
     let limit = 10
     let disposeBag = DisposeBag()
@@ -49,22 +50,17 @@ final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
     var input: FeedsViewModelInput { self }
     var output: FeedsViewModelOutput { self }
 
-    init(factory: ModuleFactoryProtocol) {
-        self.listArticlesUseCase = factory.listArticlesUseCase()
+    init() {
 
         refreshTrigger
             .withUnretained(self)
-            .flatMapLatest {
-                $0.0.refreshTriggered()
-            }
+            .flatMapLatest { $0.0.refreshTriggered(owner: $0.0) }
             .subscribe()
             .disposed(by: disposeBag)
 
         loadMoreTrigger
             .withUnretained(self)
-            .flatMapLatest {
-                $0.0.loadMoreTriggered()
-            }
+            .flatMapLatest { $0.0.loadMoreTriggered(owner: $0.0) }
             .subscribe()
             .disposed(by: disposeBag)
     }
@@ -91,7 +87,7 @@ extension FeedsViewModel: FeedsViewModelOutput {}
 
 private extension FeedsViewModel {
 
-    func refreshTriggered() -> Observable<Void> {
+    func refreshTriggered(owner: FeedsViewModel) -> Observable<Void> {
         listArticlesUseCase.listArticles(
             tag: nil,
             author: nil,
@@ -100,18 +96,14 @@ private extension FeedsViewModel {
             offset: 0
         )
         .do(
-            onSuccess: { [weak self] in
-                guard let self = self else { return }
-
-                self.$didFinishRefresh.accept(())
-                self.currentOffset = 0
-                self.$articles.accept(self.$articles.value + $0)
+            onSuccess: {
+                owner.$didFinishRefresh.accept(())
+                owner.currentOffset = 0
+                owner.$articles.accept(self.$articles.value + $0)
             },
-            onError: { [weak self] in
-                guard let self = self else { return }
-
-                self.$didFinishRefresh.accept(())
-                self.$didFailToLoadArticle.accept($0)
+            onError: {
+                owner.$didFinishRefresh.accept(())
+                owner.$didFailToLoadArticle.accept($0)
             }
         )
         .asObservable()
@@ -119,7 +111,7 @@ private extension FeedsViewModel {
         .catchAndReturn(())
     }
 
-    func loadMoreTriggered() -> Observable<Void> {
+    func loadMoreTriggered(owner: FeedsViewModel) -> Observable<Void> {
         let offset = currentOffset + limit
 
         return listArticlesUseCase.listArticles(
@@ -130,21 +122,17 @@ private extension FeedsViewModel {
             offset: offset
         )
         .do(
-            onSuccess: { [weak self] in
-                guard let self = self else { return }
-
-                self.$didFinishLoadMore.accept(!$0.isEmpty)
-                self.$articles.accept(self.$articles.value + $0)
+            onSuccess: {
+                owner.$didFinishLoadMore.accept(!$0.isEmpty)
+                owner.$articles.accept(owner.$articles.value + $0)
 
                 if !$0.isEmpty {
-                    self.currentOffset = offset
+                    owner.currentOffset = offset
                 }
             },
-            onError: { [weak self] in
-                guard let self = self else { return }
-
-                self.$didFinishLoadMore.accept(true)
-                self.$didFailToLoadArticle.accept($0)
+            onError: {
+                owner.$didFinishLoadMore.accept(true)
+                owner.$didFailToLoadArticle.accept($0)
             }
         )
         .asObservable()
