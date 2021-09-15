@@ -5,9 +5,10 @@
 //  Created by Mark G on 13/08/2021.
 //
 
+import Combine
+import Resolver
 import RxCocoa
 import RxSwift
-import Combine
 
 protocol HomeViewModelInput {
     
@@ -18,8 +19,6 @@ protocol HomeViewModelOutput {
 
     var isSideMenuOpen: Bool { get }
     var isSideMenuOpenDidChange: Signal<Bool> { get }
-    var feedsViewModel: FeedsViewModelProtocol { get }
-    var sideMenuViewModel: SideMenuViewModelProtocol { get }
 }
 
 protocol HomeViewModelProtocol: ObservableViewModel {
@@ -35,15 +34,12 @@ final class HomeViewModel: ObservableObject, HomeViewModelProtocol {
     var input: HomeViewModelInput { self }
     var output: HomeViewModelOutput { self }
 
+    @Injected var feedsViewModel: FeedsViewModelProtocol
+    @Injected var sideMenuViewModel: SideMenuViewModelProtocol
+
     @Published var isSideMenuOpen: Bool = false
 
-    let feedsViewModel: FeedsViewModelProtocol
-    let sideMenuViewModel: SideMenuViewModelProtocol
-
-    init(factory: ModuleFactoryProtocol) {
-        feedsViewModel = factory.feedsViewModel()
-        sideMenuViewModel = factory.sideMenuViewModel()
-
+    init() {
         feedsViewModel.output.didToggleSideMenu
             .emit(with: self) { viewModel, _ in
                 viewModel.toggleSideMenu(true)

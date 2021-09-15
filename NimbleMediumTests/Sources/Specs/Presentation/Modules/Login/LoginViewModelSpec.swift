@@ -10,25 +10,25 @@ import Nimble
 import RxNimble
 import RxSwift
 import RxTest
+import Resolver
 
 @testable import NimbleMedium
 
 final class LoginViewModelSpec: QuickSpec {
 
+    @LazyInjected var loginUseCase: LoginUseCaseProtocolMock
+
     override func spec() {
+
         var viewModel: LoginViewModel!
-        var factory: ModuleFactoryProtocolMock!
-        var loginUseCase: LoginUseCaseProtocolMock!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
 
         describe("a LoginViewModel") {
 
             beforeEach {
-                loginUseCase = LoginUseCaseProtocolMock()
-                factory = ModuleFactoryProtocolMock()
-                factory.loginUseCaseReturnValue = loginUseCase
-                viewModel = LoginViewModel(factory: factory)
+                Resolver.registerMockServices()
+                viewModel = LoginViewModel()
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
             }
@@ -38,10 +38,8 @@ final class LoginViewModelSpec: QuickSpec {
                 context("when logging in with email and password returns success") {
 
                     beforeEach {
-                        loginUseCase.loginEmailPasswordReturnValue = Completable.create { completable in
-                            scheduler.scheduleAt(100) {
-                                completable(.completed)
-                            }
+                        self.loginUseCase.loginEmailPasswordReturnValue = Completable.create { completable in
+                            scheduler.scheduleAt(100) { completable(.completed) }
                             return Disposables.create()
                         }
 
@@ -74,7 +72,7 @@ final class LoginViewModelSpec: QuickSpec {
                 context("when login with email and password returns failure") {
 
                     beforeEach {
-                        loginUseCase.loginEmailPasswordReturnValue = Completable.create { completable in
+                        self.loginUseCase.loginEmailPasswordReturnValue = Completable.create { completable in
                             scheduler.scheduleAt(100) {
                                 completable(.error(TestError.mock))
                             }

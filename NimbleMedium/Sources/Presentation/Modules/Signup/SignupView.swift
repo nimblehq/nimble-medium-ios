@@ -5,6 +5,7 @@
 //  Created by Minh Pham on 24/08/2021.
 //
 
+import Resolver
 import SwiftUI
 import ToastUI
 
@@ -14,12 +15,12 @@ struct SignupView: View {
 
     @State private var email = ""
     @State private var errorMessage = ""
-    @State private var password = ""
-    @State private var username = ""
     @State private var errorToast = false
     @State private var loadingToast = false
+    @State private var password = ""
+    @State private var username = ""
 
-    private var viewModel: SignupViewModelProtocol
+    @ObservedViewModel var viewModel: SignupViewModelProtocol = Resolver.resolve()
 
     var body: some View {
         NavigationView {
@@ -99,17 +100,10 @@ struct SignupView: View {
             .padding()
         }
     }
-
-    init(viewModel: SignupViewModelProtocol) {
-        self.viewModel = viewModel
-    }
 }
 
 #if DEBUG
 struct SignupView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = SignupViewModel(factory: App().factory)
-        return SignupView(viewModel: viewModel)
-    }
+    static var previews: some View { SignupView() }
 }
 #endif

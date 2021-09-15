@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ToastUI
+import Resolver
 
 struct LoginView: View {
 
@@ -18,7 +19,7 @@ struct LoginView: View {
     @State private var errorToast = false
     @State private var loadingToast = false
 
-    @ObservedViewModel var viewModel: LoginViewModelProtocol
+    @ObservedViewModel var viewModel: LoginViewModelProtocol = Resolver.resolve()
 
     var body: some View {
         NavigationView {
@@ -94,17 +95,10 @@ struct LoginView: View {
             .padding()
         }
     }
-
-    init(viewModel: LoginViewModelProtocol) {
-        self.viewModel = viewModel
-    }
 }
 
 #if DEBUG
 struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = LoginViewModel(factory: App().factory)
-        return LoginView(viewModel: viewModel)
-    }
+    static var previews: some View { LoginView() }
 }
 #endif

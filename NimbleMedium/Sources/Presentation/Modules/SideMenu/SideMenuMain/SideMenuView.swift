@@ -6,31 +6,25 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct SideMenuView: View {
 
-    @ObservedViewModel private var viewModel: SideMenuViewModelProtocol
+    @ObservedViewModel private var viewModel: SideMenuViewModelProtocol = Resolver.resolve()
 
     var body: some View {
         GeometryReader { metrics in
             VStack(alignment: .center) {
                 SideMenuHeaderView()
                     .frame(height: metrics.size.height * 0.3)
-                SideMenuActionsView(viewModel: viewModel.output.sideMenuActionsViewModel)
+                SideMenuActionsView()
             }
         }
-    }
-
-    init(viewModel: SideMenuViewModelProtocol) {
-        self.viewModel = viewModel
     }
 }
 
 #if DEBUG
 struct SideMenuView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = SideMenuViewModel(factory: App().factory)
-        return SideMenuView(viewModel: viewModel)
-    }
+    static var previews: some View { SideMenuView() }
 }
 #endif
