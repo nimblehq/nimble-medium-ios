@@ -16,6 +16,7 @@ enum ArticleRequestConfiguration {
             limit: Int?,
             offset: Int?
          )
+    case getArticle(slug: String)
 }
 
 extension ArticleRequestConfiguration: RequestConfiguration {
@@ -26,12 +27,14 @@ extension ArticleRequestConfiguration: RequestConfiguration {
         switch self {
         case .listArticles:
             return "/articles"
+        case .getArticle(let slug):
+            return "articles/\(slug)"
         }
     }
 
     var method: HTTPMethod {
         switch self {
-        case .listArticles:
+        case .listArticles, .getArticle:
             return .get
         }
     }
@@ -53,6 +56,8 @@ extension ArticleRequestConfiguration: RequestConfiguration {
                 "offset": offset
             ]
             return parameters.compactMapValues { $0 }
+        case .getArticle:
+            return [:]
         }
     }
 

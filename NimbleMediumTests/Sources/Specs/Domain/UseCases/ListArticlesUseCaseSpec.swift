@@ -34,7 +34,7 @@ final class ListArticlesUseCaseSpec: QuickSpec {
 
                 context("when articleRepository.listArticles() returns success") {
 
-                    let inputArticles = APIArticleResponse.dummy.articles
+                    let inputArticles = APIArticlesResponse.dummy.articles
                     var outputArticles: TestableObserver<[DecodableArticle]>!
 
                     beforeEach {
