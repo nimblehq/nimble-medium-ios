@@ -106,11 +106,6 @@ class Constants
     'github_action_keychain'
   end
 
-  # a scheme name for unit testing
-  def self.KEYCHAIN_PASSWORD
-    'password'
-  end
-
   #################
   ### ARCHIVING ###
   #################

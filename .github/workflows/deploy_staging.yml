@@ -80,6 +80,7 @@ jobs:
       run: bundle exec fastlane sync_adhoc_signing
       env:
         MATCH_PASSWORD: ${{ secrets.MATCH_PASS }}
+        KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
 
     - name: Build App and Distribute to Firebase
       run: bundle exec fastlane build_and_upload_staging_app
