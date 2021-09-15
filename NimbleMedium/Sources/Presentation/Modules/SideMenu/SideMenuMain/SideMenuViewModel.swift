@@ -5,9 +5,10 @@
 //  Created by Minh Pham on 25/08/2021.
 //
 
+import Combine
+import Resolver
 import RxCocoa
 import RxSwift
-import Combine
 
 protocol SideMenuViewModelInput {
 
@@ -17,7 +18,6 @@ protocol SideMenuViewModelInput {
 protocol SideMenuViewModelOutput {
 
     var didSelectMenuOption: Signal<Void> { get }
-    var sideMenuActionsViewModel: SideMenuActionsViewModelProtocol { get }
 }
 
 protocol SideMenuViewModelProtocol: ObservableViewModel {
@@ -33,12 +33,11 @@ final class SideMenuViewModel: ObservableObject, SideMenuViewModelProtocol {
 
     private let disposeBag = DisposeBag()
 
-    let sideMenuActionsViewModel: SideMenuActionsViewModelProtocol
+    @Injected var sideMenuActionsViewModel: SideMenuActionsViewModelProtocol
 
     @PublishRelayProperty var didSelectMenuOption: Signal<Void>
 
-    init(factory: ModuleFactoryProtocol) {
-        sideMenuActionsViewModel = factory.sideMenuActionsViewModel()
+    init() {
         sideMenuActionsViewModel.output.didSelectLoginOption.asObservable()
             .withUnretained(self)
             .bind { _ in

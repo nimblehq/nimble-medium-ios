@@ -7,6 +7,7 @@
 
 import RxSwift
 import RxCocoa
+import Resolver
 
 protocol LoginViewModelInput {
 
@@ -36,32 +37,34 @@ final class LoginViewModel: ObservableObject, LoginViewModelProtocol {
     var input: LoginViewModelInput { self }
     var output: LoginViewModelOutput { self }
 
+    @Injected var loginUseCase: LoginUseCaseProtocol
+
+    @BehaviorRelayProperty(false) var isLoading: Driver<Bool>
     @PublishRelayProperty var didLogin: Signal<Void>
     @PublishRelayProperty var didSelectNoAccount: Signal<Void>
     @PublishRelayProperty var errorMessage: Signal<String>
-    @BehaviorRelayProperty(false) var isLoading: Driver<Bool>
 
-    init(factory: ModuleFactoryProtocol) {
-        let loginUseCase = factory.loginUseCase()
-
-        loginTrigger.flatMapLatest { inputs in
-            loginUseCase
-                .login(email: inputs.email, password: inputs.password)
-                .asObservable()
-                .materialize()
-        }
-        .subscribe(
-            with: self,
-            onNext: { owner, event in
-                owner.$isLoading.accept(false)
-                if let error = event.error {
-                    owner.$errorMessage.accept(error.detail)
-                } else {
-                    owner.$didLogin.accept(())
-                }
+    init() {
+        loginTrigger
+            .withUnretained(self)
+            .flatMapLatest { owner, inputs in
+                owner.loginUseCase
+                    .login(email: inputs.email, password: inputs.password)
+                    .asObservable()
+                    .materialize()
             }
-        )
-        .disposed(by: disposeBag)
+            .subscribe(
+                with: self,
+                onNext: { owner, event in
+                    owner.$isLoading.accept(false)
+                    if let error = event.error {
+                        owner.$errorMessage.accept(error.detail)
+                    } else {
+                        owner.$didLogin.accept(())
+                    }
+                }
+            )
+            .disposed(by: disposeBag)
     }
 }
 

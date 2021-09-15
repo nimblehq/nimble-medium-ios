@@ -5,25 +5,28 @@
 //  Created by Mark G on 06/08/2021.
 //
 
-import SwiftUI
-import RxSwift
+import Resolver
 import RxCocoa
 import RxCombine
+import RxSwift
+import SwiftUI
 
 struct HomeView: View {
 
-    @ObservedViewModel private var viewModel: HomeViewModelProtocol
+    @ObservedViewModel private var viewModel: HomeViewModelProtocol = Resolver.resolve()
+
     @State private var displaySideMenuProgress: CGFloat = 0.0
+
     private let draggingAnimator = SideMenuDraggingAnimator()
     private let sideMenuCoordinateSpaceName = "SideMenu"
 
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                FeedsView(viewModel: viewModel.output.feedsViewModel)
+                FeedsView()
                 sideMenuDimmedBackground
                 GeometryReader { geo in
-                    SideMenuView(viewModel: viewModel.output.sideMenuViewModel)
+                    SideMenuView()
                         .frame(width: geo.size.width * 2.0 / 3.0, height: geo.size.height)
                         .background(Color.white)
                         .offset(x: (1 - displaySideMenuProgress) * -geo.size.width * 2.0 / 3.0)
@@ -53,10 +56,6 @@ struct HomeView: View {
         }
     }
 
-    init (viewModel: HomeViewModelProtocol) {
-        self.viewModel = viewModel
-    }
-
     private func dragGesture(geo: GeometryProxy) -> some Gesture {
         DragGesture(coordinateSpace: .named(sideMenuCoordinateSpaceName))
             .onChanged { gesture in
@@ -77,9 +76,6 @@ struct HomeView: View {
 
 #if DEBUG
 struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = HomeViewModel(factory: App().factory)
-        return HomeView(viewModel: viewModel)
-    }
+    static var previews: some View { HomeView() }
 }
 #endif
