@@ -99,12 +99,12 @@ final class ArticleRepositorySpec: QuickSpec {
                         outputArticle = scheduler.createObserver(DecodableArticle.self)
                         networkAPI.setPerformRequestForReturnValue(Single.just(inputResponse))
                         repository.getArticle(slug: "slug")
-                        .asObservable()
-                        .compactMap {
-                            $0 as? DecodableArticle
-                        }
-                        .bind(to: outputArticle)
-                        .disposed(by: disposeBag)
+                            .asObservable()
+                            .compactMap {
+                                $0 as? DecodableArticle
+                            }
+                            .bind(to: outputArticle)
+                            .disposed(by: disposeBag)
                     }
 
                     it("returns correct article") {
@@ -120,11 +120,11 @@ final class ArticleRepositorySpec: QuickSpec {
                         outputError = scheduler.createObserver(Optional<Error>.self)
                         networkAPI.setPerformRequestForReturnValue(Single<APIArticleResponse>.error(TestError.mock))
                         repository.getArticle(slug: "slug")
-                        .asObservable()
-                        .materialize()
-                        .map { $0.error }
-                        .bind(to: outputError)
-                        .disposed(by: disposeBag)
+                            .asObservable()
+                            .materialize()
+                            .map { $0.error }
+                            .bind(to: outputError)
+                            .disposed(by: disposeBag)
                     }
 
                     it("returns correct error") {
