@@ -371,34 +371,6 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
-		248E13AD26F0667200439BCC /* Application */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Application;
-			sourceTree = "<group>";
-		};
-		248E13AE26F0671F00439BCC /* Data */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		248E13AF26F0672700439BCC /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		248E13B026F0672F00439BCC /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
 		248E13B126F067A300439BCC /* Injection */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,17 +394,6 @@
 				249042E526D4D14F00E970B6 /* SignupViewModel.swift */,
 			);
 			path = Signup;
-			sourceTree = "<group>";
-		};
-		249042F226D50F7800E970B6 /* Factories */ = {
-			isa = PBXGroup;
-			children = (
-				248E13AD26F0667200439BCC /* Application */,
-				248E13AE26F0671F00439BCC /* Data */,
-				248E13AF26F0672700439BCC /* Domain */,
-				248E13B026F0672F00439BCC /* Presentation */,
-			);
-			path = Factories;
 			sourceTree = "<group>";
 		};
 		24F3D7AF26DCE8BB00DE2420 /* User */ = {
@@ -555,7 +516,6 @@
 				2D72E47C26C2183B00861239 /* Constants */,
 				2D72E47F26C2185C00861239 /* Data */,
 				2D72E48026C2188300861239 /* Domain */,
-				249042F226D50F7800E970B6 /* Factories */,
 				248E13B126F067A300439BCC /* Injection */,
 				2D72E48226C218C200861239 /* Presentation */,
 				2DE3B9B226C1336300272775 /* Supports */,
@@ -1723,7 +1683,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.nimble-medium-stag";
 				PRODUCT_MODULE_NAME = NimbleMedium;
 				PRODUCT_NAME = "Nimble Medium - Staging";
@@ -1860,7 +1820,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.nimble-medium";
 				PRODUCT_MODULE_NAME = NimbleMedium;
 				PRODUCT_NAME = "Nimble Medium";
@@ -1994,7 +1954,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.nimble-medium";
 				PRODUCT_MODULE_NAME = NimbleMedium;
 				PRODUCT_NAME = "Nimble Medium";
@@ -2133,7 +2093,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.nimblehq.nimble-medium-stag";
 				PRODUCT_MODULE_NAME = NimbleMedium;
 				PRODUCT_NAME = "Nimble Medium - Staging";
