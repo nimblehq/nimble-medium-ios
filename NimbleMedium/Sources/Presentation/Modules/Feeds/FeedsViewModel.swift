@@ -82,15 +82,7 @@ extension FeedsViewModel: FeedsViewModelInput {
     }
 }
 
-extension FeedsViewModel: FeedsViewModelOutput {
-
-    func getFeedDetailViewModel(for article: Article) -> FeedDetailViewModelProtocol {
-        Resolver.resolve(
-            FeedDetailViewModelProtocol.self,
-            args: article.slug
-        )
-    }
-}
+extension FeedsViewModel: FeedsViewModelOutput {}
 
 // MARK: - Private
 

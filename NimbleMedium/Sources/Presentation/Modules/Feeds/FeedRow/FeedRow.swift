@@ -49,6 +49,7 @@ private extension FeedRow {
                         .fontWeight(.bold)
                         .lineLimit(1)
                         .truncationMode(.tail)
+                        .foregroundColor(.black)
                     Text(view.uiModel.articleDescription)
                         .foregroundColor(.gray)
                 }

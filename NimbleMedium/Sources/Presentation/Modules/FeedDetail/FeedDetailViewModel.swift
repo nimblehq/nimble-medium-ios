@@ -17,8 +17,13 @@ protocol FeedDetailViewModelInput {
 
 protocol FeedDetailViewModelOutput {
 
-    var didFailToFetchArticle: Signal<Error> { get }
-    var article: Driver<Article?> { get }
+    var didFetchArticle: Signal<Void> { get }
+    var didFailToFetchArticle: Signal<Void> { get }
+    var articleTitle: Driver<String> { get }
+    var articleBody: Driver<String> { get }
+    var articleUpdatedAt: Driver<String> { get }
+    var authorName: Driver<String> { get }
+    var authorImage: Driver<URL?> { get }
 }
 
 protocol FeedDetailViewModelProtocol: ObservableViewModel {
@@ -35,8 +40,13 @@ final class FeedDetailViewModel: ObservableObject, FeedDetailViewModelProtocol {
     let fetchArticleTrigger = PublishRelay<Void>()
     let slug: String
 
-    @PublishRelayProperty var didFailToFetchArticle: Signal<Error>
-    @BehaviorRelayProperty(nil) var article: Driver<Article?>
+    @PublishRelayProperty var didFetchArticle: Signal<Void>
+    @PublishRelayProperty var didFailToFetchArticle: Signal<Void>
+    @BehaviorRelayProperty("") var articleTitle: Driver<String>
+    @BehaviorRelayProperty("") var articleBody: Driver<String>
+    @BehaviorRelayProperty("") var authorName: Driver<String>
+    @BehaviorRelayProperty(nil) var authorImage: Driver<URL?>
+    @BehaviorRelayProperty("") var articleUpdatedAt: Driver<String>
 
     var input: FeedDetailViewModelInput { self }
     var output: FeedDetailViewModelOutput { self }
@@ -67,8 +77,15 @@ private extension FeedDetailViewModel {
     func fetchArticleTriggered(owner: FeedDetailViewModel) -> Observable<Void> {
         getArticleUseCase.getArticle(slug: slug)
         .do(
-            onSuccess: { owner.$article.accept($0) },
-            onError: { owner.$didFailToFetchArticle.accept($0) }
+            onSuccess: {
+                owner.$articleTitle.accept($0.title)
+                owner.$articleBody.accept($0.body)
+                owner.$articleUpdatedAt.accept($0.updatedAt.format(with: .monthDayYear))
+                owner.$authorName.accept($0.author.username)
+                owner.$authorImage.accept(try? $0.author.image?.asURL())
+                owner.$didFetchArticle.accept(())
+            },
+            onError: { _ in owner.$didFailToFetchArticle.accept(()) }
         )
         .asObservable()
         .map { _ in () }

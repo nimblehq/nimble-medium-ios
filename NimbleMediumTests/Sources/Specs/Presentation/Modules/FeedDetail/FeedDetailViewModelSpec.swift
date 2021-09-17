@@ -19,7 +19,7 @@ final class FeedDetailViewModelSpec: QuickSpec {
     @LazyInjected var getArticleUseCase: GetArticleUseCaseProtocolMock
     
     override func spec() {
-        var viewModel: FeedDetailViewModel!
+        var viewModel: FeedDetailViewModelProtocol!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
 
@@ -36,46 +36,70 @@ final class FeedDetailViewModelSpec: QuickSpec {
 
                 context("when GetArticleUseCase return success") {
                     let inputArticle = APIArticleResponse.dummy.article
-                    var outputArticle: TestableObserver<DecodableArticle>!
 
                     beforeEach {
-                        outputArticle = scheduler.createObserver(DecodableArticle.self)
+                        self.getArticleUseCase.getArticleSlugReturnValue = .just(inputArticle, on: scheduler, at: 10)
 
-                        self.getArticleUseCase.getArticleSlugReturnValue = .just(inputArticle)
-
-                        viewModel.output.article
-                            .asObservable()
-                            .compactMap { $0 as? DecodableArticle }
-                            .bind(to: outputArticle)
-                            .disposed(by: disposeBag)
-
-                        viewModel.fetchArticle()
+                        scheduler.scheduleAt(5) {
+                            viewModel.input.fetchArticle()
+                        }
                     }
 
-                    it("returns output article with correct value") {
-                        expect(outputArticle.events.last?.value.element) == inputArticle
+                    it("returns output articleTitle with correct value") {
+                        expect(viewModel.output.articleTitle)
+                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                                .next(0, ""),
+                                .next(10, inputArticle.title)
+                            ]
+                    }
+
+                    it("returns output articleBody with correct value") {
+                        expect(viewModel.output.articleBody)
+                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                                .next(0, ""),
+                                .next(10, inputArticle.body)
+                            ]
+                    }
+
+                    it("returns output authorName with correct value") {
+                        expect(viewModel.output.authorName)
+                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                                .next(0, ""),
+                                .next(10, inputArticle.author.username)
+                            ]
+                    }
+
+                    it("returns output authorImage with correct value") {
+                        expect(viewModel.output.authorImage)
+                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                                .next(0, nil),
+                                .next(10, try? inputArticle.author.image?.asURL())
+                            ]
+                    }
+
+                    it("returns output articleUpdatedAt with correct value") {
+                        expect(viewModel.output.articleUpdatedAt)
+                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                                .next(0, ""),
+                                .next(10, inputArticle.updatedAt.format(with: .monthDayYear))
+                            ]
                     }
                 }
 
                 context("when GetArticleUseCase return failure") {
-                    var outputError: TestableObserver<Error>!
 
                     beforeEach {
-                        outputError = scheduler.createObserver(Error.self)
+                        self.getArticleUseCase.getArticleSlugReturnValue = .error(TestError.mock, on: scheduler, at: 10)
 
-                        self.getArticleUseCase.getArticleSlugReturnValue = .error(TestError.mock)
-
-                        viewModel.output.didFailToFetchArticle
-                            .asObservable()
-                            .bind(to: outputError)
-                            .disposed(by: disposeBag)
-
-                        viewModel.fetchArticle()
+                        scheduler.scheduleAt(5) {
+                            viewModel.input.fetchArticle()
+                        }
                     }
 
-                    it("returns output didFailToFetchArticle with correct error") {
-                        let error = outputError.events.first?.value.element as? TestError
-                        expect(error) == TestError.mock
+                    it("returns output didFailToFetchArticle with signal") {
+                        expect(viewModel.output.didFailToFetchArticle)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .notTo(beEmpty())
                     }
                 }
             }
