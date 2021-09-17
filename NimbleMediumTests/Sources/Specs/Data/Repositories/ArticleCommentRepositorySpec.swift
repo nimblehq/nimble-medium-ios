@@ -41,16 +41,17 @@ final class ArticleCommentRepositorySpec: QuickSpec {
                         outputArticleComments = scheduler.createObserver([APIArticleComment].self)
                         networkAPI.setPerformRequestForReturnValue(Single.just(inputResponse))
                         repository.getComments(slug: "")
-                        .asObservable()
-                        .map {
-                            $0.compactMap { $0 as? APIArticleComment }
-                        }
-                        .bind(to: outputArticleComments)
-                        .disposed(by: disposeBag)
+                            .asObservable()
+                            .map { $0.compactMap { $0 as? APIArticleComment } }
+                            .bind(to: outputArticleComments)
+                            .disposed(by: disposeBag)
                     }
 
                     it("returns correct articles") {
-                        expect(outputArticleComments.events.first?.value.element) == inputResponse.comments
+                        expect(outputArticleComments).events() == [
+                            .next(0, inputResponse.comments),
+                            .completed(0)
+                        ]
                     }
                 }
 
@@ -60,19 +61,23 @@ final class ArticleCommentRepositorySpec: QuickSpec {
 
                     beforeEach {
                         outputError = scheduler.createObserver(Optional<Error>.self)
-                        // swiftlint:disable line_length
-                        networkAPI.setPerformRequestForReturnValue(Single<APIArticleCommentsResponse>.error(TestError.mock))
+                        networkAPI.setPerformRequestForReturnValue(
+                            Single<APIArticleCommentsResponse>.error(TestError.mock)
+                        )
                         repository.getComments(slug: "")
-                        .asObservable()
-                        .materialize()
-                        .map { $0.error }
-                        .bind(to: outputError)
-                        .disposed(by: disposeBag)
+                            .asObservable()
+                            .materialize()
+                            .map { $0.error }
+                            .bind(to: outputError)
+                            .disposed(by: disposeBag)
                     }
 
                     it("returns correct error") {
                         let error = outputError.events.first?.value.element as? TestError
+
+                        expect(outputError.events.count) == 2
                         expect(error) == TestError.mock
+                        expect(outputError.events.last?.value.isCompleted) == true
                     }
                 }
             }

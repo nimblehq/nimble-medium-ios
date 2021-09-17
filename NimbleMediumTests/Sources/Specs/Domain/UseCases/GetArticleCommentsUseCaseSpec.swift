@@ -43,9 +43,7 @@ final class GetArticleCommentsUseCaseSpec: QuickSpec {
 
                         usecase.getComments(slug: "")
                         .asObservable()
-                        .map {
-                            $0.compactMap { $0 as? APIArticleComment }
-                        }
+                        .map { $0.compactMap { $0 as? APIArticleComment } }
                         .bind(to: outputArticleComments)
                         .disposed(by: disposeBag)
                     }

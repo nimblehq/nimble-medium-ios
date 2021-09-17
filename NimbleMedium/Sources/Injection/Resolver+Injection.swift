@@ -10,7 +10,6 @@ import Resolver
 
 extension Resolver: ResolverRegistering {
 
-    // swiftlint:disable function_body_length
     public static func registerAllServices() {
         defaultScope = .graph
 
