@@ -10,6 +10,7 @@ import Resolver
 
 extension Resolver: ResolverRegistering {
 
+    // swiftlint:disable function_body_length
     public static func registerAllServices() {
         defaultScope = .graph
 
@@ -31,6 +32,9 @@ extension Resolver: ResolverRegistering {
         register {
             ArticleRepository(networkAPI: resolve())
         }.implements(ArticleRepositoryProtocol.self)
+        register {
+            ArticleCommentRepository(networkAPI: resolve())
+        }.implements(ArticleCommentRepositoryProtocol.self)
     }
 
     private static func registerUseCases() {
@@ -55,6 +59,9 @@ extension Resolver: ResolverRegistering {
         register {
             GetArticleUseCase(articleRepository: resolve())
         }.implements(GetArticleUseCaseProtocol.self)
+        register {
+            GetArticleCommentsUseCase(articleCommentRepository: resolve())
+        }.implements(GetArticleCommentsUseCaseProtocol.self)
     }
 
     private static func registerViewModels() {
