@@ -46,8 +46,7 @@ private extension FeedsView {
                     }
                 }
                 .navigationTitle(Localizable.feedsTitle())
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationBarColor(backgroundColor: .green)
+                .modifier(NavigationBarPrimaryStyle(isBackButtonHidden: true))
                 .toolbar { navigationBarLeadingContent }
                 .toast(isPresented: view.$isErrorToastPresented, dismissAfter: 3.0) {
                     ToastView(Localizable.errorGeneric()) { } background: {
