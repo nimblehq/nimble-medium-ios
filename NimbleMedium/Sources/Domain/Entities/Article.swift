@@ -8,7 +8,8 @@
 import Foundation
 
 protocol Article {
-    
+
+    var id: String { get }
     var slug: String { get }
     var title: String { get }
     var description: String { get }
@@ -19,4 +20,9 @@ protocol Article {
     var favorited: Bool { get }
     var favoritesCount: Int { get }
     var author: Profile { get }
+}
+
+extension Article {
+
+    var id: String { slug }
 }

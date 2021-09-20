@@ -19,7 +19,7 @@ final class FeedsViewModelSpec: QuickSpec {
     @LazyInjected var listArticlesUseCase: ListArticlesUseCaseProtocolMock
 
     override func spec() {
-        var viewModel: FeedsViewModel!
+        var viewModel: FeedsViewModelProtocol!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
 
@@ -27,7 +27,17 @@ final class FeedsViewModelSpec: QuickSpec {
 
             beforeEach {
                 Resolver.registerMockServices()
+                Resolver.mock.register { _, args -> FeedRowViewModelProtocolMock in
+                    let viewModel = FeedRowViewModelProtocolMock()
+                    let output = FeedRowViewModelOutputMock()
+                    viewModel.output = output
 
+                    output.id = (args.get() as Article).id
+
+                    return viewModel
+                }
+                .implements(FeedRowViewModelProtocol.self)
+                
                 viewModel = FeedsViewModel()
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
@@ -35,95 +45,80 @@ final class FeedsViewModelSpec: QuickSpec {
 
             describe("its toggleSideMenu() call") {
 
-                var didToggleSideMenu: TestableObserver<Void>!
-
                 beforeEach {
-                    didToggleSideMenu = scheduler.createObserver(Void.self)
-                    viewModel.output.didToggleSideMenu
-                        .asObservable()
-                        .bind(to: didToggleSideMenu)
-                        .disposed(by: disposeBag)
-
-                    viewModel.toggleSideMenu()
+                    scheduler.scheduleAt(5) {
+                        viewModel.input.toggleSideMenu()
+                    }
                 }
 
                 it("returns output didToggleSideMenu with signal") {
-                    expect(didToggleSideMenu.events.count) == 1
+                    expect(viewModel.output.didToggleSideMenu)
+                        .events(scheduler: scheduler, disposeBag: disposeBag)
+                        .notTo(beEmpty())
                 }
             }
 
             describe("its refresh() call") {
 
                 context("when ListArticlesUseCase return success") {
-                    var didFinishRefresh: TestableObserver<Void>!
                     let inputArticles = APIArticleResponse.dummy.articles
-                    var outputArticles: TestableObserver<[DecodableArticle]>!
 
                     beforeEach {
-                        didFinishRefresh = scheduler.createObserver(Void.self)
-                        outputArticles = scheduler.createObserver([DecodableArticle].self)
 
-                        // swiftlint:disable line_length
-                        self.listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(inputArticles)
+                        self.listArticlesUseCase
+                            .listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(
+                                inputArticles,
+                                on: scheduler,
+                                at: 10
+                            )
 
-                        viewModel.output.articles
-                            .asObservable()
-                            .map { $0.compactMap { $0 as? DecodableArticle } }
-                            .bind(to: outputArticles)
-                            .disposed(by: disposeBag)
-
-                        viewModel.output.didFinishRefresh
-                            .asObservable()
-                            .bind(to: didFinishRefresh)
-                            .disposed(by: disposeBag)
-
-                        viewModel.refresh()
+                        scheduler.scheduleAt(5) {
+                            viewModel.input.refresh()
+                        }
                     }
 
                     it("returns output didFinishRefresh with signal") {
-                        expect(didFinishRefresh.events.count) == 1
+                        expect(viewModel.output.didFinishRefresh)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .notTo(beEmpty())
                     }
 
-                    it("returns output articles with correct value") {
-                        expect(outputArticles.events.last?.value.element) == inputArticles
-                    }
-
-                    it("resets current offset") {
-                        expect(viewModel.currentOffset) == 0
+                    it("returns output feedViewModels with correct value") {
+                        expect(
+                            viewModel.output.feedRowViewModels
+                                .map { $0.compactMap { $0.output.id } }
+                        )
+                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                                .next(0, []),
+                                .next(10, inputArticles.map { $0.slug })
+                            ]
                     }
                 }
 
                 context("when ListArticlesUseCase return failure") {
-                    var didFinishRefresh: TestableObserver<Void>!
-                    var outputError: TestableObserver<Error>!
 
                     beforeEach {
-                        didFinishRefresh = scheduler.createObserver(Void.self)
-                        outputError = scheduler.createObserver(Error.self)
-
-                        // swiftlint:disable line_length
-                        self.listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .error(TestError.mock)
-
-                        viewModel.output.didFailToLoadArticle
-                            .asObservable()
-                            .bind(to: outputError)
-                            .disposed(by: disposeBag)
-
-                        viewModel.output.didFinishRefresh
-                            .asObservable()
-                            .bind(to: didFinishRefresh)
-                            .disposed(by: disposeBag)
-
-                        viewModel.refresh()
+                        self.listArticlesUseCase
+                            .listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .error(
+                                TestError.mock,
+                                on: scheduler,
+                                at: 10
+                            )
+                        scheduler.scheduleAt(5) {
+                            viewModel.input.refresh()
+                        }
                     }
 
                     it("returns output didFinishRefresh with signal") {
-                        expect(didFinishRefresh.events.count) == 1
+                        expect(viewModel.output.didFinishRefresh)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .notTo(beEmpty())
                     }
 
                     it("returns output didFailToLoadArticle with correct error") {
-                        let error = outputError.events.first?.value.element as? TestError
-                        expect(error) == TestError.mock
+                        expect(viewModel.output.didFailToLoadArticle)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .notTo(beEmpty())
                     }
                 }
             }
@@ -132,114 +127,73 @@ final class FeedsViewModelSpec: QuickSpec {
 
                 context("when ListArticlesUseCase return success") {
 
-                    context("when ListArticlesUseCase return empty") {
-                        var didFinishLoadMore: TestableObserver<Bool>!
-                        let inputArticles: [DecodableArticle] = []
-                        var outputArticles: TestableObserver<[DecodableArticle]>!
+                    let inputArticles = APIArticleResponse.dummy.articles
 
-                        beforeEach {
-                            didFinishLoadMore = scheduler.createObserver(Bool.self)
-                            outputArticles = scheduler.createObserver([DecodableArticle].self)
-
-                            self.listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(inputArticles)
-
-                            viewModel.output.articles
-                                .asObservable()
-                                .map { $0.compactMap { $0 as? DecodableArticle } }
-                                .bind(to: outputArticles)
-                                .disposed(by: disposeBag)
-
-                            viewModel.output.didFinishLoadMore
-                                .asObservable()
-                                .bind(to: didFinishLoadMore)
-                                .disposed(by: disposeBag)
-
-                            viewModel.loadMore()
+                    beforeEach {
+                        self.listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(
+                            inputArticles,
+                            on: scheduler,
+                            at: 10
+                        )
+                        scheduler.scheduleAt(5) {
+                            viewModel.input.loadMore()
+                            self.listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(
+                                inputArticles,
+                                on: scheduler,
+                                at: 20
+                            )
                         }
-
-                        it("returns output didFinishLoadMore with correct value") {
-                            expect(didFinishLoadMore.events.first?.value.element) == false
+                        scheduler.scheduleAt(15) {
+                            viewModel.input.loadMore()
+                            self.listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(
+                                [],
+                                on: scheduler,
+                                at: 30
+                            )
                         }
-
-                        it("returns output articles with correct value") {
-                            expect(outputArticles.events.last?.value.element) == inputArticles
-                        }
-
-                        it("updates current offset with correct value") {
-                            expect(viewModel.currentOffset) == 0
-                        }
+                        scheduler.scheduleAt(25) { viewModel.input.loadMore() }
                     }
 
-                    context("when ListArticlesUseCase return non-empty") {
-                        var didFinishLoadMore: TestableObserver<Bool>!
-                        let inputArticles = APIArticleResponse.dummy.articles
-                        var outputArticles: TestableObserver<[DecodableArticle]>!
+                    it("returns output didFinishLoadMore with correct value") {
+                        expect(viewModel.output.didFinishLoadMore)
+                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                                .next(10, true),
+                                .next(20, true),
+                                .next(30, false)
+                            ]
+                    }
 
-                        beforeEach {
-                            didFinishLoadMore = scheduler.createObserver(Bool.self)
-                            outputArticles = scheduler.createObserver([DecodableArticle].self)
-
-                            self.listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(inputArticles)
-
-                            viewModel.output.articles
-                                .asObservable()
-                                .map { $0.compactMap { $0 as? DecodableArticle } }
-                                .bind(to: outputArticles)
-                                .disposed(by: disposeBag)
-
-                            viewModel.output.didFinishLoadMore
-                                .asObservable()
-                                .bind(to: didFinishLoadMore)
-                                .disposed(by: disposeBag)
-
-                            viewModel.loadMore()
-                        }
-
-                        it("returns output didFinishLoadMore with correct value") {
-                            expect(didFinishLoadMore.events.first?.value.element) == true
-                        }
-
-                        it("returns output articles with correct value") {
-                            expect(outputArticles.events.last?.value.element) == inputArticles
-                        }
-
-                        it("updates current offset with correct value") {
-                            expect(viewModel.currentOffset) == viewModel.limit
-                        }
+                    it("returns output articles with correct value") {
+                        let ids = inputArticles.map { $0.id }
+                        let doubleIds = ids + ids
+                        expect(
+                            viewModel.output.feedRowViewModels
+                                .map { $0.compactMap { $0.output.id } }
+                        )
+                        .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                            .next(0, []),
+                            .next(10, ids),
+                            .next(20, doubleIds),
+                            .next(30, doubleIds)
+                        ]
                     }
                 }
 
                 context("when ListArticlesUseCase return failure") {
-                    var didFinishLoadMore: TestableObserver<Bool>!
-                    var outputError: TestableObserver<Error>!
 
                     beforeEach {
-                        didFinishLoadMore = scheduler.createObserver(Bool.self)
-                        outputError = scheduler.createObserver(Error.self)
-
-                        // swiftlint:disable line_length
-                        self.listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .error(TestError.mock)
-
-                        viewModel.output.didFailToLoadArticle
-                            .asObservable()
-                            .bind(to: outputError)
-                            .disposed(by: disposeBag)
-
-                        viewModel.output.didFinishLoadMore
-                            .asObservable()
-                            .bind(to: didFinishLoadMore)
-                            .disposed(by: disposeBag)
-
-                        viewModel.loadMore()
+                        self.listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .error(
+                            TestError.mock,
+                            on: scheduler,
+                            at: 10
+                        )
+                        scheduler.scheduleAt(5) { viewModel.input.loadMore() }
                     }
 
-                    it("returns output didFinishLoadMore with correct value") {
-                        expect(didFinishLoadMore.events.first?.value.element) == true
-                    }
-
-                    it("returns output didFailToLoadArticle with correct error") {
-                        let error = outputError.events.first?.value.element as? TestError
-                        expect(error) == TestError.mock
+                    it("returns output didFailToLoadArticle with signal") {
+                        expect(viewModel.output.didFailToLoadArticle)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .notTo(beEmpty())
                     }
                 }
             }

@@ -20,10 +20,10 @@ protocol FeedsViewModelInput {
 protocol FeedsViewModelOutput {
 
     var didToggleSideMenu: Signal<Void> { get }
-    var didFailToLoadArticle: Signal<Error> { get }
+    var didFailToLoadArticle: Signal<Void> { get }
     var didFinishLoadMore: Signal<Bool> { get }
     var didFinishRefresh: Signal<Void> { get }
-    var articles: Driver<[Article]> { get }
+    var feedRowViewModels: Driver<[FeedRowViewModelProtocol]> { get }
 }
 
 protocol FeedsViewModelProtocol: ObservableViewModel {
@@ -34,18 +34,19 @@ protocol FeedsViewModelProtocol: ObservableViewModel {
 
 final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
 
-    let listArticlesUseCase: ListArticlesUseCaseProtocol = Resolver.resolve()
-    var currentOffset = 0
-    let limit = 10
-    let disposeBag = DisposeBag()
-    let refreshTrigger = PublishRelay<Void>()
-    let loadMoreTrigger = PublishRelay<Void>()
+    @Injected private var listArticlesUseCase: ListArticlesUseCaseProtocol
+
+    private var currentOffset = 0
+    private let limit = 10
+    private let disposeBag = DisposeBag()
+    private let refreshTrigger = PublishRelay<Void>()
+    private let loadMoreTrigger = PublishRelay<Void>()
 
     @PublishRelayProperty var didToggleSideMenu: Signal<Void>
-    @PublishRelayProperty var didFailToLoadArticle: Signal<Error>
+    @PublishRelayProperty var didFailToLoadArticle: Signal<Void>
     @PublishRelayProperty var didFinishLoadMore: Signal<Bool>
     @PublishRelayProperty var didFinishRefresh: Signal<Void>
-    @BehaviorRelayProperty([]) var articles: Driver<[Article]>
+    @BehaviorRelayProperty([]) var feedRowViewModels: Driver<[FeedRowViewModelProtocol]>
 
     var input: FeedsViewModelInput { self }
     var output: FeedsViewModelOutput { self }
@@ -99,11 +100,11 @@ private extension FeedsViewModel {
             onSuccess: {
                 owner.$didFinishRefresh.accept(())
                 owner.currentOffset = 0
-                owner.$articles.accept(self.$articles.value + $0)
+                owner.$feedRowViewModels.accept(self.$feedRowViewModels.value + $0.viewModels)
             },
-            onError: {
+            onError: { _ in
                 owner.$didFinishRefresh.accept(())
-                owner.$didFailToLoadArticle.accept($0)
+                owner.$didFailToLoadArticle.accept(())
             }
         )
         .asObservable()
@@ -124,19 +125,26 @@ private extension FeedsViewModel {
         .do(
             onSuccess: {
                 owner.$didFinishLoadMore.accept(!$0.isEmpty)
-                owner.$articles.accept(owner.$articles.value + $0)
+                owner.$feedRowViewModels.accept(owner.$feedRowViewModels.value + $0.viewModels)
 
                 if !$0.isEmpty {
                     owner.currentOffset = offset
                 }
             },
-            onError: {
+            onError: { _ in
                 owner.$didFinishLoadMore.accept(true)
-                owner.$didFailToLoadArticle.accept($0)
+                owner.$didFailToLoadArticle.accept(())
             }
         )
         .asObservable()
         .map { _ in () }
         .catchAndReturn(())
+    }
+}
+
+private extension Array where Element == Article {
+
+    var viewModels: [FeedRowViewModelProtocol] {
+        map { Resolver.resolve(FeedRowViewModelProtocol.self, args: $0) }
     }
 }
