@@ -10,17 +10,20 @@ import Resolver
 import RxCocoa
 import RxSwift
 
+// sourcery: AutoMockable
 protocol HomeViewModelInput {
     
     func toggleSideMenu(_ value: Bool)
 }
 
+// sourcery: AutoMockable
 protocol HomeViewModelOutput {
 
     var isSideMenuOpen: Bool { get }
     var isSideMenuOpenDidChange: Signal<Bool> { get }
 }
 
+// sourcery: AutoMockable
 protocol HomeViewModelProtocol: ObservableViewModel {
 
     var input: HomeViewModelInput { get }

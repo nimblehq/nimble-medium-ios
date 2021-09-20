@@ -15,8 +15,8 @@ struct CodableUser: User, Codable {
     let bio: String?
     let image: String?
 
-    var toSideMenuHeaderUiModel: SideMenuHeaderUiModel {
-        SideMenuHeaderUiModel(avatarUrl: image, username: username)
+    var toSideMenuHeaderViewUiModel: SideMenuHeaderView.UiModel {
+        SideMenuHeaderView.UiModel(avatarUrl: image, username: username)
     }
 
     init(user: User) {

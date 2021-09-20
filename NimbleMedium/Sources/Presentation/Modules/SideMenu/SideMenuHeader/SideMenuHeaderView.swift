@@ -72,7 +72,7 @@ struct SideMenuHeaderView: View {
 
 private extension SideMenuHeaderView {
     
-    func bindData(uiModel: SideMenuHeaderUiModel?) {
+    func bindData(uiModel: UiModel?) {
         if let user = uiModel {
             isAuthenticated = true
             avatarUrl = user.avatarUrl
