@@ -48,15 +48,16 @@ final class ArticleRepositorySpec: QuickSpec {
                             offset: nil
                         )
                         .asObservable()
-                        .map {
-                            $0.compactMap { $0 as? DecodableArticle }
-                        }
+                        .map { $0.compactMap { $0 as? DecodableArticle } }
                         .bind(to: outputArticles)
                         .disposed(by: disposeBag)
                     }
 
                     it("returns correct articles") {
-                        expect(outputArticles.events.first?.value.element) == inputResponse.articles
+                        expect(outputArticles.events) == [
+                            .next(0, inputResponse.articles),
+                            .completed(0)
+                        ]
                     }
                 }
 
@@ -83,7 +84,10 @@ final class ArticleRepositorySpec: QuickSpec {
 
                     it("returns correct error") {
                         let error = outputError.events.first?.value.element as? TestError
+
+                        expect(outputError.events.count) == 2
                         expect(error) == TestError.mock
+                        expect(outputError.events.last?.value.isCompleted) == true
                     }
                 }
             }
@@ -129,7 +133,10 @@ final class ArticleRepositorySpec: QuickSpec {
 
                     it("returns correct error") {
                         let error = outputError.events.first?.value.element as? TestError
+
+                        expect(outputError.events.count) == 2
                         expect(error) == TestError.mock
+                        expect(outputError.events.last?.value.isCompleted) == true
                     }
                 }
             }

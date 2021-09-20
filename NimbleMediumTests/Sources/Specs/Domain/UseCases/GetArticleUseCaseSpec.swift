@@ -42,16 +42,19 @@ final class GetArticleUseCaseSpec: QuickSpec {
                         articleRepository.getArticleSlugReturnValue = .just(inputArticle)
 
                         usecase.getArticle(slug: "slug")
-                        .asObservable()
-                        .compactMap {
-                            $0 as? DecodableArticle
-                        }
-                        .bind(to: outputArticle)
-                        .disposed(by: disposeBag)
+                            .asObservable()
+                            .compactMap {
+                                $0 as? DecodableArticle
+                            }
+                            .bind(to: outputArticle)
+                            .disposed(by: disposeBag)
                     }
 
                     it("returns correct article") {
-                        expect(outputArticle.events.first?.value.element) == inputArticle
+                        expect(outputArticle.events) == [
+                            .next(0, inputArticle),
+                            .completed(0)
+                        ]
                     }
                 }
 
@@ -64,16 +67,19 @@ final class GetArticleUseCaseSpec: QuickSpec {
                         articleRepository.getArticleSlugReturnValue = .error(TestError.mock)
 
                         usecase.getArticle(slug: "slug")
-                        .asObservable()
-                        .materialize()
-                        .map { $0.error }
-                        .bind(to: outputError)
-                        .disposed(by: disposeBag)
+                            .asObservable()
+                            .materialize()
+                            .map { $0.error }
+                            .bind(to: outputError)
+                            .disposed(by: disposeBag)
                     }
 
                     it("returns correct error") {
                         let error = outputError.events.first?.value.element as? TestError
+
+                        expect(outputError.events.count) == 2
                         expect(error) == TestError.mock
+                        expect(outputError.events.last?.value.isCompleted) == true
                     }
                 }
             }

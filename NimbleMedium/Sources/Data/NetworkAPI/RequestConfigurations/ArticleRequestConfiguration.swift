@@ -57,7 +57,7 @@ extension ArticleRequestConfiguration: RequestConfiguration {
             ]
             return parameters.compactMapValues { $0 }
         case .getArticle:
-            return [:]
+            return nil
         }
     }
 
