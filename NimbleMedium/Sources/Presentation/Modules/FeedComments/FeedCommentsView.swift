@@ -24,6 +24,7 @@ private extension FeedCommentsView {
         var body: some View {
             ScrollView(.vertical) {
                 LazyVStack(alignment: .leading, spacing: 12.0) {
+                    // TODO: Update with real data in Integrate
                     ForEach(1...3, id: \.self) { _ in
                         FeedCommentRow()
                     }

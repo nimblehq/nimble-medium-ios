@@ -13,6 +13,7 @@ struct FeedCommentRow: View {
     var body: some View {
 
         VStack(alignment: .leading, spacing: 0.0) {
+            // TODO: Update with real data in Integrate
             Text("Cypress comment")
                 .padding(.all, 16.0)
             Divider()
@@ -32,6 +33,7 @@ struct FeedCommentRow: View {
 
     var author: some View {
         HStack {
+            // TODO: Update with real data in Integrate
             if let url = try? "https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-512.png".asURL() {
                 // FIXME: It blocks UI
                 WebImage(url: url)
@@ -41,7 +43,7 @@ struct FeedCommentRow: View {
             } else {
                 defaultAvatar
             }
-            Text("cypress")
+            Text("cypresscypresscypresscypresscypresscypresscypresscypresscypresscypresscypresscypress")
                 .foregroundColor(.green)
             Text("August 12, 2021")
                 .foregroundColor(.gray)
