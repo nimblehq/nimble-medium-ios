@@ -39,7 +39,11 @@ private extension FeedRow {
 
         var body: some View {
             VStack(alignment: .leading, spacing: 16) {
-                author
+                AuthorView(
+                    articleUpdateAt: view.updatedAt,
+                    authorName: view.authorName,
+                    authorImage: view.authorImage
+                )
                 VStack(alignment: .leading) {
                     Text(view.model.articleTitle)
                         .fontWeight(.bold)
@@ -49,29 +53,6 @@ private extension FeedRow {
                         .foregroundColor(.gray)
                 }
             }
-        }
-
-        var author: some View {
-            HStack {
-                if let url = view.model.authorImage {
-                    // FIXME: It blocks UI
-                    WebImage(url: url)
-                        .placeholder { defaultAvatar }
-                        .resizable()
-                        .frame(width: 50.0, height: 50.0)
-                } else { defaultAvatar }
-                VStack(alignment: .leading) {
-                    Text(view.model.authorName)
-                    Text(view.model.articleUpdatedAt)
-                        .foregroundColor(.gray)
-                }
-            }
-        }
-
-        var defaultAvatar: some View {
-            Image(R.image.defaultAvatar.name)
-                .resizable()
-                .frame(width: 50.0, height: 50.0)
         }
     }
 }

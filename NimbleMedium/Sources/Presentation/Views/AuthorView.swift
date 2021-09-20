@@ -11,11 +11,13 @@ import SDWebImageSwiftUI
 struct AuthorView: View {
 
     private let authorNameColor: Color?
-    private let article: Article
+    private let articleUpdateAt: String
+    private let authorName: String
+    private let authorImage: URL?
 
     var body: some View {
         HStack {
-            if let url = try? article.author.image?.asURL() {
+            if let url = authorImage {
                 // FIXME: It blocks UI
                 WebImage(url: url)
                     .placeholder { defaultAvatar }
@@ -25,9 +27,9 @@ struct AuthorView: View {
                 defaultAvatar
             }
             VStack(alignment: .leading) {
-                Text(article.author.username)
+                Text(authorName)
                     .foregroundColor(authorNameColor)
-                Text(article.updatedAt.format(Constants.Article.dateFormat))
+                Text(articleUpdateAt)
                     .foregroundColor(.gray)
             }
         }
@@ -39,13 +41,29 @@ struct AuthorView: View {
             .frame(width: 50.0, height: 50.0)
     }
 
-    init(article: Article) {
-        self.init(article: article, authorNameColor: nil)
+    init(
+        articleUpdateAt: String,
+        authorName: String,
+        authorImage: URL?
+    ) {
+        self.init(
+            articleUpdateAt: articleUpdateAt,
+            authorName: authorName,
+            authorNameColor: .black,
+            authorImage: authorImage
+        )
     }
 
-    private init(article: Article, authorNameColor: Color?) {
+    private init(
+        articleUpdateAt: String,
+        authorName: String,
+        authorNameColor: Color,
+        authorImage: URL?
+    ) {
+        self.articleUpdateAt = articleUpdateAt
+        self.authorName = authorName
         self.authorNameColor = authorNameColor
-        self.article = article
+        self.authorImage = authorImage
     }
 }
 
@@ -53,7 +71,12 @@ struct AuthorView: View {
 extension AuthorView {
 
     // TODO: Find a better solution for the same result
-    func authorNameColor(_ color: Color? = .black) -> Self {
-        AuthorView(article: article, authorNameColor: color)
+    func authorNameColor(_ color: Color) -> Self {
+        AuthorView(
+            articleUpdateAt: articleUpdateAt,
+            authorName: authorName,
+            authorNameColor: color,
+            authorImage: authorImage
+        )
     }
 }

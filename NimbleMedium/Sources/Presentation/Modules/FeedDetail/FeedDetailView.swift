@@ -27,9 +27,7 @@ private extension FeedDetailView {
                         .foregroundColor(.white)
                         .fontWeight(.bold)
                         .font(.title)
-                    // TODO: Update real article in Integrate
-                    AuthorView(article: DummyArticle())
-                        .authorNameColor(.white)
+                    author
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.vertical, 16.0)
@@ -53,31 +51,14 @@ private extension FeedDetailView {
             .navigationTitle(Localizable.feedDetailTitle())
             .modifier(NavigationBarPrimaryStyle())
         }
-    }
-}
 
-// TODO: Remove dummy models
-private extension FeedDetailView {
-
-    struct DummyArticle: Article {
-
-        var slug: String = "slug"
-        var title: String = "this is title"
-        var description: String = "this is description"
-        var body: String = "body"
-        var tagList: [String] = []
-        var createdAt: Date = Date()
-        var updatedAt: Date = Date()
-        var favorited: Bool = true
-        var favoritesCount: Int = 0
-        var author: Profile = DummyProfile()
-    }
-
-    struct DummyProfile: Profile {
-
-        var username: String = "dummy"
-        var bio: String?
-        var image: String? = "https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-1024.png"
-        var following: Bool = false
+        var author: some View {
+            AuthorView(
+                articleUpdateAt: "May 02, 1991",
+                authorName: "Mark",
+                authorImage: nil
+            )
+            .authorNameColor(.white)
+        }
     }
 }
