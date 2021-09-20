@@ -14,4 +14,6 @@ protocol User {
     var username: String { get }
     var bio: String? { get }
     var image: String? { get }
+
+    var toSideMenuHeaderUiModel: SideMenuHeaderUiModel { get }
 }

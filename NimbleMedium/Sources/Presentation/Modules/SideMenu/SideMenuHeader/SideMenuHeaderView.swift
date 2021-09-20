@@ -7,30 +7,31 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Resolver
 
 struct SideMenuHeaderView: View {
 
-    // TODO: Update this observable to correct value in integrate task
-    @State private var isAuthenticated = true
+    @ObservedViewModel private var viewModel: SideMenuHeaderViewModelProtocol = Resolver.resolve()
+
+    @State private var isAuthenticated = false
+    @State private var avatarUrl: String?
+    @State private var username = Localizable.menuHeaderUsernameDefault()
 
     var body: some View {
         ZStack(alignment: .center) {
             Color.green.edgesIgnoringSafeArea(.all)
-
             if isAuthenticated {
                 authenticatedMenuHeader
             } else {
                 unauthenticatedMenuHeader
             }
         }
+        .onReceive(viewModel.output.uiModel) { bindData(uiModel: $0) }
     }
 
     var authenticatedMenuHeader: some View {
         VStack(alignment: .center) {
-            // TODO: Update this avatar url to correct value in integrate task
-            // swiftlint:disable line_length
-            if let url = try? "https://thumbs.dreamstime.com/b/vector-illustration-avatar-dummy-logo-collection-image-icon-stock-isolated-object-set-symbol-web-137160339.jpg".asURL() {
-                // FIXME: It blocks UI
+            if let url = try? avatarUrl?.asURL() {
                 WebImage(url: url)
                     .placeholder { defaultAvatar }
                     .resizable()
@@ -39,8 +40,7 @@ struct SideMenuHeaderView: View {
             } else {
                 defaultAvatar
             }
-            // TODO: Update this username to correct value in integrate task
-            Text(Localizable.menuHeaderUsernameDefault())
+            Text(username)
                 .foregroundColor(.white)
                 .fontWeight(.bold)
                 .lineLimit(2)
@@ -67,6 +67,21 @@ struct SideMenuHeaderView: View {
             .resizable()
             .frame(width: 100.0, height: 100.0)
             .clipShape(Circle())
+    }
+}
+
+private extension SideMenuHeaderView {
+    
+    func bindData(uiModel: SideMenuHeaderUiModel?) {
+        if let user = uiModel {
+            isAuthenticated = true
+            avatarUrl = user.avatarUrl
+            username = user.username
+        } else {
+            isAuthenticated = false
+            avatarUrl = nil
+            username = Localizable.menuHeaderUsernameDefault()
+        }
     }
 }
 

@@ -35,6 +35,9 @@ extension Resolver: ResolverRegistering {
 
     private static func registerUseCases() {
         register {
+            GetCurrentSessionUseCase(userSessionRepository: resolve())
+        }.implements(GetCurrentSessionUseCaseProtocol.self)
+        register {
             ListArticlesUseCase(articleRepository: resolve())
         }.implements(ListArticlesUseCaseProtocol.self)
         register {
@@ -62,6 +65,7 @@ extension Resolver: ResolverRegistering {
         register { HomeViewModel() }.implements(HomeViewModelProtocol.self).scope(.cached)
         register { LoginViewModel() }.implements(LoginViewModelProtocol.self).scope(.cached)
         register { SideMenuActionsViewModel() }.implements(SideMenuActionsViewModelProtocol.self).scope(.cached)
+        register { SideMenuHeaderViewModel() }.implements(SideMenuHeaderViewModelProtocol.self).scope(.cached)
         register { SideMenuViewModel() }.implements(SideMenuViewModelProtocol.self).scope(.cached)
         register { SignupViewModel() }.implements(SignupViewModelProtocol.self).scope(.cached)
     }

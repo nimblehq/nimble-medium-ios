@@ -8,11 +8,16 @@
 import Foundation
 
 struct CodableUser: User, Codable {
+
     let email: String
     let token: String
     let username: String
     let bio: String?
     let image: String?
+
+    var toSideMenuHeaderUiModel: SideMenuHeaderUiModel {
+        SideMenuHeaderUiModel(avatarUrl: image, username: username)
+    }
 
     init(user: User) {
         email = user.email
