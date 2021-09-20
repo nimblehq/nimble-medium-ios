@@ -21,6 +21,7 @@
 
 "menu.header.description" = "A place to share your knowledge";
 "menu.header.title" = "Nimble Medium";
+"menu.headerUsername.default" = "Current User";
 "menu.option.login" = "Login";
 "menu.option.signup" = "Signup";
 
