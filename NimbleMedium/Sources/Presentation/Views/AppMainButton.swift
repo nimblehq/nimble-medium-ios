@@ -14,8 +14,11 @@ struct AppMainButton: View {
 
     var body: some View {
         Button(action: action) {
-            Text(title).frame(width: 100.0, height: 50.0)
+            Text(title)
+                .foregroundColor(.white)
+                .padding(.horizontal, 16.0)
         }
+        .frame(height: 50.0)
         .background(Color.green)
         .cornerRadius(8.0)
     }

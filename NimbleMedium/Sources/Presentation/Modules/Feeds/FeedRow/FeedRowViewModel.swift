@@ -16,7 +16,7 @@ protocol FeedRowViewModelInput {}
 // sourcery: AutoMockable
 protocol FeedRowViewModelOutput {
     
-    var model: Driver<FeedRow.Model> { get }
+    var model: Driver<FeedRow.UIModel> { get }
 }
 
 // sourcery: AutoMockable
@@ -33,9 +33,9 @@ final class FeedRowViewModel: ObservableObject, FeedRowViewModelProtocol {
     var input: FeedRowViewModelInput { self }
     var output: FeedRowViewModelOutput { self }
 
-    let model: Driver<FeedRow.Model>
+    let model: Driver<FeedRow.UIModel>
 
-    init(model: FeedRow.Model) {
+    init(model: FeedRow.UIModel) {
         self.model = .just(model)
     }
 }

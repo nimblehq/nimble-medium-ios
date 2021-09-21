@@ -13,15 +13,15 @@ struct FeedRow: View {
 
     @ObservedViewModel private var viewModel: FeedRowViewModelProtocol
 
-    @State var model: Model
+    @State var uiModel: UIModel
 
     var body: some View {
         Content(view: self)
             .binding()
     }
 
-    init(model: Model) {
-        _model = State(initialValue: model)
+    init(model: UIModel) {
+        _uiModel = State(initialValue: model)
         viewModel = Resolver.resolve(
             FeedRowViewModelProtocol.self,
             args: model
@@ -38,40 +38,21 @@ private extension FeedRow {
         var viewModel: FeedRowViewModelProtocol { view.viewModel }
 
         var body: some View {
-            VStack(alignment: .leading, spacing: 16) {
-                author
+            VStack(alignment: .leading, spacing: 16.0) {
+                AuthorView(
+                    articleUpdateAt: view.uiModel.articleUpdatedAt,
+                    authorName: view.uiModel.authorName,
+                    authorImage: view.uiModel.authorImage
+                )
                 VStack(alignment: .leading) {
-                    Text(view.model.articleTitle)
+                    Text(view.uiModel.articleTitle)
                         .fontWeight(.bold)
                         .lineLimit(1)
                         .truncationMode(.tail)
-                    Text(view.model.articleDescription)
+                    Text(view.uiModel.articleDescription)
                         .foregroundColor(.gray)
                 }
             }
-        }
-
-        var author: some View {
-            HStack {
-                if let url = view.model.authorImage {
-                    // FIXME: It blocks UI
-                    WebImage(url: url)
-                        .placeholder { defaultAvatar }
-                        .resizable()
-                        .frame(width: 50.0, height: 50.0)
-                } else { defaultAvatar }
-                VStack(alignment: .leading) {
-                    Text(view.model.authorName)
-                    Text(view.model.articleUpdatedAt)
-                        .foregroundColor(.gray)
-                }
-            }
-        }
-
-        var defaultAvatar: some View {
-            Image(R.image.defaultAvatar.name)
-                .resizable()
-                .frame(width: 50.0, height: 50.0)
         }
     }
 }
@@ -80,6 +61,6 @@ private extension FeedRow {
 extension FeedRow.Content {
 
     func binding() -> some View {
-        bind(viewModel.output.model, to: view._model)
+        bind(viewModel.output.model, to: view._uiModel)
     }
 }

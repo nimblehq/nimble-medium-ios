@@ -18,7 +18,7 @@ struct FeedsView: View {
     @State private var isRefeshing: Bool = false
     @State private var hasMore: Bool = true
     @State private var isLoadingMore: Bool = false
-    @State private var feedRowModels: [FeedRow.Model] = []
+    @State private var feedRowModels: [FeedRow.UIModel] = []
     @State private var isErrorToastPresented = false
 
     var body: some View {
@@ -46,8 +46,7 @@ private extension FeedsView {
                     }
                 }
                 .navigationTitle(Localizable.feedsTitle())
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationBarColor(backgroundColor: .green)
+                .modifier(NavigationBarPrimaryStyle(isBackButtonHidden: true))
                 .toolbar { navigationBarLeadingContent }
                 .toast(isPresented: view.$isErrorToastPresented, dismissAfter: 3.0) {
                     ToastView(Localizable.errorGeneric()) { } background: {
@@ -55,6 +54,7 @@ private extension FeedsView {
                     }
                 }
             }
+            .accentColor(.white)
         }
 
         var navigationBarLeadingContent: some ToolbarContent {
