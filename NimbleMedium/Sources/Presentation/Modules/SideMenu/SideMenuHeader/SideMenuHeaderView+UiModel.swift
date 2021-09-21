@@ -9,9 +9,16 @@ import Foundation
 
 extension SideMenuHeaderView {
 
-    struct UiModel: Equatable {
+    struct UIModel: Equatable {
 
         let avatarUrl: String?
         let username: String
+    }
+}
+
+extension User {
+
+    var toSideMenuHeaderViewUIModel: SideMenuHeaderView.UIModel {
+        SideMenuHeaderView.UIModel(avatarUrl: image, username: username)
     }
 }

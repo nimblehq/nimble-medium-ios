@@ -64,7 +64,7 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                             .events(scheduler: scheduler, disposeBag: disposeBag)
                             .to(equal([
                                 .next(0, nil),
-                                .next(50, user.toSideMenuHeaderViewUiModel)
+                                .next(50, user.toSideMenuHeaderViewUIModel)
                             ]))
                     }
                 }

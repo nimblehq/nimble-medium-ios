@@ -17,7 +17,7 @@ protocol SideMenuHeaderViewModelInput {
 
 protocol SideMenuHeaderViewModelOutput {
 
-    var uiModel: Driver<SideMenuHeaderView.UiModel?> { get }
+    var uiModel: Driver<SideMenuHeaderView.UIModel?> { get }
 }
 
 protocol SideMenuHeaderViewModelProtocol: ObservableViewModel {
@@ -36,7 +36,7 @@ final class SideMenuHeaderViewModel: ObservableObject, SideMenuHeaderViewModelPr
     @Injected var getCurrentSessionUseCase: GetCurrentSessionUseCaseProtocol
     @Injected var homeViewModel: HomeViewModelProtocol
 
-    @BehaviorRelayProperty(nil) var uiModel: Driver<SideMenuHeaderView.UiModel?>
+    @BehaviorRelayProperty(nil) var uiModel: Driver<SideMenuHeaderView.UIModel?>
 
     private let getCurrentUserSessionTrigger = PublishRelay<Void>()
 
@@ -46,7 +46,7 @@ final class SideMenuHeaderViewModel: ObservableObject, SideMenuHeaderViewModelPr
             .flatMapLatest { owner, _ in
                 owner.getCurrentSessionUseCase
                     .getCurrentUserSession()
-                    .map { $0?.toSideMenuHeaderViewUiModel }
+                    .map { $0?.toSideMenuHeaderViewUIModel }
                     .do(
                         onSuccess: { owner.$uiModel.accept($0) },
                         onError: { _ in owner.$uiModel.accept(nil) }

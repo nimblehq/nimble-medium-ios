@@ -14,8 +14,4 @@ struct UserDummy: User {
     var username: String { "username" }
     var bio: String? { nil }
     var image: String? { nil }
-
-    var toSideMenuHeaderViewUiModel: SideMenuHeaderView.UiModel {
-        SideMenuHeaderView.UiModel(avatarUrl: email, username: username)
-    }
 }
