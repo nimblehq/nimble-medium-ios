@@ -19,8 +19,19 @@ extension Resolver {
     static func registerMockServices() {
         root = Resolver.mock
         defaultScope = .application
+        registerRepositories()
+        registerUseCases()
+        registerViewModels()
+    }
 
-        // UseCases
+    private static func registerRepositories() {}
+
+    private static func registerUseCases() {
         Resolver.mock.register { LoginUseCaseProtocolMock() }.implements(LoginUseCaseProtocol.self)
+        Resolver.mock.register { ListArticlesUseCaseProtocolMock() }.implements(ListArticlesUseCaseProtocol.self)
+    }
+
+    private static func registerViewModels() {
+        Resolver.mock.register { FeedRowViewModelProtocolMock() }.implements(FeedRowViewModelProtocol.self)
     }
 }

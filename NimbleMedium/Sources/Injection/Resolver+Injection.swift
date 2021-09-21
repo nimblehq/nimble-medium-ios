@@ -16,7 +16,12 @@ extension Resolver: ResolverRegistering {
         register { NetworkAPI() }.implements(NetworkAPIProtocol.self).scope(.application)
         register { Keychain.default }.implements(KeychainProtocol.self).scope(.application)
 
-        // Repositories
+        registerRepositories()
+        registerUseCases()
+        registerViewModels()
+    }
+
+    private static func registerRepositories() {
         register {
             AuthRepository(networkAPI: resolve())
         }.implements(AuthRepositoryProtocol.self)
@@ -26,8 +31,9 @@ extension Resolver: ResolverRegistering {
         register {
             ArticleRepository(networkAPI: resolve())
         }.implements(ArticleRepositoryProtocol.self)
+    }
 
-        // UseCases
+    private static func registerUseCases() {
         register {
             ListArticlesUseCase(articleRepository: resolve())
         }.implements(ListArticlesUseCaseProtocol.self)
@@ -43,9 +49,13 @@ extension Resolver: ResolverRegistering {
                 userSessionRepository: resolve()
             )
         }.implements(SignupUseCaseProtocol.self)
+    }
 
-        // ViewModels
+    private static func registerViewModels() {
         register { FeedsViewModel() }.implements(FeedsViewModelProtocol.self).scope(.cached)
+        register { _, args in
+            FeedRowViewModel(model: args.get())
+        }.implements(FeedRowViewModelProtocol.self).scope(.cached)
         register { HomeViewModel() }.implements(HomeViewModelProtocol.self).scope(.cached)
         register { LoginViewModel() }.implements(LoginViewModelProtocol.self).scope(.cached)
         register { SideMenuActionsViewModel() }.implements(SideMenuActionsViewModelProtocol.self).scope(.cached)

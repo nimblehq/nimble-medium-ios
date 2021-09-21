@@ -7,6 +7,7 @@
 
 import RxSwift
 
+// sourcery: AutoMockable
 protocol ListArticlesUseCaseProtocol {
 
     func listArticles(
