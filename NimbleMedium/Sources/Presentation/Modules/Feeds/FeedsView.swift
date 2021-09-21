@@ -18,7 +18,7 @@ struct FeedsView: View {
     @State private var isRefeshing: Bool = false
     @State private var hasMore: Bool = true
     @State private var isLoadingMore: Bool = false
-    @State private var feedRowModels: [FeedRow.Model] = []
+    @State private var feedRowModels: [FeedRow.UIModel] = []
     @State private var isErrorToastPresented = false
 
     var body: some View {

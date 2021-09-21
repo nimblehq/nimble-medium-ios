@@ -20,6 +20,7 @@ private extension FeedDetailView {
 
         let view: FeedDetailView
 
+        // TODO: Update with real data in Integrate
         var body: some View {
             ScrollView(.vertical) {
                 VStack(alignment: .leading, spacing: 16.0) {

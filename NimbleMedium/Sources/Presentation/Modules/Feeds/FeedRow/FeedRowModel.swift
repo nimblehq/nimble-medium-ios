@@ -10,7 +10,7 @@ import Foundation
 
 extension FeedRow {
 
-    struct Model: Equatable {
+    struct UIModel: Equatable {
 
         let id: String
         let articleTitle: String

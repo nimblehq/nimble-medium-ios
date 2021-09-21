@@ -23,7 +23,7 @@ protocol FeedsViewModelOutput {
     var didFailToLoadArticle: Signal<Void> { get }
     var didFinishLoadMore: Signal<Bool> { get }
     var didFinishRefresh: Signal<Void> { get }
-    var feedRowModels: Driver<[FeedRow.Model]> { get }
+    var feedRowModels: Driver<[FeedRow.UIModel]> { get }
 }
 
 protocol FeedsViewModelProtocol: ObservableViewModel {
@@ -46,7 +46,7 @@ final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
     @PublishRelayProperty var didFailToLoadArticle: Signal<Void>
     @PublishRelayProperty var didFinishLoadMore: Signal<Bool>
     @PublishRelayProperty var didFinishRefresh: Signal<Void>
-    @BehaviorRelayProperty([]) var feedRowModels: Driver<[FeedRow.Model]>
+    @BehaviorRelayProperty([]) var feedRowModels: Driver<[FeedRow.UIModel]>
 
     var input: FeedsViewModelInput { self }
     var output: FeedsViewModelOutput { self }
@@ -144,7 +144,7 @@ private extension FeedsViewModel {
 
 private extension Array where Element == Article {
 
-    var models: [FeedRow.Model] {
-        map { FeedRow.Model(article: $0) }
+    var models: [FeedRow.UIModel] {
+        map { FeedRow.UIModel(article: $0) }
     }
 }
