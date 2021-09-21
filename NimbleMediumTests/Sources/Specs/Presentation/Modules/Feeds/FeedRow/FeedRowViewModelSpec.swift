@@ -30,10 +30,8 @@ final class FeedRowViewModelSpec: QuickSpec {
 
             beforeEach {
                 Resolver.registerMockServices()
-                if let article = APIArticleResponse.dummy.articles.first {
-                    model = .init(article: article)
-                }
 
+                model = .init(article: APIArticleResponse.dummy.article)
                 viewModel = FeedRowViewModel(model: model)
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
