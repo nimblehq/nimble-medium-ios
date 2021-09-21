@@ -27,7 +27,7 @@ struct NavigationBarPrimaryStyle: ViewModifier {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button(
                             action: { presentationMode.wrappedValue.dismiss() },
-                            label: { Image(R.image.backIcon.name) }
+                            label: { Image(systemName: SystemImageName.chevronBackward.rawValue) }
                         )
                     }
                 }

@@ -54,6 +54,7 @@ private extension FeedsView {
                     }
                 }
             }
+            .accentColor(.white)
         }
 
         var navigationBarLeadingContent: some ToolbarContent {

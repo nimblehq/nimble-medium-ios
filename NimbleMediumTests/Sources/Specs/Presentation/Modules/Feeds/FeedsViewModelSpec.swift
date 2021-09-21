@@ -165,7 +165,7 @@ final class FeedsViewModelSpec: QuickSpec {
 
                     it("returns output feedRowModels with correct value") {
                         let models = inputArticles
-                            .map { FeedRow.Model(article: $0) }
+                            .map { FeedRow.UIModel(article: $0) }
                         let doubleModels = models + models
                         expect(
                             viewModel.output.feedRowModels

@@ -24,7 +24,7 @@ final class FeedRowViewModelSpec: QuickSpec {
         var viewModel: FeedRowViewModelProtocol!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
-        var model: FeedRow.Model!
+        var model: FeedRow.UIModel!
 
         describe("a FeedsViewModel") {
 
