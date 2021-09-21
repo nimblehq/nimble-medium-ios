@@ -24,6 +24,7 @@
 "menu.header.title" = "Nimble Medium";
 "menu.headerUsername.default" = "Current User";
 "menu.option.login" = "Login";
+"menu.option.myProfile" = "My Profile";
 "menu.option.signup" = "Signup";
 
 "signup.haveAccount.title" = "Have an account?";
