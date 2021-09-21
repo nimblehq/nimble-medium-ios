@@ -13,19 +13,19 @@ struct FeedRow: View {
 
     @ObservedViewModel private var viewModel: FeedRowViewModelProtocol
 
-    @State var articleTitle: String = ""
-    @State var articleDescription: String = ""
-    @State var authorImage: URL?
-    @State var authorName: String = ""
-    @State var updatedAt: String = ""
+    @State var model: Model
 
     var body: some View {
         Content(view: self)
             .binding()
     }
 
-    init(viewModel: FeedRowViewModelProtocol) {
-        self.viewModel = viewModel
+    init(model: Model) {
+        _model = State(initialValue: model)
+        viewModel = Resolver.resolve(
+            FeedRowViewModelProtocol.self,
+            args: model
+        )
     }
 }
 
@@ -41,11 +41,11 @@ private extension FeedRow {
             VStack(alignment: .leading, spacing: 16) {
                 author
                 VStack(alignment: .leading) {
-                    Text(view.articleTitle)
+                    Text(view.model.articleTitle)
                         .fontWeight(.bold)
                         .lineLimit(1)
                         .truncationMode(.tail)
-                    Text(view.articleDescription)
+                    Text(view.model.articleDescription)
                         .foregroundColor(.gray)
                 }
             }
@@ -53,7 +53,7 @@ private extension FeedRow {
 
         var author: some View {
             HStack {
-                if let url = view.authorImage {
+                if let url = view.model.authorImage {
                     // FIXME: It blocks UI
                     WebImage(url: url)
                         .placeholder { defaultAvatar }
@@ -61,8 +61,8 @@ private extension FeedRow {
                         .frame(width: 50.0, height: 50.0)
                 } else { defaultAvatar }
                 VStack(alignment: .leading) {
-                    Text(view.authorName)
-                    Text(view.updatedAt)
+                    Text(view.model.authorName)
+                    Text(view.model.articleUpdatedAt)
                         .foregroundColor(.gray)
                 }
             }
@@ -80,10 +80,6 @@ private extension FeedRow {
 extension FeedRow.Content {
 
     func binding() -> some View {
-        bind(viewModel.output.articleTitle, to: view._articleTitle)
-            .bind(viewModel.output.articleDescription, to: view._articleDescription)
-            .bind(viewModel.output.authorName, to: view._authorName)
-            .bind(viewModel.output.authorImage, to: view._authorImage)
-            .bind(viewModel.output.updatedAt, to: view._updatedAt)
+        bind(viewModel.output.model, to: view._model)
     }
 }

@@ -23,7 +23,7 @@ protocol FeedsViewModelOutput {
     var didFailToLoadArticle: Signal<Void> { get }
     var didFinishLoadMore: Signal<Bool> { get }
     var didFinishRefresh: Signal<Void> { get }
-    var feedRowViewModels: Driver<[FeedRowViewModelProtocol]> { get }
+    var feedRowModels: Driver<[FeedRow.Model]> { get }
 }
 
 protocol FeedsViewModelProtocol: ObservableViewModel {
@@ -46,7 +46,7 @@ final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
     @PublishRelayProperty var didFailToLoadArticle: Signal<Void>
     @PublishRelayProperty var didFinishLoadMore: Signal<Bool>
     @PublishRelayProperty var didFinishRefresh: Signal<Void>
-    @BehaviorRelayProperty([]) var feedRowViewModels: Driver<[FeedRowViewModelProtocol]>
+    @BehaviorRelayProperty([]) var feedRowModels: Driver<[FeedRow.Model]>
 
     var input: FeedsViewModelInput { self }
     var output: FeedsViewModelOutput { self }
@@ -100,7 +100,7 @@ private extension FeedsViewModel {
             onSuccess: {
                 owner.$didFinishRefresh.accept(())
                 owner.currentOffset = 0
-                owner.$feedRowViewModels.accept(self.$feedRowViewModels.value + $0.viewModels)
+                owner.$feedRowModels.accept(self.$feedRowModels.value + $0.models)
             },
             onError: { _ in
                 owner.$didFinishRefresh.accept(())
@@ -125,7 +125,7 @@ private extension FeedsViewModel {
         .do(
             onSuccess: {
                 owner.$didFinishLoadMore.accept(!$0.isEmpty)
-                owner.$feedRowViewModels.accept(owner.$feedRowViewModels.value + $0.viewModels)
+                owner.$feedRowModels.accept(owner.$feedRowModels.value + $0.models)
 
                 if !$0.isEmpty {
                     owner.currentOffset = offset
@@ -144,7 +144,7 @@ private extension FeedsViewModel {
 
 private extension Array where Element == Article {
 
-    var viewModels: [FeedRowViewModelProtocol] {
-        map { Resolver.resolve(FeedRowViewModelProtocol.self, args: $0) }
+    var models: [FeedRow.Model] {
+        map { FeedRow.Model(article: $0) }
     }
 }

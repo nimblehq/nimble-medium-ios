@@ -54,7 +54,7 @@ extension Resolver: ResolverRegistering {
     private static func registerViewModels() {
         register { FeedsViewModel() }.implements(FeedsViewModelProtocol.self).scope(.cached)
         register { _, args in
-            FeedRowViewModel(article: args.get())
+            FeedRowViewModel(model: args.get())
         }.implements(FeedRowViewModelProtocol.self).scope(.cached)
         register { HomeViewModel() }.implements(HomeViewModelProtocol.self).scope(.cached)
         register { LoginViewModel() }.implements(LoginViewModelProtocol.self).scope(.cached)

@@ -24,54 +24,25 @@ final class FeedRowViewModelSpec: QuickSpec {
         var viewModel: FeedRowViewModelProtocol!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
-        var article: Article!
+        var model: FeedRow.Model!
 
         describe("a FeedsViewModel") {
 
             beforeEach {
                 Resolver.registerMockServices()
-                article = APIArticleResponse.dummy.articles.first
-                viewModel = FeedRowViewModel(article: article)
+                if let article = APIArticleResponse.dummy.articles.first {
+                    model = .init(article: article)
+                }
+
+                viewModel = FeedRowViewModel(model: model)
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
             }
 
-            it("returns output articleTitle with correct value") {
-                expect(viewModel.output.articleTitle)
+            it("returns output model with correct value") {
+                expect(viewModel.output.model)
                     .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                        .next(0, article.title),
-                        .completed(0)
-                    ]
-            }
-
-            it("returns output articleDescription with correct value") {
-                expect(viewModel.output.articleDescription)
-                    .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                        .next(0, article.description),
-                        .completed(0)
-                    ]
-            }
-
-            it("returns output authorName with correct value") {
-                expect(viewModel.output.authorName)
-                    .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                        .next(0, article.author.username),
-                        .completed(0)
-                    ]
-            }
-
-            it("returns output authorImage with correct value") {
-                expect(viewModel.output.authorImage)
-                    .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                        .next(0, try? article.author.image?.asURL()),
-                        .completed(0)
-                    ]
-            }
-
-            it("returns output updatedAt with correct value") {
-                expect(viewModel.output.updatedAt)
-                    .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                        .next(0, article.updatedAt.format(with: .monthDayYear)),
+                        .next(0, model),
                         .completed(0)
                     ]
             }
