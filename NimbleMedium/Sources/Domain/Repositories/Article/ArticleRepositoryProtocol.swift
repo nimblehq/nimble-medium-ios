@@ -17,4 +17,6 @@ protocol ArticleRepositoryProtocol: AnyObject {
         limit: Int?,
         offset: Int?
     ) -> Single<[Article]>
+
+    func getArticle(slug: String) -> Single<Article>
 }

@@ -35,7 +35,7 @@ final class ArticleRepositorySpec: QuickSpec {
                 context("when the request returns success") {
                     
                     var outputArticles: TestableObserver<[DecodableArticle]>!
-                    let inputResponse = APIArticleResponse.dummy
+                    let inputResponse = APIArticlesResponse.dummy
 
                     beforeEach {
                         outputArticles = scheduler.createObserver([DecodableArticle].self)
@@ -48,15 +48,16 @@ final class ArticleRepositorySpec: QuickSpec {
                             offset: nil
                         )
                         .asObservable()
-                        .map {
-                            $0.compactMap { $0 as? DecodableArticle }
-                        }
+                        .map { $0.compactMap { $0 as? DecodableArticle } }
                         .bind(to: outputArticles)
                         .disposed(by: disposeBag)
                     }
 
                     it("returns correct articles") {
-                        expect(outputArticles.events.first?.value.element) == inputResponse.articles
+                        expect(outputArticles.events) == [
+                            .next(0, inputResponse.articles),
+                            .completed(0)
+                        ]
                     }
                 }
 
@@ -66,7 +67,7 @@ final class ArticleRepositorySpec: QuickSpec {
 
                     beforeEach {
                         outputError = scheduler.createObserver(Optional<Error>.self)
-                        networkAPI.setPerformRequestForReturnValue(Single<APIArticleResponse>.error(TestError.mock))
+                        networkAPI.setPerformRequestForReturnValue(Single<APIArticlesResponse>.error(TestError.mock))
                         repository.listArticles(
                             tag: nil,
                             author: nil,
@@ -83,7 +84,59 @@ final class ArticleRepositorySpec: QuickSpec {
 
                     it("returns correct error") {
                         let error = outputError.events.first?.value.element as? TestError
+
+                        expect(outputError.events.count) == 2
                         expect(error) == TestError.mock
+                        expect(outputError.events.last?.value.isCompleted) == true
+                    }
+                }
+            }
+
+            describe("its getArticle() call") {
+
+                context("when the request returns success") {
+
+                    var outputArticle: TestableObserver<DecodableArticle>!
+                    let inputResponse = APIArticleResponse.dummy
+
+                    beforeEach {
+                        outputArticle = scheduler.createObserver(DecodableArticle.self)
+                        networkAPI.setPerformRequestForReturnValue(Single.just(inputResponse))
+                        repository.getArticle(slug: "slug")
+                            .asObservable()
+                            .compactMap {
+                                $0 as? DecodableArticle
+                            }
+                            .bind(to: outputArticle)
+                            .disposed(by: disposeBag)
+                    }
+
+                    it("returns correct article") {
+                        expect(outputArticle.events.first?.value.element) == inputResponse.article
+                    }
+                }
+
+                context("when the request returns failure") {
+
+                    var outputError: TestableObserver<Error?>!
+
+                    beforeEach {
+                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        networkAPI.setPerformRequestForReturnValue(Single<APIArticleResponse>.error(TestError.mock))
+                        repository.getArticle(slug: "slug")
+                            .asObservable()
+                            .materialize()
+                            .map { $0.error }
+                            .bind(to: outputError)
+                            .disposed(by: disposeBag)
+                    }
+
+                    it("returns correct error") {
+                        let error = outputError.events.first?.value.element as? TestError
+
+                        expect(outputError.events.count) == 2
+                        expect(error) == TestError.mock
+                        expect(outputError.events.last?.value.isCompleted) == true
                     }
                 }
             }

@@ -61,7 +61,7 @@ final class FeedsViewModelSpec: QuickSpec {
             describe("its refresh() call") {
 
                 context("when ListArticlesUseCase return success") {
-                    let inputArticles = APIArticleResponse.dummy.articles
+                    let inputArticles = APIArticlesResponse.dummy.articles
 
                     beforeEach {
 
@@ -127,7 +127,7 @@ final class FeedsViewModelSpec: QuickSpec {
 
                 context("when ListArticlesUseCase return success") {
 
-                    let inputArticles = APIArticleResponse.dummy.articles
+                    let inputArticles = APIArticlesResponse.dummy.articles
 
                     beforeEach {
                         self.listArticlesUseCase.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(
