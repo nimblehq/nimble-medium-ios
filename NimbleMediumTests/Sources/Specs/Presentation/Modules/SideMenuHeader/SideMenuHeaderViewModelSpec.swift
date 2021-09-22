@@ -39,11 +39,7 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                     let homeViewModelOutput = HomeViewModelOutputMock()
                     self.homeViewModel.output = homeViewModelOutput
 
-                    homeViewModelOutput.underlyingIsSideMenuOpenDidChange = Single.create { single in
-                        single(.success(true))
-                        return Disposables.create()
-                    }
-                    .asSignal(onErrorJustReturn: true)
+                    homeViewModelOutput.underlyingIsSideMenuOpenDidChange = .just(true)
                 }
 
                 context("when there is a valid user session") {
@@ -51,20 +47,22 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                     let user = UserDummy()
 
                     beforeEach {
-                        self.getCurrentSessionUseCase.getCurrentUserSessionReturnValue = Single.create { single in
-                            scheduler.scheduleAt(50) { single(.success(user)) }
-                            return Disposables.create()
-                        }
+                        self.getCurrentSessionUseCase.getCurrentUserSessionReturnValue =
+                            .just(user, on: scheduler, at: 50)
 
                         viewModel = SideMenuHeaderViewModel()
                     }
 
                     it("returns output with the correct uiModel") {
+                        let expectedValue = SideMenuHeaderView.UIModel(
+                            avatarURL: try? user.image?.asURL(),
+                            username: user.username
+                        )
                         expect(viewModel.output.uiModel)
                             .events(scheduler: scheduler, disposeBag: disposeBag)
                             .to(equal([
                                 .next(0, nil),
-                                .next(50, user.toSideMenuHeaderViewUIModel)
+                                .next(50, expectedValue)
                             ]))
                     }
                 }
@@ -72,10 +70,8 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                 context("when there is an invalid user session") {
 
                     beforeEach {
-                        self.getCurrentSessionUseCase.getCurrentUserSessionReturnValue = Single.create { single in
-                            scheduler.scheduleAt(50) { single(.success(nil)) }
-                            return Disposables.create()
-                        }
+                        self.getCurrentSessionUseCase.getCurrentUserSessionReturnValue =
+                            .just(nil, on: scheduler, at: 50)
 
                         viewModel = SideMenuHeaderViewModel()
                     }
@@ -93,10 +89,8 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                 context("when there is an error getting the user session") {
 
                     beforeEach {
-                        self.getCurrentSessionUseCase.getCurrentUserSessionReturnValue = Single.create { single in
-                            scheduler.scheduleAt(50) { single(.failure(TestError.mock)) }
-                            return Disposables.create()
-                        }
+                        self.getCurrentSessionUseCase.getCurrentUserSessionReturnValue =
+                            .error(TestError.mock, on: scheduler, at: 50)
 
                         viewModel = SideMenuHeaderViewModel()
                     }

@@ -46,7 +46,10 @@ final class SideMenuHeaderViewModel: ObservableObject, SideMenuHeaderViewModelPr
             .flatMapLatest { owner, _ in
                 owner.getCurrentSessionUseCase
                     .getCurrentUserSession()
-                    .map { $0?.toSideMenuHeaderViewUIModel }
+                    .map {
+                        guard let user = $0 else { return nil }
+                        return owner.generateUIModel(from: user)
+                    }
                     .do(
                         onSuccess: { owner.$uiModel.accept($0) },
                         onError: { _ in owner.$uiModel.accept(nil) }
@@ -63,6 +66,20 @@ final class SideMenuHeaderViewModel: ObservableObject, SideMenuHeaderViewModelPr
                 viewModel.getCurrentUserSessionTrigger.accept(())
             }
             .disposed(by: disposeBag)
+    }
+}
+
+private extension SideMenuHeaderViewModel {
+
+    func generateUIModel(from user: User) -> SideMenuHeaderView.UIModel {
+        var username = Localizable.menuHeaderUsernameDefault()
+        if !user.username.isEmpty {
+            username = user.username
+        }
+        return SideMenuHeaderView.UIModel(
+            avatarURL: try? user.image?.asURL(),
+            username: username
+        )
     }
 }
 

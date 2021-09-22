@@ -13,40 +13,18 @@ struct SideMenuHeaderView: View {
 
     @ObservedViewModel private var viewModel: SideMenuHeaderViewModelProtocol = Resolver.resolve()
 
-    @State private var isAuthenticated = false
-    @State private var avatarUrl: String?
-    @State private var username = Localizable.menuHeaderUsernameDefault()
+    @State private var uiModel: UIModel?
 
     var body: some View {
         ZStack(alignment: .center) {
             Color.green.edgesIgnoringSafeArea(.all)
-            if isAuthenticated {
-                authenticatedMenuHeader
+            if let uiModel = uiModel {
+                authenticatedMenuHeader(uiModel: uiModel)
             } else {
                 unauthenticatedMenuHeader
             }
         }
-        .onReceive(viewModel.output.uiModel) { bindData(uiModel: $0) }
-    }
-
-    var authenticatedMenuHeader: some View {
-        VStack(alignment: .center) {
-            if let url = try? avatarUrl?.asURL() {
-                WebImage(url: url)
-                    .placeholder { defaultAvatar }
-                    .resizable()
-                    .frame(width: 100.0, height: 100.0)
-                    .clipShape(Circle())
-            } else {
-                defaultAvatar
-            }
-            Text(username)
-                .foregroundColor(.white)
-                .fontWeight(.bold)
-                .lineLimit(2)
-                .multilineTextAlignment(.center)
-                .padding()
-        }
+        .bind(viewModel.output.uiModel, to: _uiModel)
     }
 
     var unauthenticatedMenuHeader: some View {
@@ -68,19 +46,24 @@ struct SideMenuHeaderView: View {
             .frame(width: 100.0, height: 100.0)
             .clipShape(Circle())
     }
-}
 
-private extension SideMenuHeaderView {
-    
-    func bindData(uiModel: UIModel?) {
-        if let user = uiModel {
-            isAuthenticated = true
-            avatarUrl = user.avatarUrl
-            username = user.username
-        } else {
-            isAuthenticated = false
-            avatarUrl = nil
-            username = Localizable.menuHeaderUsernameDefault()
+    func authenticatedMenuHeader(uiModel: UIModel) -> some View {
+        VStack(alignment: .center) {
+            if let url = uiModel.avatarURL {
+                WebImage(url: url)
+                    .placeholder { defaultAvatar }
+                    .resizable()
+                    .frame(width: 100.0, height: 100.0)
+                    .clipShape(Circle())
+            } else {
+                defaultAvatar
+            }
+            Text(uiModel.username)
+                .foregroundColor(.white)
+                .fontWeight(.bold)
+                .lineLimit(2)
+                .multilineTextAlignment(.center)
+                .padding()
         }
     }
 }
