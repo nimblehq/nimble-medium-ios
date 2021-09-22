@@ -22,120 +22,98 @@ struct FeedsView: View {
     @State private var isErrorToastPresented = false
 
     var body: some View {
-        Content(view: self)
-            .binding()
-            .onAppear { viewModel.input.refresh() }
-    }
-}
-
-// MARK: - Content
-private extension FeedsView {
-
-    struct Content: View {
-
-        let view: FeedsView
-        var viewModel: FeedsViewModelProtocol { view.viewModel }
-
-        var body: some View {
-            NavigationView {
-                Group {
-                    if view.isFirstLoad {
-                        ProgressView()
-                    } else {
-                        feedList
-                    }
-                }
-                .navigationTitle(Localizable.feedsTitle())
-                .modifier(NavigationBarPrimaryStyle(isBackButtonHidden: true))
-                .toolbar { navigationBarLeadingContent }
-                .toast(isPresented: view.$isErrorToastPresented, dismissAfter: 3.0) {
-                    ToastView(Localizable.errorGeneric()) { } background: {
-                        Color.clear
-                    }
-                }
-            }
-            .accentColor(.white)
-        }
-
-        var navigationBarLeadingContent: some ToolbarContent {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(
-                    action: {
-                        viewModel.input.toggleSideMenu()
-                    },
-                    label: {
-                        Image(R.image.menuIcon.name)
-                    }
-                )
-            }
-        }
-
-        var feedRows: some View {
+        NavigationView {
             Group {
-                RefreshHeader(
-                    refreshing: view.$isRefeshing,
-                    action: { viewModel.input.refresh() },
-                    label: { _ in ProgressView() }
-                )
-
-                LazyVStack(alignment: .leading) {
-                    ForEach(view.feedRowUIModels, id: \.id) { uiModel in
-                        NavigationLink(
-                            destination: FeedDetailView(slug: uiModel.id),
-                            label: {
-                                FeedRow(uiModel: uiModel)
-                                    .padding(.bottom, 16.0)
-                            }
-                        )
-                    }
+                if isFirstLoad {
+                    ProgressView()
+                } else {
+                    feedList
                 }
-                .padding(.all, 16.0)
+            }
+            .navigationTitle(Localizable.feedsTitle())
+            .modifier(NavigationBarPrimaryStyle(isBackButtonHidden: true))
+            .toolbar { navigationBarLeadingContent }
+            .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
+                ToastView(Localizable.errorGeneric()) { } background: {
+                    Color.clear
+                }
+            }
+        }
+        .accentColor(.white)
+        .onReceive(viewModel.output.didFinishRefresh) { _ in
+            if isFirstLoad {
+                isFirstLoad = false
+            }
 
-                if view.hasMore {
-                    RefreshFooter(
-                        refreshing: view.$isLoadingMore,
-                        action: { viewModel.input.loadMore() },
-                        label: { ProgressView() }
+            isRefeshing = false
+        }
+        .onReceive(viewModel.output.didFinishLoadMore) {
+            hasMore = $0
+            isLoadingMore = false
+        }
+        .onReceive(viewModel.output.didFailToLoadArticle) { _ in
+            isErrorToastPresented = true
+        }
+        .bind(viewModel.output.feedRowModels, to: _feedRowUIModels)
+        .onAppear { viewModel.input.refresh() }
+    }
+
+    var navigationBarLeadingContent: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarLeading) {
+            Button(
+                action: {
+                    viewModel.input.toggleSideMenu()
+                },
+                label: {
+                    Image(R.image.menuIcon.name)
+                }
+            )
+        }
+    }
+
+    var feedRows: some View {
+        Group {
+            RefreshHeader(
+                refreshing: $isRefeshing,
+                action: { viewModel.input.refresh() },
+                label: { _ in ProgressView() }
+            )
+
+            LazyVStack(alignment: .leading) {
+                ForEach(feedRowUIModels, id: \.id) { uiModel in
+                    NavigationLink(
+                        destination: FeedDetailView(slug: uiModel.id),
+                        label: {
+                            FeedRow(uiModel: uiModel)
+                                .padding(.bottom, 16.0)
+                        }
                     )
                 }
             }
-        }
+            .padding(.all, 16.0)
 
-        var feedList: some View {
-            Group {
-                if !view.feedRowUIModels.isEmpty {
-                    ScrollView {
-                        feedRows
-                    }
-                    .enableRefresh()
-                    .padding(.top, 16.0)
-                } else {
-                    Text(Localizable.feedsNoArticle())
-                }
+            if hasMore {
+                RefreshFooter(
+                    refreshing: $isLoadingMore,
+                    action: { viewModel.input.loadMore() },
+                    label: { ProgressView() }
+                )
             }
         }
     }
-}
 
-// MARK: - Binding
-extension FeedsView.Content {
-
-    func binding() -> some View {
-        onReceive(viewModel.output.didFinishRefresh) { _ in
-            if view.isFirstLoad {
-                view.isFirstLoad = false
+    var feedList: some View {
+        Group {
+            if !feedRowUIModels.isEmpty {
+                ScrollView {
+                    feedRows
+                }
+                .enableRefresh()
+                .padding(.top, 16.0)
+            } else {
+                Text(Localizable.feedsNoArticle())
             }
-
-            view.isRefeshing = false
         }
-        .onReceive(viewModel.output.didFinishLoadMore) {
-            view.hasMore = $0
-            view.isLoadingMore = false
-        }
-        .onReceive(viewModel.output.didFailToLoadArticle) { _ in
-            view.isErrorToastPresented = true
-        }
-        .bind(viewModel.output.feedRowModels, to: view._feedRowUIModels)
     }
 }
 
