@@ -1,28 +1,25 @@
-//  swiftlint:disable:this file_name
 //
-//  FeedRowUIModel.swift
+//  FeedDetailView+UIModel.swift
 //  NimbleMedium
 //
-//  Created by Mark G on 21/09/2021.
+//  Created by Mark G on 22/09/2021.
 //
 
 import Foundation
 
-extension FeedRow {
+extension FeedDetailView {
 
     struct UIModel: Equatable {
 
-        let id: String
         let articleTitle: String
-        let articleDescription: String
+        let articleBody: String
         let articleUpdatedAt: String
-        let authorImage: URL?
         let authorName: String
+        let authorImage: URL?
 
         init(article: Article) {
-            id = article.id
             articleTitle = article.title
-            articleDescription = article.description
+            articleBody = article.body
             articleUpdatedAt = article.updatedAt.format(with: .monthDayYear)
             authorImage = try? article.author.image?.asURL()
             authorName = article.author.username
