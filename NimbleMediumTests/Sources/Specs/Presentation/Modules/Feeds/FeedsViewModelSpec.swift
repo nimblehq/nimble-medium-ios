@@ -32,7 +32,7 @@ final class FeedsViewModelSpec: QuickSpec {
                     let output = FeedRowViewModelOutputMock()
                     viewModel.output = output
 
-                    output.model = args.get()
+                    output.uiModel = args.get()
 
                     return viewModel
                 }

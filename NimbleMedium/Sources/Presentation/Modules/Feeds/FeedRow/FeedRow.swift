@@ -20,11 +20,11 @@ struct FeedRow: View {
             .binding()
     }
 
-    init(model: UIModel) {
-        _uiModel = State(initialValue: model)
+    init(uiModel: UIModel) {
+        _uiModel = State(initialValue: uiModel)
         viewModel = Resolver.resolve(
             FeedRowViewModelProtocol.self,
-            args: model
+            args: uiModel
         )
     }
 }
@@ -62,6 +62,6 @@ private extension FeedRow {
 extension FeedRow.Content {
 
     func binding() -> some View {
-        bind(viewModel.output.model, to: view._uiModel)
+        bind(viewModel.output.uiModel, to: view._uiModel)
     }
 }

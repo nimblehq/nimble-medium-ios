@@ -45,43 +45,11 @@ final class FeedDetailViewModelSpec: QuickSpec {
                         }
                     }
 
-                    it("returns output articleTitle with correct value") {
-                        expect(viewModel.output.articleTitle)
-                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                                .next(0, ""),
-                                .next(10, inputArticle.title)
-                            ]
-                    }
-
-                    it("returns output articleBody with correct value") {
-                        expect(viewModel.output.articleBody)
-                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                                .next(0, ""),
-                                .next(10, inputArticle.body)
-                            ]
-                    }
-
-                    it("returns output authorName with correct value") {
-                        expect(viewModel.output.authorName)
-                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                                .next(0, ""),
-                                .next(10, inputArticle.author.username)
-                            ]
-                    }
-
-                    it("returns output authorImage with correct value") {
-                        expect(viewModel.output.authorImage)
+                    it("returns output feedDetailUIModel with correct value") {
+                        expect(viewModel.output.feedDetailUIModel)
                             .events(scheduler: scheduler, disposeBag: disposeBag) == [
                                 .next(0, nil),
-                                .next(10, try? inputArticle.author.image?.asURL())
-                            ]
-                    }
-
-                    it("returns output articleUpdatedAt with correct value") {
-                        expect(viewModel.output.articleUpdatedAt)
-                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                                .next(0, ""),
-                                .next(10, inputArticle.updatedAt.format(with: .monthDayYear))
+                                .next(10, .init(article: inputArticle))
                             ]
                     }
                 }

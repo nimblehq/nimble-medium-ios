@@ -24,23 +24,23 @@ final class FeedRowViewModelSpec: QuickSpec {
         var viewModel: FeedRowViewModelProtocol!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
-        var model: FeedRow.UIModel!
+        var uiModel: FeedRow.UIModel!
 
         describe("a FeedsViewModel") {
 
             beforeEach {
                 Resolver.registerMockServices()
 
-                model = .init(article: APIArticleResponse.dummy.article)
-                viewModel = FeedRowViewModel(model: model)
+                uiModel = .init(article: APIArticleResponse.dummy.article)
+                viewModel = FeedRowViewModel(uiModel: uiModel)
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
             }
 
             it("returns output model with correct value") {
-                expect(viewModel.output.model)
+                expect(viewModel.output.uiModel)
                     .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                        .next(0, model),
+                        .next(0, uiModel),
                         .completed(0)
                     ]
             }

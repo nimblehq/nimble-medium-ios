@@ -18,7 +18,7 @@ struct FeedsView: View {
     @State private var isRefeshing: Bool = false
     @State private var hasMore: Bool = true
     @State private var isLoadingMore: Bool = false
-    @State private var feedRowModels: [FeedRow.UIModel] = []
+    @State private var feedRowUIModels: [FeedRow.UIModel] = []
     @State private var isErrorToastPresented = false
 
     var body: some View {
@@ -79,11 +79,11 @@ private extension FeedsView {
                 )
 
                 LazyVStack(alignment: .leading) {
-                    ForEach(view.feedViewModels, id: \.output.id) { viewModel in
+                    ForEach(view.feedRowUIModels, id: \.id) { uiModel in
                         NavigationLink(
-                            destination: FeedDetailView(slug: viewModel.output.id),
+                            destination: FeedDetailView(slug: uiModel.id),
                             label: {
-                                FeedRow(viewModel: viewModel)
+                                FeedRow(uiModel: uiModel)
                                     .padding(.bottom, 16.0)
                             }
                         )
@@ -103,7 +103,7 @@ private extension FeedsView {
 
         var feedList: some View {
             Group {
-                if !view.feedRowModels.isEmpty {
+                if !view.feedRowUIModels.isEmpty {
                     ScrollView {
                         feedRows
                     }
@@ -135,7 +135,7 @@ extension FeedsView.Content {
         .onReceive(viewModel.output.didFailToLoadArticle) { _ in
             view.isErrorToastPresented = true
         }
-        .bind(viewModel.output.feedRowModels, to: view._feedRowModels)
+        .bind(viewModel.output.feedRowModels, to: view._feedRowUIModels)
     }
 }
 

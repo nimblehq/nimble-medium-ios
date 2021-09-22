@@ -17,13 +17,8 @@ protocol FeedDetailViewModelInput {
 
 protocol FeedDetailViewModelOutput {
 
-    var didFetchArticle: Signal<Void> { get }
     var didFailToFetchArticle: Signal<Void> { get }
-    var articleTitle: Driver<String> { get }
-    var articleBody: Driver<String> { get }
-    var articleUpdatedAt: Driver<String> { get }
-    var authorName: Driver<String> { get }
-    var authorImage: Driver<URL?> { get }
+    var feedDetailUIModel: Driver<FeedDetailView.UIModel?> { get }
 }
 
 protocol FeedDetailViewModelProtocol: ObservableViewModel {
@@ -42,11 +37,7 @@ final class FeedDetailViewModel: ObservableObject, FeedDetailViewModelProtocol {
 
     @PublishRelayProperty var didFetchArticle: Signal<Void>
     @PublishRelayProperty var didFailToFetchArticle: Signal<Void>
-    @BehaviorRelayProperty("") var articleTitle: Driver<String>
-    @BehaviorRelayProperty("") var articleBody: Driver<String>
-    @BehaviorRelayProperty("") var authorName: Driver<String>
-    @BehaviorRelayProperty(nil) var authorImage: Driver<URL?>
-    @BehaviorRelayProperty("") var articleUpdatedAt: Driver<String>
+    @BehaviorRelayProperty(nil) var feedDetailUIModel: Driver<FeedDetailView.UIModel?>
 
     var input: FeedDetailViewModelInput { self }
     var output: FeedDetailViewModelOutput { self }
@@ -78,12 +69,7 @@ private extension FeedDetailViewModel {
         getArticleUseCase.getArticle(slug: slug)
         .do(
             onSuccess: {
-                owner.$articleTitle.accept($0.title)
-                owner.$articleBody.accept($0.body)
-                owner.$articleUpdatedAt.accept($0.updatedAt.format(with: .monthDayYear))
-                owner.$authorName.accept($0.author.username)
-                owner.$authorImage.accept(try? $0.author.image?.asURL())
-                owner.$didFetchArticle.accept(())
+                owner.$feedDetailUIModel.accept(.init(article: $0))
             },
             onError: { _ in owner.$didFailToFetchArticle.accept(()) }
         )
