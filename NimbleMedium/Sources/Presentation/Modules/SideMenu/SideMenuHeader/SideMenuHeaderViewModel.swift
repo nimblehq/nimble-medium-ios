@@ -72,7 +72,7 @@ final class SideMenuHeaderViewModel: ObservableObject, SideMenuHeaderViewModelPr
 private extension SideMenuHeaderViewModel {
 
     func generateUIModel(from user: User) -> SideMenuHeaderView.UIModel {
-        var username = Localizable.menuHeaderUsernameDefault()
+        var username = Localizable.defaultUsernameValue()
         if !user.username.isEmpty {
             username = user.username
         }

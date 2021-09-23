@@ -9,11 +9,18 @@
 "action.login" = "Login";
 "action.signup" = "Signup";
 
+"default.username.value" = "Current User";
+
 "error.generic" = "Something went wrong.\nPlease try again later.";
 
-"feeds.title" = "Feeds";
-"feeds.noArticle" = "No Article";
+"feedComments.title" = "Comments History";
+
+"feedDetail.fetchFailure.message" = "Unable to load the article";
+"feedDetail.title" = "Article";
+
 "feeds.comments.title" = "Go to comments section";
+"feeds.noArticle" = "No Article";
+"feeds.title" = "Feeds";
 
 "login.title" = "Login";
 "login.textFieldEmail.placeholder" = "Email";
@@ -22,7 +29,6 @@
 
 "menu.header.description" = "A place to share your knowledge";
 "menu.header.title" = "Nimble Medium";
-"menu.headerUsername.default" = "Current User";
 "menu.option.login" = "Login";
 "menu.option.logout" = "Logout";
 "menu.option.myProfile" = "My Profile";
@@ -34,7 +40,4 @@
 "signup.textFieldUsername.placeholder" = "Username";
 "signup.title" = "Signup";
 
-"feedDetail.title" = "Article";
-"feedDetail.fetchFailure.message" = "Unable to load the article";
-
-"feedComments.title" = "Comments History";
+"userProfile.title" = "Profile";

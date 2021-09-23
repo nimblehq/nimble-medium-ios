@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		240E218026FC361000EFC3B5 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E217F26FC361000EFC3B5 /* UserProfileView.swift */; };
 		241B4EEA26D3B3F4000409CC /* SideMenuActionItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B4EE926D3B3F4000409CC /* SideMenuActionItemView.swift */; };
 		241B99DC26DF23030041207F /* AutoMockable.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B99DB26DF23030041207F /* AutoMockable.generated.swift */; };
 		241B99DE26DF34720041207F /* SignupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B99DD26DF34720041207F /* SignupUseCase.swift */; };
@@ -53,6 +54,7 @@
 		24F3D7B726DCEA0300DE2420 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 24F3D7B626DCEA0300DE2420 /* KeychainAccess */; };
 		24F3D7BE26DE041F00DE2420 /* LoginViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7BD26DE041F00DE2420 /* LoginViewModelSpec.swift */; };
 		24F3D7C426DE0FAE00DE2420 /* TestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7C326DE0FAE00DE2420 /* TestError.swift */; };
+		24FB783D26FC3A80007534BE /* UserProfileView+UIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FB783C26FC3A80007534BE /* UserProfileView+UIModel.swift */; };
 		2D031D5526EB1093009A5158 /* View+Bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D031D5426EB1093009A5158 /* View+Bind.swift */; };
 		2D17E4EF26F07738001D3F90 /* AuthorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D17E4EE26F07738001D3F90 /* AuthorView.swift */; };
 		2D17E4F226F07996001D3F90 /* NavigationBarPrimaryStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D17E4F126F07996001D3F90 /* NavigationBarPrimaryStyle.swift */; };
@@ -161,6 +163,7 @@
 		1B8DA573BF5543E0BD2D9E94 /* Pods-NimbleMediumTests.release production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.release production.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.release production.xcconfig"; sourceTree = "<group>"; };
 		1FB4ECE354F839DF02D6976B /* Pods-NimbleMedium.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.staging.xcconfig"; sourceTree = "<group>"; };
 		21851292A064EB97674233A2 /* Pods-NimbleMediumTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.staging.xcconfig"; sourceTree = "<group>"; };
+		240E217F26FC361000EFC3B5 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		241B4EE926D3B3F4000409CC /* SideMenuActionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuActionItemView.swift; sourceTree = "<group>"; };
 		241B99DB26DF23030041207F /* AutoMockable.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoMockable.generated.swift; sourceTree = "<group>"; };
 		241B99DD26DF34720041207F /* SignupUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupUseCase.swift; sourceTree = "<group>"; };
@@ -204,6 +207,7 @@
 		24F3D7B326DCE96200DE2420 /* UserSessionRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSessionRepositoryProtocol.swift; sourceTree = "<group>"; };
 		24F3D7BD26DE041F00DE2420 /* LoginViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModelSpec.swift; sourceTree = "<group>"; };
 		24F3D7C326DE0FAE00DE2420 /* TestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestError.swift; sourceTree = "<group>"; };
+		24FB783C26FC3A80007534BE /* UserProfileView+UIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileView+UIModel.swift"; sourceTree = "<group>"; };
 		2D031D5426EB1093009A5158 /* View+Bind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Bind.swift"; sourceTree = "<group>"; };
 		2D17E4EE26F07738001D3F90 /* AuthorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorView.swift; sourceTree = "<group>"; };
 		2D17E4F126F07996001D3F90 /* NavigationBarPrimaryStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarPrimaryStyle.swift; sourceTree = "<group>"; };
@@ -351,6 +355,15 @@
 				EDBC77E99D264744421CC502 /* Pods_NimbleMediumTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		240E217E26FC35EB00EFC3B5 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				240E217F26FC361000EFC3B5 /* UserProfileView.swift */,
+				24FB783C26FC3A80007534BE /* UserProfileView+UIModel.swift */,
+			);
+			path = UserProfile;
 			sourceTree = "<group>";
 		};
 		24204CA326D6465C00534314 /* SideMenuActions */ = {
@@ -1168,6 +1181,7 @@
 				2424B22D26D4A23100CF07B5 /* Login */,
 				2DBE36AF26C3B32B00DA3511 /* SideMenu */,
 				249042E426D4D14F00E970B6 /* Signup */,
+				240E217E26FC35EB00EFC3B5 /* UserProfile */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -1720,6 +1734,7 @@
 				2D73312B26F0F05D0052DCC7 /* GetArticleUseCase.swift in Sources */,
 				2D882ED426F1C9EE00DB6560 /* APIArticleComment.swift in Sources */,
 				2D882ED226F1C9E200DB6560 /* APIArticleCommentsResponse.swift in Sources */,
+				240E218026FC361000EFC3B5 /* UserProfileView.swift in Sources */,
 				2DEF1F8D26E5FE5300EB93CC /* ArticleRepository.swift in Sources */,
 				2D2F456026C25911002C0331 /* View+NavigationBar.swift in Sources */,
 				24F3D7B426DCE96200DE2420 /* UserSessionRepositoryProtocol.swift in Sources */,
@@ -1730,6 +1745,7 @@
 				2DD4805726D73C67005225CF /* ObservableViewModel.swift in Sources */,
 				2D882EDA26F1CBA200DB6560 /* ArticleCommentRepositoryProtocol.swift in Sources */,
 				24C9393D26D8A26300547800 /* AppMainButton.swift in Sources */,
+				24FB783D26FC3A80007534BE /* UserProfileView+UIModel.swift in Sources */,
 				2D73312926F0EFD20052DCC7 /* APIArticleResponse.swift in Sources */,
 				241B99DE26DF34720041207F /* SignupUseCase.swift in Sources */,
 				246B386F26F87730003173FD /* SideMenuHeaderViewModel.swift in Sources */,
