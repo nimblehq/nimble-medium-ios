@@ -13,33 +13,38 @@ struct FeedRow: View {
 
     @ObservedViewModel private var viewModel: FeedRowViewModelProtocol
 
-    @State var uiModel: UIModel
+    @State var uiModel: UIModel?
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 16.0) {
-            AuthorView(
-                articleUpdateAt: uiModel.articleUpdatedAt,
-                authorName: uiModel.authorName,
-                authorImage: uiModel.authorImage
-            )
-            VStack(alignment: .leading) {
-                Text(uiModel.articleTitle)
-                    .fontWeight(.bold)
-                    .lineLimit(1)
-                    .truncationMode(.tail)
-                    .foregroundColor(.black)
-                Text(uiModel.articleDescription)
-                    .foregroundColor(.gray)
+        Group {
+            if let uiModel = uiModel {
+                VStack(alignment: .leading, spacing: 16.0) {
+                    AuthorView(
+                        articleUpdateAt: uiModel.articleUpdatedAt,
+                        authorName: uiModel.authorName,
+                        authorImage: uiModel.authorImage
+                    )
+                    VStack(alignment: .leading) {
+                        Text(uiModel.articleTitle)
+                            .fontWeight(.bold)
+                            .lineLimit(1)
+                            .truncationMode(.tail)
+                            .foregroundColor(.black)
+                        Text(uiModel.articleDescription)
+                            .foregroundColor(.gray)
+                    }
+                }
+            } else {
+                Text("empty")
+                    .foregroundColor(.red)
             }
         }
-        .bind(viewModel.output.uiModel, to: _uiModel)
+        .onReceive(viewModel.output.uiModel) {
+            uiModel = $0
+        }
     }
 
-    init(uiModel: UIModel) {
-        _uiModel = State(initialValue: uiModel)
-        viewModel = Resolver.resolve(
-            FeedRowViewModelProtocol.self,
-            args: uiModel
-        )
+    init(viewModel: FeedRowViewModelProtocol) {
+        self.viewModel = viewModel
     }
 }

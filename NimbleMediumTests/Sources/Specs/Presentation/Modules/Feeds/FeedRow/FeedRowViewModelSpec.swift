@@ -31,8 +31,17 @@ final class FeedRowViewModelSpec: QuickSpec {
             beforeEach {
                 Resolver.registerMockServices()
 
-                uiModel = .init(article: APIArticleResponse.dummy.article)
-                viewModel = FeedRowViewModel(uiModel: uiModel)
+                let article = APIArticleResponse.dummy.article
+                uiModel = FeedRow.UIModel(
+                    id: article.id,
+                    articleTitle: article.title,
+                    articleDescription: article.description,
+                    articleUpdatedAt: article.updatedAt.format(with: .monthDayYear),
+                    authorImage: try? article.author.image?.asURL(),
+                    authorName: article.author.username
+                )
+
+                viewModel = FeedRowViewModel(article: article)
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
             }

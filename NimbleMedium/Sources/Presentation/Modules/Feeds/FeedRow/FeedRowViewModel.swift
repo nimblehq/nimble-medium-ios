@@ -15,7 +15,8 @@ protocol FeedRowViewModelInput {}
 
 // sourcery: AutoMockable
 protocol FeedRowViewModelOutput {
-    
+
+    var id: String { get }
     var uiModel: Driver<FeedRow.UIModel> { get }
 }
 
@@ -34,9 +35,20 @@ final class FeedRowViewModel: ObservableObject, FeedRowViewModelProtocol {
     var output: FeedRowViewModelOutput { self }
 
     let uiModel: Driver<FeedRow.UIModel>
+    let id: String
 
-    init(uiModel: FeedRow.UIModel) {
-        self.uiModel = .just(uiModel)
+    init(article: Article) {
+        id = article.id
+        self.uiModel = .just(
+            .init(
+                id: article.id,
+                articleTitle: article.title,
+                articleDescription: article.description,
+                articleUpdatedAt: article.updatedAt.format(with: .monthDayYear),
+                authorImage: try? article.author.image?.asURL(),
+                authorName: article.author.username
+            )
+        )
     }
 }
 

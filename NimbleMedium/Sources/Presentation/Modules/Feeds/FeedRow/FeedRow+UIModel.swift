@@ -17,14 +17,5 @@ extension FeedRow {
         let articleUpdatedAt: String
         let authorImage: URL?
         let authorName: String
-
-        init(article: Article) {
-            id = article.id
-            articleTitle = article.title
-            articleDescription = article.description
-            articleUpdatedAt = article.updatedAt.format(with: .monthDayYear)
-            authorImage = try? article.author.image?.asURL()
-            authorName = article.author.username
-        }
     }
 }

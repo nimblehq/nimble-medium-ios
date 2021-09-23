@@ -18,7 +18,7 @@ struct FeedsView: View {
     @State private var isRefeshing: Bool = false
     @State private var hasMore: Bool = true
     @State private var isLoadingMore: Bool = false
-    @State private var feedRowUIModels: [FeedRow.UIModel] = []
+    @State private var feedRowViewModels: [FeedRowViewModelProtocol] = []
     @State private var isErrorToastPresented = false
 
     var body: some View {
@@ -54,7 +54,7 @@ struct FeedsView: View {
         .onReceive(viewModel.output.didFailToLoadArticle) { _ in
             isErrorToastPresented = true
         }
-        .bind(viewModel.output.feedRowModels, to: _feedRowUIModels)
+        .bind(viewModel.output.feedRowViewModels, to: _feedRowViewModels)
         .onAppear { viewModel.input.refresh() }
     }
 
@@ -79,18 +79,20 @@ struct FeedsView: View {
                 label: { _ in ProgressView() }
             )
 
-            LazyVStack(alignment: .leading) {
-                ForEach(feedRowUIModels, id: \.id) { uiModel in
+            // FIXME: LazyVStack produces an infinity refresh FeedRow
+            VStack(alignment: .leading) {
+                ForEach(feedRowViewModels, id: \.output.id) { viewModel in
                     NavigationLink(
-                        destination: FeedDetailView(slug: uiModel.id),
+                        destination: FeedDetailView(slug: viewModel.output.id),
                         label: {
-                            FeedRow(uiModel: uiModel)
+                            FeedRow(viewModel: viewModel)
                                 .padding(.bottom, 16.0)
                         }
                     )
                 }
             }
             .padding(.all, 16.0)
+            .frame(maxWidth: .infinity, alignment: .leading)
 
             if hasMore {
                 RefreshFooter(
@@ -104,7 +106,7 @@ struct FeedsView: View {
 
     var feedList: some View {
         Group {
-            if !feedRowUIModels.isEmpty {
+            if !feedRowViewModels.isEmpty {
                 ScrollView {
                     feedRows
                 }
