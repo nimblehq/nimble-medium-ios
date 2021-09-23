@@ -34,6 +34,13 @@ struct SideMenuActionsView: View {
             ) {
                 // TODO: Implement this option tap action in the integrate task
             }
+
+            SideMenuActionItemView(
+                text: Localizable.menuOptionLogout(),
+                iconName: R.image.iconLogout.name
+            ) {
+                // TODO: Implement this option tap action in the integrate task
+            }
         }
     }
 
