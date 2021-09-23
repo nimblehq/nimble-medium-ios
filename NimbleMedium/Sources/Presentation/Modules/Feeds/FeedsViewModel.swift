@@ -144,7 +144,7 @@ private extension FeedsViewModel {
 
 private extension Array where Element == Article {
 
-    var viewModels: [FeedRowViewModel] {
-        map { .init(article: $0) }
+    var viewModels: [FeedRowViewModelProtocol] {
+        map { Resolver.resolve(FeedRowViewModelProtocol.self, args: $0) }
     }
 }

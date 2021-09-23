@@ -32,7 +32,17 @@ final class FeedsViewModelSpec: QuickSpec {
                     let output = FeedRowViewModelOutputMock()
                     viewModel.output = output
 
-                    output.uiModel = args.get()
+                    let article: Article = args.get()
+                    let uiModel = FeedRow.UIModel(
+                        id: article.id,
+                        articleTitle: article.title,
+                        articleDescription: article.description,
+                        articleUpdatedAt: article.updatedAt.format(with: .monthDayYear),
+                        authorImage: try? article.author.image?.asURL(),
+                        authorName: article.author.username
+                    )
+                    output.id = uiModel.id
+                    output.uiModel = .just(uiModel)
 
                     return viewModel
                 }
