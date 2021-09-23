@@ -8,6 +8,7 @@
 import Foundation
 
 struct CodableUser: User, Codable {
+
     let email: String
     let token: String
     let username: String

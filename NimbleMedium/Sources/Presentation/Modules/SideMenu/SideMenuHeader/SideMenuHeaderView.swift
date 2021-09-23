@@ -7,46 +7,24 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Resolver
 
 struct SideMenuHeaderView: View {
 
-    // TODO: Update this observable to correct value in integrate task
-    @State private var isAuthenticated = true
+    @ObservedViewModel private var viewModel: SideMenuHeaderViewModelProtocol = Resolver.resolve()
+
+    @State private var uiModel: UIModel?
 
     var body: some View {
         ZStack(alignment: .center) {
             Color.green.edgesIgnoringSafeArea(.all)
-
-            if isAuthenticated {
-                authenticatedMenuHeader
+            if let uiModel = uiModel {
+                authenticatedMenuHeader(uiModel: uiModel)
             } else {
                 unauthenticatedMenuHeader
             }
         }
-    }
-
-    var authenticatedMenuHeader: some View {
-        VStack(alignment: .center) {
-            // TODO: Update this avatar url to correct value in integrate task
-            // swiftlint:disable line_length
-            if let url = try? "https://thumbs.dreamstime.com/b/vector-illustration-avatar-dummy-logo-collection-image-icon-stock-isolated-object-set-symbol-web-137160339.jpg".asURL() {
-                // FIXME: It blocks UI
-                WebImage(url: url)
-                    .placeholder { defaultAvatar }
-                    .resizable()
-                    .frame(width: 100.0, height: 100.0)
-                    .clipShape(Circle())
-            } else {
-                defaultAvatar
-            }
-            // TODO: Update this username to correct value in integrate task
-            Text(Localizable.menuHeaderUsernameDefault())
-                .foregroundColor(.white)
-                .fontWeight(.bold)
-                .lineLimit(2)
-                .multilineTextAlignment(.center)
-                .padding()
-        }
+        .bind(viewModel.output.uiModel, to: _uiModel)
     }
 
     var unauthenticatedMenuHeader: some View {
@@ -67,6 +45,26 @@ struct SideMenuHeaderView: View {
             .resizable()
             .frame(width: 100.0, height: 100.0)
             .clipShape(Circle())
+    }
+
+    func authenticatedMenuHeader(uiModel: UIModel) -> some View {
+        VStack(alignment: .center) {
+            if let url = uiModel.avatarURL {
+                WebImage(url: url)
+                    .placeholder { defaultAvatar }
+                    .resizable()
+                    .frame(width: 100.0, height: 100.0)
+                    .clipShape(Circle())
+            } else {
+                defaultAvatar
+            }
+            Text(uiModel.username)
+                .foregroundColor(.white)
+                .fontWeight(.bold)
+                .lineLimit(2)
+                .multilineTextAlignment(.center)
+                .padding()
+        }
     }
 }
 
