@@ -100,7 +100,7 @@ private extension FeedsViewModel {
             onSuccess: {
                 owner.$didFinishRefresh.accept(())
                 owner.currentOffset = 0
-                owner.$feedRowViewModels.accept(self.$feedRowViewModels.value + $0.viewModels)
+                owner.$feedRowViewModels.accept(owner.$feedRowViewModels.value + $0.viewModels)
             },
             onError: { _ in
                 owner.$didFinishRefresh.accept(())

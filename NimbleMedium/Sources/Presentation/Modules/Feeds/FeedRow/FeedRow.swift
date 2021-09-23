@@ -35,8 +35,7 @@ struct FeedRow: View {
                     }
                 }
             } else {
-                Text("empty")
-                    .foregroundColor(.red)
+                EmptyView()
             }
         }
         .onReceive(viewModel.output.uiModel) {
