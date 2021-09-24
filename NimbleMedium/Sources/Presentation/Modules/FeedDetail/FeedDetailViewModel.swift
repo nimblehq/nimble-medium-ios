@@ -17,6 +17,7 @@ protocol FeedDetailViewModelInput {
 
 protocol FeedDetailViewModelOutput {
 
+    var id: String { get }
     var didFailToFetchArticle: Signal<Void> { get }
     var feedDetailUIModel: Driver<FeedDetailView.UIModel?> { get }
 }
@@ -31,19 +32,19 @@ final class FeedDetailViewModel: ObservableObject, FeedDetailViewModelProtocol {
 
     @Injected var getArticleUseCase: GetArticleUseCaseProtocol
     
-    let disposeBag = DisposeBag()
-    let fetchArticleTrigger = PublishRelay<Void>()
-    let slug: String
+    private let disposeBag = DisposeBag()
+    private let fetchArticleTrigger = PublishRelay<Void>()
 
     @PublishRelayProperty var didFetchArticle: Signal<Void>
     @PublishRelayProperty var didFailToFetchArticle: Signal<Void>
     @BehaviorRelayProperty(nil) var feedDetailUIModel: Driver<FeedDetailView.UIModel?>
 
+    let id: String
     var input: FeedDetailViewModelInput { self }
     var output: FeedDetailViewModelOutput { self }
 
-    init(slug: String) {
-        self.slug = slug
+    init(id: String) {
+        self.id = id
 
         fetchArticleTrigger
             .withUnretained(self)
@@ -66,7 +67,7 @@ extension FeedDetailViewModel: FeedDetailViewModelOutput {}
 private extension FeedDetailViewModel {
 
     func fetchArticleTriggered(owner: FeedDetailViewModel) -> Observable<Void> {
-        getArticleUseCase.getArticle(slug: slug)
+        getArticleUseCase.getArticle(slug: id)
         .do(
             onSuccess: {
                 owner.$feedDetailUIModel.accept(.init(article: $0))

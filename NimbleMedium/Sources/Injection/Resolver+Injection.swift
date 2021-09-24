@@ -75,7 +75,13 @@ extension Resolver: ResolverRegistering {
         register { SideMenuViewModel() }.implements(SideMenuViewModelProtocol.self).scope(.cached)
         register { SignupViewModel() }.implements(SignupViewModelProtocol.self).scope(.cached)
         register { _, args in
-            FeedDetailViewModel(slug: args.get())
+            FeedDetailViewModel(id: args.get())
         }.implements(FeedDetailViewModelProtocol.self)
+        register { _, args in
+            FeedCommentsViewModel(id: args.get())
+        }.implements(FeedCommentsViewModelProtocol.self)
+        register { _, args in
+            FeedCommentRowViewModel(comment: args.get())
+        }.implements(FeedCommentRowViewModelProtocol.self)
     }
 }

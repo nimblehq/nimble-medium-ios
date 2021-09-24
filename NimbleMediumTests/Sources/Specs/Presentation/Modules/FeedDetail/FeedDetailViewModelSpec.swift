@@ -27,7 +27,7 @@ final class FeedDetailViewModelSpec: QuickSpec {
 
             beforeEach {
                 Resolver.registerMockServices()
-                viewModel = FeedDetailViewModel(slug: "slug")
+                viewModel = FeedDetailViewModel(id: "slug")
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
             }

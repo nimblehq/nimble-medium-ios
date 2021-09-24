@@ -18,6 +18,8 @@ struct FeedDetailView: View {
     @State private var isErrorToastPresented = false
     @State private var isFetchArticleFailed = false
 
+    private let slug: String
+
     var body: some View {
         Group {
             if let uiModel = uiModel {
@@ -43,7 +45,24 @@ struct FeedDetailView: View {
         .bind(viewModel.output.feedDetailUIModel, to: _uiModel)
     }
 
+    var comments: some View {
+        NavigationLink(
+            destination: FeedCommentsView(id: viewModel.output.id),
+            label: {
+                Text(Localizable.feedDetailCommentsTitle())
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 16.0)
+                    .frame(height: 50.0)
+                    .background(Color.green)
+                    .cornerRadius(8.0)
+            }
+        )
+        .padding(.all, 16.0)
+    }
+
     init(slug: String) {
+        self.slug = slug
+        
         viewModel = Resolver.resolve(
             FeedDetailViewModelProtocol.self,
             args: slug
@@ -67,10 +86,7 @@ struct FeedDetailView: View {
             Text(uiModel.articleBody)
                 .padding(.horizontal, 8.0)
 
-            AppMainButton(title: Localizable.feedsCommentsTitle()) {
-                // TODO: Go to Comments screen
-            }
-            .padding(.top, 16.0)
+            comments
         }
     }
 
