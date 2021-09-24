@@ -62,6 +62,7 @@ struct FeedDetailView: View {
 
     init(slug: String) {
         self.slug = slug
+        
         viewModel = Resolver.resolve(
             FeedDetailViewModelProtocol.self,
             args: slug
