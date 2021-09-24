@@ -32,7 +32,17 @@ final class FeedsViewModelSpec: QuickSpec {
                     let output = FeedRowViewModelOutputMock()
                     viewModel.output = output
 
-                    output.model = args.get()
+                    let article: Article = args.get()
+                    let uiModel = FeedRow.UIModel(
+                        id: article.id,
+                        articleTitle: article.title,
+                        articleDescription: article.description,
+                        articleUpdatedAt: article.updatedAt.format(with: .monthDayYear),
+                        authorImage: try? article.author.image?.asURL(),
+                        authorName: article.author.username
+                    )
+                    output.id = uiModel.id
+                    output.uiModel = .just(uiModel)
 
                     return viewModel
                 }
@@ -83,10 +93,10 @@ final class FeedsViewModelSpec: QuickSpec {
                             .notTo(beEmpty())
                     }
 
-                    it("returns output feedRowModels with correct value") {
+                    it("returns output feedRowViewModels with correct value") {
                         expect(
-                            viewModel.output.feedRowModels
-                                .map { $0.compactMap { $0.id } }
+                            viewModel.output.feedRowViewModels
+                                .map { $0.map { $0.output.id } }
                         )
                             .events(scheduler: scheduler, disposeBag: disposeBag) == [
                                 .next(0, []),
@@ -163,18 +173,19 @@ final class FeedsViewModelSpec: QuickSpec {
                             ]
                     }
 
-                    it("returns output feedRowModels with correct value") {
-                        let models = inputArticles
-                            .map { FeedRow.UIModel(article: $0) }
-                        let doubleModels = models + models
+                    it("returns output feedRowViewModels with correct value") {
+                        let ids = inputArticles
+                            .map { $0.id }
+                        let doubleIds = ids + ids
                         expect(
-                            viewModel.output.feedRowModels
+                            viewModel.output.feedRowViewModels
+                                .map { $0.map { $0.output.id } }
                         )
                         .events(scheduler: scheduler, disposeBag: disposeBag) == [
                             .next(0, []),
-                            .next(10, models),
-                            .next(20, doubleModels),
-                            .next(30, doubleModels)
+                            .next(10, ids),
+                            .next(20, doubleIds),
+                            .next(30, doubleIds)
                         ]
                     }
                 }

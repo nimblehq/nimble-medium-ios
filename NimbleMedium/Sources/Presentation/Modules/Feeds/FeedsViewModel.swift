@@ -23,7 +23,7 @@ protocol FeedsViewModelOutput {
     var didFailToLoadArticle: Signal<Void> { get }
     var didFinishLoadMore: Signal<Bool> { get }
     var didFinishRefresh: Signal<Void> { get }
-    var feedRowModels: Driver<[FeedRow.UIModel]> { get }
+    var feedRowViewModels: Driver<[FeedRowViewModelProtocol]> { get }
 }
 
 protocol FeedsViewModelProtocol: ObservableViewModel {
@@ -46,7 +46,7 @@ final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
     @PublishRelayProperty var didFailToLoadArticle: Signal<Void>
     @PublishRelayProperty var didFinishLoadMore: Signal<Bool>
     @PublishRelayProperty var didFinishRefresh: Signal<Void>
-    @BehaviorRelayProperty([]) var feedRowModels: Driver<[FeedRow.UIModel]>
+    @BehaviorRelayProperty([]) var feedRowViewModels: Driver<[FeedRowViewModelProtocol]>
 
     var input: FeedsViewModelInput { self }
     var output: FeedsViewModelOutput { self }
@@ -100,7 +100,7 @@ private extension FeedsViewModel {
             onSuccess: {
                 owner.$didFinishRefresh.accept(())
                 owner.currentOffset = 0
-                owner.$feedRowModels.accept(self.$feedRowModels.value + $0.models)
+                owner.$feedRowViewModels.accept(owner.$feedRowViewModels.value + $0.viewModels)
             },
             onError: { _ in
                 owner.$didFinishRefresh.accept(())
@@ -125,7 +125,7 @@ private extension FeedsViewModel {
         .do(
             onSuccess: {
                 owner.$didFinishLoadMore.accept(!$0.isEmpty)
-                owner.$feedRowModels.accept(owner.$feedRowModels.value + $0.models)
+                owner.$feedRowViewModels.accept(owner.$feedRowViewModels.value + $0.viewModels)
 
                 if !$0.isEmpty {
                     owner.currentOffset = offset
@@ -144,7 +144,7 @@ private extension FeedsViewModel {
 
 private extension Array where Element == Article {
 
-    var models: [FeedRow.UIModel] {
-        map { FeedRow.UIModel(article: $0) }
+    var viewModels: [FeedRowViewModelProtocol] {
+        map { Resolver.resolve(FeedRowViewModelProtocol.self, args: $0) }
     }
 }

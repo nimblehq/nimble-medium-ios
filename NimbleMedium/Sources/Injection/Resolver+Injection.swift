@@ -60,13 +60,16 @@ extension Resolver: ResolverRegistering {
     private static func registerViewModels() {
         register { FeedsViewModel() }.implements(FeedsViewModelProtocol.self).scope(.cached)
         register { _, args in
-            FeedRowViewModel(model: args.get())
-        }.implements(FeedRowViewModelProtocol.self).scope(.cached)
+            FeedRowViewModel(article: args.get())
+        }.implements(FeedRowViewModelProtocol.self)
         register { HomeViewModel() }.implements(HomeViewModelProtocol.self).scope(.cached)
         register { LoginViewModel() }.implements(LoginViewModelProtocol.self).scope(.cached)
         register { SideMenuActionsViewModel() }.implements(SideMenuActionsViewModelProtocol.self).scope(.cached)
         register { SideMenuHeaderViewModel() }.implements(SideMenuHeaderViewModelProtocol.self).scope(.cached)
         register { SideMenuViewModel() }.implements(SideMenuViewModelProtocol.self).scope(.cached)
         register { SignupViewModel() }.implements(SignupViewModelProtocol.self).scope(.cached)
+        register { _, args in
+            FeedDetailViewModel(slug: args.get())
+        }.implements(FeedDetailViewModelProtocol.self)
     }
 }
