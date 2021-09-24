@@ -11,7 +11,6 @@ import SDWebImageSwiftUI
 struct FeedCommentRow: View {
 
     var body: some View {
-
         VStack(alignment: .leading, spacing: 0.0) {
             // TODO: Update with real data in Integrate
             Text("Cypress comment")
