@@ -1,8 +1,8 @@
 //
-//  FeedRowViewModelSpec.swift
+//  FeedCommentRowViewModelSpec.swift
 //  NimbleMediumTests
 //
-//  Created by Mark G on 20/09/2021.
+//  Created by Mark G on 23/09/2021.
 //
 
 import Quick
@@ -14,32 +14,30 @@ import Resolver
 
 @testable import NimbleMedium
 
-final class FeedRowViewModelSpec: QuickSpec {
+final class FeedCommentRowViewModelSpec: QuickSpec {
 
     @LazyInjected var listArticlesUseCase: ListArticlesUseCaseProtocolMock
 
     override func spec() {
-        var viewModel: FeedRowViewModelProtocol!
+        var viewModel: FeedCommentRowViewModelProtocol!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
-        var uiModel: FeedRow.UIModel!
+        var uiModel: FeedCommentRow.UIModel!
 
         describe("a FeedsViewModel") {
 
             beforeEach {
                 Resolver.registerMockServices()
 
-                let article = APIArticleResponse.dummy.article
-                uiModel = FeedRow.UIModel(
-                    id: article.id,
-                    articleTitle: article.title,
-                    articleDescription: article.description,
-                    articleUpdatedAt: article.updatedAt.format(with: .monthDayYear),
-                    authorImage: try? article.author.image?.asURL(),
-                    authorName: article.author.username
+                let comment = APIArticleCommentsResponse.dummy.comments[0]
+                uiModel = FeedCommentRow.UIModel(
+                    commentBody: comment.body,
+                    commentUpdatedAt: comment.updatedAt.format(with: .monthDayYear),
+                    authorName: comment.author.username,
+                    authorImage: try? comment.author.image?.asURL()
                 )
 
-                viewModel = FeedRowViewModel(article: article)
+                viewModel = FeedCommentRowViewModel(comment: comment)
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
             }

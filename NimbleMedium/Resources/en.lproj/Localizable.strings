@@ -20,7 +20,6 @@
 
 "feeds.comments.title" = "Go to comments section";
 "feeds.noArticle" = "No Article";
-"feeds.title" = "Feeds";
 
 "login.title" = "Login";
 "login.textFieldEmail.placeholder" = "Email";
@@ -41,3 +40,9 @@
 "signup.title" = "Signup";
 
 "userProfile.title" = "Profile";
+"feedDetail.title" = "Article";
+"feedDetail.fetchFailure.message" = "Unable to load the article";
+"feedDetail.comments.title" = "Go to comments section";
+
+"feedComments.title" = "Comments History";
+"feedComments.noComment.message" = "No Comment";

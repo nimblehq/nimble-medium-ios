@@ -10,30 +10,51 @@ import SDWebImageSwiftUI
 
 struct FeedCommentRow: View {
 
+    @ObservedViewModel private var viewModel: FeedCommentRowViewModelProtocol
+
+    @State var uiModel: UIModel?
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 0.0) {
-            // TODO: Update with real data in Integrate
-            Text("Cypress comment")
-                .padding(.all, 16.0)
-            Divider()
-                .frame(maxWidth: .infinity)
-                .background(Color(R.color.semiLightGray.name))
-            author
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .overlay(
-            RoundedRectangle(cornerRadius: 8.0)
-                .stroke(
-                    Color(R.color.semiLightGray.name),
-                    lineWidth: 1.0
+        Group {
+            if let uiModel = uiModel {
+                VStack(alignment: .leading, spacing: 0.0) {
+                    Text(uiModel.commentBody)
+                        .padding(.all, 16.0)
+                    Divider()
+                        .frame(maxWidth: .infinity)
+                        .background(Color(R.color.semiLightGray.name))
+                    author(uiModel: uiModel)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8.0)
+                        .stroke(
+                            Color(R.color.semiLightGray.name),
+                            lineWidth: 1.0
+                        )
                 )
-        )
+            } else {
+                EmptyView()
+            }
+        }
+        .onReceive(viewModel.output.uiModel) {
+            uiModel = $0
+        }
     }
 
-    var author: some View {
+    var defaultAvatar: some View {
+        Image(R.image.defaultAvatar.name)
+            .resizable()
+            .frame(width: 25.0, height: 25.0)
+    }
+
+    init(viewModel: FeedCommentRowViewModelProtocol) {
+        self.viewModel = viewModel
+    }
+
+    func author(uiModel: UIModel) -> some View {
         HStack {
-            // TODO: Update with real data in Integrate
-            if let url = try? "https://cdn3.iconfinder.com/data/icons/avatars-15/64/_Ninja-2-512.png".asURL() {
+            if let url = uiModel.authorImage {
                 // FIXME: It blocks UI
                 WebImage(url: url)
                     .placeholder { defaultAvatar }
@@ -42,19 +63,13 @@ struct FeedCommentRow: View {
             } else {
                 defaultAvatar
             }
-            Text("cypresscypresscypresscypresscypresscypresscypresscypresscypresscypresscypresscypress")
+            Text(uiModel.authorName)
                 .foregroundColor(.green)
-            Text("August 12, 2021")
+            Text(uiModel.commentUpdatedAt)
                 .foregroundColor(.gray)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.all, 16.0)
         .background(Color(R.color.lightGray.name))
-    }
-
-    var defaultAvatar: some View {
-        Image(R.image.defaultAvatar.name)
-            .resizable()
-            .frame(width: 25.0, height: 25.0)
     }
 }
