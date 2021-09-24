@@ -101,6 +101,8 @@
 		2D882EE226F1CE8F00DB6560 /* APIArticleCommentsResponse+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D882EE126F1CE8F00DB6560 /* APIArticleCommentsResponse+Dummy.swift */; };
 		2D882EE426F1CEB600DB6560 /* ArticleCommentRepositorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D882EE326F1CEB600DB6560 /* ArticleCommentRepositorySpec.swift */; };
 		2D882EE626F1CF4600DB6560 /* GetArticleCommentsUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D882EE526F1CF4600DB6560 /* GetArticleCommentsUseCaseSpec.swift */; };
+		2D882EE926F1D3BD00DB6560 /* FeedCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D882EE826F1D3BD00DB6560 /* FeedCommentsView.swift */; };
+		2D882EEC26F1D47300DB6560 /* FeedCommentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D882EEB26F1D47300DB6560 /* FeedCommentRow.swift */; };
 		2D892BA726E8698700579856 /* NetworkAPIProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D892BA626E8698700579856 /* NetworkAPIProtocolMock.swift */; };
 		2D892BA926E89A6100579856 /* APIArticlesResponse+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D892BA826E89A6100579856 /* APIArticlesResponse+Dummy.swift */; };
 		2D892BAB26E89E4500579856 /* ListArticlesUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D892BAA26E89E4500579856 /* ListArticlesUseCaseSpec.swift */; };
@@ -248,6 +250,8 @@
 		2D882EE126F1CE8F00DB6560 /* APIArticleCommentsResponse+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIArticleCommentsResponse+Dummy.swift"; sourceTree = "<group>"; };
 		2D882EE326F1CEB600DB6560 /* ArticleCommentRepositorySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentRepositorySpec.swift; sourceTree = "<group>"; };
 		2D882EE526F1CF4600DB6560 /* GetArticleCommentsUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArticleCommentsUseCaseSpec.swift; sourceTree = "<group>"; };
+		2D882EE826F1D3BD00DB6560 /* FeedCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCommentsView.swift; sourceTree = "<group>"; };
+		2D882EEB26F1D47300DB6560 /* FeedCommentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCommentRow.swift; sourceTree = "<group>"; };
 		2D892BA626E8698700579856 /* NetworkAPIProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPIProtocolMock.swift; sourceTree = "<group>"; };
 		2D892BA826E89A6100579856 /* APIArticlesResponse+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIArticlesResponse+Dummy.swift"; sourceTree = "<group>"; };
 		2D892BAA26E89E4500579856 /* ListArticlesUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListArticlesUseCaseSpec.swift; sourceTree = "<group>"; };
@@ -1011,6 +1015,23 @@
 			path = ArticleComment;
 			sourceTree = "<group>";
 		};
+		2D882EE726F1D39000DB6560 /* FeedComments */ = {
+			isa = PBXGroup;
+			children = (
+				2D882EEA26F1D46300DB6560 /* FeedCommentRow */,
+				2D882EE826F1D3BD00DB6560 /* FeedCommentsView.swift */,
+			);
+			path = FeedComments;
+			sourceTree = "<group>";
+		};
+		2D882EEA26F1D46300DB6560 /* FeedCommentRow */ = {
+			isa = PBXGroup;
+			children = (
+				2D882EEB26F1D47300DB6560 /* FeedCommentRow.swift */,
+			);
+			path = FeedCommentRow;
+			sourceTree = "<group>";
+		};
 		2D9032CE26F04D7B005CA3F5 /* FeedDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -1140,6 +1161,7 @@
 		2DB2677E26BBF13400FF05BB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				2D882EE726F1D39000DB6560 /* FeedComments */,
 				2D9032CE26F04D7B005CA3F5 /* FeedDetail */,
 				2DBE36AC26C3B0B500DA3511 /* Feeds */,
 				2D467C3E26BCD591008F11E1 /* Home */,
@@ -1665,6 +1687,7 @@
 				2DE8C09226F97386006061B4 /* FeedRow+UIModel.swift in Sources */,
 				2DEF1F9026E5FE8E00EB93CC /* ArticleRepositoryProtocol.swift in Sources */,
 				2D55E4AE26DF2FA800161052 /* FeedRow.swift in Sources */,
+				2D882EEC26F1D47300DB6560 /* FeedCommentRow.swift in Sources */,
 				2D79A8F826EEFC24007B81D1 /* Date+Format.swift in Sources */,
 				2D303B3B26C28AC200EEF1C0 /* Constants+String.swift in Sources */,
 				24204CA226D62B6900534314 /* SideMenuViewModel.swift in Sources */,
@@ -1701,6 +1724,7 @@
 				2D2F456026C25911002C0331 /* View+NavigationBar.swift in Sources */,
 				24F3D7B426DCE96200DE2420 /* UserSessionRepositoryProtocol.swift in Sources */,
 				2D467C3D26BCD58D008F11E1 /* HomeView.swift in Sources */,
+				2D882EE926F1D3BD00DB6560 /* FeedCommentsView.swift in Sources */,
 				2459B32626D7512300ABCE61 /* User.swift in Sources */,
 				2D4ADCC426C60940008F8843 /* HomeViewModel.swift in Sources */,
 				2DD4805726D73C67005225CF /* ObservableViewModel.swift in Sources */,
@@ -1776,7 +1800,6 @@
 				246B387D26F8AA95003173FD /* UserDummy.swift in Sources */,
 				2D892BA726E8698700579856 /* NetworkAPIProtocolMock.swift in Sources */,
 				2DB31D5126F1961A007254B9 /* FeedDetailViewModelSpec.swift in Sources */,
-				2D892BA926E89A6100579856 /* APIArticlesResponse+Dummy.swift in Sources */,
 				2D892BA926E89A6100579856 /* APIArticlesResponse+Dummy.swift in Sources */,
 				2D882EE426F1CEB600DB6560 /* ArticleCommentRepositorySpec.swift in Sources */,
 			);
