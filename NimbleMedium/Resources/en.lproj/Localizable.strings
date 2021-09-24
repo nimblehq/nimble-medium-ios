@@ -9,18 +9,31 @@
 "action.login" = "Login";
 "action.signup" = "Signup";
 
+"default.username.value" = "Current User";
+
 "error.generic" = "Something went wrong.\nPlease try again later.";
 
-"feed.title" = "Feed";
+"feedComments.noComment.message" = "No Comment";
+"feedComments.title" = "Comments History";
 
-"login.title" = "Login";
+"feedDetail.comments.title" = "Go to comments section";
+"feedDetail.fetchFailure.message" = "Unable to load the article";
+"feedDetail.title" = "Article";
+
+"feeds.comments.title" = "Go to comments section";
+"feeds.noArticle" = "No Article";
+"feeds.title" = "Feeds";
+
+"login.needAccount.title" = "Need an account?";
 "login.textFieldEmail.placeholder" = "Email";
 "login.textFieldPassword.placeholder" = "Password";
-"login.needAccount.title" = "Need an account?";
+"login.title" = "Login";
 
 "menu.header.description" = "A place to share your knowledge";
 "menu.header.title" = "Nimble Medium";
 "menu.option.login" = "Login";
+"menu.option.logout" = "Logout";
+"menu.option.myProfile" = "My Profile";
 "menu.option.signup" = "Signup";
 
 "signup.haveAccount.title" = "Have an account?";
@@ -28,3 +41,5 @@
 "signup.textFieldPassword.placeholder" = "Password";
 "signup.textFieldUsername.placeholder" = "Username";
 "signup.title" = "Signup";
+
+"userProfile.title" = "Profile";

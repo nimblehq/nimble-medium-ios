@@ -16,7 +16,12 @@ extension Resolver: ResolverRegistering {
         register { NetworkAPI() }.implements(NetworkAPIProtocol.self).scope(.application)
         register { Keychain.default }.implements(KeychainProtocol.self).scope(.application)
 
-        // Repositories
+        registerRepositories()
+        registerUseCases()
+        registerViewModels()
+    }
+
+    private static func registerRepositories() {
         register {
             AuthRepository(networkAPI: resolve())
         }.implements(AuthRepositoryProtocol.self)
@@ -26,8 +31,15 @@ extension Resolver: ResolverRegistering {
         register {
             ArticleRepository(networkAPI: resolve())
         }.implements(ArticleRepositoryProtocol.self)
+        register {
+            ArticleCommentRepository(networkAPI: resolve())
+        }.implements(ArticleCommentRepositoryProtocol.self)
+    }
 
-        // UseCases
+    private static func registerUseCases() {
+        register {
+            GetCurrentSessionUseCase(userSessionRepository: resolve())
+        }.implements(GetCurrentSessionUseCaseProtocol.self)
         register {
             ListArticlesUseCase(articleRepository: resolve())
         }.implements(ListArticlesUseCaseProtocol.self)
@@ -43,13 +55,33 @@ extension Resolver: ResolverRegistering {
                 userSessionRepository: resolve()
             )
         }.implements(SignupUseCaseProtocol.self)
+        register {
+            GetArticleUseCase(articleRepository: resolve())
+        }.implements(GetArticleUseCaseProtocol.self)
+        register {
+            GetArticleCommentsUseCase(articleCommentRepository: resolve())
+        }.implements(GetArticleCommentsUseCaseProtocol.self)
+    }
 
-        // ViewModels
+    private static func registerViewModels() {
         register { FeedsViewModel() }.implements(FeedsViewModelProtocol.self).scope(.cached)
+        register { _, args in
+            FeedRowViewModel(article: args.get())
+        }.implements(FeedRowViewModelProtocol.self)
         register { HomeViewModel() }.implements(HomeViewModelProtocol.self).scope(.cached)
         register { LoginViewModel() }.implements(LoginViewModelProtocol.self).scope(.cached)
         register { SideMenuActionsViewModel() }.implements(SideMenuActionsViewModelProtocol.self).scope(.cached)
+        register { SideMenuHeaderViewModel() }.implements(SideMenuHeaderViewModelProtocol.self).scope(.cached)
         register { SideMenuViewModel() }.implements(SideMenuViewModelProtocol.self).scope(.cached)
         register { SignupViewModel() }.implements(SignupViewModelProtocol.self).scope(.cached)
+        register { _, args in
+            FeedDetailViewModel(id: args.get())
+        }.implements(FeedDetailViewModelProtocol.self)
+        register { _, args in
+            FeedCommentsViewModel(id: args.get())
+        }.implements(FeedCommentsViewModelProtocol.self)
+        register { _, args in
+            FeedCommentRowViewModel(comment: args.get())
+        }.implements(FeedCommentRowViewModelProtocol.self)
     }
 }

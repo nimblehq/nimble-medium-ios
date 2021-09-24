@@ -13,32 +13,57 @@ struct SideMenuActionsView: View {
 
     @ObservedViewModel private var viewModel: SideMenuActionsViewModelProtocol = Resolver.resolve()
 
+    // TODO: Update with correct value for isAuthenticated in integrate task
     @State private var isAuthenticated = false
     @State private var isShowingLoginScreen = false
     @State private var isShowingSignupScreen = false
 
     var body: some View {
-        VStack(alignment: .leading) {
-            if !isAuthenticated {
-                SideMenuActionItemView(
-                    text: Localizable.menuOptionLogin(),
-                    iconName: R.image.iconLogin.name
-                ) {
-                    viewModel.input.selectLoginOption()
-                }
-                .fullScreenCover(isPresented: $isShowingLoginScreen) {
-                    LoginView()
-                }
+        if isAuthenticated {
+            authenticatedMenuOptions
+        } else {
+            unauthenticatedMenuHeader
+        }
+    }
 
-                SideMenuActionItemView(
-                    text: Localizable.menuOptionSignup(),
-                    iconName: R.image.iconSignup.name
-                ) {
-                    viewModel.input.selectSignupOption()
-                }
-                .fullScreenCover(isPresented: $isShowingSignupScreen) {
-                    SignupView()
-                }
+    var authenticatedMenuOptions: some View {
+        VStack(alignment: .leading) {
+            SideMenuActionItemView(
+                text: Localizable.menuOptionMyProfile(),
+                iconName: R.image.iconMyProfile.name
+            ) {
+                // TODO: Implement this option tap action in the integrate task
+            }
+
+            SideMenuActionItemView(
+                text: Localizable.menuOptionLogout(),
+                iconName: R.image.iconLogout.name
+            ) {
+                // TODO: Implement this option tap action in the integrate task
+            }
+        }
+    }
+
+    var unauthenticatedMenuHeader: some View {
+        VStack(alignment: .leading) {
+            SideMenuActionItemView(
+                text: Localizable.menuOptionLogin(),
+                iconName: R.image.iconLogin.name
+            ) {
+                viewModel.input.selectLoginOption()
+            }
+            .fullScreenCover(isPresented: $isShowingLoginScreen) {
+                LoginView()
+            }
+
+            SideMenuActionItemView(
+                text: Localizable.menuOptionSignup(),
+                iconName: R.image.iconSignup.name
+            ) {
+                viewModel.input.selectSignupOption()
+            }
+            .fullScreenCover(isPresented: $isShowingSignupScreen) {
+                SignupView()
             }
         }
         .onReceive(viewModel.output.didSelectLoginOption) {

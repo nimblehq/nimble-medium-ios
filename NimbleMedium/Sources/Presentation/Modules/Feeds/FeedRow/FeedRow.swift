@@ -7,46 +7,43 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Resolver
 
 struct FeedRow: View {
 
+    @ObservedViewModel private var viewModel: FeedRowViewModelProtocol
+
+    @State var uiModel: UIModel?
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            author
-            VStack(alignment: .leading) {
-                Text("title")
-                    .fontWeight(.bold)
-                    .lineLimit(1)
-                    .truncationMode(.tail)
-                Text("description")
-                    .foregroundColor(.gray)
-            }
-        }
-    }
-
-    var author: some View {
-        HStack {
-            // swiftlint:disable line_length
-            if let url = try? "https://thumbs.dreamstime.com/b/vector-illustration-avatar-dummy-logo-collection-image-icon-stock-isolated-object-set-symbol-web-137160339.jpg".asURL() {
-                // FIXME: It blocks UI
-                WebImage(url: url)
-                    .placeholder { defaultAvatar }
-                    .resizable()
-                    .frame(width: 50.0, height: 50.0)
+        Group {
+            if let uiModel = uiModel {
+                VStack(alignment: .leading, spacing: 16.0) {
+                    AuthorView(
+                        articleUpdateAt: uiModel.articleUpdatedAt,
+                        authorName: uiModel.authorName,
+                        authorImage: uiModel.authorImage
+                    )
+                    VStack(alignment: .leading) {
+                        Text(uiModel.articleTitle)
+                            .fontWeight(.bold)
+                            .lineLimit(1)
+                            .truncationMode(.tail)
+                            .foregroundColor(.black)
+                        Text(uiModel.articleDescription)
+                            .foregroundColor(.gray)
+                    }
+                }
             } else {
-                defaultAvatar
+                EmptyView()
             }
-            VStack(alignment: .leading) {
-                Text("author name")
-                Text("September 10, 2021")
-                    .foregroundColor(.gray)
-            }
+        }
+        .onReceive(viewModel.output.uiModel) {
+            uiModel = $0
         }
     }
 
-    var defaultAvatar: some View {
-        Image(R.image.defaultAvatar.name)
-            .resizable()
-            .frame(width: 50.0, height: 50.0)
+    init(viewModel: FeedRowViewModelProtocol) {
+        self.viewModel = viewModel
     }
 }

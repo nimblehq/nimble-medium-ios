@@ -10,4 +10,5 @@ import RxSwift
 protocol UserSessionRepositoryProtocol: AnyObject {
 
     func saveUser(_ user: User) -> Completable
+    func getCurrentUser() -> Single<User?>
 }

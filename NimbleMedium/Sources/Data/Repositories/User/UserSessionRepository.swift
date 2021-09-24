@@ -26,4 +26,17 @@ final class UserSessionRepository: UserSessionRepositoryProtocol {
             return Disposables.create()
         }
     }
+
+    func getCurrentUser() -> Single<User?> {
+        Single.create { [weak self] single in
+            do {
+                let user = try self?.keychain.get(.user)
+                single(.success(user))
+            } catch {
+                single(.failure(error))
+            }
+
+            return Disposables.create()
+        }
+    }
 }

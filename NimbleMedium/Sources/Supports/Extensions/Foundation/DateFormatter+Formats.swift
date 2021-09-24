@@ -10,6 +10,9 @@ import Foundation
 extension DateFormatter {
 
     static let monthDayYear = DateFormatter(with: "MMMM dd, yyyy")
+
+    /// Support full iso8601 conversion.
+    /// Formatted to local calendar.
     static let iso8601Full: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"

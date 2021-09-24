@@ -41,7 +41,8 @@ struct HomeView: View {
 
                 draggingAnimator.reset(isOpen: isOpen)
             }
-            .gesture(dragGesture(geo: geo))
+            // TODO: Fix dragging bug in other screens
+            // .gesture(dragGesture(geo: geo))
         }
     }
 
