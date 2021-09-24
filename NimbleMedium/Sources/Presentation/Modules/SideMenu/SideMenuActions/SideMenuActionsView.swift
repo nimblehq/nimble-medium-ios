@@ -14,7 +14,7 @@ struct SideMenuActionsView: View {
     @ObservedViewModel private var viewModel: SideMenuActionsViewModelProtocol = Resolver.resolve()
 
     // TODO: Update with correct value for isAuthenticated in integrate task
-    @State private var isAuthenticated = true
+    @State private var isAuthenticated = false
     @State private var isShowingLoginScreen = false
     @State private var isShowingSignupScreen = false
 
