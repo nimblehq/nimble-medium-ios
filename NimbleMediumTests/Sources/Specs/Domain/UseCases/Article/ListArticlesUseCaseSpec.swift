@@ -16,7 +16,7 @@ import RxTest
 final class ListArticlesUseCaseSpec: QuickSpec {
 
     override func spec() {
-        var usecase: ListArticlesUseCase!
+        var usecase: GetListArticlesUseCase!
         var articleRepository: ArticleRepositoryProtocolMock!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
@@ -26,7 +26,7 @@ final class ListArticlesUseCaseSpec: QuickSpec {
             beforeEach {
                 disposeBag = DisposeBag()
                 articleRepository = ArticleRepositoryProtocolMock()
-                usecase = ListArticlesUseCase(articleRepository: articleRepository)
+                usecase = GetListArticlesUseCase(articleRepository: articleRepository)
                 scheduler = TestScheduler(initialClock: 0)
             }
 
