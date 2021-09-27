@@ -82,6 +82,7 @@
 		2D55E4A726DF231700161052 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D55E4A626DF231700161052 /* Article.swift */; };
 		2D55E4A926DF235000161052 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D55E4A826DF235000161052 /* Profile.swift */; };
 		2D55E4AE26DF2FA800161052 /* FeedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D55E4AD26DF2FA800161052 /* FeedRow.swift */; };
+		2D5C62B22701A69F00398C96 /* Refresh in Frameworks */ = {isa = PBXBuildFile; productRef = 2D5C62B12701A69F00398C96 /* Refresh */; };
 		2D64E92026C11B48008C80B0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D64E92226C11B48008C80B0 /* Localizable.strings */; };
 		2D69824426C22DC700860A98 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D69824326C22DC700860A98 /* R.generated.swift */; };
 		2D6EFE1B26E9EB8C006B9939 /* DefaultCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 2D6EFE1A26E9EB8C006B9939 /* DefaultCodable */; };
@@ -91,7 +92,6 @@
 		2D73312D26F0F35C0052DCC7 /* singleArticle.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D73312C26F0F35C0052DCC7 /* singleArticle.json */; };
 		2D73312F26F0F3A20052DCC7 /* APIArticleResponse+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D73312E26F0F3A20052DCC7 /* APIArticleResponse+Dummy.swift */; };
 		2D73313126F0F4800052DCC7 /* GetArticleUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D73313026F0F4800052DCC7 /* GetArticleUseCaseSpec.swift */; };
-		2D79A8F626EEF06A007B81D1 /* Refresh in Frameworks */ = {isa = PBXBuildFile; productRef = 2D79A8F526EEF06A007B81D1 /* Refresh */; };
 		2D79A8F826EEFC24007B81D1 /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D79A8F726EEFC24007B81D1 /* Date+Format.swift */; };
 		2D79A8FC26EF4A7E007B81D1 /* FeedsViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D79A8FB26EF4A7E007B81D1 /* FeedsViewModelSpec.swift */; };
 		2D7BF28E26DCB4E200A30747 /* Publisher+RxSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7BF28D26DCB4E200A30747 /* Publisher+RxSignal.swift */; };
@@ -328,12 +328,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D79A8F626EEF06A007B81D1 /* Refresh in Frameworks */,
 				2459B35B26D7A7C500ABCE61 /* ToastUI in Frameworks */,
 				2DEF1F8A26E5FD0C00EB93CC /* SDWebImageSwiftUI in Frameworks */,
 				7DB2A8DC1F8863DD01F7D438 /* Pods_NimbleMedium.framework in Frameworks */,
 				24F3D7B726DCEA0300DE2420 /* KeychainAccess in Frameworks */,
 				248E13AC26F054FD00439BCC /* Resolver in Frameworks */,
+				2D5C62B22701A69F00398C96 /* Refresh in Frameworks */,
 				2D6EFE1B26E9EB8C006B9939 /* DefaultCodable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1356,8 +1356,8 @@
 				24F3D7B626DCEA0300DE2420 /* KeychainAccess */,
 				2DEF1F8926E5FD0C00EB93CC /* SDWebImageSwiftUI */,
 				2D6EFE1A26E9EB8C006B9939 /* DefaultCodable */,
-				2D79A8F526EEF06A007B81D1 /* Refresh */,
 				248E13AB26F054FD00439BCC /* Resolver */,
+				2D5C62B12701A69F00398C96 /* Refresh */,
 			);
 			productName = NimbleMedium;
 			productReference = 2DB2674A26BBEC4300FF05BB /* Nimble Medium - Staging.app */;
@@ -1442,8 +1442,8 @@
 				24F3D7B526DCEA0300DE2420 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				2DEF1F8826E5FD0C00EB93CC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				2D6EFE1926E9EB8C006B9939 /* XCRemoteSwiftPackageReference "DefaultCodable" */,
-				2D79A8F426EEF06A007B81D1 /* XCRemoteSwiftPackageReference "Refresh" */,
 				248E13AA26F054FD00439BCC /* XCRemoteSwiftPackageReference "Resolver" */,
+				2D5C62B02701A69F00398C96 /* XCRemoteSwiftPackageReference "Refresh" */,
 			);
 			productRefGroup = 2DB2674B26BBEC4300FF05BB /* Products */;
 			projectDirPath = "";
@@ -2519,20 +2519,20 @@
 				minimumVersion = 4.2.2;
 			};
 		};
+		2D5C62B02701A69F00398C96 /* XCRemoteSwiftPackageReference "Refresh" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/wxxsw/Refresh";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		2D6EFE1926E9EB8C006B9939 /* XCRemoteSwiftPackageReference "DefaultCodable" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/gonzalezreal/DefaultCodable";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.2.1;
-			};
-		};
-		2D79A8F426EEF06A007B81D1 /* XCRemoteSwiftPackageReference "Refresh" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/markgravity/Refresh.git";
-			requirement = {
-				branch = master;
-				kind = branch;
 			};
 		};
 		2DEF1F8826E5FD0C00EB93CC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
@@ -2561,15 +2561,15 @@
 			package = 24F3D7B526DCEA0300DE2420 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
 		};
+		2D5C62B12701A69F00398C96 /* Refresh */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D5C62B02701A69F00398C96 /* XCRemoteSwiftPackageReference "Refresh" */;
+			productName = Refresh;
+		};
 		2D6EFE1A26E9EB8C006B9939 /* DefaultCodable */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2D6EFE1926E9EB8C006B9939 /* XCRemoteSwiftPackageReference "DefaultCodable" */;
 			productName = DefaultCodable;
-		};
-		2D79A8F526EEF06A007B81D1 /* Refresh */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2D79A8F426EEF06A007B81D1 /* XCRemoteSwiftPackageReference "Refresh" */;
-			productName = Refresh;
 		};
 		2DEF1F8926E5FD0C00EB93CC /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
