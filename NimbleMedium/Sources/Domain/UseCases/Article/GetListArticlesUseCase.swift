@@ -1,5 +1,5 @@
 //
-//  ListArticlesUseCase.swift
+//  GetListArticlesUseCase.swift
 //  NimbleMedium
 //
 //  Created by Mark G on 06/09/2021.

@@ -120,7 +120,7 @@
 		2D882EEC26F1D47300DB6560 /* FeedCommentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D882EEB26F1D47300DB6560 /* FeedCommentRow.swift */; };
 		2D892BA726E8698700579856 /* NetworkAPIProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D892BA626E8698700579856 /* NetworkAPIProtocolMock.swift */; };
 		2D892BA926E89A6100579856 /* APIArticlesResponse+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D892BA826E89A6100579856 /* APIArticlesResponse+Dummy.swift */; };
-		2D892BAB26E89E4500579856 /* ListArticlesUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D892BAA26E89E4500579856 /* ListArticlesUseCaseSpec.swift */; };
+		2D892BAB26E89E4500579856 /* GetListArticlesUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D892BAA26E89E4500579856 /* GetListArticlesUseCaseSpec.swift */; };
 		2D9032D026F04D96005CA3F5 /* FeedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9032CF26F04D96005CA3F5 /* FeedDetailView.swift */; };
 		2DA4ABBF26CF90D000CF7D68 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA4ABBE26CF90D000CF7D68 /* AppEnvironment.swift */; };
 		2DA4ABC126CF91E200CF7D68 /* App+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA4ABC026CF91E200CF7D68 /* App+Firebase.swift */; };
@@ -284,7 +284,7 @@
 		2D882EEB26F1D47300DB6560 /* FeedCommentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCommentRow.swift; sourceTree = "<group>"; };
 		2D892BA626E8698700579856 /* NetworkAPIProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPIProtocolMock.swift; sourceTree = "<group>"; };
 		2D892BA826E89A6100579856 /* APIArticlesResponse+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIArticlesResponse+Dummy.swift"; sourceTree = "<group>"; };
-		2D892BAA26E89E4500579856 /* ListArticlesUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListArticlesUseCaseSpec.swift; sourceTree = "<group>"; };
+		2D892BAA26E89E4500579856 /* GetListArticlesUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetListArticlesUseCaseSpec.swift; sourceTree = "<group>"; };
 		2D9032CF26F04D96005CA3F5 /* FeedDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailView.swift; sourceTree = "<group>"; };
 		2DA4ABBA26CF901700CF7D68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "NimbleMedium/Configurations/Plists/GoogleService/Production/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		2DA4ABBB26CF901700CF7D68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "NimbleMedium/Configurations/Plists/GoogleService/Staging/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -572,7 +572,7 @@
 			isa = PBXGroup;
 			children = (
 				2D73313026F0F4800052DCC7 /* GetArticleUseCaseSpec.swift */,
-				2D892BAA26E89E4500579856 /* ListArticlesUseCaseSpec.swift */,
+				2D892BAA26E89E4500579856 /* GetListArticlesUseCaseSpec.swift */,
 			);
 			path = Article;
 			sourceTree = "<group>";
@@ -1946,7 +1946,7 @@
 				2DEF1FA726E6181F00EB93CC /* Data+Decode.swift in Sources */,
 				2D46FAF026F830B0005DD323 /* PrimitiveSequenceType+TestScheduler.swift in Sources */,
 				2DEF1FA126E612B900EB93CC /* ArticleRepositorySpec.swift in Sources */,
-				2D892BAB26E89E4500579856 /* ListArticlesUseCaseSpec.swift in Sources */,
+				2D892BAB26E89E4500579856 /* GetListArticlesUseCaseSpec.swift in Sources */,
 				2D882EE226F1CE8F00DB6560 /* APIArticleCommentsResponse+Dummy.swift in Sources */,
 				2D87822F26EB3B3A0080FEF6 /* R.generated.swift in Sources */,
 				24B277D62701C31100332FEA /* GetUserProfileUseCaseSpec.swift in Sources */,

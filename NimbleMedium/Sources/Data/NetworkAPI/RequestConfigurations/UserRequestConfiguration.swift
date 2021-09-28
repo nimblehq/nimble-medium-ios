@@ -33,13 +33,9 @@ extension UserRequestConfiguration: RequestConfiguration {
     var parameters: Parameters? {
         switch self {
         case .profile:
-            return [:]
+            return nil
         }
     }
 
     var encoding: ParameterEncoding { URLEncoding.queryString }
-
-    var headers: HTTPHeaders? { nil }
-
-    var interceptor: RequestInterceptor? { nil }
 }
