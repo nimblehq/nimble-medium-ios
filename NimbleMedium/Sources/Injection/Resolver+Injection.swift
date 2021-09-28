@@ -67,6 +67,15 @@ extension Resolver: ResolverRegistering {
                 userSessionRepository: resolve()
             )
         }.implements(SignupUseCaseProtocol.self)
+        register {
+            GetArticleUseCase(articleRepository: resolve())
+        }.implements(GetArticleUseCaseProtocol.self)
+        register {
+            GetArticleCommentsUseCase(articleCommentRepository: resolve())
+        }.implements(GetArticleCommentsUseCaseProtocol.self)
+        register {
+            GetFavouritedArticlesUseCase(articleRepository: resolve())
+        }.implements(GetFavouritedArticlesUseCaseProtocol.self)
     }
 
     private static func registerViewModels() {

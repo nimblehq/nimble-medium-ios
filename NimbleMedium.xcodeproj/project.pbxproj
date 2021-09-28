@@ -134,6 +134,8 @@
 		2DBE36AE26C3B0C500DA3511 /* FeedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBE36AD26C3B0C500DA3511 /* FeedsView.swift */; };
 		2DBE36B126C3B33700DA3511 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBE36B026C3B33700DA3511 /* SideMenuView.swift */; };
 		2DC212BE26CB6586000C7558 /* SideMenuDraggingAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC212BD26CB6586000C7558 /* SideMenuDraggingAnimator.swift */; };
+		2DC224E42702B68A008382E3 /* GetFavouritedArticlesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC224E32702B68A008382E3 /* GetFavouritedArticlesUseCase.swift */; };
+		2DC224E62702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC224E52702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift */; };
 		2DD4805726D73C67005225CF /* ObservableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD4805526D73C67005225CF /* ObservableViewModel.swift */; };
 		2DD4805826D73C67005225CF /* ObservedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD4805626D73C67005225CF /* ObservedViewModel.swift */; };
 		2DDAD3A026D37E02007F845A /* App+NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDAD39F26D37E02007F845A /* App+NetworkLogger.swift */; };
@@ -306,6 +308,8 @@
 		2DBE36AD26C3B0C500DA3511 /* FeedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsView.swift; sourceTree = "<group>"; };
 		2DBE36B026C3B33700DA3511 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		2DC212BD26CB6586000C7558 /* SideMenuDraggingAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuDraggingAnimator.swift; sourceTree = "<group>"; };
+		2DC224E32702B68A008382E3 /* GetFavouritedArticlesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFavouritedArticlesUseCase.swift; sourceTree = "<group>"; };
+		2DC224E52702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFavouritedArticlesUseCaseSpec.swift; sourceTree = "<group>"; };
 		2DD4805526D73C67005225CF /* ObservableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableViewModel.swift; sourceTree = "<group>"; };
 		2DD4805626D73C67005225CF /* ObservedViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservedViewModel.swift; sourceTree = "<group>"; };
 		2DDAD39F26D37E02007F845A /* App+NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+NetworkLogger.swift"; sourceTree = "<group>"; };
@@ -820,6 +824,7 @@
 				24B277CF2701C07F00332FEA /* Auth */,
 				24B277D12701C0B100332FEA /* Comment */,
 				24B277D02701C09500332FEA /* User */,
+				2DC224E32702B68A008382E3 /* GetFavouritedArticlesUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -986,6 +991,7 @@
 				24B277D72701C31700332FEA /* Article */,
 				24B277D82701C32600332FEA /* Comment */,
 				24B277D42701C2EE00332FEA /* User */,
+				2DC224E52702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1897,6 +1903,7 @@
 				2D1D727426EB305F00431679 /* DateFormatter+Formats.swift in Sources */,
 				2DA4ABBF26CF90D000CF7D68 /* AppEnvironment.swift in Sources */,
 				2D5485BC26CA077600FFE707 /* View+OnReceive.swift in Sources */,
+				2DC224E42702B68A008382E3 /* GetFavouritedArticlesUseCase.swift in Sources */,
 				24204C9E26D5289900534314 /* Background.swift in Sources */,
 				2DEF1F9826E6055A00EB93CC /* ListArticlesUseCase.swift in Sources */,
 				24B277D32701C1EB00332FEA /* GetUserProfileUseCase.swift in Sources */,
@@ -1936,6 +1943,7 @@
 				2D73312F26F0F3A20052DCC7 /* APIArticleResponse+Dummy.swift in Sources */,
 				2D73313126F0F4800052DCC7 /* GetArticleUseCaseSpec.swift in Sources */,
 				2D79A8FC26EF4A7E007B81D1 /* FeedsViewModelSpec.swift in Sources */,
+				2DC224E62702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift in Sources */,
 				2D29A70D26F44426001EA24F /* FeedCommentsViewModelSpec.swift in Sources */,
 				24F3D7C426DE0FAE00DE2420 /* TestError.swift in Sources */,
 				246B387926F8A7D7003173FD /* SideMenuHeaderViewModelSpec.swift in Sources */,
