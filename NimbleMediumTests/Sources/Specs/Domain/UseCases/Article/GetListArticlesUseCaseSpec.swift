@@ -41,7 +41,7 @@ final class GetListArticlesUseCaseSpec: QuickSpec {
                         outputArticles = scheduler.createObserver([DecodableArticle].self)
                         articleRepository.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(inputArticles)
 
-                        usecase.listArticles(
+                        usecase.execute(
                             tag: nil,
                             author: nil,
                             favorited: nil,
@@ -69,7 +69,7 @@ final class GetListArticlesUseCaseSpec: QuickSpec {
                         outputError = scheduler.createObserver(Optional<Error>.self)
                         articleRepository.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .error(TestError.mock)
 
-                        usecase.listArticles(
+                        usecase.execute(
                             tag: nil,
                             author: nil,
                             favorited: nil,

@@ -89,7 +89,7 @@ extension FeedsViewModel: FeedsViewModelOutput {}
 private extension FeedsViewModel {
 
     func refreshTriggered(owner: FeedsViewModel) -> Observable<Void> {
-        getListArticlesUseCase.listArticles(
+        getListArticlesUseCase.execute(
             tag: nil,
             author: nil,
             favorited: nil,
@@ -115,7 +115,7 @@ private extension FeedsViewModel {
     func loadMoreTriggered(owner: FeedsViewModel) -> Observable<Void> {
         let offset = currentOffset + limit
 
-        return getListArticlesUseCase.listArticles(
+        return getListArticlesUseCase.execute(
             tag: nil,
             author: nil,
             favorited: nil,

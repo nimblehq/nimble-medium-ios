@@ -10,7 +10,7 @@ import RxSwift
 // sourcery: AutoMockable
 protocol GetListArticlesUseCaseProtocol {
 
-    func listArticles(
+    func execute(
         tag: String?,
         author: String?,
         favorited: String?,
@@ -29,7 +29,7 @@ final class GetListArticlesUseCase: GetListArticlesUseCaseProtocol {
         self.articleRepository = articleRepository
     }
 
-    func listArticles(
+    func execute(
         tag: String?,
         author: String?,
         favorited: String?,
@@ -48,7 +48,7 @@ final class GetListArticlesUseCase: GetListArticlesUseCaseProtocol {
 
 extension GetListArticlesUseCaseProtocol {
 
-    func listArticles(
+    func execute(
         tag: String?,
         author: String?,
         favorited: String?,
@@ -56,7 +56,7 @@ extension GetListArticlesUseCaseProtocol {
         offset: Int?
     ) -> Single<[Article]> {
 
-        listArticles(
+        execute(
             tag: tag,
             author: author,
             favorited: favorited,
