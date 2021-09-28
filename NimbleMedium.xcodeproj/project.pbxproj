@@ -532,6 +532,7 @@
 		24B277CE2701C06100332FEA /* Article */ = {
 			isa = PBXGroup;
 			children = (
+				2DC224E32702B68A008382E3 /* GetFavouritedArticlesUseCase.swift */,
 				2D73312A26F0F05D0052DCC7 /* GetArticleUseCase.swift */,
 				2DEF1F9726E6055A00EB93CC /* ListArticlesUseCase.swift */,
 			);
@@ -575,6 +576,7 @@
 		24B277D72701C31700332FEA /* Article */ = {
 			isa = PBXGroup;
 			children = (
+				2DC224E52702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift */,
 				2D73313026F0F4800052DCC7 /* GetArticleUseCaseSpec.swift */,
 				2D892BAA26E89E4500579856 /* ListArticlesUseCaseSpec.swift */,
 			);
@@ -824,7 +826,6 @@
 				24B277CF2701C07F00332FEA /* Auth */,
 				24B277D12701C0B100332FEA /* Comment */,
 				24B277D02701C09500332FEA /* User */,
-				2DC224E32702B68A008382E3 /* GetFavouritedArticlesUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -991,7 +992,6 @@
 				24B277D72701C31700332FEA /* Article */,
 				24B277D82701C32600332FEA /* Comment */,
 				24B277D42701C2EE00332FEA /* User */,
-				2DC224E52702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
