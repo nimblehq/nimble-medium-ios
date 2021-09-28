@@ -1,5 +1,5 @@
 //
-//  GetListArticlesUseCase.swift
+//  ListArticlesUseCase.swift
 //  NimbleMedium
 //
 //  Created by Mark G on 06/09/2021.
@@ -8,7 +8,7 @@
 import RxSwift
 
 // sourcery: AutoMockable
-protocol GetListArticlesUseCaseProtocol {
+protocol ListArticlesUseCaseProtocol {
 
     func listArticles(
         tag: String?,
@@ -19,7 +19,7 @@ protocol GetListArticlesUseCaseProtocol {
     ) -> Single<[Article]>
 }
 
-final class GetListArticlesUseCase: GetListArticlesUseCaseProtocol {
+final class ListArticlesUseCase: ListArticlesUseCaseProtocol {
 
     private let articleRepository: ArticleRepositoryProtocol
 
@@ -46,7 +46,7 @@ final class GetListArticlesUseCase: GetListArticlesUseCaseProtocol {
     }
 }
 
-extension GetListArticlesUseCaseProtocol {
+extension ListArticlesUseCaseProtocol {
 
     func listArticles(
         tag: String?,

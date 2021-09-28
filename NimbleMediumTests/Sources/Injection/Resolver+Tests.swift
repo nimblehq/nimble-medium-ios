@@ -38,7 +38,7 @@ extension Resolver {
             GetCurrentSessionUseCaseProtocolMock()
         }
         .implements(GetCurrentSessionUseCaseProtocol.self)
-        Resolver.mock.register { GetListArticlesUseCaseProtocolMock() }.implements(GetListArticlesUseCaseProtocol.self)
+        Resolver.mock.register { ListArticlesUseCaseProtocolMock() }.implements(ListArticlesUseCaseProtocol.self)
         Resolver.mock.register { LoginUseCaseProtocolMock() }.implements(LoginUseCaseProtocol.self)
     }
 

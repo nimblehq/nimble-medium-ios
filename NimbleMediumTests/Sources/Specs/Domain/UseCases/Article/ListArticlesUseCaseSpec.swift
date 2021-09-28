@@ -1,5 +1,5 @@
 //
-//  GetListArticlesUseCaseSpec.swift
+//  ListArticlesUseCaseSpec.swift
 //  NimbleMediumTests
 //
 //  Created by Mark G on 08/09/2021.
@@ -13,20 +13,20 @@ import RxTest
 
 @testable import NimbleMedium
 
-final class GetListArticlesUseCaseSpec: QuickSpec {
+final class ListArticlesUseCaseSpec: QuickSpec {
 
     override func spec() {
-        var usecase: GetListArticlesUseCase!
+        var usecase: ListArticlesUseCase!
         var articleRepository: ArticleRepositoryProtocolMock!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
 
-        describe("an GetListArticlesUseCase") {
+        describe("an ListArticlesUseCase") {
 
             beforeEach {
                 disposeBag = DisposeBag()
                 articleRepository = ArticleRepositoryProtocolMock()
-                usecase = GetListArticlesUseCase(articleRepository: articleRepository)
+                usecase = ListArticlesUseCase(articleRepository: articleRepository)
                 scheduler = TestScheduler(initialClock: 0)
             }
 

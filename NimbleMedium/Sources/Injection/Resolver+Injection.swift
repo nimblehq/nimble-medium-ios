@@ -50,8 +50,8 @@ extension Resolver: ResolverRegistering {
             GetCurrentSessionUseCase(userSessionRepository: resolve())
         }.implements(GetCurrentSessionUseCaseProtocol.self)
         register {
-            GetListArticlesUseCase(articleRepository: resolve())
-        }.implements(GetListArticlesUseCaseProtocol.self)
+            ListArticlesUseCase(articleRepository: resolve())
+        }.implements(ListArticlesUseCaseProtocol.self)
         register {
             GetUserProfileUseCase(userRepository: resolve())
         }.implements(GetUserProfileUseCaseProtocol.self)
