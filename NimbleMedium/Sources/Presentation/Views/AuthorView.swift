@@ -27,8 +27,14 @@ struct AuthorView: View {
                 defaultAvatar
             }
             VStack(alignment: .leading) {
-                Text(authorName)
-                    .foregroundColor(authorNameColor)
+                NavigationLink(
+                    destination: UserProfileView(),
+                    label: {
+                        Text(authorName)
+                            .foregroundColor(authorNameColor)
+                    }
+                )
+
                 Text(articleUpdateAt)
                     .foregroundColor(.gray)
             }
