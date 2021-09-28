@@ -84,15 +84,13 @@ private extension FeedsView {
         @State var hasMore: Bool = true
         @State var isLoadingMore: Bool = false
         @State var feedRowViewModels: [FeedRowViewModelProtocol] = []
-        @State var isPushDetailActive = false
+        @State var isShowingFeedDetail = false
         @State var activeDetailID = ""
 
         var body: some View {
             Group {
                 if !feedRowViewModels.isEmpty {
-                    ScrollView {
-                        feedRows
-                    }
+                    ScrollView { feedRows }
                     .enableRefresh()
                     .padding(.top, 16.0)
                 } else {
@@ -111,7 +109,7 @@ private extension FeedsView {
 
         var feedRows: some View {
             Group {
-                detailNavigationLink
+                feedDetailNavigationLink
                 RefreshHeader(
                     refreshing: $isRefeshing,
                     action: { viewModel.input.refresh() },
@@ -124,13 +122,13 @@ private extension FeedsView {
                         .padding(.bottom, 16.0)
                         .onTapGesture {
                             activeDetailID = viewModel.output.id
-                            isPushDetailActive = true
+                            isShowingFeedDetail = true
                         }
                 }
                 .padding(.all, 16.0)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-                if !isPushDetailActive && hasMore {
+                if !isShowingFeedDetail && hasMore {
                     RefreshFooter(
                         refreshing: $isLoadingMore,
                         action: { viewModel.input.loadMore() },
@@ -140,10 +138,10 @@ private extension FeedsView {
             }
         }
 
-        var detailNavigationLink: some View {
+        var feedDetailNavigationLink: some View {
             NavigationLink(
                 destination: FeedDetailView(slug: activeDetailID),
-                isActive: $isPushDetailActive,
+                isActive: $isShowingFeedDetail,
                 label: { EmptyView() }
             )
             .hidden()
