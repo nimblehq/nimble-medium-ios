@@ -34,7 +34,7 @@ protocol FeedsViewModelProtocol: ObservableViewModel {
 
 final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
 
-    @Injected private var listArticlesUseCase: ListArticlesUseCaseProtocol
+    @Injected private var getListArticlesUseCase: GetListArticlesUseCaseProtocol
 
     private var currentOffset = 0
     private let limit = 10
@@ -89,7 +89,7 @@ extension FeedsViewModel: FeedsViewModelOutput {}
 private extension FeedsViewModel {
 
     func refreshTriggered(owner: FeedsViewModel) -> Observable<Void> {
-        listArticlesUseCase.listArticles(
+        getListArticlesUseCase.listArticles(
             tag: nil,
             author: nil,
             favorited: nil,
@@ -115,7 +115,7 @@ private extension FeedsViewModel {
     func loadMoreTriggered(owner: FeedsViewModel) -> Observable<Void> {
         let offset = currentOffset + limit
 
-        return listArticlesUseCase.listArticles(
+        return getListArticlesUseCase.listArticles(
             tag: nil,
             author: nil,
             favorited: nil,

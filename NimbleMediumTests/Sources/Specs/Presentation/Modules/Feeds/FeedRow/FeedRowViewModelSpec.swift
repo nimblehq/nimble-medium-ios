@@ -16,7 +16,7 @@ import Resolver
 
 final class FeedRowViewModelSpec: QuickSpec {
 
-    @LazyInjected var listArticlesUseCase: ListArticlesUseCaseProtocolMock
+    @LazyInjected var listArticlesUseCase: GetListArticlesUseCaseProtocolMock
 
     override func spec() {
         var viewModel: FeedRowViewModelProtocol!
