@@ -21,10 +21,10 @@
       },
       {
         "package": "Refresh",
-        "repositoryURL": "https://github.com/markgravity/Refresh.git",
+        "repositoryURL": "https://github.com/wxxsw/Refresh",
         "state": {
           "branch": "master",
-          "revision": "feb243a0605ffb6bdca99d68bc5c10c5ddc5054c",
+          "revision": "4693c1d8385a5478cd78347a8cc7b1572ff27827",
           "version": null
         }
       },
