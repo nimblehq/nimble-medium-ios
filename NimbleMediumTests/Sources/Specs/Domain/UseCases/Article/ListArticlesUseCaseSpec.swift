@@ -21,7 +21,7 @@ final class ListArticlesUseCaseSpec: QuickSpec {
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
 
-        describe("an ArticleRepository") {
+        describe("an ListArticlesUseCase") {
 
             beforeEach {
                 disposeBag = DisposeBag()
