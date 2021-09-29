@@ -11,6 +11,7 @@ enum AuthRequestConfiguration {
 
     case login(email: String, password: String)
     case signup(username: String, email: String, password: String)
+    case user
 }
 
 extension AuthRequestConfiguration: RequestConfiguration {
@@ -21,8 +22,9 @@ extension AuthRequestConfiguration: RequestConfiguration {
         switch self {
         case .login:
             return "/users/login"
-        case .signup:
+        case .signup, .user:
             return "/users"
+
         }
     }
 
@@ -30,6 +32,8 @@ extension AuthRequestConfiguration: RequestConfiguration {
         switch self {
         case .login, .signup:
             return .post
+        case .user:
+            return .get
         }
     }
 
@@ -50,12 +54,10 @@ extension AuthRequestConfiguration: RequestConfiguration {
                     "password": password
                 ]
             ]
+        case .user:
+            return nil
         }
     }
 
     var encoding: ParameterEncoding { URLEncoding.default }
-
-    var headers: HTTPHeaders? { nil }
-
-    var interceptor: RequestInterceptor? { nil }
 }

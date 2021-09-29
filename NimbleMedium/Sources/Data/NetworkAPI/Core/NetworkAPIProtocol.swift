@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  NetworkAPIProtocol.swift
 //  NimbleMedium
 //
 //  Created by Minh Pham on 26/08/2021.

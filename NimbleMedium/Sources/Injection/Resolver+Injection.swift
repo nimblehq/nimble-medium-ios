@@ -13,8 +13,11 @@ extension Resolver: ResolverRegistering {
     public static func registerAllServices() {
         defaultScope = .graph
 
-        register { NetworkAPI() }.implements(NetworkAPIProtocol.self).scope(.application)
         register { Keychain.default }.implements(KeychainProtocol.self).scope(.application)
+        register { NetworkAPI() }.implements(NetworkAPIProtocol.self).scope(.application)
+        register {
+            AuthenticatedNetworkAPI(keychain: resolve())
+        }.implements(AuthenticatedNetworkAPIProtocol.self).scope(.application)
 
         registerRepositories()
         registerUseCases()
@@ -23,7 +26,10 @@ extension Resolver: ResolverRegistering {
 
     private static func registerRepositories() {
         register {
-            AuthRepository(networkAPI: resolve())
+            AuthRepository(
+                networkAPI: resolve(),
+                authenticatedNetworkAPI: resolve()
+            )
         }.implements(AuthRepositoryProtocol.self)
         register {
             ArticleRepository(networkAPI: resolve())

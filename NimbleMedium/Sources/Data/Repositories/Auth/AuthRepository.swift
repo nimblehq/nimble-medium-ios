@@ -10,9 +10,21 @@ import RxSwift
 final class AuthRepository: AuthRepositoryProtocol {
 
     private let networkAPI: NetworkAPIProtocol
+    private let authenticatedNetworkAPI: NetworkAPIProtocol
 
-    init(networkAPI: NetworkAPIProtocol) {
+    init(
+        networkAPI: NetworkAPIProtocol,
+        authenticatedNetworkAPI: NetworkAPIProtocol
+    ) {
         self.networkAPI = networkAPI
+        self.authenticatedNetworkAPI = authenticatedNetworkAPI
+    }
+
+    func getCurrentUser() -> Single<User> {
+        let requestConfiguration = AuthRequestConfiguration.user
+        return authenticatedNetworkAPI
+            .performRequest(requestConfiguration, for: APIUserResponse.self)
+            .map { $0.user as User }
     }
 
     func login(email: String, password: String) -> Single<User> {
