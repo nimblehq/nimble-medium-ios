@@ -130,6 +130,8 @@
 		2D892BA926E89A6100579856 /* APIArticlesResponse+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D892BA826E89A6100579856 /* APIArticlesResponse+Dummy.swift */; };
 		2D892BAB26E89E4500579856 /* GetListArticlesUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D892BAA26E89E4500579856 /* GetListArticlesUseCaseSpec.swift */; };
 		2D9032D026F04D96005CA3F5 /* FeedDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9032CF26F04D96005CA3F5 /* FeedDetailView.swift */; };
+		2D979C30270302650084A3F8 /* GetCreatedArticlesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D979C2F270302650084A3F8 /* GetCreatedArticlesUseCase.swift */; };
+		2D979C322703034C0084A3F8 /* GetCreatedArticlesUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D979C312703034C0084A3F8 /* GetCreatedArticlesUseCaseSpec.swift */; };
 		2DA4ABBF26CF90D000CF7D68 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA4ABBE26CF90D000CF7D68 /* AppEnvironment.swift */; };
 		2DA4ABC126CF91E200CF7D68 /* App+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA4ABC026CF91E200CF7D68 /* App+Firebase.swift */; };
 		2DB04AD726C3A4AC003E65F4 /* Color+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB04AD626C3A4AC003E65F4 /* Color+UIColor.swift */; };
@@ -304,6 +306,8 @@
 		2D892BA826E89A6100579856 /* APIArticlesResponse+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIArticlesResponse+Dummy.swift"; sourceTree = "<group>"; };
 		2D892BAA26E89E4500579856 /* GetListArticlesUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetListArticlesUseCaseSpec.swift; sourceTree = "<group>"; };
 		2D9032CF26F04D96005CA3F5 /* FeedDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailView.swift; sourceTree = "<group>"; };
+		2D979C2F270302650084A3F8 /* GetCreatedArticlesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCreatedArticlesUseCase.swift; sourceTree = "<group>"; };
+		2D979C312703034C0084A3F8 /* GetCreatedArticlesUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCreatedArticlesUseCaseSpec.swift; sourceTree = "<group>"; };
 		2DA4ABBA26CF901700CF7D68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "NimbleMedium/Configurations/Plists/GoogleService/Production/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		2DA4ABBB26CF901700CF7D68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "NimbleMedium/Configurations/Plists/GoogleService/Staging/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		2DA4ABBE26CF90D000CF7D68 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
@@ -562,6 +566,7 @@
 				2DC224E32702B68A008382E3 /* GetFavouritedArticlesUseCase.swift */,
 				2D73312A26F0F05D0052DCC7 /* GetArticleUseCase.swift */,
 				2DEF1F9726E6055A00EB93CC /* GetListArticlesUseCase.swift */,
+				2D979C2F270302650084A3F8 /* GetCreatedArticlesUseCase.swift */,
 			);
 			path = Article;
 			sourceTree = "<group>";
@@ -608,6 +613,7 @@
 				2DC224E52702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift */,
 				2D73313026F0F4800052DCC7 /* GetArticleUseCaseSpec.swift */,
 				2D892BAA26E89E4500579856 /* GetListArticlesUseCaseSpec.swift */,
+				2D979C312703034C0084A3F8 /* GetCreatedArticlesUseCaseSpec.swift */,
 			);
 			path = Article;
 			sourceTree = "<group>";
@@ -1956,6 +1962,7 @@
 				2D5485BE26CA0D2C00FFE707 /* PublishRelayProperty.swift in Sources */,
 				2459B31C26D74F4700ABCE61 /* AuthRequestConfiguration.swift in Sources */,
 				2D17E4F226F07996001D3F90 /* NavigationBarPrimaryStyle.swift in Sources */,
+				2D979C30270302650084A3F8 /* GetCreatedArticlesUseCase.swift in Sources */,
 				2DEF1F9426E6029200EB93CC /* DecodableArticle.swift in Sources */,
 				2DB31D4E26F18EAB007254B9 /* FeedDetailViewModel.swift in Sources */,
 				2D17E4F426F07ABA001D3F90 /* View+If.swift in Sources */,
@@ -1977,6 +1984,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D87823126EB3C110080FEF6 /* FileResource+Decode.swift in Sources */,
+				2D979C322703034C0084A3F8 /* GetCreatedArticlesUseCaseSpec.swift in Sources */,
 				2D46FAF326F8618D005DD323 /* FeedRowViewModelSpec.swift in Sources */,
 				2D73312F26F0F3A20052DCC7 /* APIArticleResponse+Dummy.swift in Sources */,
 				2D73313126F0F4800052DCC7 /* GetArticleUseCaseSpec.swift in Sources */,

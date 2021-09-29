@@ -85,6 +85,9 @@ extension Resolver: ResolverRegistering {
         register {
             GetFavouritedArticlesUseCase(articleRepository: resolve())
         }.implements(GetFavouritedArticlesUseCaseProtocol.self)
+        register {
+            GetCreatedArticlesUseCase(articleRepository: resolve())
+        }.implements(GetCreatedArticlesUseCaseProtocol.self)
     }
 
     private static func registerViewModels() {
