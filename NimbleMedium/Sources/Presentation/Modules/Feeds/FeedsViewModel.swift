@@ -52,7 +52,6 @@ final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
     var output: FeedsViewModelOutput { self }
 
     init() {
-
         refreshTrigger
             .withUnretained(self)
             .flatMapLatest { $0.0.refreshTriggered(owner: $0.0) }

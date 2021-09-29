@@ -39,9 +39,7 @@ extension RequestConfiguration {
     }
 
     var headers: HTTPHeaders? {
-        HTTPHeaders([
-            HTTPHeader.contentType("application/json; charset=utf-8")
-        ])
+        nil
     }
 
     var interceptor: RequestInterceptor? {

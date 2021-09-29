@@ -22,9 +22,10 @@ extension AuthRequestConfiguration: RequestConfiguration {
         switch self {
         case .login:
             return "/users/login"
-        case .signup, .user:
+        case .signup:
             return "/users"
-
+        case .user:
+            return "/user"
         }
     }
 

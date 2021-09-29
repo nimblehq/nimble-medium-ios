@@ -10,11 +10,11 @@ import RxSwift
 final class AuthRepository: AuthRepositoryProtocol {
 
     private let networkAPI: NetworkAPIProtocol
-    private let authenticatedNetworkAPI: NetworkAPIProtocol
+    private let authenticatedNetworkAPI: AuthenticatedNetworkAPIProtocol
 
     init(
         networkAPI: NetworkAPIProtocol,
-        authenticatedNetworkAPI: NetworkAPIProtocol
+        authenticatedNetworkAPI: AuthenticatedNetworkAPIProtocol
     ) {
         self.networkAPI = networkAPI
         self.authenticatedNetworkAPI = authenticatedNetworkAPI

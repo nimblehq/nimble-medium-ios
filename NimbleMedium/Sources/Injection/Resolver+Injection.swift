@@ -56,6 +56,9 @@ extension Resolver: ResolverRegistering {
             GetCurrentSessionUseCase(userSessionRepository: resolve())
         }.implements(GetCurrentSessionUseCaseProtocol.self)
         register {
+            GetCurrentUserUseCase(authRepository: resolve())
+        }.implements(GetCurrentUserUseCaseProtocol.self)
+        register {
             GetListArticlesUseCase(articleRepository: resolve())
         }.implements(GetListArticlesUseCaseProtocol.self)
         register {
