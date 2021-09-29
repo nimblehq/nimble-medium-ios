@@ -16,8 +16,6 @@ import Resolver
 
 final class FeedCommentRowViewModelSpec: QuickSpec {
 
-    @LazyInjected var listArticlesUseCase: ListArticlesUseCaseProtocolMock
-
     override func spec() {
         var viewModel: FeedCommentRowViewModelProtocol!
         var scheduler: TestScheduler!
