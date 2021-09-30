@@ -16,7 +16,7 @@ import RxTest
 final class GetCreatedArticlesUseCaseSpec: QuickSpec {
 
     override func spec() {
-        var usecase: GetCreatedArticlesUseCase!
+        var useCase: GetCreatedArticlesUseCase!
         var articleRepository: ArticleRepositoryProtocolMock!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
@@ -26,7 +26,7 @@ final class GetCreatedArticlesUseCaseSpec: QuickSpec {
             beforeEach {
                 disposeBag = DisposeBag()
                 articleRepository = ArticleRepositoryProtocolMock()
-                usecase = GetCreatedArticlesUseCase(articleRepository: articleRepository)
+                useCase = GetCreatedArticlesUseCase(articleRepository: articleRepository)
                 scheduler = TestScheduler(initialClock: 0)
             }
 
@@ -41,7 +41,7 @@ final class GetCreatedArticlesUseCaseSpec: QuickSpec {
                         outputArticles = scheduler.createObserver([DecodableArticle].self)
                         articleRepository.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(inputArticles)
 
-                        usecase.execute(username: "any")
+                        useCase.execute(username: "any")
                             .asObservable()
                             .map {
                                 $0.compactMap { $0 as? DecodableArticle }
@@ -63,7 +63,7 @@ final class GetCreatedArticlesUseCaseSpec: QuickSpec {
                         outputError = scheduler.createObserver(Optional<Error>.self)
                         articleRepository.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .error(TestError.mock)
 
-                        usecase.execute(username: "any")
+                        useCase.execute(username: "any")
                             .asObservable()
                             .materialize()
                             .map { $0.error }
