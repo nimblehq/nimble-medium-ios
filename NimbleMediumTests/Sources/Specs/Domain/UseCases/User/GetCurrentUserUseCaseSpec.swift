@@ -1,8 +1,8 @@
 //
-//  GetUserProfileUseCaseSpec.swift
+//  GetCurrentUserUseCaseSpec.swift
 //  NimbleMediumTests
 //
-//  Created by Minh Pham on 27/09/2021.
+//  Created by Minh Pham on 29/09/2021.
 //
 
 import Quick
@@ -13,60 +13,60 @@ import RxTest
 
 @testable import NimbleMedium
 
-final class GetUserProfileUseCaseSpec: QuickSpec {
+final class GetCurrentUserUseCaseSpec: QuickSpec {
 
     override func spec() {
-        var usecase: GetUserProfileUseCase!
-        var userRepository: UserRepositoryProtocolMock!
+        var usecase: GetCurrentUserUseCase!
+        var authRepository: AuthRepositoryProtocolMock!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
 
-        describe("a GetUserProfileUseCase") {
+        describe("a GetCurrentUserUseCase") {
 
             beforeEach {
                 disposeBag = DisposeBag()
-                userRepository = UserRepositoryProtocolMock()
-                usecase = GetUserProfileUseCase(userRepository: userRepository)
+                authRepository = AuthRepositoryProtocolMock()
+                usecase = GetCurrentUserUseCase(authRepository: authRepository)
                 scheduler = TestScheduler(initialClock: 0)
             }
 
             describe("its execute() call") {
 
-                context("when userRepository.getUserProfile() returns success") {
+                context("when authRepository.getCurrentUser() returns success") {
 
-                    let inputProfile = APIProfileResponse.dummy.profile
-                    var outputProfile: TestableObserver<DecodableProfile>!
+                    let inputUser = APIUserResponse.dummy.user
+                    var outputUser: TestableObserver<CodableUser>!
 
                     beforeEach {
-                        outputProfile = scheduler.createObserver(DecodableProfile.self)
-                        userRepository.getUserProfileUsernameReturnValue = .just(inputProfile)
+                        outputUser = scheduler.createObserver(CodableUser.self)
+                        authRepository.getCurrentUserReturnValue = .just(inputUser)
 
-                        usecase.execute(username: "username")
+                        usecase.execute()
                             .asObservable()
                             .compactMap {
-                                $0 as? DecodableProfile
+                                $0 as? CodableUser
                             }
-                            .bind(to: outputProfile)
+                            .bind(to: outputUser)
                             .disposed(by: disposeBag)
                     }
 
-                    it("returns correct profile") {
-                        expect(outputProfile.events) == [
-                            .next(0, inputProfile),
+                    it("returns correct user") {
+                        expect(outputUser.events) == [
+                            .next(0, inputUser),
                             .completed(0)
                         ]
                     }
                 }
 
-                context("when userRepository.getUserProfile() returns failure") {
+                context("when authRepository.getCurrentUser() returns failure") {
 
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
                         outputError = scheduler.createObserver(Optional<Error>.self)
-                        userRepository.getUserProfileUsernameReturnValue = .error(TestError.mock)
+                        authRepository.getCurrentUserReturnValue =  .error(TestError.mock)
 
-                        usecase.execute(username: "username")
+                        usecase.execute()
                             .asObservable()
                             .materialize()
                             .map { $0.error }

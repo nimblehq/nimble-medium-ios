@@ -7,7 +7,10 @@
 
 import RxSwift
 
+// sourcery: AutoMockable
 protocol AuthRepositoryProtocol: AnyObject {
+
+    func getCurrentUser() -> Single<User>
 
     func login(email: String, password: String) -> Single<User>
 
