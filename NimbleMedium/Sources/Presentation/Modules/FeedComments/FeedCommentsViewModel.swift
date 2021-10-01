@@ -76,7 +76,7 @@ private extension FeedCommentsViewModel {
                 onError: { _ in owner.$didFailToFetchComments.accept(()) }
             )
             .asObservable()
-            .map { _ in () }
+            .mapToVoid()
             .catchAndReturn(())
     }
 }

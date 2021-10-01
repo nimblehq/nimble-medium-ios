@@ -107,7 +107,7 @@ private extension FeedsViewModel {
             }
         )
         .asObservable()
-        .map { _ in () }
+        .mapToVoid()
         .catchAndReturn(())
     }
 
@@ -136,7 +136,7 @@ private extension FeedsViewModel {
             }
         )
         .asObservable()
-        .map { _ in () }
+        .mapToVoid()
         .catchAndReturn(())
     }
 }

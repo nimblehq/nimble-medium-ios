@@ -9,7 +9,7 @@ import RxSwift
 
 protocol SignupUseCaseProtocol: AnyObject {
 
-    func signup(username: String, email: String, password: String) -> Completable
+    func execute(username: String, email: String, password: String) -> Completable
 }
 
 final class SignupUseCase: SignupUseCaseProtocol {
@@ -25,14 +25,12 @@ final class SignupUseCase: SignupUseCaseProtocol {
         self.userSessionRepository = userSessionRepository
     }
 
-    func signup(username: String, email: String, password: String) -> Completable {
+    func execute(username: String, email: String, password: String) -> Completable {
         authRepository
             .signup(username: username, email: email, password: password)
-            .asObservable()
-            .withUnretained(self)
-            .flatMapLatest { owner, user -> Completable in
-                owner.userSessionRepository.saveUser(user)
-            }
-            .asCompletable()
+            .flatMapCompletable({ [weak self] user in
+                guard let self = self else { return Completable.empty() }
+                return self.userSessionRepository.saveUser(user)
+            })
     }
 }

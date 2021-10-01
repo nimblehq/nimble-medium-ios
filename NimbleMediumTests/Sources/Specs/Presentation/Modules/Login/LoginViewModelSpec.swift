@@ -38,7 +38,7 @@ final class LoginViewModelSpec: QuickSpec {
                 context("when logging in with email and password returns success") {
 
                     beforeEach {
-                        self.loginUseCase.loginEmailPasswordReturnValue = Completable.create { completable in
+                        self.loginUseCase.executeEmailPasswordReturnValue = Completable.create { completable in
                             scheduler.scheduleAt(100) { completable(.completed) }
                             return Disposables.create()
                         }
@@ -72,7 +72,7 @@ final class LoginViewModelSpec: QuickSpec {
                 context("when login with email and password returns failure") {
 
                     beforeEach {
-                        self.loginUseCase.loginEmailPasswordReturnValue = Completable.create { completable in
+                        self.loginUseCase.executeEmailPasswordReturnValue = Completable.create { completable in
                             scheduler.scheduleAt(100) {
                                 completable(.error(TestError.mock))
                             }
