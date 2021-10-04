@@ -43,3 +43,4 @@
 "signup.title" = "Signup";
 
 "userProfile.title" = "Profile";
+"userProfile.username.unknown" = "Unknown User";

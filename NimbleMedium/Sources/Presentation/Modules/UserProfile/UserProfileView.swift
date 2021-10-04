@@ -13,6 +13,8 @@ import ToastUI
 struct UserProfileView: View {
 
     @State private var uiModel: UIModel?
+    @State private var errorMessage = ""
+    @State private var errorToast = false
 
     @ObservedViewModel var viewModel: UserProfileViewModelProtocol
 
@@ -32,7 +34,16 @@ struct UserProfileView: View {
         .navigationTitle(Localizable.userProfileTitle())
         .modifier(NavigationBarPrimaryStyle())
         .onAppear { viewModel.input.getUserProfile() }
+        .toast(isPresented: $errorToast, dismissAfter: 3.0) {
+            ToastView(errorMessage) { } background: {
+                Color.clear
+            }
+        }
         .bind(viewModel.output.userProfileUIModel, to: _uiModel)
+        .onReceive(viewModel.output.errorMessage) { _ in
+            errorMessage = Localizable.errorGeneric()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { errorToast.toggle() }
+        }
     }
 
     var profileHeader: some View {
@@ -46,7 +57,7 @@ struct UserProfileView: View {
             } else {
                 defaultAvatar
             }
-            Text(uiModel?.username ?? Localizable.defaultUsernameValue())
+            Text(uiModel?.username ?? Localizable.userProfileUsernameUnknown())
                 .foregroundColor(.white)
                 .fontWeight(.bold)
                 .lineLimit(2)

@@ -75,7 +75,10 @@ private extension UserProfileViewModel {
                 onSuccess: {
                     owner.$userProfileUIModel.accept(owner.generateUIModel(from: $0))
                 },
-                onError: { error in owner.$errorMessage.accept(error.detail) }
+                onError: { error in
+                    owner.$errorMessage.accept(error.detail)
+                    owner.$userProfileUIModel.accept(nil)
+                }
             )
             .asObservable()
             .mapToVoid()
