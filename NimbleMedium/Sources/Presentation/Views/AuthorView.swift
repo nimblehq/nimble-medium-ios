@@ -28,7 +28,7 @@ struct AuthorView: View {
             }
             VStack(alignment: .leading) {
                 NavigationLink(
-                    destination: UserProfileView(),
+                    destination: UserProfileView(username: authorName),
                     label: {
                         Text(authorName)
                             .foregroundColor(authorNameColor)
