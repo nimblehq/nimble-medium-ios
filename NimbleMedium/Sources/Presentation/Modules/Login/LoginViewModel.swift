@@ -9,8 +9,6 @@ import RxSwift
 import RxCocoa
 import Resolver
 
-typealias LoginParams = (email: String, password: String)
-
 protocol LoginViewModelInput {
 
     func didTapLoginButton(email: String, password: String)
@@ -32,6 +30,8 @@ protocol LoginViewModelProtocol: ObservableViewModel {
 }
 
 final class LoginViewModel: ObservableObject, LoginViewModelProtocol {
+
+    typealias LoginParams = (email: String, password: String)
 
     private let disposeBag = DisposeBag()
     private let loginTrigger = PublishRelay<LoginParams>()

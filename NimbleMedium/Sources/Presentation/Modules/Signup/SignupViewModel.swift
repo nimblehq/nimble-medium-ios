@@ -9,8 +9,6 @@ import Resolver
 import RxCocoa
 import RxSwift
 
-typealias SignupParams = (username: String, email: String, password: String)
-
 protocol SignupViewModelInput {
 
     func didTapSignupButton(username: String, email: String, password: String)
@@ -32,6 +30,8 @@ protocol SignupViewModelProtocol: ObservableViewModel {
 }
 
 final class SignupViewModel: ObservableObject, SignupViewModelProtocol {
+
+    typealias SignupParams = (username: String, email: String, password: String)
 
     private let disposeBag = DisposeBag()
     private let signupTrigger = PublishRelay<SignupParams>()

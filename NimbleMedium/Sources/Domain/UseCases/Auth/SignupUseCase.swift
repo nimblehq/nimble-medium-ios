@@ -28,9 +28,11 @@ final class SignupUseCase: SignupUseCaseProtocol {
     func execute(username: String, email: String, password: String) -> Completable {
         authRepository
             .signup(username: username, email: email, password: password)
-            .flatMapCompletable({ [weak self] user in
-                guard let self = self else { return Completable.empty() }
-                return self.userSessionRepository.saveUser(user)
-            })
+            .asObservable()
+            .withUnretained(self)
+            .flatMapLatest { owner, user -> Completable in
+                owner.userSessionRepository.saveUser(user)
+            }
+            .asCompletable()
     }
 }
