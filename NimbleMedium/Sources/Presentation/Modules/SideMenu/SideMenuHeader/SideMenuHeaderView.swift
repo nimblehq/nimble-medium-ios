@@ -13,6 +13,8 @@ struct SideMenuHeaderView: View {
 
     @ObservedViewModel private var viewModel: SideMenuHeaderViewModelProtocol = Resolver.resolve()
 
+    @Injected private var homeViewModel: HomeViewModelProtocol
+
     @State private var uiModel: UIModel?
 
     var body: some View {
@@ -45,6 +47,10 @@ struct SideMenuHeaderView: View {
             .resizable()
             .frame(width: 100.0, height: 100.0)
             .clipShape(Circle())
+    }
+
+    init() {
+        viewModel.input.bindData(homeViewModel: homeViewModel)
     }
 
     func authenticatedMenuHeader(uiModel: UIModel) -> some View {

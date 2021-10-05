@@ -13,7 +13,10 @@ struct SideMenuActionsView: View {
 
     @ObservedViewModel private var viewModel: SideMenuActionsViewModelProtocol = Resolver.resolve()
 
-    // TODO: Update with correct value for isAuthenticated in integrate task
+    @Injected private var loginViewModel: LoginViewModelProtocol
+    @Injected private var signupViewModel: SignupViewModelProtocol
+    @Injected private var homeViewModel: HomeViewModelProtocol
+
     @State private var isAuthenticated = false
     @State private var isShowingLoginScreen = false
     @State private var isShowingSignupScreen = false
@@ -52,6 +55,7 @@ struct SideMenuActionsView: View {
         .onReceive(viewModel.output.didSelectMyProfileOption) {
             isShowingMyProfileScreen = $0
         }
+        .bind(viewModel.output.isAuthenticated, to: _isAuthenticated)
     }
 
     var unauthenticatedMenuHeader: some View {
@@ -82,6 +86,15 @@ struct SideMenuActionsView: View {
         .onReceive(viewModel.output.didSelectSignupOption) {
             isShowingSignupScreen = $0
         }
+        .bind(viewModel.output.isAuthenticated, to: _isAuthenticated)
+    }
+
+    init() {
+        viewModel.input.bindData(
+            loginViewModel: loginViewModel,
+            signupViewModel: signupViewModel,
+            homeViewModel: homeViewModel
+        )
     }
 }
 
