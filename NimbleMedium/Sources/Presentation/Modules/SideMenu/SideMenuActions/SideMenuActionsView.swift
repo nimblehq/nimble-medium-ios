@@ -17,6 +17,7 @@ struct SideMenuActionsView: View {
     @State private var isAuthenticated = false
     @State private var isShowingLoginScreen = false
     @State private var isShowingSignupScreen = false
+    @State private var isShowingMyProfileScreen = false
 
     var body: some View {
         if isAuthenticated {
@@ -32,7 +33,13 @@ struct SideMenuActionsView: View {
                 text: Localizable.menuOptionMyProfile(),
                 iconName: R.image.iconMyProfile.name
             ) {
-                // TODO: Implement this option tap action in the integrate task
+                viewModel.input.selectMyProfileOption()
+            }
+            .fullScreenCover(isPresented: $isShowingMyProfileScreen) {
+                NavigationView {
+                    UserProfileView()
+                }
+                .accentColor(.white)
             }
 
             SideMenuActionItemView(
@@ -41,6 +48,9 @@ struct SideMenuActionsView: View {
             ) {
                 // TODO: Implement this option tap action in the integrate task
             }
+        }
+        .onReceive(viewModel.output.didSelectMyProfileOption) {
+            isShowingMyProfileScreen = $0
         }
     }
 

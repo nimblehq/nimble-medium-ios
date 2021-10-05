@@ -13,12 +13,14 @@ import Resolver
 protocol SideMenuActionsViewModelInput {
 
     func selectLoginOption()
+    func selectMyProfileOption()
     func selectSignupOption()
 }
 
 protocol SideMenuActionsViewModelOutput {
 
     var didSelectLoginOption: Signal<Bool> { get }
+    var didSelectMyProfileOption: Signal<Bool> { get }
     var didSelectSignupOption: Signal<Bool> { get }
 }
 
@@ -36,22 +38,27 @@ final class SideMenuActionsViewModel: ObservableObject, SideMenuActionsViewModel
     var output: SideMenuActionsViewModelOutput { self }
 
     @PublishRelayProperty var didSelectLoginOption: Signal<Bool>
+    @PublishRelayProperty var didSelectMyProfileOption: Signal<Bool>
     @PublishRelayProperty var didSelectSignupOption: Signal<Bool>
 
     @Injected var loginViewModel: LoginViewModelProtocol
     @Injected var signupViewModel: SignupViewModelProtocol
 
+    @Injected var getCurrentUserUseCase: GetCurrentUserUseCaseProtocol
+
     init() {
         loginViewModel.output.didSelectNoAccount.asObservable()
-            .subscribe(with: self, onNext: { owner, _ in
-                owner.$didSelectSignupOption.accept(true)
-            })
+            .subscribe(
+                with: self,
+                onNext: { owner, _ in owner.selectSignupOption() }
+            )
             .disposed(by: disposeBag)
 
         signupViewModel.output.didSelectHaveAccount.asObservable()
-            .subscribe(with: self, onNext: { owner, _ in
-                owner.$didSelectLoginOption.accept(true)
-            })
+            .subscribe(
+                with: self,
+                onNext: { owner, _ in owner.selectLoginOption() }
+            )
             .disposed(by: disposeBag)
     }
 }
@@ -60,6 +67,10 @@ extension SideMenuActionsViewModel: SideMenuActionsViewModelInput {
 
     func selectLoginOption() {
         $didSelectLoginOption.accept(true)
+    }
+
+    func selectMyProfileOption() {
+        $didSelectMyProfileOption.accept(true)
     }
 
     func selectSignupOption() {
