@@ -10,7 +10,7 @@ import RxSwift
 // sourcery: AutoMockable
 protocol LoginUseCaseProtocol: AnyObject {
 
-    func login(email: String, password: String) -> Completable
+    func execute(email: String, password: String) -> Completable
 }
 
 final class LoginUseCase: LoginUseCaseProtocol {
@@ -26,7 +26,7 @@ final class LoginUseCase: LoginUseCaseProtocol {
         self.userSessionRepository = userSessionRepository
     }
 
-    func login(email: String, password: String) -> Completable {
+    func execute(email: String, password: String) -> Completable {
         authRepository
             .login(email: email, password: password)
             .asObservable()

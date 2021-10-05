@@ -75,7 +75,7 @@ private extension FeedDetailViewModel {
             onError: { _ in owner.$didFailToFetchArticle.accept(()) }
         )
         .asObservable()
-        .map { _ in () }
+        .mapToVoid()
         .catchAndReturn(())
     }
 }
