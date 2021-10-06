@@ -16,9 +16,9 @@
 "feedComments.noComment.message" = "No Comment";
 "feedComments.title" = "Comments History";
 
-"feedDetail.comments.title" = "Go to comments section";
-"feedDetail.fetchFailure.message" = "Unable to load the article";
-"feedDetail.title" = "Article";
+"articleDetail.comments.title" = "Go to comments section";
+"articleDetail.fetchFailure.message" = "Unable to load the article";
+"articleDetail.title" = "Article";
 
 "feeds.comments.title" = "Go to comments section";
 "feeds.noArticle" = "No Article";

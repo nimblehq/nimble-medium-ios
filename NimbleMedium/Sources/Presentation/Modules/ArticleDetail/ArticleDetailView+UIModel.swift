@@ -1,5 +1,5 @@
 //
-//  FeedDetailView+UIModel.swift
+//  ArticleDetailView+UIModel.swift
 //  NimbleMedium
 //
 //  Created by Mark G on 22/09/2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension FeedDetailView {
+extension ArticleDetailView {
 
     struct UIModel: Equatable {
 

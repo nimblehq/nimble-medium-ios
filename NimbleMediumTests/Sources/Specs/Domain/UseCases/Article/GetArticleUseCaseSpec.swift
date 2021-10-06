@@ -41,7 +41,7 @@ final class GetArticleUseCaseSpec: QuickSpec {
                         outputArticle = scheduler.createObserver(DecodableArticle.self)
                         articleRepository.getArticleSlugReturnValue = .just(inputArticle)
 
-                        usecase.getArticle(slug: "slug")
+                        usecase.execute(slug: "slug")
                             .asObservable()
                             .compactMap {
                                 $0 as? DecodableArticle
@@ -66,7 +66,7 @@ final class GetArticleUseCaseSpec: QuickSpec {
                         outputError = scheduler.createObserver(Optional<Error>.self)
                         articleRepository.getArticleSlugReturnValue = .error(TestError.mock)
 
-                        usecase.getArticle(slug: "slug")
+                        usecase.execute(slug: "slug")
                             .asObservable()
                             .materialize()
                             .map { $0.error }

@@ -140,7 +140,7 @@ private extension FeedsView {
 
         var feedDetailNavigationLink: some View {
             NavigationLink(
-                destination: FeedDetailView(slug: activeDetailID),
+                destination: ArticleDetailView(slug: activeDetailID),
                 isActive: $isShowingFeedDetail,
                 label: { EmptyView() }
             )
