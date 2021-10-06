@@ -44,7 +44,7 @@ extension Resolver {
     }
 
     private static func registerViewModels() {
-        Resolver.mock.register { FeedRowViewModelProtocolMock() }.implements(FeedRowViewModelProtocol.self)
+        Resolver.mock.register { ArticleRowViewModelProtocolMock() }.implements(ArticleRowViewModelProtocol.self)
         Resolver.mock.register { HomeViewModelProtocolMock() }.implements(HomeViewModelProtocol.self)
     }
 }
