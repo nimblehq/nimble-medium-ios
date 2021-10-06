@@ -42,7 +42,7 @@
 "signup.textFieldUsername.placeholder" = "Username";
 "signup.title" = "Signup";
 
-
+"userProfile.createdArticles.title" = "Created Articles";
 "userProfile.current.title" = "My Profile";
 "userProfile.favouritedArticles.title" = "Favourited Articles";
 "userProfile.other.title" = "Profile";

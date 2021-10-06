@@ -31,9 +31,13 @@ struct UserProfileView: View {
                 .background(Color.gray)
 
             PagerTabStripView(selection: $selectedTabIndex) {
-                // TODO: Add Created Articles List
-                Text("")
-                    .pagerTabItem { TabItemTitle("Empty Tab") }
+                // TODO: Add real Created Articles List data
+                ArticleList()
+                    .pagerTabItem {
+                        TabItemTitle(Localizable.userProfileCreatedArticlesTitle())
+                    }
+
+                // TODO: Add real Favourited Articles List data
                 ArticleList()
                     .pagerTabItem {
                         TabItemTitle(Localizable.userProfileFavouritedArticlesTitle())
