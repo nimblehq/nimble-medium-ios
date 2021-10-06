@@ -41,7 +41,7 @@ final class GetArticleCommentsUseCaseSpec: QuickSpec {
                         outputArticleComments = scheduler.createObserver([APIArticleComment].self)
                         articleCommentRepository.getCommentsSlugReturnValue = .just(inputArticleComments)
 
-                        usecase.getComments(slug: "")
+                        usecase.execute(slug: "")
                         .asObservable()
                         .map { $0.compactMap { $0 as? APIArticleComment } }
                         .bind(to: outputArticleComments)
@@ -61,7 +61,7 @@ final class GetArticleCommentsUseCaseSpec: QuickSpec {
                         outputError = scheduler.createObserver(Optional<Error>.self)
                         articleCommentRepository.getCommentsSlugReturnValue = .error(TestError.mock)
 
-                        usecase.getComments(slug: "")
+                        usecase.execute(slug: "")
                         .asObservable()
                         .materialize()
                         .map { $0.error }

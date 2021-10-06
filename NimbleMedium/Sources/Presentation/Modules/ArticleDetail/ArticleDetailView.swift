@@ -47,7 +47,7 @@ struct ArticleDetailView: View {
 
     var comments: some View {
         NavigationLink(
-            destination: FeedCommentsView(id: viewModel.output.id),
+            destination: ArticleCommentsView(id: viewModel.output.id),
             label: {
                 Text(Localizable.articleDetailCommentsTitle())
                     .foregroundColor(.white)

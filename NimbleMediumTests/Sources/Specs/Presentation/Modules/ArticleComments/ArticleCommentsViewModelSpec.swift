@@ -1,5 +1,5 @@
 //
-//  FeedCommentsViewModelSpec.swift
+//  ArticleCommentsViewModelSpec.swift
 //  NimbleMediumTests
 //
 //  Created by Mark G on 17/09/2021.
@@ -14,20 +14,20 @@ import Resolver
 
 @testable import NimbleMedium
 
-final class FeedCommentsViewModelSpec: QuickSpec {
+final class ArticleCommentsViewModelSpec: QuickSpec {
 
     @LazyInjected var getArticleCommentsUseCase: GetArticleCommentsUseCaseProtocolMock
 
     override func spec() {
-        var viewModel: FeedCommentsViewModelProtocol!
+        var viewModel: ArticleCommentsViewModelProtocol!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
 
-        describe("a FeedCommentsViewModel") {
+        describe("a ArticleCommentsViewModel") {
 
             beforeEach {
                 Resolver.registerMockServices()
-                viewModel = FeedCommentsViewModel(id: "slug")
+                viewModel = ArticleCommentsViewModel(id: "slug")
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
             }
@@ -38,26 +38,26 @@ final class FeedCommentsViewModelSpec: QuickSpec {
                     let inputComments = APIArticleCommentsResponse.dummy.comments
 
                     beforeEach {
-                        self.getArticleCommentsUseCase.getCommentsSlugReturnValue = .just(
+                        self.getArticleCommentsUseCase.executeSlugReturnValue = .just(
                             inputComments,
                             on: scheduler,
                             at: 10
                         )
 
                         scheduler.scheduleAt(5) {
-                            viewModel.input.fetchComments()
+                            viewModel.input.fetch()
                         }
                     }
 
-                    it("returns output didFetchComments with signal") {
-                        expect(viewModel.output.didFetchComments)
+                    it("returns output didFetch with signal") {
+                        expect(viewModel.output.didFetch)
                             .events(scheduler: scheduler, disposeBag: disposeBag)
                             .notTo(beEmpty())
                     }
 
                     it("returns output article with correct value") {
                         expect(
-                            viewModel.output.feedCommentRowViewModels
+                            viewModel.output.articleCommentRowViewModels
                                 .map { $0.map { $0.output.id } }
                         )
                         .events(scheduler: scheduler, disposeBag: disposeBag) == [
@@ -70,19 +70,19 @@ final class FeedCommentsViewModelSpec: QuickSpec {
                 context("when GetArticleCommentsUseCase return failure") {
 
                     beforeEach {
-                        self.getArticleCommentsUseCase.getCommentsSlugReturnValue = .error(
+                        self.getArticleCommentsUseCase.executeSlugReturnValue = .error(
                             TestError.mock,
                             on: scheduler,
                             at: 10
                         )
 
                         scheduler.scheduleAt(5) {
-                            viewModel.input.fetchComments()
+                            viewModel.input.fetch()
                         }
                     }
 
-                    it("returns output didFailToFetchComments with signal") {
-                        expect(viewModel.output.didFailToFetchComments)
+                    it("returns output didFailToFetch with signal") {
+                        expect(viewModel.output.didFailToFetch)
                             .events(scheduler: scheduler, disposeBag: disposeBag)
                             .notTo(beEmpty())
                     }

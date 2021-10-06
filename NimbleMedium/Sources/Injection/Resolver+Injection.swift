@@ -92,11 +92,11 @@ extension Resolver: ResolverRegistering {
 
     private static func registerViewModels() {
         register { _, args in
-            FeedCommentRowViewModel(comment: args.get())
-        }.implements(FeedCommentRowViewModelProtocol.self)
+            ArticleCommentRowViewModel(comment: args.get())
+        }.implements(ArticleCommentRowViewModelProtocol.self)
         register { _, args in
-            FeedCommentsViewModel(id: args.get())
-        }.implements(FeedCommentsViewModelProtocol.self)
+            ArticleCommentsViewModel(id: args.get())
+        }.implements(ArticleCommentsViewModelProtocol.self)
         register { _, args in
             ArticleDetailViewModel(id: args.get())
         }.implements(ArticleDetailViewModelProtocol.self)

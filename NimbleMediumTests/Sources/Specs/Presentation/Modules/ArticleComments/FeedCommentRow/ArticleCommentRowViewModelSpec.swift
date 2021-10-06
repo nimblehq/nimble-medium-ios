@@ -14,28 +14,28 @@ import Resolver
 
 @testable import NimbleMedium
 
-final class FeedCommentRowViewModelSpec: QuickSpec {
+final class ArticleCommentRowViewModelSpec: QuickSpec {
 
     override func spec() {
-        var viewModel: FeedCommentRowViewModelProtocol!
+        var viewModel: ArticleCommentRowViewModelProtocol!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
-        var uiModel: FeedCommentRow.UIModel!
+        var uiModel: ArticleCommentRow.UIModel!
 
-        describe("a FeedsViewModel") {
+        describe("a ArticleCommentRowViewModel") {
 
             beforeEach {
                 Resolver.registerMockServices()
 
                 let comment = APIArticleCommentsResponse.dummy.comments[0]
-                uiModel = FeedCommentRow.UIModel(
+                uiModel = ArticleCommentRow.UIModel(
                     commentBody: comment.body,
                     commentUpdatedAt: comment.updatedAt.format(with: .monthDayYear),
                     authorName: comment.author.username,
                     authorImage: try? comment.author.image?.asURL()
                 )
 
-                viewModel = FeedCommentRowViewModel(comment: comment)
+                viewModel = ArticleCommentRowViewModel(comment: comment)
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
             }

@@ -1,5 +1,5 @@
 //
-//  FeedCommentRow+UIModel.swift
+//  ArticleCommentRow+UIModel.swift
 //  NimbleMedium
 //
 //  Created by Mark G on 23/09/2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension FeedCommentRow {
+extension ArticleCommentRow {
 
     struct UIModel: Equatable {
 

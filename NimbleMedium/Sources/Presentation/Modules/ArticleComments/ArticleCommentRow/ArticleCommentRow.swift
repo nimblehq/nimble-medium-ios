@@ -8,9 +8,9 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct FeedCommentRow: View {
+struct ArticleCommentRow: View {
 
-    @ObservedViewModel private var viewModel: FeedCommentRowViewModelProtocol
+    @ObservedViewModel private var viewModel: ArticleCommentRowViewModelProtocol
 
     @State var uiModel: UIModel?
 
@@ -42,7 +42,7 @@ struct FeedCommentRow: View {
         }
     }
 
-    init(viewModel: FeedCommentRowViewModelProtocol) {
+    init(viewModel: ArticleCommentRowViewModelProtocol) {
         self.viewModel = viewModel
     }
 
