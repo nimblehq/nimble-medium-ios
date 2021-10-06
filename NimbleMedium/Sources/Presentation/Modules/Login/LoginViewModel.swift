@@ -83,6 +83,8 @@ private extension LoginViewModel {
                     owner.$didLogin.accept(())
                 }
             )
-            .andThen(.just(Void()))
+            .asObservable()
+            .mapToVoid()
+            .catchAndReturn(())
     }
 }

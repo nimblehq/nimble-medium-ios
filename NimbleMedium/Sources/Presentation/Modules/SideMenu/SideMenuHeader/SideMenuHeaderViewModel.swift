@@ -52,10 +52,8 @@ extension SideMenuHeaderViewModel: SideMenuHeaderViewModelInput {
 
     func bindData(homeViewModel: HomeViewModelProtocol) {
         homeViewModel.output.isSideMenuOpenDidChange
-            .emit(with: self) { owner, isOpen in
-                guard isOpen else { return }
-                owner.getCurrentUserSessionTrigger.accept(())
-            }
+            .filter { $0 }
+            .emit(with: self) { owner, _ in owner.getCurrentUserSessionTrigger.accept(()) }
             .disposed(by: disposeBag)
     }
 }

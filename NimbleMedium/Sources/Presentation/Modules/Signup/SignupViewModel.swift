@@ -84,6 +84,8 @@ private extension SignupViewModel {
                     owner.$didSignup.accept(())
                 }
             )
-            .andThen(.just(Void()))
+            .asObservable()
+            .mapToVoid()
+            .catchAndReturn(())
     }
 }

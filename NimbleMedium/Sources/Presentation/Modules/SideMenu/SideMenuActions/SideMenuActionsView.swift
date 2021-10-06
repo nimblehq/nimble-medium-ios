@@ -52,9 +52,7 @@ struct SideMenuActionsView: View {
                 // TODO: Implement this option tap action in the integrate task
             }
         }
-        .onReceive(viewModel.output.didSelectMyProfileOption) {
-            isShowingMyProfileScreen = $0
-        }
+        .bind(viewModel.output.didSelectMyProfileOption, to: _isShowingMyProfileScreen)
         .bind(viewModel.output.isAuthenticated, to: _isAuthenticated)
     }
 
@@ -80,12 +78,8 @@ struct SideMenuActionsView: View {
                 SignupView()
             }
         }
-        .onReceive(viewModel.output.didSelectLoginOption) {
-            isShowingLoginScreen = $0
-        }
-        .onReceive(viewModel.output.didSelectSignupOption) {
-            isShowingSignupScreen = $0
-        }
+        .bind(viewModel.output.didSelectLoginOption, to: _isShowingLoginScreen)
+        .bind(viewModel.output.didSelectSignupOption, to: _isShowingSignupScreen)
         .bind(viewModel.output.isAuthenticated, to: _isAuthenticated)
     }
 
