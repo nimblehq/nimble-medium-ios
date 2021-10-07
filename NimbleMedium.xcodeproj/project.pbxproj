@@ -98,6 +98,7 @@
 		2D4BB30126FC5923005FED5F /* ArticleCommentRow+UIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4BB30026FC5923005FED5F /* ArticleCommentRow+UIModel.swift */; };
 		2D4BB30326FC5930005FED5F /* ArticleCommentRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4BB30226FC5930005FED5F /* ArticleCommentRowViewModel.swift */; };
 		2D4BB30626FC77B2005FED5F /* ArticleCommentRowViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4BB30526FC77B2005FED5F /* ArticleCommentRowViewModelSpec.swift */; };
+		2D531864270EA3D300F8FADD /* PagerTabStripView in Frameworks */ = {isa = PBXBuildFile; productRef = 2D531863270EA3D300F8FADD /* PagerTabStripView */; };
 		2D5485B726C9FAAC00FFE707 /* BehaviorRelayProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5485B626C9FAAC00FFE707 /* BehaviorRelayProperty.swift */; };
 		2D5485BC26CA077600FFE707 /* View+OnReceive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5485BB26CA077600FFE707 /* View+OnReceive.swift */; };
 		2D5485BE26CA0D2C00FFE707 /* PublishRelayProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5485BD26CA0D2C00FFE707 /* PublishRelayProperty.swift */; };
@@ -154,7 +155,6 @@
 		2DC224E62702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC224E52702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift */; };
 		2DD4805726D73C67005225CF /* ObservableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD4805526D73C67005225CF /* ObservableViewModel.swift */; };
 		2DD4805826D73C67005225CF /* ObservedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD4805626D73C67005225CF /* ObservedViewModel.swift */; };
-		2DD606C7270AF1C50051FB80 /* PagerTabStripView in Frameworks */ = {isa = PBXBuildFile; productRef = 2DD606C6270AF1C50051FB80 /* PagerTabStripView */; };
 		2DDAD3A026D37E02007F845A /* App+NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDAD39F26D37E02007F845A /* App+NetworkLogger.swift */; };
 		2DE3B9B526C1339200272775 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3B9B426C1339200272775 /* Typealias.swift */; };
 		2DE8C09226F97386006061B4 /* ArticleRow+UIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE8C09126F97386006061B4 /* ArticleRow+UIModel.swift */; };
@@ -385,7 +385,7 @@
 				2DEF1F8A26E5FD0C00EB93CC /* SDWebImageSwiftUI in Frameworks */,
 				7DB2A8DC1F8863DD01F7D438 /* Pods_NimbleMedium.framework in Frameworks */,
 				24F3D7B726DCEA0300DE2420 /* KeychainAccess in Frameworks */,
-				2DD606C7270AF1C50051FB80 /* PagerTabStripView in Frameworks */,
+				2D531864270EA3D300F8FADD /* PagerTabStripView in Frameworks */,
 				248E13AC26F054FD00439BCC /* Resolver in Frameworks */,
 				2D5C62B22701A69F00398C96 /* Refresh in Frameworks */,
 				2D6EFE1B26E9EB8C006B9939 /* DefaultCodable in Frameworks */,
@@ -1542,7 +1542,7 @@
 				2D6EFE1A26E9EB8C006B9939 /* DefaultCodable */,
 				248E13AB26F054FD00439BCC /* Resolver */,
 				2D5C62B12701A69F00398C96 /* Refresh */,
-				2DD606C6270AF1C50051FB80 /* PagerTabStripView */,
+				2D531863270EA3D300F8FADD /* PagerTabStripView */,
 			);
 			productName = NimbleMedium;
 			productReference = 2DB2674A26BBEC4300FF05BB /* Nimble Medium - Staging.app */;
@@ -1629,7 +1629,7 @@
 				2D6EFE1926E9EB8C006B9939 /* XCRemoteSwiftPackageReference "DefaultCodable" */,
 				248E13AA26F054FD00439BCC /* XCRemoteSwiftPackageReference "Resolver" */,
 				2D5C62B02701A69F00398C96 /* XCRemoteSwiftPackageReference "Refresh" */,
-				2DD606C5270AF1C50051FB80 /* XCRemoteSwiftPackageReference "PagerTabStripView" */,
+				2D531862270EA3D300F8FADD /* XCRemoteSwiftPackageReference "PagerTabStripView" */,
 			);
 			productRefGroup = 2DB2674B26BBEC4300FF05BB /* Products */;
 			projectDirPath = "";
@@ -2731,6 +2731,14 @@
 				minimumVersion = 4.2.2;
 			};
 		};
+		2D531862270EA3D300F8FADD /* XCRemoteSwiftPackageReference "PagerTabStripView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nimblehq/PagerTabStripView.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		2D5C62B02701A69F00398C96 /* XCRemoteSwiftPackageReference "Refresh" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/wxxsw/Refresh";
@@ -2745,14 +2753,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.2.1;
-			};
-		};
-		2DD606C5270AF1C50051FB80 /* XCRemoteSwiftPackageReference "PagerTabStripView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/markgravity/PagerTabStripView.git";
-			requirement = {
-				branch = master;
-				kind = branch;
 			};
 		};
 		2DEF1F8826E5FD0C00EB93CC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
@@ -2781,6 +2781,11 @@
 			package = 24F3D7B526DCEA0300DE2420 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
 		};
+		2D531863270EA3D300F8FADD /* PagerTabStripView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D531862270EA3D300F8FADD /* XCRemoteSwiftPackageReference "PagerTabStripView" */;
+			productName = PagerTabStripView;
+		};
 		2D5C62B12701A69F00398C96 /* Refresh */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2D5C62B02701A69F00398C96 /* XCRemoteSwiftPackageReference "Refresh" */;
@@ -2790,11 +2795,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2D6EFE1926E9EB8C006B9939 /* XCRemoteSwiftPackageReference "DefaultCodable" */;
 			productName = DefaultCodable;
-		};
-		2DD606C6270AF1C50051FB80 /* PagerTabStripView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2DD606C5270AF1C50051FB80 /* XCRemoteSwiftPackageReference "PagerTabStripView" */;
-			productName = PagerTabStripView;
 		};
 		2DEF1F8926E5FD0C00EB93CC /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
