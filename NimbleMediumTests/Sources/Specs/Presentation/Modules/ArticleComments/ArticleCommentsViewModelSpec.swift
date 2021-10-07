@@ -45,12 +45,12 @@ final class ArticleCommentsViewModelSpec: QuickSpec {
                         )
 
                         scheduler.scheduleAt(5) {
-                            viewModel.input.fetch()
+                            viewModel.input.fetchArticleComments()
                         }
                     }
 
-                    it("returns output didFetch with signal") {
-                        expect(viewModel.output.didFetch)
+                    it("returns output didFetchArticleComments with signal") {
+                        expect(viewModel.output.didFetchArticleComments)
                             .events(scheduler: scheduler, disposeBag: disposeBag)
                             .notTo(beEmpty())
                     }
@@ -77,12 +77,12 @@ final class ArticleCommentsViewModelSpec: QuickSpec {
                         )
 
                         scheduler.scheduleAt(5) {
-                            viewModel.input.fetch()
+                            viewModel.input.fetchArticleComments()
                         }
                     }
 
-                    it("returns output didFailToFetch with signal") {
-                        expect(viewModel.output.didFailToFetch)
+                    it("returns output didFailToFetchArticleComments with signal") {
+                        expect(viewModel.output.didFailToFetchArticleComments)
                             .events(scheduler: scheduler, disposeBag: disposeBag)
                             .notTo(beEmpty())
                     }

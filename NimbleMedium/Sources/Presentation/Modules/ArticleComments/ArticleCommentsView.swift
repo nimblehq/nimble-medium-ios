@@ -15,12 +15,12 @@ struct ArticleCommentsView: View {
 
     @State private var articleCommentRowViewModels: [ArticleCommentRowViewModelProtocol]?
     @State private var isErrorToastPresented = false
-    @State private var isFetching = true
-    @State private var isFetchFailed = false
+    @State private var isFetchingArticleComments = true
+    @State private var isFetchArticleCommentsFailed = false
 
     var body: some View {
         Group {
-            if !isFetching, let viewModels = articleCommentRowViewModels {
+            if !isFetchingArticleComments, let viewModels = articleCommentRowViewModels {
                 if !viewModels.isEmpty {
                     ScrollView(.vertical) {
                         LazyVStack(alignment: .leading, spacing: 12.0) {
@@ -34,7 +34,7 @@ struct ArticleCommentsView: View {
                     Text(Localizable.feedCommentsNoCommentMessage())
                 }
             } else {
-                if isFetchFailed {
+                if isFetchArticleCommentsFailed {
                     Text(Localizable.feedCommentsNoCommentMessage())
                 } else { ProgressView() }
             }
@@ -46,18 +46,18 @@ struct ArticleCommentsView: View {
         }
         .navigationTitle(Localizable.feedCommentsTitle())
         .modifier(NavigationBarPrimaryStyle())
-        .onReceive(viewModel.output.didFailToFetch) { _ in
-            isFetching = false
+        .onReceive(viewModel.output.didFailToFetchArticleComments) { _ in
+            isFetchingArticleComments = false
             isErrorToastPresented = true
-            isFetchFailed = true
+            isFetchArticleCommentsFailed = true
         }
-        .onReceive(viewModel.output.didFetch) {
-            isFetching = false
+        .onReceive(viewModel.output.didFetchArticleComments) {
+            isFetchingArticleComments = false
         }
         .onReceive(viewModel.output.articleCommentRowViewModels) {
             articleCommentRowViewModels = $0
         }
-        .onAppear { viewModel.input.fetch() }
+        .onAppear { viewModel.input.fetchArticleComments() }
     }
 
     init(id: String) {

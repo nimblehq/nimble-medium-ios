@@ -12,13 +12,13 @@ import Resolver
 
 protocol ArticleCommentsViewModelInput {
 
-    func fetch()
+    func fetchArticleComments()
 }
 
 protocol ArticleCommentsViewModelOutput {
 
-    var didFetch: Signal<Void> { get }
-    var didFailToFetch: Signal<Void> { get }
+    var didFetchArticleComments: Signal<Void> { get }
+    var didFailToFetchArticleComments: Signal<Void> { get }
     var articleCommentRowViewModels: Driver<[ArticleCommentRowViewModelProtocol]> { get }
 }
 
@@ -33,11 +33,11 @@ final class ArticleCommentsViewModel: ObservableObject, ArticleCommentsViewModel
     @Injected var getArticleCommentsUseCase: GetArticleCommentsUseCaseProtocol
 
     private let disposeBag = DisposeBag()
-    private let fetchTrigger = PublishRelay<Void>()
+    private let fetchArticleCommentsTrigger = PublishRelay<Void>()
     private let id: String
 
-    @PublishRelayProperty var didFetch: Signal<Void>
-    @PublishRelayProperty var didFailToFetch: Signal<Void>
+    @PublishRelayProperty var didFetchArticleComments: Signal<Void>
+    @PublishRelayProperty var didFailToFetchArticleComments: Signal<Void>
     @BehaviorRelayProperty([]) var articleCommentRowViewModels: Driver<[ArticleCommentRowViewModelProtocol]>
 
     var input: ArticleCommentsViewModelInput { self }
@@ -46,9 +46,9 @@ final class ArticleCommentsViewModel: ObservableObject, ArticleCommentsViewModel
     init(id: String) {
         self.id = id
 
-        fetchTrigger
+        fetchArticleCommentsTrigger
             .withUnretained(self)
-            .flatMapLatest { $0.0.fetchTriggered(owner: $0.0) }
+            .flatMapLatest { $0.0.fetchArticleCommentsTriggered(owner: $0.0) }
             .subscribe()
             .disposed(by: disposeBag)
     }
@@ -56,8 +56,8 @@ final class ArticleCommentsViewModel: ObservableObject, ArticleCommentsViewModel
 
 extension ArticleCommentsViewModel: ArticleCommentsViewModelInput {
 
-    func fetch() {
-        fetchTrigger.accept(())
+    func fetchArticleComments() {
+        fetchArticleCommentsTrigger.accept(())
     }
 }
 
@@ -66,14 +66,14 @@ extension ArticleCommentsViewModel: ArticleCommentsViewModelOutput {}
 // MARK: Private
 private extension ArticleCommentsViewModel {
 
-    func fetchTriggered(owner: ArticleCommentsViewModel) -> Observable<Void> {
+    func fetchArticleCommentsTriggered(owner: ArticleCommentsViewModel) -> Observable<Void> {
         getArticleCommentsUseCase.execute(slug: id)
             .do(
                 onSuccess: {
-                    owner.$didFetch.accept(())
+                    owner.$didFetchArticleComments.accept(())
                     owner.$articleCommentRowViewModels.accept($0.viewModels)
                 },
-                onError: { _ in owner.$didFailToFetch.accept(()) }
+                onError: { _ in owner.$didFailToFetchArticleComments.accept(()) }
             )
             .asObservable()
             .mapToVoid()
