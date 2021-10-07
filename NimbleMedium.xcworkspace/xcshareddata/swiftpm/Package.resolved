@@ -20,15 +20,6 @@
         }
       },
       {
-        "package": "PagerTabStripView",
-        "repositoryURL": "https://github.com/nimblehq/PagerTabStripView.git",
-        "state": {
-          "branch": "master",
-          "revision": "dd08c6cf0d18427c46a134f731b3f50410a8fdd7",
-          "version": null
-        }
-      },
-      {
         "package": "Refresh",
         "repositoryURL": "https://github.com/wxxsw/Refresh",
         "state": {
