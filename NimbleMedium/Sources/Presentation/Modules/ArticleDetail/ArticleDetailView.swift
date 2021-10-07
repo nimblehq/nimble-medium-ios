@@ -16,7 +16,7 @@ struct ArticleDetailView: View {
 
     @State private var uiModel: UIModel?
     @State private var isErrorToastPresented = false
-    @State private var isFetchFailed = false
+    @State private var isFetchArticleDetailFailed = false
 
     private let slug: String
 
@@ -25,22 +25,22 @@ struct ArticleDetailView: View {
             if let uiModel = uiModel {
                 articleDetail(uiModel: uiModel)
             } else {
-                if isFetchFailed {
+                if isFetchArticleDetailFailed {
                     Text(Localizable.articleDetailFetchFailureMessage())
                 } else { ProgressView() }
             }
         }
-        .navigationTitle(Localizable.articleDetailTitle())
+        .navigationTitle(Localizable.articleDetailTitleText())
         .modifier(NavigationBarPrimaryStyle())
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
             ToastView(Localizable.errorGeneric()) { } background: {
                 Color.clear
             }
         }
-        .onAppear { viewModel.input.fetch() }
-        .onReceive(viewModel.output.didFailToFetch) { _ in
+        .onAppear { viewModel.input.fetchArticleDetail() }
+        .onReceive(viewModel.output.didFailToFetchArticleDetail) { _ in
             isErrorToastPresented = true
-            isFetchFailed = true
+            isFetchArticleDetailFailed = true
         }
         .bind(viewModel.output.uiModel, to: _uiModel)
     }

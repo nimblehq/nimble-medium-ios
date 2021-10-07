@@ -9,16 +9,16 @@
 "action.login" = "Login";
 "action.signup" = "Signup";
 
+"articleDetail.comments.title" = "Go to comments section";
+"articleDetail.fetchFailure.message" = "Unable to load the article";
+"articleDetail.title.text" = "Article";
+
 "default.username.value" = "Current User";
 
 "error.generic" = "Something went wrong.\nPlease try again later.";
 
 "feedComments.noComment.message" = "No Comment";
 "feedComments.title" = "Comments History";
-
-"articleDetail.comments.title" = "Go to comments section";
-"articleDetail.fetchFailure.message" = "Unable to load the article";
-"articleDetail.title" = "Article";
 
 "feeds.comments.title" = "Go to comments section";
 "feeds.noArticle" = "No Article";

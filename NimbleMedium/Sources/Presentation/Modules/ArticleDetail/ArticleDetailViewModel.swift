@@ -12,13 +12,13 @@ import Resolver
 
 protocol ArticleDetailViewModelInput {
 
-    func fetch()
+    func fetchArticleDetail()
 }
 
 protocol ArticleDetailViewModelOutput {
 
     var id: String { get }
-    var didFailToFetch: Signal<Void> { get }
+    var didFailToFetchArticleDetail: Signal<Void> { get }
     var uiModel: Driver<ArticleDetailView.UIModel?> { get }
 }
 
@@ -33,10 +33,10 @@ final class ArticleDetailViewModel: ObservableObject, ArticleDetailViewModelProt
     @Injected var getArticleUseCase: GetArticleUseCaseProtocol
     
     private let disposeBag = DisposeBag()
-    private let fetchTrigger = PublishRelay<Void>()
+    private let fetchArticleDetailTrigger = PublishRelay<Void>()
 
     @PublishRelayProperty var didFetch: Signal<Void>
-    @PublishRelayProperty var didFailToFetch: Signal<Void>
+    @PublishRelayProperty var didFailToFetchArticleDetail: Signal<Void>
     @BehaviorRelayProperty(nil) var uiModel: Driver<ArticleDetailView.UIModel?>
 
     let id: String
@@ -46,9 +46,9 @@ final class ArticleDetailViewModel: ObservableObject, ArticleDetailViewModelProt
     init(id: String) {
         self.id = id
 
-        fetchTrigger
+        fetchArticleDetailTrigger
             .withUnretained(self)
-            .flatMapLatest { $0.0.fetchArticleTriggered(owner: $0.0) }
+            .flatMapLatest { $0.0.fetchArticleDetailTriggered(owner: $0.0) }
             .subscribe()
             .disposed(by: disposeBag)
     }
@@ -56,8 +56,8 @@ final class ArticleDetailViewModel: ObservableObject, ArticleDetailViewModelProt
 
 extension ArticleDetailViewModel: ArticleDetailViewModelInput {
 
-    func fetch() {
-        fetchTrigger.accept(())
+    func fetchArticleDetail() {
+        fetchArticleDetailTrigger.accept(())
     }
 }
 
@@ -66,13 +66,13 @@ extension ArticleDetailViewModel: ArticleDetailViewModelOutput {}
 // MARK: Private
 private extension ArticleDetailViewModel {
 
-    func fetchArticleTriggered(owner: ArticleDetailViewModel) -> Observable<Void> {
+    func fetchArticleDetailTriggered(owner: ArticleDetailViewModel) -> Observable<Void> {
         getArticleUseCase.execute(slug: id)
         .do(
             onSuccess: {
                 owner.$uiModel.accept(.init(article: $0))
             },
-            onError: { _ in owner.$didFailToFetch.accept(()) }
+            onError: { _ in owner.$didFailToFetchArticleDetail.accept(()) }
         )
         .asObservable()
         .mapToVoid()

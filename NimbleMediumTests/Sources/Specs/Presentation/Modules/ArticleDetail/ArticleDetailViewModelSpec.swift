@@ -41,7 +41,7 @@ final class ArticleDetailViewModelSpec: QuickSpec {
                         self.getArticleUseCase.executeSlugReturnValue = .just(inputArticle, on: scheduler, at: 10)
 
                         scheduler.scheduleAt(5) {
-                            viewModel.input.fetch()
+                            viewModel.input.fetchArticleDetail()
                         }
                     }
 
@@ -60,12 +60,12 @@ final class ArticleDetailViewModelSpec: QuickSpec {
                         self.getArticleUseCase.executeSlugReturnValue = .error(TestError.mock, on: scheduler, at: 10)
 
                         scheduler.scheduleAt(5) {
-                            viewModel.input.fetch()
+                            viewModel.input.fetchArticleDetail()
                         }
                     }
 
-                    it("returns output didFailToFetch with signal") {
-                        expect(viewModel.output.didFailToFetch)
+                    it("returns output didFailToFetchArticleDetail with signal") {
+                        expect(viewModel.output.didFailToFetchArticleDetail)
                             .events(scheduler: scheduler, disposeBag: disposeBag)
                             .notTo(beEmpty())
                     }
