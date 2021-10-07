@@ -18,6 +18,7 @@ final class GetCurrentUserUseCaseSpec: QuickSpec {
     override func spec() {
         var usecase: GetCurrentUserUseCase!
         var authRepository: AuthRepositoryProtocolMock!
+        var userSessionRepository: UserSessionRepositoryProtocolMock!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
 
@@ -26,20 +27,26 @@ final class GetCurrentUserUseCaseSpec: QuickSpec {
             beforeEach {
                 disposeBag = DisposeBag()
                 authRepository = AuthRepositoryProtocolMock()
-                usecase = GetCurrentUserUseCase(authRepository: authRepository)
+                userSessionRepository = UserSessionRepositoryProtocolMock()
+                usecase = GetCurrentUserUseCase(
+                    authRepository: authRepository,
+                    userSessionRepository: userSessionRepository
+                )
                 scheduler = TestScheduler(initialClock: 0)
             }
 
             describe("its execute() call") {
 
-                context("when authRepository.getCurrentUser() returns success") {
+                let inputUser = APIUserResponse.dummy.user
 
-                    let inputUser = APIUserResponse.dummy.user
+                context("when authRepository.getCurrentUser() and userSessionRepository.saveUser() returns success") {
+
                     var outputUser: TestableObserver<CodableUser>!
 
                     beforeEach {
                         outputUser = scheduler.createObserver(CodableUser.self)
                         authRepository.getCurrentUserReturnValue = .just(inputUser)
+                        userSessionRepository.saveUserReturnValue = .empty()
 
                         usecase.execute()
                             .asObservable()
@@ -65,6 +72,33 @@ final class GetCurrentUserUseCaseSpec: QuickSpec {
                     beforeEach {
                         outputError = scheduler.createObserver(Optional<Error>.self)
                         authRepository.getCurrentUserReturnValue =  .error(TestError.mock)
+                        userSessionRepository.saveUserReturnValue = .empty()
+
+                        usecase.execute()
+                            .asObservable()
+                            .materialize()
+                            .map { $0.error }
+                            .bind(to: outputError)
+                            .disposed(by: disposeBag)
+                    }
+
+                    it("returns an error") {
+                        let error = outputError.events.first?.value.element as? TestError
+
+                        expect(outputError.events.count) == 2
+                        expect(error) == TestError.mock
+                        expect(outputError.events.last?.value.isCompleted) == true
+                    }
+                }
+
+                context("when userSessionRepository.saveUser() returns failure") {
+
+                    var outputError: TestableObserver<Error?>!
+
+                    beforeEach {
+                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        authRepository.getCurrentUserReturnValue = .just(inputUser)
+                        userSessionRepository.saveUserReturnValue = .error(TestError.mock)
 
                         usecase.execute()
                             .asObservable()

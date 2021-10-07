@@ -44,7 +44,7 @@ final class UserProfileViewModel: ObservableObject, UserProfileViewModelProtocol
     @Injected var getCurrentUserUseCase: GetCurrentUserUseCaseProtocol
     @Injected var getUserProfileUseCase: GetUserProfileUseCaseProtocol
 
-    init(username: String?) {
+    init(username: String? = nil) {
         self.username = username
 
         getCurrentUserTrigger

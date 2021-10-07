@@ -20,7 +20,7 @@ final class GetCurrentUserUseCase: GetCurrentUserUseCaseProtocol {
 
     init(
         authRepository: AuthRepositoryProtocol,
-        userSessionRepository: UserSessionRepository
+        userSessionRepository: UserSessionRepositoryProtocol
     ) {
         self.authRepository = authRepository
         self.userSessionRepository = userSessionRepository
