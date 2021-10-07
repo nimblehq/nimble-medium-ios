@@ -61,7 +61,6 @@ extension UserProfileCreatedArticlesTabViewModel: UserProfileCreatedArticlesTabV
     func fetchCreatedArticles() {
         fetchCreatedArticlesTrigger.accept(())
     }
-
 }
 
 extension UserProfileCreatedArticlesTabViewModel: UserProfileCreatedArticlesTabViewModelOutput {}
