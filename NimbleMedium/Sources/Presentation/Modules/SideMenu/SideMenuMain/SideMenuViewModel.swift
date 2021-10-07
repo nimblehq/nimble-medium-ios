@@ -45,6 +45,13 @@ extension SideMenuViewModel: SideMenuViewModelInput {
                 self.$didSelectMenuOption.accept(())
             }
             .disposed(by: disposeBag)
+
+        sideMenuActionsViewModel.output.didSelectMyProfileOption.asObservable()
+            .withUnretained(self)
+            .bind { _ in
+                self.$didSelectMenuOption.accept(())
+            }
+            .disposed(by: disposeBag)
         
         sideMenuActionsViewModel.output.didSelectSignupOption.asObservable()
             .withUnretained(self)
