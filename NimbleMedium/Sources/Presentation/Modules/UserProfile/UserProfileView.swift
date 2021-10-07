@@ -5,16 +5,20 @@
 //  Created by Minh Pham on 23/09/2021.
 //
 
-import Foundation
-
+import Resolver
 import SDWebImageSwiftUI
 import SwiftUI
 import ToastUI
 
 struct UserProfileView: View {
 
-    // TODO: Update to real data in integrate task
-    @State private var uiModel: UIModel = UIModel(avatarURL: nil, username: Localizable.defaultUsernameValue())
+    @State private var uiModel: UIModel?
+    @State private var errorMessage = ""
+    @State private var errorToast = false
+
+    @ObservedViewModel var viewModel: UserProfileViewModelProtocol
+
+    private let username: String?
 
     var body: some View {
         ScrollView(.vertical) {
@@ -29,11 +33,22 @@ struct UserProfileView: View {
         }
         .navigationTitle(Localizable.userProfileTitle())
         .modifier(NavigationBarPrimaryStyle())
+        .onAppear { viewModel.input.getUserProfile() }
+        .toast(isPresented: $errorToast, dismissAfter: 3.0) {
+            ToastView(errorMessage) { } background: {
+                Color.clear
+            }
+        }
+        .bind(viewModel.output.userProfileUIModel, to: _uiModel)
+        .onReceive(viewModel.output.errorMessage) { _ in
+            errorMessage = Localizable.errorGeneric()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { errorToast.toggle() }
+        }
     }
 
     var profileHeader: some View {
         VStack(alignment: .center, spacing: 0.0) {
-            if let url = uiModel.avatarURL {
+            if let url = uiModel?.avatarURL {
                 WebImage(url: url)
                     .placeholder { defaultAvatar }
                     .resizable()
@@ -42,7 +57,7 @@ struct UserProfileView: View {
             } else {
                 defaultAvatar
             }
-            Text(uiModel.username)
+            Text(uiModel?.username ?? Localizable.userProfileUsernameUnknown())
                 .foregroundColor(.white)
                 .fontWeight(.bold)
                 .lineLimit(2)
@@ -56,6 +71,15 @@ struct UserProfileView: View {
             .resizable()
             .frame(width: 120.0, height: 120.0)
             .clipShape(Circle())
+    }
+
+    init(username: String? = nil) {
+        self.username = username
+
+        viewModel = Resolver.resolve(
+            UserProfileViewModelProtocol.self,
+            args: username
+        )
     }
 }
 

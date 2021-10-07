@@ -110,5 +110,8 @@ extension Resolver: ResolverRegistering {
         register { SideMenuHeaderViewModel() }.implements(SideMenuHeaderViewModelProtocol.self).scope(.cached)
         register { SideMenuViewModel() }.implements(SideMenuViewModelProtocol.self).scope(.cached)
         register { SignupViewModel() }.implements(SignupViewModelProtocol.self).scope(.cached)
+        register { _, args in
+            UserProfileViewModel(username: args.get())
+        }.implements(UserProfileViewModelProtocol.self)
     }
 }

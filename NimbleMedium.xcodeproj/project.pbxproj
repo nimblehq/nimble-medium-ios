@@ -55,7 +55,9 @@
 		249042F026D5042D00E970B6 /* SystemImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249042EF26D5042D00E970B6 /* SystemImageName.swift */; };
 		2497356126D34F3200177A7C /* SideMenuActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497356026D34F3200177A7C /* SideMenuActionsView.swift */; };
 		2497356326D35BBD00177A7C /* MenuOptionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497356226D35BBD00177A7C /* MenuOptionButtonStyle.swift */; };
+		249D8086270AFD88000775BC /* UserProfileViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249D8085270AFD88000775BC /* UserProfileViewModelSpec.swift */; };
 		24AB4A662706C4010067CD0D /* ObservableType+Void.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB4A652706C4010067CD0D /* ObservableType+Void.swift */; };
+		24AB4A68270AE58F0067CD0D /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB4A67270AE58F0067CD0D /* UserProfileViewModel.swift */; };
 		24B277D32701C1EB00332FEA /* GetUserProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B277D22701C1EB00332FEA /* GetUserProfileUseCase.swift */; };
 		24B277D62701C31100332FEA /* GetUserProfileUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B277D52701C31100332FEA /* GetUserProfileUseCaseSpec.swift */; };
 		24B277DC2701C79400332FEA /* APIProfileResponse+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B277DB2701C79400332FEA /* APIProfileResponse+Dummy.swift */; };
@@ -235,7 +237,9 @@
 		249042EF26D5042D00E970B6 /* SystemImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemImageName.swift; sourceTree = "<group>"; };
 		2497356026D34F3200177A7C /* SideMenuActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuActionsView.swift; sourceTree = "<group>"; };
 		2497356226D35BBD00177A7C /* MenuOptionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionButtonStyle.swift; sourceTree = "<group>"; };
+		249D8085270AFD88000775BC /* UserProfileViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModelSpec.swift; sourceTree = "<group>"; };
 		24AB4A652706C4010067CD0D /* ObservableType+Void.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Void.swift"; sourceTree = "<group>"; };
+		24AB4A67270AE58F0067CD0D /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		24B277D22701C1EB00332FEA /* GetUserProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfileUseCase.swift; sourceTree = "<group>"; };
 		24B277D52701C31100332FEA /* GetUserProfileUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfileUseCaseSpec.swift; sourceTree = "<group>"; };
 		24B277DB2701C79400332FEA /* APIProfileResponse+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIProfileResponse+Dummy.swift"; sourceTree = "<group>"; };
@@ -414,6 +418,7 @@
 			children = (
 				240E217F26FC361000EFC3B5 /* UserProfileView.swift */,
 				24FB783C26FC3A80007534BE /* UserProfileView+UIModel.swift */,
+				24AB4A67270AE58F0067CD0D /* UserProfileViewModel.swift */,
 			);
 			path = UserProfile;
 			sourceTree = "<group>";
@@ -560,6 +565,14 @@
 				249042E526D4D14F00E970B6 /* SignupViewModel.swift */,
 			);
 			path = Signup;
+			sourceTree = "<group>";
+		};
+		249D8084270AFD66000775BC /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				249D8085270AFD88000775BC /* UserProfileViewModelSpec.swift */,
+			);
+			path = UserProfile;
 			sourceTree = "<group>";
 		};
 		24AB4A642706C3EA0067CD0D /* Rx */ = {
@@ -1061,6 +1074,7 @@
 				2D79A8FA26EF4A70007B81D1 /* Feeds */,
 				24F3D7BC26DE041F00DE2420 /* Login */,
 				246B387726F8A7BD003173FD /* SideMenuHeader */,
+				249D8084270AFD66000775BC /* UserProfile */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -1231,8 +1245,8 @@
 			isa = PBXGroup;
 			children = (
 				2D9032CF26F04D96005CA3F5 /* FeedDetailView.swift */,
-				2DB31D4D26F18EAB007254B9 /* FeedDetailViewModel.swift */,
 				2D34F40E26FAD8C400C99C6C /* FeedDetailView+UIModel.swift */,
+				2DB31D4D26F18EAB007254B9 /* FeedDetailViewModel.swift */,
 			);
 			path = FeedDetail;
 			sourceTree = "<group>";
@@ -1906,6 +1920,7 @@
 				2D9032D026F04D96005CA3F5 /* FeedDetailView.swift in Sources */,
 				2459B31926D74E5100ABCE61 /* APIUserResponse.swift in Sources */,
 				249042E826D4D14F00E970B6 /* SignupView.swift in Sources */,
+				24AB4A68270AE58F0067CD0D /* UserProfileViewModel.swift in Sources */,
 				241F5B852701A9F8002E13FC /* UserRepository.swift in Sources */,
 				2DBE36B126C3B33700DA3511 /* SideMenuView.swift in Sources */,
 				24204CA026D625D300534314 /* SideMenuActionsViewModel.swift in Sources */,
@@ -1995,6 +2010,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				249D8086270AFD88000775BC /* UserProfileViewModelSpec.swift in Sources */,
 				2D87823126EB3C110080FEF6 /* FileResource+Decode.swift in Sources */,
 				2D979C322703034C0084A3F8 /* GetCreatedArticlesUseCaseSpec.swift in Sources */,
 				2D46FAF326F8618D005DD323 /* FeedRowViewModelSpec.swift in Sources */,
