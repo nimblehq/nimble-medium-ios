@@ -101,8 +101,8 @@ extension Resolver: ResolverRegistering {
             ArticleDetailViewModel(id: args.get())
         }.implements(ArticleDetailViewModelProtocol.self)
         register { _, args in
-            FeedRowViewModel(article: args.get())
-        }.implements(FeedRowViewModelProtocol.self)
+            ArticleRowViewModel(article: args.get())
+        }.implements(ArticleRowViewModelProtocol.self)
         register { FeedsViewModel() }.implements(FeedsViewModelProtocol.self).scope(.cached)
         register { HomeViewModel() }.implements(HomeViewModelProtocol.self).scope(.cached)
         register { LoginViewModel() }.implements(LoginViewModelProtocol.self).scope(.cached)

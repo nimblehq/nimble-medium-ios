@@ -9,9 +9,9 @@ import SwiftUI
 import SDWebImageSwiftUI
 import Resolver
 
-struct FeedRow: View {
+struct ArticleRow: View {
 
-    @ObservedViewModel private var viewModel: FeedRowViewModelProtocol
+    @ObservedViewModel private var viewModel: ArticleRowViewModelProtocol
 
     @State var uiModel: UIModel?
 
@@ -44,7 +44,7 @@ struct FeedRow: View {
         }
     }
 
-    init(viewModel: FeedRowViewModelProtocol) {
+    init(viewModel: ArticleRowViewModelProtocol) {
         self.viewModel = viewModel
     }
 }

@@ -1,5 +1,5 @@
 //
-//  FeedRow+UIModel.swift
+//  ArticleRow+UIModel.swift
 //  NimbleMedium
 //
 //  Created by Mark G on 21/09/2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension FeedRow {
+extension ArticleRow {
 
     struct UIModel: Equatable {
 

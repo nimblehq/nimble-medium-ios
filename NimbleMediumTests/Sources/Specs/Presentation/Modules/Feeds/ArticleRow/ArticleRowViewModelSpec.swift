@@ -1,5 +1,5 @@
 //
-//  FeedRowViewModelSpec.swift
+//  ArticleRowViewModelSpec.swift
 //  NimbleMediumTests
 //
 //  Created by Mark G on 20/09/2021.
@@ -14,13 +14,13 @@ import Resolver
 
 @testable import NimbleMedium
 
-final class FeedRowViewModelSpec: QuickSpec {
+final class ArticleRowViewModelSpec: QuickSpec {
 
     override func spec() {
-        var viewModel: FeedRowViewModelProtocol!
+        var viewModel: ArticleRowViewModelProtocol!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
-        var uiModel: FeedRow.UIModel!
+        var uiModel: ArticleRow.UIModel!
 
         describe("a FeedsViewModel") {
 
@@ -28,7 +28,7 @@ final class FeedRowViewModelSpec: QuickSpec {
                 Resolver.registerMockServices()
 
                 let article = APIArticleResponse.dummy.article
-                uiModel = FeedRow.UIModel(
+                uiModel = ArticleRow.UIModel(
                     id: article.id,
                     articleTitle: article.title,
                     articleDescription: article.description,
@@ -37,7 +37,7 @@ final class FeedRowViewModelSpec: QuickSpec {
                     authorName: article.author.username
                 )
 
-                viewModel = FeedRowViewModel(article: article)
+                viewModel = ArticleRowViewModel(article: article)
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
             }

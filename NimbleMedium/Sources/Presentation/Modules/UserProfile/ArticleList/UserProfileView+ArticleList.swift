@@ -16,7 +16,7 @@ extension UserProfileView {
                 VStack {
                     // TODO: Update with real data
                     ForEach(1...10, id: \.self) { _ in
-                        FeedRow(viewModel: FeedRowViewModel(article: DummyArticle()))
+                        ArticleRow(viewModel: ArticleRowViewModel(article: DummyArticle()))
                             .padding(.bottom, 16.0)
                     }
                 }

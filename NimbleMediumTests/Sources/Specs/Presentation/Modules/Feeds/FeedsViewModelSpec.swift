@@ -27,13 +27,13 @@ final class FeedsViewModelSpec: QuickSpec {
 
             beforeEach {
                 Resolver.registerMockServices()
-                Resolver.mock.register { _, args -> FeedRowViewModelProtocolMock in
-                    let viewModel = FeedRowViewModelProtocolMock()
-                    let output = FeedRowViewModelOutputMock()
+                Resolver.mock.register { _, args -> ArticleRowViewModelProtocolMock in
+                    let viewModel = ArticleRowViewModelProtocolMock()
+                    let output = ArticleRowViewModelOutputMock()
                     viewModel.output = output
 
                     let article: Article = args.get()
-                    let uiModel = FeedRow.UIModel(
+                    let uiModel = ArticleRow.UIModel(
                         id: article.id,
                         articleTitle: article.title,
                         articleDescription: article.description,
@@ -46,7 +46,7 @@ final class FeedsViewModelSpec: QuickSpec {
 
                     return viewModel
                 }
-                .implements(FeedRowViewModelProtocol.self)
+                .implements(ArticleRowViewModelProtocol.self)
                 
                 viewModel = FeedsViewModel()
                 scheduler = TestScheduler(initialClock: 0)
@@ -95,7 +95,7 @@ final class FeedsViewModelSpec: QuickSpec {
 
                     it("returns output feedRowViewModels with correct value") {
                         expect(
-                            viewModel.output.feedRowViewModels
+                            viewModel.output.articleRowViewModels
                                 .map { $0.map { $0.output.id } }
                         )
                             .events(scheduler: scheduler, disposeBag: disposeBag) == [
@@ -178,7 +178,7 @@ final class FeedsViewModelSpec: QuickSpec {
                             .map { $0.id }
                         let doubleIds = ids + ids
                         expect(
-                            viewModel.output.feedRowViewModels
+                            viewModel.output.articleRowViewModels
                                 .map { $0.map { $0.output.id } }
                         )
                         .events(scheduler: scheduler, disposeBag: disposeBag) == [
