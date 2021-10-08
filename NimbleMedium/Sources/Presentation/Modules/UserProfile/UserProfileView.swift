@@ -33,11 +33,7 @@ struct UserProfileView: View {
             PagerTabStripView(selection: $selectedTabIndex) {
                 UserProfileCreatedArticlesTab(viewModel: viewModel.output.createdArticlesViewModel)
 
-                // TODO: Add real Favourited Articles List data
-                UserProfileArticleList(viewModels: [])
-                    .pagerTabItem {
-                        TabItemTitle(Localizable.userProfileFavouritedArticlesTitle())
-                    }
+                UserProfileFavouritedArticlesTab(viewModel: viewModel.output.favouritedArticlesViewModel)
             }
             .pagerTabStripViewStyle(
                 .normal(

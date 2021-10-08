@@ -44,6 +44,8 @@ extension Resolver {
         Resolver.mock.register { LoginUseCaseProtocolMock() }.implements(LoginUseCaseProtocol.self)
         Resolver.mock.register { GetCreatedArticlesUseCaseProtocolMock() }
             .implements(GetCreatedArticlesUseCaseProtocol.self)
+        Resolver.mock.register { GetFavouritedArticlesUseCaseProtocolMock() }
+            .implements(GetFavouritedArticlesUseCaseProtocol.self)
     }
 
     private static func registerViewModels() {

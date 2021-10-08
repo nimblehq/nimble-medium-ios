@@ -81,6 +81,9 @@
 		2D17E4EF26F07738001D3F90 /* AuthorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D17E4EE26F07738001D3F90 /* AuthorView.swift */; };
 		2D17E4F226F07996001D3F90 /* NavigationBarPrimaryStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D17E4F126F07996001D3F90 /* NavigationBarPrimaryStyle.swift */; };
 		2D17E4F426F07ABA001D3F90 /* View+If.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D17E4F326F07ABA001D3F90 /* View+If.swift */; };
+		2D1A93A8270FFA98003B2011 /* UserProfileFavouritedArticlesTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1A93A6270FFA98003B2011 /* UserProfileFavouritedArticlesTab.swift */; };
+		2D1A93A9270FFA98003B2011 /* UserProfileFavouritedArticlesTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1A93A7270FFA98003B2011 /* UserProfileFavouritedArticlesTabViewModel.swift */; };
+		2D1A93AC270FFB45003B2011 /* UserProfileFavouritedArticlesTabViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1A93AB270FFB45003B2011 /* UserProfileFavouritedArticlesTabViewModelSpec.swift */; };
 		2D1D727426EB305F00431679 /* DateFormatter+Formats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D727326EB305F00431679 /* DateFormatter+Formats.swift */; };
 		2D1D727826EB37BD00431679 /* articles.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D1D727726EB37BD00431679 /* articles.json */; };
 		2D29A70A26F43CB6001EA24F /* ArticleCommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D29A70926F43CB6001EA24F /* ArticleCommentsViewModel.swift */; };
@@ -100,8 +103,8 @@
 		2D4BB30126FC5923005FED5F /* ArticleCommentRow+UIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4BB30026FC5923005FED5F /* ArticleCommentRow+UIModel.swift */; };
 		2D4BB30326FC5930005FED5F /* ArticleCommentRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4BB30226FC5930005FED5F /* ArticleCommentRowViewModel.swift */; };
 		2D4BB30626FC77B2005FED5F /* ArticleCommentRowViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4BB30526FC77B2005FED5F /* ArticleCommentRowViewModelSpec.swift */; };
-		2D531864270EA3D300F8FADD /* PagerTabStripView in Frameworks */ = {isa = PBXBuildFile; productRef = 2D531863270EA3D300F8FADD /* PagerTabStripView */; };
 		2D531861270E9B6E00F8FADD /* UserProfileCreatedArticlesTabViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D531860270E9B6E00F8FADD /* UserProfileCreatedArticlesTabViewModelSpec.swift */; };
+		2D531864270EA3D300F8FADD /* PagerTabStripView in Frameworks */ = {isa = PBXBuildFile; productRef = 2D531863270EA3D300F8FADD /* PagerTabStripView */; };
 		2D5485B726C9FAAC00FFE707 /* BehaviorRelayProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5485B626C9FAAC00FFE707 /* BehaviorRelayProperty.swift */; };
 		2D5485BC26CA077600FFE707 /* View+OnReceive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5485BB26CA077600FFE707 /* View+OnReceive.swift */; };
 		2D5485BE26CA0D2C00FFE707 /* PublishRelayProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5485BD26CA0D2C00FFE707 /* PublishRelayProperty.swift */; };
@@ -269,6 +272,9 @@
 		2D17E4EE26F07738001D3F90 /* AuthorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorView.swift; sourceTree = "<group>"; };
 		2D17E4F126F07996001D3F90 /* NavigationBarPrimaryStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarPrimaryStyle.swift; sourceTree = "<group>"; };
 		2D17E4F326F07ABA001D3F90 /* View+If.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+If.swift"; sourceTree = "<group>"; };
+		2D1A93A6270FFA98003B2011 /* UserProfileFavouritedArticlesTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileFavouritedArticlesTab.swift; sourceTree = "<group>"; };
+		2D1A93A7270FFA98003B2011 /* UserProfileFavouritedArticlesTabViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileFavouritedArticlesTabViewModel.swift; sourceTree = "<group>"; };
+		2D1A93AB270FFB45003B2011 /* UserProfileFavouritedArticlesTabViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileFavouritedArticlesTabViewModelSpec.swift; sourceTree = "<group>"; };
 		2D1D727326EB305F00431679 /* DateFormatter+Formats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Formats.swift"; sourceTree = "<group>"; };
 		2D1D727726EB37BD00431679 /* articles.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = articles.json; sourceTree = "<group>"; };
 		2D29A70926F43CB6001EA24F /* ArticleCommentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCommentsViewModel.swift; sourceTree = "<group>"; };
@@ -431,6 +437,7 @@
 			isa = PBXGroup;
 			children = (
 				2D084732270D790200DFFF69 /* CreatedArticlesTab */,
+				2D1A93A5270FFA98003B2011 /* FavourtiedArticlesTab */,
 				2D469D382704415900B36AD6 /* ArticleList */,
 				240E217F26FC361000EFC3B5 /* UserProfileView.swift */,
 				24FB783C26FC3A80007534BE /* UserProfileView+UIModel.swift */,
@@ -587,6 +594,7 @@
 		249D8084270AFD66000775BC /* UserProfile */ = {
 			isa = PBXGroup;
 			children = (
+				2D1A93AA270FFB45003B2011 /* FavouritedArticlesTab */,
 				2D53185F270E9B0900F8FADD /* CreatedArticlesTab */,
 				249D8085270AFD88000775BC /* UserProfileViewModelSpec.swift */,
 			);
@@ -732,6 +740,23 @@
 				2D17E4F126F07996001D3F90 /* NavigationBarPrimaryStyle.swift */,
 			);
 			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		2D1A93A5270FFA98003B2011 /* FavourtiedArticlesTab */ = {
+			isa = PBXGroup;
+			children = (
+				2D1A93A6270FFA98003B2011 /* UserProfileFavouritedArticlesTab.swift */,
+				2D1A93A7270FFA98003B2011 /* UserProfileFavouritedArticlesTabViewModel.swift */,
+			);
+			path = FavourtiedArticlesTab;
+			sourceTree = "<group>";
+		};
+		2D1A93AA270FFB45003B2011 /* FavouritedArticlesTab */ = {
+			isa = PBXGroup;
+			children = (
+				2D1A93AB270FFB45003B2011 /* UserProfileFavouritedArticlesTabViewModelSpec.swift */,
+			);
+			path = FavouritedArticlesTab;
 			sourceTree = "<group>";
 		};
 		2D1D727526EB362D00431679 /* Data */ = {
@@ -1963,6 +1988,7 @@
 				2D17E4EF26F07738001D3F90 /* AuthorView.swift in Sources */,
 				2D0C5A71270BEB2000A74AB7 /* UserProfileView+TabItemTitle.swift in Sources */,
 				24F3D7AE26DCE85F00DE2420 /* KeychainKey.swift in Sources */,
+				2D1A93A8270FFA98003B2011 /* UserProfileFavouritedArticlesTab.swift in Sources */,
 				2DBE36AE26C3B0C500DA3511 /* FeedsView.swift in Sources */,
 				2D9032D026F04D96005CA3F5 /* ArticleDetailView.swift in Sources */,
 				2459B31926D74E5100ABCE61 /* APIUserResponse.swift in Sources */,
@@ -2006,6 +2032,7 @@
 				2D882ED026F1C90200DB6560 /* ArticleComment.swift in Sources */,
 				2D5485B726C9FAAC00FFE707 /* BehaviorRelayProperty.swift in Sources */,
 				2D7BF28E26DCB4E200A30747 /* Publisher+RxSignal.swift in Sources */,
+				2D1A93A9270FFA98003B2011 /* UserProfileFavouritedArticlesTabViewModel.swift in Sources */,
 				2D69824426C22DC700860A98 /* R.generated.swift in Sources */,
 				247717352704197C00BF13F2 /* AuthenticatedNetworkAPI.swift in Sources */,
 				2DB04AD726C3A4AC003E65F4 /* Color+UIColor.swift in Sources */,
@@ -2067,6 +2094,7 @@
 				2D46FAF326F8618D005DD323 /* ArticleRowViewModelSpec.swift in Sources */,
 				2D73312F26F0F3A20052DCC7 /* APIArticleResponse+Dummy.swift in Sources */,
 				2D73313126F0F4800052DCC7 /* GetArticleUseCaseSpec.swift in Sources */,
+				2D1A93AC270FFB45003B2011 /* UserProfileFavouritedArticlesTabViewModelSpec.swift in Sources */,
 				2D79A8FC26EF4A7E007B81D1 /* FeedsViewModelSpec.swift in Sources */,
 				2DC224E62702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift in Sources */,
 				2D29A70D26F44426001EA24F /* ArticleCommentsViewModelSpec.swift in Sources */,
@@ -2190,7 +2218,6 @@
 				PRODUCT_NAME = "Nimble Medium - stag";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG STAGING";
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = "Release Staging";

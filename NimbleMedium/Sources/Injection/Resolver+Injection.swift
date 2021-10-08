@@ -120,5 +120,8 @@ extension Resolver: ResolverRegistering {
         register { _, args in
             UserProfileCreatedArticlesTabViewModel(username: args.get())
         }.implements(UserProfileCreatedArticlesTabViewModelProtocol.self)
+        register { _, args in
+            UserProfileFavouritedArticlesTabViewModel(username: args.get())
+        }.implements(UserProfileFavouritedArticlesTabViewModelProtocol.self)
     }
 }
