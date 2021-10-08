@@ -23,7 +23,7 @@ protocol FeedsViewModelOutput {
     var didFailToLoadArticle: Signal<Void> { get }
     var didFinishLoadMore: Signal<Bool> { get }
     var didFinishRefresh: Signal<Void> { get }
-    var feedRowViewModels: Driver<[FeedRowViewModelProtocol]> { get }
+    var articleRowViewModels: Driver<[ArticleRowViewModelProtocol]> { get }
 }
 
 protocol FeedsViewModelProtocol: ObservableViewModel {
@@ -34,7 +34,7 @@ protocol FeedsViewModelProtocol: ObservableViewModel {
 
 final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
 
-    @Injected private var listArticlesUseCase: ListArticlesUseCaseProtocol
+    @Injected private var getListArticlesUseCase: GetListArticlesUseCaseProtocol
 
     private var currentOffset = 0
     private let limit = 10
@@ -46,13 +46,12 @@ final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
     @PublishRelayProperty var didFailToLoadArticle: Signal<Void>
     @PublishRelayProperty var didFinishLoadMore: Signal<Bool>
     @PublishRelayProperty var didFinishRefresh: Signal<Void>
-    @BehaviorRelayProperty([]) var feedRowViewModels: Driver<[FeedRowViewModelProtocol]>
+    @BehaviorRelayProperty([]) var articleRowViewModels: Driver<[ArticleRowViewModelProtocol]>
 
     var input: FeedsViewModelInput { self }
     var output: FeedsViewModelOutput { self }
 
     init() {
-
         refreshTrigger
             .withUnretained(self)
             .flatMapLatest { $0.0.refreshTriggered(owner: $0.0) }
@@ -89,7 +88,7 @@ extension FeedsViewModel: FeedsViewModelOutput {}
 private extension FeedsViewModel {
 
     func refreshTriggered(owner: FeedsViewModel) -> Observable<Void> {
-        listArticlesUseCase.listArticles(
+        getListArticlesUseCase.execute(
             tag: nil,
             author: nil,
             favorited: nil,
@@ -100,7 +99,7 @@ private extension FeedsViewModel {
             onSuccess: {
                 owner.$didFinishRefresh.accept(())
                 owner.currentOffset = 0
-                owner.$feedRowViewModels.accept(owner.$feedRowViewModels.value + $0.viewModels)
+                owner.$articleRowViewModels.accept($0.viewModels)
             },
             onError: { _ in
                 owner.$didFinishRefresh.accept(())
@@ -108,14 +107,14 @@ private extension FeedsViewModel {
             }
         )
         .asObservable()
-        .map { _ in () }
+        .mapToVoid()
         .catchAndReturn(())
     }
 
     func loadMoreTriggered(owner: FeedsViewModel) -> Observable<Void> {
         let offset = currentOffset + limit
 
-        return listArticlesUseCase.listArticles(
+        return getListArticlesUseCase.execute(
             tag: nil,
             author: nil,
             favorited: nil,
@@ -125,7 +124,7 @@ private extension FeedsViewModel {
         .do(
             onSuccess: {
                 owner.$didFinishLoadMore.accept(!$0.isEmpty)
-                owner.$feedRowViewModels.accept(owner.$feedRowViewModels.value + $0.viewModels)
+                owner.$articleRowViewModels.accept(owner.$articleRowViewModels.value + $0.viewModels)
 
                 if !$0.isEmpty {
                     owner.currentOffset = offset
@@ -137,14 +136,7 @@ private extension FeedsViewModel {
             }
         )
         .asObservable()
-        .map { _ in () }
+        .mapToVoid()
         .catchAndReturn(())
-    }
-}
-
-private extension Array where Element == Article {
-
-    var viewModels: [FeedRowViewModelProtocol] {
-        map { Resolver.resolve(FeedRowViewModelProtocol.self, args: $0) }
     }
 }

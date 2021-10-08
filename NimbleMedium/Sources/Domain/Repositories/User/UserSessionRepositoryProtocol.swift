@@ -7,6 +7,7 @@
 
 import RxSwift
 
+// sourcery: AutoMockable
 protocol UserSessionRepositoryProtocol: AnyObject {
 
     func saveUser(_ user: User) -> Completable

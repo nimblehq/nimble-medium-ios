@@ -16,4 +16,10 @@ extension View {
             state.wrappedValue = value
         }
     }
+
+    func bind<Element>(_ signal: Signal<Element>, to state: State<Element>) -> some View {
+        onReceive(signal) { value in
+            state.wrappedValue = value
+        }
+    }
 }

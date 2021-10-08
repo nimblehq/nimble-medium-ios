@@ -12,14 +12,22 @@ import Resolver
 
 protocol SideMenuActionsViewModelInput {
 
+    func bindData(
+        loginViewModel: LoginViewModelProtocol,
+        signupViewModel: SignupViewModelProtocol,
+        homeViewModel: HomeViewModelProtocol
+    )
     func selectLoginOption()
+    func selectMyProfileOption()
     func selectSignupOption()
 }
 
 protocol SideMenuActionsViewModelOutput {
 
     var didSelectLoginOption: Signal<Bool> { get }
+    var didSelectMyProfileOption: Signal<Bool> { get }
     var didSelectSignupOption: Signal<Bool> { get }
+    var isAuthenticated: Driver<Bool> { get }
 }
 
 protocol SideMenuActionsViewModelProtocol: ObservableViewModel {
@@ -36,30 +44,57 @@ final class SideMenuActionsViewModel: ObservableObject, SideMenuActionsViewModel
     var output: SideMenuActionsViewModelOutput { self }
 
     @PublishRelayProperty var didSelectLoginOption: Signal<Bool>
+    @PublishRelayProperty var didSelectMyProfileOption: Signal<Bool>
     @PublishRelayProperty var didSelectSignupOption: Signal<Bool>
 
-    @Injected var loginViewModel: LoginViewModelProtocol
-    @Injected var signupViewModel: SignupViewModelProtocol
+    @BehaviorRelayProperty(false) var isAuthenticated: Driver<Bool>
+
+    @Injected var getCurrentSessionUseCase: GetCurrentSessionUseCaseProtocol
+
+    private let getCurrentUserSessionTrigger = PublishRelay<Void>()
 
     init() {
-        loginViewModel.output.didSelectNoAccount.asObservable()
-            .subscribe(with: self, onNext: { owner, _ in
-                owner.$didSelectSignupOption.accept(true)
-            })
-            .disposed(by: disposeBag)
-
-        signupViewModel.output.didSelectHaveAccount.asObservable()
-            .subscribe(with: self, onNext: { owner, _ in
-                owner.$didSelectLoginOption.accept(true)
-            })
+        getCurrentUserSessionTrigger
+            .withUnretained(self)
+            .flatMapLatest { owner, _ in owner.getCurrentUserSessionTriggered(owner: owner) }
+            .subscribe()
             .disposed(by: disposeBag)
     }
 }
 
 extension SideMenuActionsViewModel: SideMenuActionsViewModelInput {
 
+    func bindData(
+        loginViewModel: LoginViewModelProtocol,
+        signupViewModel: SignupViewModelProtocol,
+        homeViewModel: HomeViewModelProtocol
+    ) {
+        loginViewModel.output.didSelectNoAccount.asObservable()
+            .subscribe(
+                with: self,
+                onNext: { owner, _ in owner.selectSignupOption() }
+            )
+            .disposed(by: disposeBag)
+
+        signupViewModel.output.didSelectHaveAccount.asObservable()
+            .subscribe(
+                with: self,
+                onNext: { owner, _ in owner.selectLoginOption() }
+            )
+            .disposed(by: disposeBag)
+
+        homeViewModel.output.isSideMenuOpenDidChange
+            .filter { $0 }
+            .emit(with: self) { owner, _ in owner.getCurrentUserSessionTrigger.accept(()) }
+            .disposed(by: disposeBag)
+    }
+
     func selectLoginOption() {
         $didSelectLoginOption.accept(true)
+    }
+
+    func selectMyProfileOption() {
+        $didSelectMyProfileOption.accept(true)
     }
 
     func selectSignupOption() {
@@ -68,3 +103,19 @@ extension SideMenuActionsViewModel: SideMenuActionsViewModelInput {
 }
 
 extension SideMenuActionsViewModel: SideMenuActionsViewModelOutput { }
+
+private extension SideMenuActionsViewModel {
+
+    func getCurrentUserSessionTriggered(owner: SideMenuActionsViewModel) -> Observable<Void> {
+        getCurrentSessionUseCase
+            .getCurrentUserSession()
+            .map { $0 != nil }
+            .do(
+                onSuccess: { owner.$isAuthenticated.accept($0) },
+                onError: { _ in owner.$isAuthenticated.accept(false) }
+            )
+            .asObservable()
+            .mapToVoid()
+            .catchAndReturn(())
+    }
+}

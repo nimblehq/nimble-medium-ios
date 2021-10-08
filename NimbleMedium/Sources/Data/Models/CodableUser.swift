@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CodableUser: User, Codable {
+struct CodableUser: User, Codable, Equatable {
 
     let email: String
     let token: String

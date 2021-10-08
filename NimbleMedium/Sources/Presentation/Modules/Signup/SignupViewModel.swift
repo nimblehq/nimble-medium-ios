@@ -31,8 +31,10 @@ protocol SignupViewModelProtocol: ObservableViewModel {
 
 final class SignupViewModel: ObservableObject, SignupViewModelProtocol {
 
+    typealias SignupParams = (username: String, email: String, password: String)
+
     private let disposeBag = DisposeBag()
-    private let signupTrigger = PublishRelay<(username: String, email: String, password: String)>()
+    private let signupTrigger = PublishRelay<SignupParams>()
 
     var input: SignupViewModelInput { self }
     var output: SignupViewModelOutput { self }
@@ -47,23 +49,8 @@ final class SignupViewModel: ObservableObject, SignupViewModelProtocol {
     init() {
         signupTrigger
             .withUnretained(self)
-            .flatMapLatest { owner, inputs in
-                owner.signupUseCase
-                    .signup(username: inputs.username, email: inputs.email, password: inputs.password)
-                    .asObservable()
-                    .materialize()
-            }
-            .subscribe(
-                with: self,
-                onNext: { owner, event in
-                    owner.$isLoading.accept(false)
-                    if let error = event.error {
-                        owner.$errorMessage.accept(error.detail)
-                    } else {
-                        owner.$didSignup.accept(())
-                    }
-                }
-            )
+            .flatMapLatest { owner, inputs in owner.signupTriggered(owner: owner, inputs: inputs) }
+            .subscribe()
             .disposed(by: disposeBag)
     }
 }
@@ -81,3 +68,24 @@ extension SignupViewModel: SignupViewModelInput {
 }
 
 extension SignupViewModel: SignupViewModelOutput { }
+
+private extension SignupViewModel {
+
+    func signupTriggered(owner: SignupViewModel, inputs: SignupParams) -> Observable<Void> {
+        signupUseCase
+            .execute(username: inputs.username, email: inputs.email, password: inputs.password)
+            .do(
+                onError: { error in
+                    owner.$isLoading.accept(false)
+                    owner.$errorMessage.accept(error.detail)
+                },
+                onCompleted: {
+                    owner.$isLoading.accept(false)
+                    owner.$didSignup.accept(())
+                }
+            )
+            .asObservable()
+            .mapToVoid()
+            .catchAndReturn(())
+    }
+}

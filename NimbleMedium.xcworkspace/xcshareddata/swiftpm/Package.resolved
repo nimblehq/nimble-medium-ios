@@ -20,11 +20,20 @@
         }
       },
       {
-        "package": "Refresh",
-        "repositoryURL": "https://github.com/markgravity/Refresh.git",
+        "package": "PagerTabStripView",
+        "repositoryURL": "https://github.com/nimblehq/PagerTabStripView.git",
         "state": {
           "branch": "master",
-          "revision": "feb243a0605ffb6bdca99d68bc5c10c5ddc5054c",
+          "revision": "dd08c6cf0d18427c46a134f731b3f50410a8fdd7",
+          "version": null
+        }
+      },
+      {
+        "package": "Refresh",
+        "repositoryURL": "https://github.com/wxxsw/Refresh",
+        "state": {
+          "branch": "master",
+          "revision": "4693c1d8385a5478cd78347a8cc7b1572ff27827",
           "version": null
         }
       },

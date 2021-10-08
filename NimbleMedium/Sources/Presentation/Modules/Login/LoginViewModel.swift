@@ -31,8 +31,10 @@ protocol LoginViewModelProtocol: ObservableViewModel {
 
 final class LoginViewModel: ObservableObject, LoginViewModelProtocol {
 
+    typealias LoginParams = (email: String, password: String)
+
     private let disposeBag = DisposeBag()
-    private let loginTrigger = PublishRelay<(email: String, password: String)>()
+    private let loginTrigger = PublishRelay<LoginParams>()
 
     var input: LoginViewModelInput { self }
     var output: LoginViewModelOutput { self }
@@ -47,23 +49,8 @@ final class LoginViewModel: ObservableObject, LoginViewModelProtocol {
     init() {
         loginTrigger
             .withUnretained(self)
-            .flatMapLatest { owner, inputs in
-                owner.loginUseCase
-                    .login(email: inputs.email, password: inputs.password)
-                    .asObservable()
-                    .materialize()
-            }
-            .subscribe(
-                with: self,
-                onNext: { owner, event in
-                    owner.$isLoading.accept(false)
-                    if let error = event.error {
-                        owner.$errorMessage.accept(error.detail)
-                    } else {
-                        owner.$didLogin.accept(())
-                    }
-                }
-            )
+            .flatMapLatest { owner, inputs in owner.loginTriggered(owner: owner, inputs: inputs) }
+            .subscribe()
             .disposed(by: disposeBag)
     }
 }
@@ -81,3 +68,23 @@ extension LoginViewModel: LoginViewModelInput {
 }
 
 extension LoginViewModel: LoginViewModelOutput {}
+
+private extension LoginViewModel {
+
+    func loginTriggered(owner: LoginViewModel, inputs: LoginParams) -> Observable<Void> {
+        loginUseCase.execute(email: inputs.email, password: inputs.password)
+            .do(
+                onError: { error in
+                    owner.$isLoading.accept(false)
+                    owner.$errorMessage.accept(error.detail)
+                },
+                onCompleted: {
+                    owner.$isLoading.accept(false)
+                    owner.$didLogin.accept(())
+                }
+            )
+            .asObservable()
+            .mapToVoid()
+            .catchAndReturn(())
+    }
+}

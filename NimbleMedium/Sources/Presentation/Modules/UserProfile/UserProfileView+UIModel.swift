@@ -13,7 +13,5 @@ extension UserProfileView {
 
          let avatarURL: URL?
          let username: String
-
-         // TODO: Add more attributes in other feature tasks
      }
  }

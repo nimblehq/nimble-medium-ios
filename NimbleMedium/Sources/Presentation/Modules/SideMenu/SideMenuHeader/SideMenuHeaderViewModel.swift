@@ -12,7 +12,7 @@ import RxSwift
 
 protocol SideMenuHeaderViewModelInput {
 
-    // TODO: To be implemented
+    func bindData(homeViewModel: HomeViewModelProtocol)
 }
 
 protocol SideMenuHeaderViewModelOutput {
@@ -34,7 +34,6 @@ final class SideMenuHeaderViewModel: ObservableObject, SideMenuHeaderViewModelPr
     private let disposeBag = DisposeBag()
 
     @Injected var getCurrentSessionUseCase: GetCurrentSessionUseCaseProtocol
-    @Injected var homeViewModel: HomeViewModelProtocol
 
     @BehaviorRelayProperty(nil) var uiModel: Driver<SideMenuHeaderView.UIModel?>
 
@@ -43,31 +42,23 @@ final class SideMenuHeaderViewModel: ObservableObject, SideMenuHeaderViewModelPr
     init() {
         getCurrentUserSessionTrigger
             .withUnretained(self)
-            .flatMapLatest { owner, _ in
-                owner.getCurrentSessionUseCase
-                    .getCurrentUserSession()
-                    .map {
-                        guard let user = $0 else { return nil }
-                        return owner.generateUIModel(from: user)
-                    }
-                    .do(
-                        onSuccess: { owner.$uiModel.accept($0) },
-                        onError: { _ in owner.$uiModel.accept(nil) }
-                    )
-                    .asObservable()
-                    .catchAndReturn(nil)
-            }
+            .flatMapLatest { owner, _ in owner.getCurrentUserSessionTriggered(owner: owner) }
             .subscribe()
-            .disposed(by: disposeBag)
-
-        homeViewModel.output.isSideMenuOpenDidChange
-            .emit(with: self) { viewModel, isOpen in
-                guard isOpen else { return }
-                viewModel.getCurrentUserSessionTrigger.accept(())
-            }
             .disposed(by: disposeBag)
     }
 }
+
+extension SideMenuHeaderViewModel: SideMenuHeaderViewModelInput {
+
+    func bindData(homeViewModel: HomeViewModelProtocol) {
+        homeViewModel.output.isSideMenuOpenDidChange
+            .filter { $0 }
+            .emit(with: self) { owner, _ in owner.getCurrentUserSessionTrigger.accept(()) }
+            .disposed(by: disposeBag)
+    }
+}
+
+extension SideMenuHeaderViewModel: SideMenuHeaderViewModelOutput {}
 
 private extension SideMenuHeaderViewModel {
 
@@ -81,8 +72,20 @@ private extension SideMenuHeaderViewModel {
             username: username
         )
     }
+
+    func getCurrentUserSessionTriggered(owner: SideMenuHeaderViewModel) -> Observable<Void> {
+        getCurrentSessionUseCase
+            .getCurrentUserSession()
+            .map {
+                guard let user = $0 else { return nil }
+                return owner.generateUIModel(from: user)
+            }
+            .do(
+                onSuccess: { owner.$uiModel.accept($0) },
+                onError: { _ in owner.$uiModel.accept(nil) }
+            )
+            .asObservable()
+            .mapToVoid()
+            .catchAndReturn(())
+    }
 }
-
-extension SideMenuHeaderViewModel: SideMenuHeaderViewModelInput {}
-
-extension SideMenuHeaderViewModel: SideMenuHeaderViewModelOutput {}

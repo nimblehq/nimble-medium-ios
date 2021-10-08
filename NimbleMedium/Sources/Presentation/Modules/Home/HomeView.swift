@@ -15,7 +15,11 @@ struct HomeView: View {
 
     @ObservedViewModel private var viewModel: HomeViewModelProtocol = Resolver.resolve()
 
+    @Injected private var feedsViewModel: FeedsViewModelProtocol
+    @Injected private var sideMenuViewModel: SideMenuViewModelProtocol
+
     @State private var displaySideMenuProgress: CGFloat = 0.0
+    @State private var isDraggingEnabled = false
 
     private let draggingAnimator = SideMenuDraggingAnimator()
     private let sideMenuCoordinateSpaceName = "SideMenu"
@@ -23,7 +27,7 @@ struct HomeView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                FeedsView()
+                FeedsView(isSideMenuDraggingEnabled: $isDraggingEnabled)
                 sideMenuDimmedBackground
                 GeometryReader { geo in
                     SideMenuView()
@@ -41,8 +45,7 @@ struct HomeView: View {
 
                 draggingAnimator.reset(isOpen: isOpen)
             }
-            // TODO: Fix dragging bug in other screens
-            // .gesture(dragGesture(geo: geo))
+            .gesture(dragGesture(geo: geo))
         }
     }
 
@@ -57,9 +60,14 @@ struct HomeView: View {
         }
     }
 
+    init() {
+        viewModel.input.bindData(feedsViewModel: feedsViewModel, sideMenuViewModel: sideMenuViewModel)
+    }
+
     private func dragGesture(geo: GeometryProxy) -> some Gesture {
         DragGesture(coordinateSpace: .named(sideMenuCoordinateSpaceName))
             .onChanged { gesture in
+                guard isDraggingEnabled else { return }
                 // FIXME: It should return current size of SideMenu
                 let width = geo.frame(in: .named(sideMenuCoordinateSpaceName)).width * 2.0 / 3.0
 
@@ -68,6 +76,7 @@ struct HomeView: View {
                 }
             }
             .onEnded { _ in
+                guard isDraggingEnabled else { return }
                 draggingAnimator.onDraggingEnded { isOpen, _ in
                     viewModel.input.toggleSideMenu(isOpen)
                 }

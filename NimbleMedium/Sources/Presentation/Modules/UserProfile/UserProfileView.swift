@@ -5,44 +5,65 @@
 //  Created by Minh Pham on 23/09/2021.
 //
 
-import Foundation
-
+import Resolver
 import SDWebImageSwiftUI
 import SwiftUI
 import ToastUI
+import PagerTabStripView
 
 struct UserProfileView: View {
 
-    // TODO: Update to real data in integrate task
-    @State private var uiModel: UIModel = UIModel(avatarURL: nil, username: Localizable.defaultUsernameValue())
+    @State private var uiModel: UIModel?
+    @State private var errorMessage = ""
+    @State private var errorToast = false
+
+    @ObservedViewModel var viewModel: UserProfileViewModelProtocol
+
+    private let username: String?
+    
+    @State private var selectedTabIndex: Int = 0
 
     var body: some View {
-        ScrollView(.vertical) {
+        VStack {
             profileHeader
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.vertical, 30.0)
                 .background(Color.gray)
 
-            // TODO: Implement Articles section in another feature task
-            Text("Articles section")
-                .padding(.horizontal, 8.0)
+            PagerTabStripView(selection: $selectedTabIndex) {
+                UserProfileCreatedArticlesTab(viewModel: viewModel.output.createdArticlesViewModel)
+
+                UserProfileFavouritedArticlesTab(viewModel: viewModel.output.favouritedArticlesViewModel)
+            }
+            .pagerTabStripViewStyle(
+                .normal(
+                    indicatorBarColor: .green,
+                    tabItemHeight: 50.0,
+                    placedInToolbar: false
+                )
+            )
         }
-        .navigationTitle(Localizable.userProfileTitle())
+        .navigationTitle(username != nil ? Localizable.userProfileOtherTitle() : Localizable.userProfileCurrentTitle())
         .modifier(NavigationBarPrimaryStyle())
+        .onAppear { viewModel.input.getUserProfile() }
+        .toast(isPresented: $errorToast, dismissAfter: 3.0) {
+            ToastView(errorMessage) { } background: {
+                Color.clear
+            }
+        }
+        .bind(viewModel.output.userProfileUIModel, to: _uiModel)
+        .onReceive(viewModel.output.errorMessage) { _ in
+            errorMessage = Localizable.errorGeneric()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { errorToast.toggle() }
+        }
     }
 
     var profileHeader: some View {
         VStack(alignment: .center, spacing: 0.0) {
-            if let url = uiModel.avatarURL {
-                WebImage(url: url)
-                    .placeholder { defaultAvatar }
-                    .resizable()
-                    .frame(width: 120.0, height: 120.0)
-                    .clipShape(Circle())
-            } else {
-                defaultAvatar
-            }
-            Text(uiModel.username)
+            AvatarView(url: uiModel?.avatarURL)
+                .size(120.0)
+                .circle()
+            Text(uiModel?.username ?? Localizable.userProfileUsernameUnknown())
                 .foregroundColor(.white)
                 .fontWeight(.bold)
                 .lineLimit(2)
@@ -51,11 +72,13 @@ struct UserProfileView: View {
         }
     }
 
-    var defaultAvatar: some View {
-        Image(R.image.defaultAvatar.name)
-            .resizable()
-            .frame(width: 120.0, height: 120.0)
-            .clipShape(Circle())
+    init(username: String? = nil) {
+        self.username = username
+
+        viewModel = Resolver.resolve(
+            UserProfileViewModelProtocol.self,
+            args: username
+        )
     }
 }
 

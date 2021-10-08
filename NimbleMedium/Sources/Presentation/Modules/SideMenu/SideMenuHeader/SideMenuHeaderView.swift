@@ -13,6 +13,8 @@ struct SideMenuHeaderView: View {
 
     @ObservedViewModel private var viewModel: SideMenuHeaderViewModelProtocol = Resolver.resolve()
 
+    @Injected private var homeViewModel: HomeViewModelProtocol
+
     @State private var uiModel: UIModel?
 
     var body: some View {
@@ -40,24 +42,15 @@ struct SideMenuHeaderView: View {
         }
     }
 
-    var defaultAvatar: some View {
-        Image(R.image.defaultAvatar.name)
-            .resizable()
-            .frame(width: 100.0, height: 100.0)
-            .clipShape(Circle())
+    init() {
+        viewModel.input.bindData(homeViewModel: homeViewModel)
     }
 
     func authenticatedMenuHeader(uiModel: UIModel) -> some View {
         VStack(alignment: .center) {
-            if let url = uiModel.avatarURL {
-                WebImage(url: url)
-                    .placeholder { defaultAvatar }
-                    .resizable()
-                    .frame(width: 100.0, height: 100.0)
-                    .clipShape(Circle())
-            } else {
-                defaultAvatar
-            }
+            AvatarView(url: uiModel.avatarURL)
+                .size(100.0)
+                .circle()
             Text(uiModel.username)
                 .foregroundColor(.white)
                 .fontWeight(.bold)

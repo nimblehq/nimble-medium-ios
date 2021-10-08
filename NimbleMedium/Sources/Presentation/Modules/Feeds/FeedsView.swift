@@ -15,11 +15,9 @@ struct FeedsView: View {
     @ObservedViewModel private var viewModel: FeedsViewModelProtocol = Resolver.resolve()
     
     @State private var isFirstLoad: Bool = true
-    @State private var isRefeshing: Bool = false
-    @State private var hasMore: Bool = true
-    @State private var isLoadingMore: Bool = false
-    @State private var feedRowViewModels: [FeedRowViewModelProtocol] = []
     @State private var isErrorToastPresented = false
+
+    @Binding private var isSideMenuDraggingEnabled: Bool
 
     var body: some View {
         NavigationView {
@@ -27,7 +25,7 @@ struct FeedsView: View {
                 if isFirstLoad {
                     ProgressView()
                 } else {
-                    feedList
+                    FeedList(viewModel: viewModel)
                 }
             }
             .navigationTitle(Localizable.feedsTitle())
@@ -38,23 +36,22 @@ struct FeedsView: View {
                     Color.clear
                 }
             }
+            .onAppear {
+                isSideMenuDraggingEnabled = true
+            }
+            .onDisappear {
+                isSideMenuDraggingEnabled = false
+            }
         }
         .accentColor(.white)
         .onReceive(viewModel.output.didFinishRefresh) { _ in
             if isFirstLoad {
                 isFirstLoad = false
             }
-
-            isRefeshing = false
-        }
-        .onReceive(viewModel.output.didFinishLoadMore) {
-            hasMore = $0
-            isLoadingMore = false
         }
         .onReceive(viewModel.output.didFailToLoadArticle) { _ in
             isErrorToastPresented = true
         }
-        .bind(viewModel.output.feedRowViewModels, to: _feedRowViewModels)
         .onAppear { viewModel.input.refresh() }
     }
 
@@ -71,56 +68,95 @@ struct FeedsView: View {
         }
     }
 
-    var feedRows: some View {
-        Group {
-            RefreshHeader(
-                refreshing: $isRefeshing,
-                action: { viewModel.input.refresh() },
-                label: { _ in ProgressView() }
-            )
-
-            // FIXME: LazyVStack produces an infinity refresh FeedRow
-            VStack(alignment: .leading) {
-                ForEach(feedRowViewModels, id: \.output.id) { viewModel in
-                    NavigationLink(
-                        destination: FeedDetailView(slug: viewModel.output.id),
-                        label: {
-                            FeedRow(viewModel: viewModel)
-                                .padding(.bottom, 16.0)
-                        }
-                    )
-                }
-            }
-            .padding(.all, 16.0)
-            .frame(maxWidth: .infinity, alignment: .leading)
-
-            if hasMore {
-                RefreshFooter(
-                    refreshing: $isLoadingMore,
-                    action: { viewModel.input.loadMore() },
-                    label: { ProgressView() }
-                )
-            }
-        }
-    }
-
-    var feedList: some View {
-        Group {
-            if !feedRowViewModels.isEmpty {
-                ScrollView {
-                    feedRows
-                }
-                .enableRefresh()
-                .padding(.top, 16.0)
-            } else {
-                Text(Localizable.feedsNoArticle())
-            }
-        }
+    init(isSideMenuDraggingEnabled: Binding<Bool>) {
+        _isSideMenuDraggingEnabled = isSideMenuDraggingEnabled
     }
 }
 
+// MARK: FeedList
+private extension FeedsView {
+
+    struct FeedList: View, Equatable {
+
+        let viewModel: FeedsViewModelProtocol
+
+        @State var isRefeshing: Bool = false
+        @State var hasMore: Bool = true
+        @State var isLoadingMore: Bool = false
+        @State var articleRowViewModels: [ArticleRowViewModelProtocol] = []
+        @State var isShowingFeedDetail = false
+        @State var activeDetailID = ""
+
+        var body: some View {
+            GeometryReader { geometry in
+                ScrollView {
+                    articleDetailNavigationLink
+                    RefreshHeader(
+                        refreshing: $isRefeshing,
+                        action: { viewModel.input.refresh() },
+                        label: { _ in ProgressView() }
+                    )
+
+                    if !articleRowViewModels.isEmpty {
+                        articleRows
+                        if !isShowingFeedDetail && hasMore {
+                            RefreshFooter(
+                                refreshing: $isLoadingMore,
+                                action: { viewModel.input.loadMore() },
+                                label: { ProgressView() }
+                            )
+                        }
+                    } else {
+                        Text(Localizable.feedsNoArticle())
+                            .frame(minHeight: geometry.size.height)
+                    }
+                }
+                .enableRefresh()
+                .padding(.top, 16.0)
+                .frame(maxHeight: .infinity)
+            }
+            .onReceive(viewModel.output.didFinishRefresh) { _ in
+                isRefeshing = false
+            }
+            .onReceive(viewModel.output.didFinishLoadMore) {
+                hasMore = $0
+                isLoadingMore = false
+            }
+            .bind(viewModel.output.articleRowViewModels, to: _articleRowViewModels)
+        }
+
+        var articleRows: some View {
+            // FIXME: LazyVStack produces an infinity refresh FeedRow
+            ForEach(articleRowViewModels, id: \.output.id) { viewModel in
+                ArticleRow(viewModel: viewModel)
+                    .padding(.bottom, 16.0)
+                    .onTapGesture {
+                        activeDetailID = viewModel.output.id
+                        isShowingFeedDetail = true
+                    }
+            }
+            .padding(.all, 16.0)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+
+        var articleDetailNavigationLink: some View {
+            NavigationLink(
+                destination: ArticleDetailView(slug: activeDetailID),
+                isActive: $isShowingFeedDetail,
+                label: { EmptyView() }
+            )
+            .hidden()
+        }
+
+        static func == (lhs: FeedsView.FeedList, rhs: FeedsView.FeedList) -> Bool {
+            lhs.articleRowViewModels.count != rhs.articleRowViewModels.count
+        }
+    }
+}
 #if DEBUG
 struct FeedsView_Previews: PreviewProvider {
-    static var previews: some View { FeedsView() }
+    static var previews: some View {
+        FeedsView(isSideMenuDraggingEnabled: .constant(true))
+    }
 }
 #endif
