@@ -31,14 +31,10 @@ struct UserProfileView: View {
                 .background(Color.gray)
 
             PagerTabStripView(selection: $selectedTabIndex) {
-                // TODO: Add real Created Articles List data
-                ArticleList()
-                    .pagerTabItem {
-                        TabItemTitle(Localizable.userProfileCreatedArticlesTitle())
-                    }
+                UserProfileCreatedArticlesTab(viewModel: viewModel.output.createdArticlesViewModel)
 
                 // TODO: Add real Favourited Articles List data
-                ArticleList()
+                UserProfileArticleList(viewModels: [])
                     .pagerTabItem {
                         TabItemTitle(Localizable.userProfileFavouritedArticlesTitle())
                     }

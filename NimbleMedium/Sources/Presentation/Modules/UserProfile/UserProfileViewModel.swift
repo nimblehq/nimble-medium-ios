@@ -18,6 +18,7 @@ protocol UserProfileViewModelOutput {
 
     var userProfileUIModel: Driver<UserProfileView.UIModel?> { get }
     var errorMessage: Signal<String> { get }
+    var createdArticlesViewModel: UserProfileCreatedArticlesTabViewModelProtocol { get }
 }
 
 protocol UserProfileViewModelProtocol: ObservableViewModel {
@@ -43,9 +44,14 @@ final class UserProfileViewModel: ObservableObject, UserProfileViewModelProtocol
 
     @Injected var getCurrentUserUseCase: GetCurrentUserUseCaseProtocol
     @Injected var getUserProfileUseCase: GetUserProfileUseCaseProtocol
+    let createdArticlesViewModel: UserProfileCreatedArticlesTabViewModelProtocol
 
     init(username: String? = nil) {
         self.username = username
+        createdArticlesViewModel = Resolver.resolve(
+            UserProfileCreatedArticlesTabViewModelProtocol.self,
+            args: username
+        )
 
         getCurrentUserTrigger
             .withUnretained(self)
