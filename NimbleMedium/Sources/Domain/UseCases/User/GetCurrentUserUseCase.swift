@@ -16,14 +16,24 @@ protocol GetCurrentUserUseCaseProtocol: AnyObject {
 final class GetCurrentUserUseCase: GetCurrentUserUseCaseProtocol {
 
     private let authRepository: AuthRepositoryProtocol
+    private let userSessionRepository: UserSessionRepositoryProtocol
 
     init(
-        authRepository: AuthRepositoryProtocol
+        authRepository: AuthRepositoryProtocol,
+        userSessionRepository: UserSessionRepositoryProtocol
     ) {
         self.authRepository = authRepository
+        self.userSessionRepository = userSessionRepository
     }
 
     func execute() -> Single<User> {
-        authRepository.getCurrentUser()
+        authRepository
+            .getCurrentUser()
+            .asObservable()
+            .withUnretained(self)
+            .flatMapLatest { owner, user -> Single<User> in
+                owner.userSessionRepository.saveUser(user).andThen(.just(user))
+            }
+            .asSingle()
     }
 }

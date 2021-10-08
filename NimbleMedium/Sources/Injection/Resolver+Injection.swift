@@ -45,6 +45,7 @@ extension Resolver: ResolverRegistering {
         }.implements(UserSessionRepositoryProtocol.self)
     }
 
+    // swiftlint:disable function_body_length
     private static func registerUseCases() {
         register {
             GetArticleCommentsUseCase(articleCommentRepository: resolve())
@@ -56,7 +57,10 @@ extension Resolver: ResolverRegistering {
             GetCurrentSessionUseCase(userSessionRepository: resolve())
         }.implements(GetCurrentSessionUseCaseProtocol.self)
         register {
-            GetCurrentUserUseCase(authRepository: resolve())
+            GetCurrentUserUseCase(
+                authRepository: resolve(),
+                userSessionRepository: resolve()
+            )
         }.implements(GetCurrentUserUseCaseProtocol.self)
         register {
             GetListArticlesUseCase(articleRepository: resolve())
