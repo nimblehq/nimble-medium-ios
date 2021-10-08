@@ -36,7 +36,7 @@ final class UserProfileCreatedArticlesTabViewModel: ObservableObject, UserProfil
     @Injected private var getCreatedArticlesUseCase: GetCreatedArticlesUseCaseProtocol
 
     private let disposeBag = DisposeBag()
-    private let username: String
+    private let username: String?
     private let fetchCreatedArticlesTrigger = PublishRelay<Void>()
 
     @BehaviorRelayProperty([]) var articleRowVieModels: Driver<[ArticleRowViewModelProtocol]>
@@ -46,7 +46,7 @@ final class UserProfileCreatedArticlesTabViewModel: ObservableObject, UserProfil
     var input: UserProfileCreatedArticlesTabViewModelInput { self }
     var output: UserProfileCreatedArticlesTabViewModelOutput { self }
 
-    init(username: String) {
+    init(username: String?) {
         self.username = username
         fetchCreatedArticlesTrigger
             .withUnretained(self)
@@ -69,8 +69,13 @@ extension UserProfileCreatedArticlesTabViewModel: UserProfileCreatedArticlesTabV
 private extension UserProfileCreatedArticlesTabViewModel {
 
     func fetchCreatedArticlesTriggered(owner: UserProfileCreatedArticlesTabViewModel) -> Observable<Void> {
-        getCreatedArticlesUseCase
-            .execute(username: username)
+        Observable.just(username)
+            .compactMap { $0 }
+            .flatMap {
+                owner.getCreatedArticlesUseCase
+                    .execute(username: $0)
+            }
+            .asSingle()
             .do(
                 onSuccess: {
                     owner.$didFetchCreatedArticles.accept(())
