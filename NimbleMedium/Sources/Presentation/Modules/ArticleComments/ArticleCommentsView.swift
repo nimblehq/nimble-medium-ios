@@ -9,23 +9,23 @@ import SwiftUI
 import Resolver
 import ToastUI
 
-struct FeedCommentsView: View {
+struct ArticleCommentsView: View {
 
-    @ObservedViewModel private var viewModel: FeedCommentsViewModelProtocol
+    @ObservedViewModel private var viewModel: ArticleCommentsViewModelProtocol
 
-    @State var feedCommentRowViewModels: [FeedCommentRowViewModelProtocol]?
+    @State private var articleCommentRowViewModels: [ArticleCommentRowViewModelProtocol]?
     @State private var isErrorToastPresented = false
-    @State private var isFetching = true
-    @State private var isFetchCommentsFailed = false
+    @State private var isFetchingArticleComments = true
+    @State private var isFetchArticleCommentsFailed = false
 
     var body: some View {
         Group {
-            if !isFetching, let viewModels = feedCommentRowViewModels {
+            if !isFetchingArticleComments, let viewModels = articleCommentRowViewModels {
                 if !viewModels.isEmpty {
                     ScrollView(.vertical) {
                         LazyVStack(alignment: .leading, spacing: 12.0) {
                             ForEach(viewModels, id: \.output.id) {
-                                FeedCommentRow(viewModel: $0)
+                                ArticleCommentRow(viewModel: $0)
                             }
                         }
                         .padding(.all, 16.0)
@@ -34,7 +34,7 @@ struct FeedCommentsView: View {
                     Text(Localizable.feedCommentsNoCommentMessage())
                 }
             } else {
-                if isFetchCommentsFailed {
+                if isFetchArticleCommentsFailed {
                     Text(Localizable.feedCommentsNoCommentMessage())
                 } else { ProgressView() }
             }
@@ -46,23 +46,23 @@ struct FeedCommentsView: View {
         }
         .navigationTitle(Localizable.feedCommentsTitle())
         .modifier(NavigationBarPrimaryStyle())
-        .onReceive(viewModel.output.didFailToFetchComments) { _ in
-            isFetching = false
+        .onReceive(viewModel.output.didFailToFetchArticleComments) { _ in
+            isFetchingArticleComments = false
             isErrorToastPresented = true
-            isFetchCommentsFailed = true
+            isFetchArticleCommentsFailed = true
         }
-        .onReceive(viewModel.output.didFetchComments) {
-            isFetching = false
+        .onReceive(viewModel.output.didFetchArticleComments) {
+            isFetchingArticleComments = false
         }
-        .onReceive(viewModel.output.feedCommentRowViewModels) {
-            feedCommentRowViewModels = $0
+        .onReceive(viewModel.output.articleCommentRowViewModels) {
+            articleCommentRowViewModels = $0
         }
-        .onAppear { viewModel.input.fetchComments() }
+        .onAppear { viewModel.input.fetchArticleComments() }
     }
 
     init(id: String) {
         viewModel = Resolver.resolve(
-            FeedCommentsViewModelProtocol.self,
+            ArticleCommentsViewModelProtocol.self,
             args: id
         )
     }
