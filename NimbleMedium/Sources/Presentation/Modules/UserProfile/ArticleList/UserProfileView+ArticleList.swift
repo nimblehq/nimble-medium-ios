@@ -20,8 +20,8 @@ extension UserProfileView {
                             .padding(.bottom, 16.0)
                     }
                 }
+                .padding(.all, 16.0)
             }
-            .padding(.all, 16.0)
         }
     }
 
