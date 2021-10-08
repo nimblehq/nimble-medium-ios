@@ -10,22 +10,14 @@ import SDWebImageSwiftUI
 
 struct AuthorView: View {
 
-    private let authorNameColor: Color?
+    private var authorNameColor: Color = .black
     private let articleUpdateAt: String
     private let authorName: String
     private let authorImage: URL?
 
     var body: some View {
         HStack {
-            if let url = authorImage {
-                // FIXME: It blocks UI
-                WebImage(url: url)
-                    .placeholder { defaultAvatar }
-                    .resizable()
-                    .frame(width: 50.0, height: 50.0)
-            } else {
-                defaultAvatar
-            }
+            AvatarView(url: authorImage)
             VStack(alignment: .leading) {
                 NavigationLink(
                     destination: UserProfileView(username: authorName),
@@ -41,34 +33,13 @@ struct AuthorView: View {
         }
     }
 
-    var defaultAvatar: some View {
-        Image(R.image.defaultAvatar.name)
-            .resizable()
-            .frame(width: 50.0, height: 50.0)
-    }
-
     init(
         articleUpdateAt: String,
         authorName: String,
         authorImage: URL?
     ) {
-        self.init(
-            articleUpdateAt: articleUpdateAt,
-            authorName: authorName,
-            authorNameColor: .black,
-            authorImage: authorImage
-        )
-    }
-
-    private init(
-        articleUpdateAt: String,
-        authorName: String,
-        authorNameColor: Color,
-        authorImage: URL?
-    ) {
         self.articleUpdateAt = articleUpdateAt
         self.authorName = authorName
-        self.authorNameColor = authorNameColor
         self.authorImage = authorImage
     }
 }
@@ -76,13 +47,9 @@ struct AuthorView: View {
 // MARK: Style
 extension AuthorView {
 
-    // TODO: Find a better solution for the same result
     func authorNameColor(_ color: Color) -> Self {
-        AuthorView(
-            articleUpdateAt: articleUpdateAt,
-            authorName: authorName,
-            authorNameColor: color,
-            authorImage: authorImage
-        )
+        var view = self
+        view.authorNameColor = color
+        return view
     }
 }

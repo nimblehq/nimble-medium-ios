@@ -38,6 +38,7 @@ struct FeedRow: View {
                 EmptyView()
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .onReceive(viewModel.output.uiModel) {
             uiModel = $0
         }
