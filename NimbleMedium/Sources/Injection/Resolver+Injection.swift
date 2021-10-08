@@ -98,8 +98,8 @@ extension Resolver: ResolverRegistering {
             FeedCommentsViewModel(id: args.get())
         }.implements(FeedCommentsViewModelProtocol.self)
         register { _, args in
-            FeedDetailViewModel(id: args.get())
-        }.implements(FeedDetailViewModelProtocol.self)
+            ArticleDetailViewModel(id: args.get())
+        }.implements(ArticleDetailViewModelProtocol.self)
         register { _, args in
             FeedRowViewModel(article: args.get())
         }.implements(FeedRowViewModelProtocol.self)

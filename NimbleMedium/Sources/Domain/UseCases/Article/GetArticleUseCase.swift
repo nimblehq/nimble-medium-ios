@@ -10,7 +10,7 @@ import RxSwift
 // sourcery: AutoMockable
 protocol GetArticleUseCaseProtocol {
 
-    func getArticle(slug: String) -> Single<Article>
+    func execute(slug: String) -> Single<Article>
 }
 
 final class GetArticleUseCase: GetArticleUseCaseProtocol {
@@ -23,7 +23,7 @@ final class GetArticleUseCase: GetArticleUseCaseProtocol {
         self.articleRepository = articleRepository
     }
 
-    func getArticle(slug: String) -> Single<Article> {
+    func execute(slug: String) -> Single<Article> {
         articleRepository.getArticle(slug: slug)
     }
 }

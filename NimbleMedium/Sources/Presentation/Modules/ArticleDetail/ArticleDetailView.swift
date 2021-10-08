@@ -10,13 +10,13 @@ import SDWebImageSwiftUI
 import Resolver
 import ToastUI
 
-struct FeedDetailView: View {
+struct ArticleDetailView: View {
 
-    @ObservedViewModel private var viewModel: FeedDetailViewModelProtocol
+    @ObservedViewModel private var viewModel: ArticleDetailViewModelProtocol
 
     @State private var uiModel: UIModel?
     @State private var isErrorToastPresented = false
-    @State private var isFetchArticleFailed = false
+    @State private var isFetchArticleDetailFailed = false
 
     private let slug: String
 
@@ -25,31 +25,31 @@ struct FeedDetailView: View {
             if let uiModel = uiModel {
                 articleDetail(uiModel: uiModel)
             } else {
-                if isFetchArticleFailed {
-                    Text(Localizable.feedDetailFetchFailureMessage())
+                if isFetchArticleDetailFailed {
+                    Text(Localizable.articleDetailFetchFailureMessage())
                 } else { ProgressView() }
             }
         }
-        .navigationTitle(Localizable.feedDetailTitle())
+        .navigationTitle(Localizable.articleDetailTitleText())
         .modifier(NavigationBarPrimaryStyle())
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
             ToastView(Localizable.errorGeneric()) { } background: {
                 Color.clear
             }
         }
-        .onAppear { viewModel.input.fetchArticle() }
-        .onReceive(viewModel.output.didFailToFetchArticle) { _ in
+        .onAppear { viewModel.input.fetchArticleDetail() }
+        .onReceive(viewModel.output.didFailToFetchArticleDetail) { _ in
             isErrorToastPresented = true
-            isFetchArticleFailed = true
+            isFetchArticleDetailFailed = true
         }
-        .bind(viewModel.output.feedDetailUIModel, to: _uiModel)
+        .bind(viewModel.output.uiModel, to: _uiModel)
     }
 
     var comments: some View {
         NavigationLink(
             destination: FeedCommentsView(id: viewModel.output.id),
             label: {
-                Text(Localizable.feedDetailCommentsTitle())
+                Text(Localizable.articleDetailCommentsTitle())
                     .foregroundColor(.white)
                     .padding(.horizontal, 16.0)
                     .frame(height: 50.0)
@@ -64,7 +64,7 @@ struct FeedDetailView: View {
         self.slug = slug
         
         viewModel = Resolver.resolve(
-            FeedDetailViewModelProtocol.self,
+            ArticleDetailViewModelProtocol.self,
             args: slug
         )
     }

@@ -14,20 +14,20 @@ import Resolver
 
 @testable import NimbleMedium
 
-final class FeedDetailViewModelSpec: QuickSpec {
+final class ArticleDetailViewModelSpec: QuickSpec {
 
     @LazyInjected var getArticleUseCase: GetArticleUseCaseProtocolMock
     
     override func spec() {
-        var viewModel: FeedDetailViewModelProtocol!
+        var viewModel: ArticleDetailViewModelProtocol!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
 
-        describe("a FeedDetailViewModel") {
+        describe("a ArticleDetailViewModel") {
 
             beforeEach {
                 Resolver.registerMockServices()
-                viewModel = FeedDetailViewModel(id: "slug")
+                viewModel = ArticleDetailViewModel(id: "slug")
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
             }
@@ -38,15 +38,15 @@ final class FeedDetailViewModelSpec: QuickSpec {
                     let inputArticle = APIArticleResponse.dummy.article
 
                     beforeEach {
-                        self.getArticleUseCase.getArticleSlugReturnValue = .just(inputArticle, on: scheduler, at: 10)
+                        self.getArticleUseCase.executeSlugReturnValue = .just(inputArticle, on: scheduler, at: 10)
 
                         scheduler.scheduleAt(5) {
-                            viewModel.input.fetchArticle()
+                            viewModel.input.fetchArticleDetail()
                         }
                     }
 
-                    it("returns output feedDetailUIModel with correct value") {
-                        expect(viewModel.output.feedDetailUIModel)
+                    it("returns output uiModel with correct value") {
+                        expect(viewModel.output.uiModel)
                             .events(scheduler: scheduler, disposeBag: disposeBag) == [
                                 .next(0, nil),
                                 .next(10, .init(article: inputArticle))
@@ -57,15 +57,15 @@ final class FeedDetailViewModelSpec: QuickSpec {
                 context("when GetArticleUseCase return failure") {
 
                     beforeEach {
-                        self.getArticleUseCase.getArticleSlugReturnValue = .error(TestError.mock, on: scheduler, at: 10)
+                        self.getArticleUseCase.executeSlugReturnValue = .error(TestError.mock, on: scheduler, at: 10)
 
                         scheduler.scheduleAt(5) {
-                            viewModel.input.fetchArticle()
+                            viewModel.input.fetchArticleDetail()
                         }
                     }
 
-                    it("returns output didFailToFetchArticle with signal") {
-                        expect(viewModel.output.didFailToFetchArticle)
+                    it("returns output didFailToFetchArticleDetail with signal") {
+                        expect(viewModel.output.didFailToFetchArticleDetail)
                             .events(scheduler: scheduler, disposeBag: disposeBag)
                             .notTo(beEmpty())
                     }
