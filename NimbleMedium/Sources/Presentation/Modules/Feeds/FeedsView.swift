@@ -88,14 +88,32 @@ private extension FeedsView {
         @State var activeDetailID = ""
 
         var body: some View {
-            Group {
-                if !articleRowViewModels.isEmpty {
-                    ScrollView { articleRows }
-                    .enableRefresh()
-                    .padding(.top, 16.0)
-                } else {
-                    Text(Localizable.feedsNoArticle())
+            GeometryReader { geometry in
+                ScrollView {
+                    articleDetailNavigationLink
+                    RefreshHeader(
+                        refreshing: $isRefeshing,
+                        action: { viewModel.input.refresh() },
+                        label: { _ in ProgressView() }
+                    )
+
+                    if !articleRowViewModels.isEmpty {
+                        articleRows
+                        if !isShowingFeedDetail && hasMore {
+                            RefreshFooter(
+                                refreshing: $isLoadingMore,
+                                action: { viewModel.input.loadMore() },
+                                label: { ProgressView() }
+                            )
+                        }
+                    } else {
+                        Text(Localizable.feedsNoArticle())
+                            .frame(minHeight: geometry.size.height)
+                    }
                 }
+                .enableRefresh()
+                .padding(.top, 16.0)
+                .frame(maxHeight: .infinity)
             }
             .onReceive(viewModel.output.didFinishRefresh) { _ in
                 isRefeshing = false
@@ -108,34 +126,17 @@ private extension FeedsView {
         }
 
         var articleRows: some View {
-            Group {
-                articleDetailNavigationLink
-                RefreshHeader(
-                    refreshing: $isRefeshing,
-                    action: { viewModel.input.refresh() },
-                    label: { _ in ProgressView() }
-                )
-
-                // FIXME: LazyVStack produces an infinity refresh FeedRow
-                ForEach(articleRowViewModels, id: \.output.id) { viewModel in
-                    ArticleRow(viewModel: viewModel)
-                        .padding(.bottom, 16.0)
-                        .onTapGesture {
-                            activeDetailID = viewModel.output.id
-                            isShowingFeedDetail = true
-                        }
-                }
-                .padding(.all, 16.0)
-                .frame(maxWidth: .infinity, alignment: .leading)
-
-                if !isShowingFeedDetail && hasMore {
-                    RefreshFooter(
-                        refreshing: $isLoadingMore,
-                        action: { viewModel.input.loadMore() },
-                        label: { ProgressView() }
-                    )
-                }
+            // FIXME: LazyVStack produces an infinity refresh FeedRow
+            ForEach(articleRowViewModels, id: \.output.id) { viewModel in
+                ArticleRow(viewModel: viewModel)
+                    .padding(.bottom, 16.0)
+                    .onTapGesture {
+                        activeDetailID = viewModel.output.id
+                        isShowingFeedDetail = true
+                    }
             }
+            .padding(.all, 16.0)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
 
         var articleDetailNavigationLink: some View {
