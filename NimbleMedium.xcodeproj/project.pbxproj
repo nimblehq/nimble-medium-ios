@@ -87,6 +87,8 @@
 		2D303B3B26C28AC200EEF1C0 /* Constants+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D303B3A26C28AC200EEF1C0 /* Constants+String.swift */; };
 		2D34F40F26FAD8C400C99C6C /* FeedDetailView+UIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D34F40E26FAD8C400C99C6C /* FeedDetailView+UIModel.swift */; };
 		2D467C3D26BCD58D008F11E1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D467C3C26BCD58D008F11E1 /* HomeView.swift */; };
+		2D469D3A270441A300B36AD6 /* UserProfileView+ArticleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D469D39270441A300B36AD6 /* UserProfileView+ArticleList.swift */; };
+		2D469D3F2704430A00B36AD6 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D469D3E2704430A00B36AD6 /* AvatarView.swift */; };
 		2D46FAF026F830B0005DD323 /* PrimitiveSequenceType+TestScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46FAEF26F830B0005DD323 /* PrimitiveSequenceType+TestScheduler.swift */; };
 		2D46FAF326F8618D005DD323 /* FeedRowViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46FAF226F8618D005DD323 /* FeedRowViewModelSpec.swift */; };
 		2D46FAF526F87B5D005DD323 /* Expectation+TestableObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D46FAF426F87B5D005DD323 /* Expectation+TestableObserver.swift */; };
@@ -151,6 +153,7 @@
 		2DC224E62702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC224E52702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift */; };
 		2DD4805726D73C67005225CF /* ObservableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD4805526D73C67005225CF /* ObservableViewModel.swift */; };
 		2DD4805826D73C67005225CF /* ObservedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD4805626D73C67005225CF /* ObservedViewModel.swift */; };
+		2DD606C7270AF1C50051FB80 /* PagerTabStripView in Frameworks */ = {isa = PBXBuildFile; productRef = 2DD606C6270AF1C50051FB80 /* PagerTabStripView */; };
 		2DDAD3A026D37E02007F845A /* App+NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDAD39F26D37E02007F845A /* App+NetworkLogger.swift */; };
 		2DE3B9B526C1339200272775 /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE3B9B426C1339200272775 /* Typealias.swift */; };
 		2DE8C09226F97386006061B4 /* FeedRow+UIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE8C09126F97386006061B4 /* FeedRow+UIModel.swift */; };
@@ -268,6 +271,8 @@
 		2D303B3A26C28AC200EEF1C0 /* Constants+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+String.swift"; sourceTree = "<group>"; };
 		2D34F40E26FAD8C400C99C6C /* FeedDetailView+UIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedDetailView+UIModel.swift"; sourceTree = "<group>"; };
 		2D467C3C26BCD58D008F11E1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		2D469D39270441A300B36AD6 /* UserProfileView+ArticleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfileView+ArticleList.swift"; sourceTree = "<group>"; };
+		2D469D3E2704430A00B36AD6 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		2D46FAEF26F830B0005DD323 /* PrimitiveSequenceType+TestScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrimitiveSequenceType+TestScheduler.swift"; sourceTree = "<group>"; };
 		2D46FAF226F8618D005DD323 /* FeedRowViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRowViewModelSpec.swift; sourceTree = "<group>"; };
 		2D46FAF426F87B5D005DD323 /* Expectation+TestableObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Expectation+TestableObserver.swift"; sourceTree = "<group>"; };
@@ -378,6 +383,7 @@
 				2DEF1F8A26E5FD0C00EB93CC /* SDWebImageSwiftUI in Frameworks */,
 				7DB2A8DC1F8863DD01F7D438 /* Pods_NimbleMedium.framework in Frameworks */,
 				24F3D7B726DCEA0300DE2420 /* KeychainAccess in Frameworks */,
+				2DD606C7270AF1C50051FB80 /* PagerTabStripView in Frameworks */,
 				248E13AC26F054FD00439BCC /* Resolver in Frameworks */,
 				2D5C62B22701A69F00398C96 /* Refresh in Frameworks */,
 				2D6EFE1B26E9EB8C006B9939 /* DefaultCodable in Frameworks */,
@@ -416,6 +422,7 @@
 		240E217E26FC35EB00EFC3B5 /* UserProfile */ = {
 			isa = PBXGroup;
 			children = (
+				2D469D382704415900B36AD6 /* ArticleList */,
 				240E217F26FC361000EFC3B5 /* UserProfileView.swift */,
 				24FB783C26FC3A80007534BE /* UserProfileView+UIModel.swift */,
 				24AB4A67270AE58F0067CD0D /* UserProfileViewModel.swift */,
@@ -780,6 +787,14 @@
 			path = NetworkAPI;
 			sourceTree = "<group>";
 		};
+		2D469D382704415900B36AD6 /* ArticleList */ = {
+			isa = PBXGroup;
+			children = (
+				2D469D39270441A300B36AD6 /* UserProfileView+ArticleList.swift */,
+			);
+			path = ArticleList;
+			sourceTree = "<group>";
+		};
 		2D46FAF126F86180005DD323 /* FeedRow */ = {
 			isa = PBXGroup;
 			children = (
@@ -907,6 +922,7 @@
 				24C9393826D89FA300547800 /* AuthTextFieldView.swift */,
 				24204C9D26D5289900534314 /* Background.swift */,
 				2D17E4EE26F07738001D3F90 /* AuthorView.swift */,
+				2D469D3E2704430A00B36AD6 /* AvatarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1523,6 +1539,7 @@
 				2D6EFE1A26E9EB8C006B9939 /* DefaultCodable */,
 				248E13AB26F054FD00439BCC /* Resolver */,
 				2D5C62B12701A69F00398C96 /* Refresh */,
+				2DD606C6270AF1C50051FB80 /* PagerTabStripView */,
 			);
 			productName = NimbleMedium;
 			productReference = 2DB2674A26BBEC4300FF05BB /* Nimble Medium - Staging.app */;
@@ -1609,6 +1626,7 @@
 				2D6EFE1926E9EB8C006B9939 /* XCRemoteSwiftPackageReference "DefaultCodable" */,
 				248E13AA26F054FD00439BCC /* XCRemoteSwiftPackageReference "Resolver" */,
 				2D5C62B02701A69F00398C96 /* XCRemoteSwiftPackageReference "Refresh" */,
+				2DD606C5270AF1C50051FB80 /* XCRemoteSwiftPackageReference "PagerTabStripView" */,
 			);
 			productRefGroup = 2DB2674B26BBEC4300FF05BB /* Products */;
 			projectDirPath = "";
@@ -1928,6 +1946,7 @@
 				2DEF1F9226E5FF4100EB93CC /* ArticleRequestConfiguration.swift in Sources */,
 				2459B30726D747DF00ABCE61 /* Constants+API.swift in Sources */,
 				2D882EDC26F1CBE900DB6560 /* ArticleCommentRequestConfiguration.swift in Sources */,
+				2D469D3A270441A300B36AD6 /* UserProfileView+ArticleList.swift in Sources */,
 				2459B30D26D748F100ABCE61 /* NetworkAPIProtocol.swift in Sources */,
 				2D34F40F26FAD8C400C99C6C /* FeedDetailView+UIModel.swift in Sources */,
 				2459B30926D748B700ABCE61 /* NetworkAPI.swift in Sources */,
@@ -1967,6 +1986,7 @@
 				2D29A70F26F44EBC001EA24F /* FeedRowViewModel.swift in Sources */,
 				2424B22C26D4A22B00CF07B5 /* LoginView.swift in Sources */,
 				2D031D5526EB1093009A5158 /* View+Bind.swift in Sources */,
+				2D469D3F2704430A00B36AD6 /* AvatarView.swift in Sources */,
 				24C9393926D89FA300547800 /* AuthTextFieldView.swift in Sources */,
 				2D882EDE26F1CCA400DB6560 /* GetArticleCommentsUseCase.swift in Sources */,
 				24F3D7B126DCE8DA00DE2420 /* UserSessionRepository.swift in Sources */,
@@ -2722,6 +2742,14 @@
 				minimumVersion = 1.2.1;
 			};
 		};
+		2DD606C5270AF1C50051FB80 /* XCRemoteSwiftPackageReference "PagerTabStripView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markgravity/PagerTabStripView.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		2DEF1F8826E5FD0C00EB93CC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
@@ -2757,6 +2785,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2D6EFE1926E9EB8C006B9939 /* XCRemoteSwiftPackageReference "DefaultCodable" */;
 			productName = DefaultCodable;
+		};
+		2DD606C6270AF1C50051FB80 /* PagerTabStripView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2DD606C5270AF1C50051FB80 /* XCRemoteSwiftPackageReference "PagerTabStripView" */;
+			productName = PagerTabStripView;
 		};
 		2DEF1F8926E5FD0C00EB93CC /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

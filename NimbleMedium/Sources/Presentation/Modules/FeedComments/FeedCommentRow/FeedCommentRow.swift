@@ -42,27 +42,14 @@ struct FeedCommentRow: View {
         }
     }
 
-    var defaultAvatar: some View {
-        Image(R.image.defaultAvatar.name)
-            .resizable()
-            .frame(width: 25.0, height: 25.0)
-    }
-
     init(viewModel: FeedCommentRowViewModelProtocol) {
         self.viewModel = viewModel
     }
 
     func author(uiModel: UIModel) -> some View {
         HStack {
-            if let url = uiModel.authorImage {
-                // FIXME: It blocks UI
-                WebImage(url: url)
-                    .placeholder { defaultAvatar }
-                    .resizable()
-                    .frame(width: 25.0, height: 25.0)
-            } else {
-                defaultAvatar
-            }
+            AvatarView(url: uiModel.authorImage)
+                .size(25.0)
             Text(uiModel.authorName)
                 .foregroundColor(.green)
             Text(uiModel.commentUpdatedAt)

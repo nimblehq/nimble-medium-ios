@@ -44,5 +44,6 @@
 
 
 "userProfile.current.title" = "My Profile";
+"userProfile.favouritedArticles.title" = "Favourited Articles";
 "userProfile.other.title" = "Profile";
 "userProfile.username.unknown" = "Unknown User";

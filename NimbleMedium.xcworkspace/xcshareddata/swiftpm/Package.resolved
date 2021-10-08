@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "PagerTabStripView",
+        "repositoryURL": "https://github.com/markgravity/PagerTabStripView.git",
+        "state": {
+          "branch": "master",
+          "revision": "2bbf6d99a6bbea696abaaf1c9f9e6172863f7245",
+          "version": null
+        }
+      },
+      {
         "package": "Refresh",
         "repositoryURL": "https://github.com/wxxsw/Refresh",
         "state": {

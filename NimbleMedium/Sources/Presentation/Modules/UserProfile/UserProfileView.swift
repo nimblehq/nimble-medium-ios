@@ -9,6 +9,7 @@ import Resolver
 import SDWebImageSwiftUI
 import SwiftUI
 import ToastUI
+import PagerTabStripView
 
 struct UserProfileView: View {
 
@@ -19,17 +20,34 @@ struct UserProfileView: View {
     @ObservedViewModel var viewModel: UserProfileViewModelProtocol
 
     private let username: String?
+    
+    @State private var selectedTabIndex: Int = 0
 
     var body: some View {
-        ScrollView(.vertical) {
+        VStack {
             profileHeader
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.vertical, 30.0)
                 .background(Color.gray)
 
-            // TODO: Implement Articles section in another feature task
-            Text("Articles section")
-                .padding(.horizontal, 8.0)
+            PagerTabStripView(selection: $selectedTabIndex) {
+                // TODO: Add Created Articles List
+                Text("")
+                    .pagerTabItem { TabItemTitle("Empty Tab") }
+                ArticleList()
+                    .pagerTabItem {
+                        TabItemTitle(Localizable.userProfileFavouritedArticlesTitle())
+                    }
+            }
+            .pagerTabStripViewStyle(
+                .barButton(
+                    indicatorBarHeight: 2.0,
+                    indicatorBarColor: .green,
+                    tabItemSpacing: 0.0,
+                    tabItemHeight: 50.0,
+                    placedInToolbar: false
+                )
+            )
         }
         .navigationTitle(username != nil ? Localizable.userProfileOtherTitle() : Localizable.userProfileCurrentTitle())
         .modifier(NavigationBarPrimaryStyle())
@@ -48,15 +66,9 @@ struct UserProfileView: View {
 
     var profileHeader: some View {
         VStack(alignment: .center, spacing: 0.0) {
-            if let url = uiModel?.avatarURL {
-                WebImage(url: url)
-                    .placeholder { defaultAvatar }
-                    .resizable()
-                    .frame(width: 120.0, height: 120.0)
-                    .clipShape(Circle())
-            } else {
-                defaultAvatar
-            }
+            AvatarView(url: uiModel?.avatarURL)
+                .size(120.0)
+                .circle()
             Text(uiModel?.username ?? Localizable.userProfileUsernameUnknown())
                 .foregroundColor(.white)
                 .fontWeight(.bold)
@@ -65,12 +77,46 @@ struct UserProfileView: View {
                 .padding()
         }
     }
+}
 
-    var defaultAvatar: some View {
-        Image(R.image.defaultAvatar.name)
-            .resizable()
-            .frame(width: 120.0, height: 120.0)
-            .clipShape(Circle())
+private extension UserProfileView {
+
+    class NavTabViewTheme: ObservableObject {
+        @Published var textColor = Color.gray
+    }
+
+    struct TabItemTitle: View, PagerTabViewDelegate {
+
+        let title: String
+
+        @ObservedObject fileprivate var theme = NavTabViewTheme()
+
+        var body: some View {
+            VStack {
+                Spacer()
+                Text(title)
+                    .foregroundColor(theme.textColor)
+                    .font(.subheadline)
+                Spacer()
+                Divider()
+                    .frame(height: 1)
+                    .background(Color(R.color.lightGray.name))
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+
+        init(_ title: String) {
+            self.title = title
+        }
+
+        func setState(state: PagerTabViewState) {
+            switch state {
+            case .selected:
+                theme.textColor = .green
+            default:
+                theme.textColor = .gray
+            }
+        }
     }
 
     init(username: String? = nil) {
