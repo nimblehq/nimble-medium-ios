@@ -69,13 +69,13 @@ extension UserProfileCreatedArticlesTabViewModel: UserProfileCreatedArticlesTabV
 private extension UserProfileCreatedArticlesTabViewModel {
 
     func fetchCreatedArticlesTriggered(owner: UserProfileCreatedArticlesTabViewModel) -> Observable<Void> {
-        // TODO: Get current user articles
-        guard let username = username else {
-            return .just(())
-        }
-
-        return getCreatedArticlesUseCase
-            .execute(username: username)
+        Observable.just(username)
+            .compactMap { $0 }
+            .flatMap {
+                owner.getCreatedArticlesUseCase
+                    .execute(username: $0)
+            }
+            .asSingle()
             .do(
                 onSuccess: {
                     owner.$didFetchCreatedArticles.accept(())

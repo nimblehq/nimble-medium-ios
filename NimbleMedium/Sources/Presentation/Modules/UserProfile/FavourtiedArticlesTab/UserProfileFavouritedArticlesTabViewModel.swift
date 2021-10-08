@@ -71,13 +71,13 @@ extension UserProfileFavouritedArticlesTabViewModel: UserProfileFavouritedArticl
 private extension UserProfileFavouritedArticlesTabViewModel {
 
     func fetchFavouritedArticlesTriggered(owner: UserProfileFavouritedArticlesTabViewModel) -> Observable<Void> {
-        // TODO: Get current user articles
-        guard let username = username else {
-            return .just(())
-        }
-
-        return getFavouritedArticlesUseCase
-            .execute(username: username)
+        Observable.just(username)
+            .compactMap { $0 }
+            .flatMap {
+                owner.getFavouritedArticlesUseCase
+                    .execute(username: $0)
+            }
+            .asSingle()
             .do(
                 onSuccess: {
                     owner.$didFetchFavouritedArticles.accept(())
