@@ -15,6 +15,9 @@ struct HomeView: View {
 
     @ObservedViewModel private var viewModel: HomeViewModelProtocol = Resolver.resolve()
 
+    @Injected private var feedsViewModel: FeedsViewModelProtocol
+    @Injected private var sideMenuViewModel: SideMenuViewModelProtocol
+
     @State private var displaySideMenuProgress: CGFloat = 0.0
     @State private var isDraggingEnabled = false
 
@@ -55,6 +58,10 @@ struct HomeView: View {
         .onTapGesture {
             viewModel.input.toggleSideMenu(false)
         }
+    }
+
+    init() {
+        viewModel.input.bindData(feedsViewModel: feedsViewModel, sideMenuViewModel: sideMenuViewModel)
     }
 
     private func dragGesture(geo: GeometryProxy) -> some Gesture {

@@ -42,5 +42,7 @@
 "signup.textFieldUsername.placeholder" = "Username";
 "signup.title" = "Signup";
 
-"userProfile.title" = "Profile";
+
+"userProfile.current.title" = "My Profile";
+"userProfile.other.title" = "Profile";
 "userProfile.username.unknown" = "Unknown User";

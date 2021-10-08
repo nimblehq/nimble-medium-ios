@@ -12,7 +12,11 @@ import RxSwift
 
 // sourcery: AutoMockable
 protocol HomeViewModelInput {
-    
+
+    func bindData(
+        feedsViewModel: FeedsViewModelProtocol,
+        sideMenuViewModel: SideMenuViewModelProtocol
+    )
     func toggleSideMenu(_ value: Bool)
 }
 
@@ -37,12 +41,15 @@ final class HomeViewModel: ObservableObject, HomeViewModelProtocol {
     var input: HomeViewModelInput { self }
     var output: HomeViewModelOutput { self }
 
-    @Injected var feedsViewModel: FeedsViewModelProtocol
-    @Injected var sideMenuViewModel: SideMenuViewModelProtocol
-
     @Published var isSideMenuOpen: Bool = false
+}
 
-    init() {
+extension HomeViewModel: HomeViewModelInput {
+
+    func bindData(
+        feedsViewModel: FeedsViewModelProtocol,
+        sideMenuViewModel: SideMenuViewModelProtocol
+    ) {
         feedsViewModel.output.didToggleSideMenu
             .emit(with: self) { viewModel, _ in
                 viewModel.toggleSideMenu(true)
@@ -56,9 +63,6 @@ final class HomeViewModel: ObservableObject, HomeViewModelProtocol {
             }
             .disposed(by: disposeBag)
     }
-}
-
-extension HomeViewModel: HomeViewModelInput {
 
     func toggleSideMenu(_ value: Bool) {
         isSideMenuOpen = value

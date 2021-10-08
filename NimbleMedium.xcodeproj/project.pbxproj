@@ -435,9 +435,9 @@
 			isa = PBXGroup;
 			children = (
 				2497356226D35BBD00177A7C /* MenuOptionButtonStyle.swift */,
+				241B4EE926D3B3F4000409CC /* SideMenuActionItemView.swift */,
 				2497356026D34F3200177A7C /* SideMenuActionsView.swift */,
 				24204C9F26D625D300534314 /* SideMenuActionsViewModel.swift */,
-				241B4EE926D3B3F4000409CC /* SideMenuActionItemView.swift */,
 			);
 			path = SideMenuActions;
 			sourceTree = "<group>";

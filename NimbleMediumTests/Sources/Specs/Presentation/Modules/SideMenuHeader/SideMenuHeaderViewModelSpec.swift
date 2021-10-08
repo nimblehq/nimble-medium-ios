@@ -51,6 +51,7 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                             .just(user, on: scheduler, at: 50)
 
                         viewModel = SideMenuHeaderViewModel()
+                        viewModel.input.bindData(homeViewModel: self.homeViewModel)
                     }
 
                     it("returns output with the correct uiModel") {
@@ -74,6 +75,7 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                             .just(nil, on: scheduler, at: 50)
 
                         viewModel = SideMenuHeaderViewModel()
+                        viewModel.input.bindData(homeViewModel: self.homeViewModel)
                     }
 
                     it("returns output with a nil value") {
@@ -93,6 +95,7 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                             .error(TestError.mock, on: scheduler, at: 50)
 
                         viewModel = SideMenuHeaderViewModel()
+                        viewModel.input.bindData(homeViewModel: self.homeViewModel)
                     }
 
                     it("returns output with a nil value") {

@@ -31,7 +31,7 @@ struct UserProfileView: View {
             Text("Articles section")
                 .padding(.horizontal, 8.0)
         }
-        .navigationTitle(Localizable.userProfileTitle())
+        .navigationTitle(username != nil ? Localizable.userProfileOtherTitle() : Localizable.userProfileCurrentTitle())
         .modifier(NavigationBarPrimaryStyle())
         .onAppear { viewModel.input.getUserProfile() }
         .toast(isPresented: $errorToast, dismissAfter: 3.0) {

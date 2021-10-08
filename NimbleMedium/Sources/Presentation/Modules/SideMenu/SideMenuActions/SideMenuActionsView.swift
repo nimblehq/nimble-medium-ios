@@ -13,10 +13,14 @@ struct SideMenuActionsView: View {
 
     @ObservedViewModel private var viewModel: SideMenuActionsViewModelProtocol = Resolver.resolve()
 
-    // TODO: Update with correct value for isAuthenticated in integrate task
+    @Injected private var loginViewModel: LoginViewModelProtocol
+    @Injected private var signupViewModel: SignupViewModelProtocol
+    @Injected private var homeViewModel: HomeViewModelProtocol
+
     @State private var isAuthenticated = false
     @State private var isShowingLoginScreen = false
     @State private var isShowingSignupScreen = false
+    @State private var isShowingMyProfileScreen = false
 
     var body: some View {
         if isAuthenticated {
@@ -32,7 +36,13 @@ struct SideMenuActionsView: View {
                 text: Localizable.menuOptionMyProfile(),
                 iconName: R.image.iconMyProfile.name
             ) {
-                // TODO: Implement this option tap action in the integrate task
+                viewModel.input.selectMyProfileOption()
+            }
+            .fullScreenCover(isPresented: $isShowingMyProfileScreen) {
+                NavigationView {
+                    UserProfileView()
+                }
+                .accentColor(.white)
             }
 
             SideMenuActionItemView(
@@ -42,6 +52,8 @@ struct SideMenuActionsView: View {
                 // TODO: Implement this option tap action in the integrate task
             }
         }
+        .bind(viewModel.output.didSelectMyProfileOption, to: _isShowingMyProfileScreen)
+        .bind(viewModel.output.isAuthenticated, to: _isAuthenticated)
     }
 
     var unauthenticatedMenuHeader: some View {
@@ -66,12 +78,17 @@ struct SideMenuActionsView: View {
                 SignupView()
             }
         }
-        .onReceive(viewModel.output.didSelectLoginOption) {
-            isShowingLoginScreen = $0
-        }
-        .onReceive(viewModel.output.didSelectSignupOption) {
-            isShowingSignupScreen = $0
-        }
+        .bind(viewModel.output.didSelectLoginOption, to: _isShowingLoginScreen)
+        .bind(viewModel.output.didSelectSignupOption, to: _isShowingSignupScreen)
+        .bind(viewModel.output.isAuthenticated, to: _isAuthenticated)
+    }
+
+    init() {
+        viewModel.input.bindData(
+            loginViewModel: loginViewModel,
+            signupViewModel: signupViewModel,
+            homeViewModel: homeViewModel
+        )
     }
 }
 
