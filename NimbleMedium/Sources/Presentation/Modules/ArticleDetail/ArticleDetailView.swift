@@ -76,7 +76,13 @@ struct ArticleDetailView: View {
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .font(.title)
-                author(uiModel: uiModel)
+                HStack {
+                    author(uiModel: uiModel)
+                    Spacer()
+
+                    // TODO: Add follow ation & handle state
+                    FollowButton(isSelected: false) {}
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.vertical, 16.0)

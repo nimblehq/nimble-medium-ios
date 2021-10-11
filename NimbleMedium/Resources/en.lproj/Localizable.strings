@@ -24,6 +24,9 @@
 "feeds.noArticle" = "No Article";
 "feeds.title" = "Feeds";
 
+"followButton.normal.title" = "Follow";
+"followButton.selected.title" = "Unfollow";
+
 "login.needAccount.title" = "Need an account?";
 "login.textFieldEmail.placeholder" = "Email";
 "login.textFieldPassword.placeholder" = "Password";
