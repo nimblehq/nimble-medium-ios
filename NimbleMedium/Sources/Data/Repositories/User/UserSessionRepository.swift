@@ -15,18 +15,6 @@ final class UserSessionRepository: UserSessionRepositoryProtocol {
         self.keychain = keychain
     }
 
-    func saveUser(_ user: User) -> Completable {
-        Completable.create { [weak self] observer in
-            do {
-                try self?.keychain.set(CodableUser(user: user), for: .user)
-            } catch {
-                observer(.error(error))
-            }
-            observer(.completed)
-            return Disposables.create()
-        }
-    }
-
     func getCurrentUser() -> Single<User?> {
         Single.create { [weak self] single in
             do {
@@ -36,6 +24,30 @@ final class UserSessionRepository: UserSessionRepositoryProtocol {
                 single(.failure(error))
             }
 
+            return Disposables.create()
+        }
+    }
+
+    func removeCurrentUser() -> Completable {
+        Completable.create { [weak self] observer in
+            do {
+                try self?.keychain.remove(.user)
+            } catch {
+                observer(.error(error))
+            }
+            observer(.completed)
+            return Disposables.create()
+        }
+    }
+
+    func saveUser(_ user: User) -> Completable {
+        Completable.create { [weak self] observer in
+            do {
+                try self?.keychain.set(CodableUser(user: user), for: .user)
+            } catch {
+                observer(.error(error))
+            }
+            observer(.completed)
             return Disposables.create()
         }
     }

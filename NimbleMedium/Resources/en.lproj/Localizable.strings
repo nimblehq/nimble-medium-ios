@@ -6,8 +6,10 @@
   
 */
 
-"action.login" = "Login";
-"action.signup" = "Signup";
+"action.cancel.text" = "Cancel";
+"action.confirm.text" = "Confirm";
+"action.login.text" = "Login";
+"action.signup.text" = "Signup";
 
 "articleDetail.comments.title" = "Go to comments section";
 "articleDetail.fetchFailure.message" = "Unable to load the article";
@@ -35,6 +37,8 @@
 "menu.option.logout" = "Logout";
 "menu.option.myProfile" = "My Profile";
 "menu.option.signup" = "Signup";
+
+"popup.confirmLogout.title" = "Are you sure you want to logout?";
 
 "signup.haveAccount.title" = "Have an account?";
 "signup.textFieldEmail.placeholder" = "Email";

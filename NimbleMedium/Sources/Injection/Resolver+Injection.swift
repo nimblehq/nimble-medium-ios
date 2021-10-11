@@ -75,6 +75,9 @@ extension Resolver: ResolverRegistering {
             )
         }.implements(LoginUseCaseProtocol.self)
         register {
+            LogoutUseCase(userSessionRepository: resolve())
+        }.implements(LogoutUseCaseProtocol.self)
+        register {
             SignupUseCase(
                 authRepository: resolve(),
                 userSessionRepository: resolve()

@@ -39,6 +39,13 @@ final class SideMenuViewModel: ObservableObject, SideMenuViewModelProtocol {
 extension SideMenuViewModel: SideMenuViewModelInput {
 
     func bindData(sideMenuActionsViewModel: SideMenuActionsViewModelProtocol) {
+        sideMenuActionsViewModel.output.didLogout.asObservable()
+            .withUnretained(self)
+            .bind { _ in
+                self.$didSelectMenuOption.accept(())
+            }
+            .disposed(by: disposeBag)
+        
         sideMenuActionsViewModel.output.didSelectLoginOption.asObservable()
             .withUnretained(self)
             .bind { _ in
