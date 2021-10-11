@@ -10,6 +10,7 @@ import RxCocoa
 import Combine
 import Resolver
 
+// sourcery: AutoMockable
 protocol SideMenuActionsViewModelInput {
 
     func bindData(

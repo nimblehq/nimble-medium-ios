@@ -15,6 +15,7 @@ protocol SignupViewModelInput {
     func didTapHaveAccountButton()
 }
 
+// sourcery: AutoMockable
 protocol SignupViewModelOutput {
 
     var didSelectHaveAccount: Signal<Void> { get }
@@ -23,6 +24,7 @@ protocol SignupViewModelOutput {
     var isLoading: Driver<Bool> { get }
 }
 
+// sourcery: AutoMockable
 protocol SignupViewModelProtocol: ObservableViewModel {
 
     var input: SignupViewModelInput { get }
