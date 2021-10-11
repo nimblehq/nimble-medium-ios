@@ -48,6 +48,9 @@ struct SideMenuHeaderView: View {
 
     func authenticatedMenuHeader(uiModel: UIModel) -> some View {
         VStack(alignment: .center) {
+            Spacer()
+            Spacer()
+            Spacer()
             AvatarView(url: uiModel.avatarURL)
                 .size(100.0)
                 .circle()
@@ -57,6 +60,18 @@ struct SideMenuHeaderView: View {
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
                 .padding()
+            Spacer()
+            HStack {
+                Spacer()
+                Button(
+                    action: {
+                        // TODO: Handle edit profile button in integrate task
+                    },
+                    label: { Image(systemName: SystemImageName.squareAndPencil.rawValue) }
+                )
+                    .foregroundColor(.white)
+                    .padding()
+            }
         }
     }
 }
