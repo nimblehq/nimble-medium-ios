@@ -69,16 +69,16 @@ struct SignupView: View {
     var contentView: some View {
         Background {
             VStack(spacing: 15.0) {
-                AuthTextFieldView(
+                AppTextFieldView(
                     placeholder: Localizable.signupTextFieldUsernamePlaceholder(),
                     text: $username
                 )
-                AuthTextFieldView(
+                AppTextFieldView(
                     placeholder: Localizable.signupTextFieldEmailPlaceholder(),
                     text: $email,
                     supportEmailKeyboard: true
                 )
-                AuthSecureFieldView(
+                AppSecureFieldView(
                     placeholder: Localizable.signupTextFieldPasswordPlaceholder(),
                     text: $password)
                 AppMainButton(title: Localizable.actionSignupText()) {
