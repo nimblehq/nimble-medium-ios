@@ -11,6 +11,8 @@ import RxSwift
 protocol UserRepositoryProtocol: AnyObject {
 
     func getUserProfile(username: String) -> Single<Profile>
-    
+
+    func follow(username: String) -> Completable
+
     func unfollow(username: String) -> Completable
 }

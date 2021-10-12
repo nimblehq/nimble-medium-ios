@@ -101,6 +101,9 @@ extension Resolver: ResolverRegistering {
         register {
             UnfollowUserUseCase(userRepository: resolve())
         }.implements(UnfollowUserUseCaseProtocol.self)
+        register {
+            FollowUserUseCase(userRepository: resolve())
+        }.implements(FollowUserUseCaseProtocol.self)
     }
 
     private static func registerViewModels() {

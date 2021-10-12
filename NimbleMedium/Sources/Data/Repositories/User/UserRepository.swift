@@ -27,6 +27,13 @@ final class UserRepository: UserRepositoryProtocol {
             .map { $0.profile as Profile }
     }
 
+    func follow(username: String) -> Completable {
+        let requestConfiguration = UserRequestConfiguration.follow(username: username)
+        return authenticatedNetworkAPI
+            .performRequest(requestConfiguration, for: APIProfileResponse.self)
+            .asCompletable()
+    }
+
     func unfollow(username: String) -> Completable {
         let requestConfiguration = UserRequestConfiguration.unfollow(username: username)
         return authenticatedNetworkAPI
