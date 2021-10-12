@@ -67,8 +67,8 @@
 		24B277D62701C31100332FEA /* GetUserProfileUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B277D52701C31100332FEA /* GetUserProfileUseCaseSpec.swift */; };
 		24B277DC2701C79400332FEA /* APIProfileResponse+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B277DB2701C79400332FEA /* APIProfileResponse+Dummy.swift */; };
 		24B277E02701CBAA00332FEA /* profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 24B277DF2701CBA900332FEA /* profile.json */; };
-		24C9393926D89FA300547800 /* AppTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393826D89FA300547800 /* AppTextFieldView.swift */; };
-		24C9393B26D8A1A200547800 /* AppSecureFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393A26D8A1A200547800 /* AppSecureFieldView.swift */; };
+		24C9393926D89FA300547800 /* AppTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393826D89FA300547800 /* AppTextField.swift */; };
+		24C9393B26D8A1A200547800 /* AppSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393A26D8A1A200547800 /* AppSecureField.swift */; };
 		24C9393D26D8A26300547800 /* AppMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393C26D8A26300547800 /* AppMainButton.swift */; };
 		24F3D7AA26DCE54C00DE2420 /* CodableUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7A926DCE54C00DE2420 /* CodableUser.swift */; };
 		24F3D7AC26DCE84A00DE2420 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7AB26DCE84A00DE2420 /* Keychain.swift */; };
@@ -265,8 +265,8 @@
 		24B277D52701C31100332FEA /* GetUserProfileUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfileUseCaseSpec.swift; sourceTree = "<group>"; };
 		24B277DB2701C79400332FEA /* APIProfileResponse+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIProfileResponse+Dummy.swift"; sourceTree = "<group>"; };
 		24B277DF2701CBA900332FEA /* profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = profile.json; sourceTree = "<group>"; };
-		24C9393826D89FA300547800 /* AppTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextFieldView.swift; sourceTree = "<group>"; };
-		24C9393A26D8A1A200547800 /* AppSecureFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSecureFieldView.swift; sourceTree = "<group>"; };
+		24C9393826D89FA300547800 /* AppTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextField.swift; sourceTree = "<group>"; };
+		24C9393A26D8A1A200547800 /* AppSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSecureField.swift; sourceTree = "<group>"; };
 		24C9393C26D8A26300547800 /* AppMainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainButton.swift; sourceTree = "<group>"; };
 		24F3D7A926DCE54C00DE2420 /* CodableUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableUser.swift; sourceTree = "<group>"; };
 		24F3D7AB26DCE84A00DE2420 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
@@ -1017,8 +1017,8 @@
 			isa = PBXGroup;
 			children = (
 				24C9393C26D8A26300547800 /* AppMainButton.swift */,
-				24C9393A26D8A1A200547800 /* AppSecureFieldView.swift */,
-				24C9393826D89FA300547800 /* AppTextFieldView.swift */,
+				24C9393A26D8A1A200547800 /* AppSecureField.swift */,
+				24C9393826D89FA300547800 /* AppTextField.swift */,
 				244E0FF62715316900C01139 /* AppTextView.swift */,
 				24204C9D26D5289900534314 /* Background.swift */,
 				2D17E4EE26F07738001D3F90 /* AuthorView.swift */,
@@ -2029,7 +2029,7 @@
 				24204CA226D62B6900534314 /* SideMenuViewModel.swift in Sources */,
 				2D882ED726F1CB6600DB6560 /* ArticleCommentRepository.swift in Sources */,
 				2D4BB30126FC5923005FED5F /* ArticleCommentRow+UIModel.swift in Sources */,
-				24C9393B26D8A1A200547800 /* AppSecureFieldView.swift in Sources */,
+				24C9393B26D8A1A200547800 /* AppSecureField.swift in Sources */,
 				246B387626F8A6AA003173FD /* SideMenuHeaderView+UIModel.swift in Sources */,
 				249042E726D4D14F00E970B6 /* SignupViewModel.swift in Sources */,
 				246A8FB826D39C24009F9753 /* SideMenuHeaderView.swift in Sources */,
@@ -2095,7 +2095,7 @@
 				2424B22C26D4A22B00CF07B5 /* LoginView.swift in Sources */,
 				2D031D5526EB1093009A5158 /* View+Bind.swift in Sources */,
 				2D469D3F2704430A00B36AD6 /* AvatarView.swift in Sources */,
-				24C9393926D89FA300547800 /* AppTextFieldView.swift in Sources */,
+				24C9393926D89FA300547800 /* AppTextField.swift in Sources */,
 				2D882EDE26F1CCA400DB6560 /* GetArticleCommentsUseCase.swift in Sources */,
 				24F3D7B126DCE8DA00DE2420 /* UserSessionRepository.swift in Sources */,
 				2D1D727426EB305F00431679 /* DateFormatter+Formats.swift in Sources */,

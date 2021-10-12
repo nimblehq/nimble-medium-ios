@@ -1,5 +1,5 @@
 //
-//  AppTextFieldView.swift
+//  AppTextField.swift
 //  NimbleMedium
 //
 //  Created by Minh Pham on 27/08/2021.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AppTextFieldView: View {
+struct AppTextField: View {
 
     private var placeholder: String
     private var text: Binding<String>

@@ -1,5 +1,5 @@
 //
-//  AppSecureFieldView.swift
+//  AppSecureField.swift
 //  NimbleMedium
 //
 //  Created by Minh Pham on 27/08/2021.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AppSecureFieldView: View {
+struct AppSecureField: View {
 
     private var placeholder: String
     private var text: Binding<String>

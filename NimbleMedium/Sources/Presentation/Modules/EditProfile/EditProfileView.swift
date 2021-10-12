@@ -42,20 +42,20 @@ struct EditProfileView: View {
     var contentView: some View {
         ScrollView {
             VStack(spacing: 15.0) {
-                AppTextFieldView(
+                AppTextField(
                     placeholder: Localizable.editProfileTextFieldAvatarURLPlaceholder(),
                     text: $avatarURL)
-                AppTextFieldView(
+                AppTextField(
                     placeholder: Localizable.editProfileTextFieldUsernamePlaceholder(),
                     text: $username)
                 AppTextView(
                     placeholder: Localizable.editProfileTextViewBioPlaceholder(),
                     text: $bio)
                     .frame(height: 200.0, alignment: .leading)
-                AppTextFieldView(
+                AppTextField(
                     placeholder: Localizable.editProfileTextFieldEmailPlaceholder(),
                     text: $email)
-                AppSecureFieldView(
+                AppSecureField(
                     placeholder: Localizable.editProfileTextFieldPasswordPlaceholder(),
                     text: $password)
                 AppMainButton(title: Localizable.actionUpdateText()) {

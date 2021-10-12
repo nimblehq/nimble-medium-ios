@@ -68,12 +68,12 @@ struct LoginView: View {
     var contentView: some View {
         Background {
             VStack(spacing: 15.0) {
-                AppTextFieldView(
+                AppTextField(
                     placeholder: Localizable.loginTextFieldEmailPlaceholder(),
                     text: $email,
                     supportEmailKeyboard: true
                 )
-                AppSecureFieldView(
+                AppSecureField(
                     placeholder: Localizable.loginTextFieldPasswordPlaceholder(),
                     text: $password)
                 AppMainButton(title: Localizable.actionLoginText()) {
