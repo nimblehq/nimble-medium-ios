@@ -38,7 +38,10 @@ extension Resolver: ResolverRegistering {
             ArticleCommentRepository(networkAPI: resolve())
         }.implements(ArticleCommentRepositoryProtocol.self)
         register {
-            UserRepository(networkAPI: resolve())
+            UserRepository(
+                networkAPI: resolve(),
+                authenticatedNetworkAPI: resolve()
+            )
         }.implements(UserRepositoryProtocol.self)
         register {
             UserSessionRepository(keychain: resolve())
@@ -95,6 +98,9 @@ extension Resolver: ResolverRegistering {
         register {
             GetCreatedArticlesUseCase(articleRepository: resolve())
         }.implements(GetCreatedArticlesUseCaseProtocol.self)
+        register {
+            UnfollowUserUseCase(userRepository: resolve())
+        }.implements(UnfollowUserUseCaseProtocol.self)
     }
 
     private static func registerViewModels() {
