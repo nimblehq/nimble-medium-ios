@@ -17,12 +17,14 @@ struct FollowButton: View {
         switch style {
         case .light:
             return isSelected ? Color(R.color.dark.name) : .gray
+        case .dark:
+            return isSelected ? Color(R.color.dark.name) : Color(R.color.semiLightGray.name)
         }
     }
 
     private var backgroundColor: Color {
         switch style {
-        case .light:
+        case .light, .dark:
             return isSelected ? Color(R.color.lightGray.name) : .clear
         }
     }
@@ -64,5 +66,6 @@ extension FollowButton {
     enum Style {
 
         case light
+        case dark
     }
 }

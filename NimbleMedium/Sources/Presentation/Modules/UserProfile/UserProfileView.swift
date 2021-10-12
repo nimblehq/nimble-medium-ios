@@ -69,6 +69,13 @@ struct UserProfileView: View {
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
                 .padding()
+            HStack {
+                Spacer()
+
+                // TODO: Add follow ation & handle state
+                FollowButton(isSelected: true, style: .dark) {}
+            }
+            .padding(.horizontal, 20.0)
         }
     }
 
