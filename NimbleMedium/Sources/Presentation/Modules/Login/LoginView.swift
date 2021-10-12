@@ -76,7 +76,7 @@ struct LoginView: View {
                 AuthSecureFieldView(
                     placeholder: Localizable.loginTextFieldPasswordPlaceholder(),
                     text: $password)
-                AppMainButton(title: Localizable.actionLogin()) {
+                AppMainButton(title: Localizable.actionLoginText()) {
                     hideKeyboard()
                     viewModel.input.didTapLoginButton(email: email, password: password)
                 }

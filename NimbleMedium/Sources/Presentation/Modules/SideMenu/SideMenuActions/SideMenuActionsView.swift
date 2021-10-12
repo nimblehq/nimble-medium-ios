@@ -21,6 +21,7 @@ struct SideMenuActionsView: View {
     @State private var isShowingLoginScreen = false
     @State private var isShowingSignupScreen = false
     @State private var isShowingMyProfileScreen = false
+    @State private var showLogoutConfirmationAlert = false
 
     var body: some View {
         if isAuthenticated {
@@ -49,7 +50,16 @@ struct SideMenuActionsView: View {
                 text: Localizable.menuOptionLogout(),
                 iconName: R.image.iconLogout.name
             ) {
-                // TODO: Implement this option tap action in the integrate task
+                showLogoutConfirmationAlert.toggle()
+            }
+            .alert(isPresented: $showLogoutConfirmationAlert) {
+                Alert(
+                    title: Text(Localizable.popupConfirmLogoutTitle()),
+                    primaryButton: .destructive(
+                        Text(Localizable.actionConfirmText()), action: { viewModel.input.selectLogoutOption() }
+                    ),
+                    secondaryButton: .default(Text(Localizable.actionCancelText()))
+                )
             }
         }
         .bind(viewModel.output.didSelectMyProfileOption, to: _isShowingMyProfileScreen)

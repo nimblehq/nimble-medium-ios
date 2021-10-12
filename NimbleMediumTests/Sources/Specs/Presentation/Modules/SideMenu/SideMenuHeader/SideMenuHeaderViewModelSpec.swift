@@ -33,7 +33,7 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                 disposeBag = DisposeBag()
             }
 
-            describe("its sideMenuDidOpen call") {
+            describe("its homeViewModel isSideMenuOpenDidChange call") {
 
                 beforeEach {
                     let homeViewModelOutput = HomeViewModelOutputMock()

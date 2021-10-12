@@ -42,6 +42,7 @@ extension Resolver {
         Resolver.mock.register { GetListArticlesUseCaseProtocolMock() }.implements(GetListArticlesUseCaseProtocol.self)
         Resolver.mock.register { GetUserProfileUseCaseProtocolMock() }.implements(GetUserProfileUseCaseProtocol.self)
         Resolver.mock.register { LoginUseCaseProtocolMock() }.implements(LoginUseCaseProtocol.self)
+        Resolver.mock.register { LogoutUseCaseProtocolMock() }.implements(LogoutUseCaseProtocol.self)
         Resolver.mock.register { GetCreatedArticlesUseCaseProtocolMock() }
             .implements(GetCreatedArticlesUseCaseProtocol.self)
         Resolver.mock.register { GetFavouritedArticlesUseCaseProtocolMock() }
@@ -51,5 +52,7 @@ extension Resolver {
     private static func registerViewModels() {
         Resolver.mock.register { ArticleRowViewModelProtocolMock() }.implements(ArticleRowViewModelProtocol.self)
         Resolver.mock.register { HomeViewModelProtocolMock() }.implements(HomeViewModelProtocol.self)
+        Resolver.mock.register { LoginViewModelProtocolMock() }.implements(LoginViewModelProtocol.self)
+        Resolver.mock.register { SignupViewModelProtocolMock() }.implements(SignupViewModelProtocol.self)
     }
 }

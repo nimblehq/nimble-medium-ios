@@ -9,12 +9,14 @@ import RxSwift
 import RxCocoa
 import Resolver
 
+// sourcery: AutoMockable
 protocol LoginViewModelInput {
 
     func didTapLoginButton(email: String, password: String)
     func didTapNoAccountButton()
 }
 
+// sourcery: AutoMockable
 protocol LoginViewModelOutput {
 
     var didLogin: Signal<Void> { get }
@@ -23,6 +25,7 @@ protocol LoginViewModelOutput {
     var isLoading: Driver<Bool> { get }
 }
 
+// sourcery: AutoMockable
 protocol LoginViewModelProtocol: ObservableViewModel {
 
     var input: LoginViewModelInput { get }

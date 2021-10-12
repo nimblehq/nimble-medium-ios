@@ -81,7 +81,7 @@ struct SignupView: View {
                 AuthSecureFieldView(
                     placeholder: Localizable.signupTextFieldPasswordPlaceholder(),
                     text: $password)
-                AppMainButton(title: Localizable.actionSignup()) {
+                AppMainButton(title: Localizable.actionSignupText()) {
                     hideKeyboard()
                     viewModel.input.didTapSignupButton(username: username, email: email, password: password)
                 }

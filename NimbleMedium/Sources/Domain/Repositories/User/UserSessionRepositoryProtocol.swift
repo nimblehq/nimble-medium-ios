@@ -10,6 +10,7 @@ import RxSwift
 // sourcery: AutoMockable
 protocol UserSessionRepositoryProtocol: AnyObject {
 
-    func saveUser(_ user: User) -> Completable
     func getCurrentUser() -> Single<User?>
+    func removeCurrentUser() -> Completable
+    func saveUser(_ user: User) -> Completable
 }

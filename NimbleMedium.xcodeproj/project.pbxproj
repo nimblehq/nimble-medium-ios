@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		240E218026FC361000EFC3B5 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E217F26FC361000EFC3B5 /* UserProfileView.swift */; };
 		2410D4A127041837009B4A95 /* AuthenticatedInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410D4A027041837009B4A95 /* AuthenticatedInterceptor.swift */; };
+		241A5A252713FA9B00BC33F1 /* LogoutUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241A5A242713FA9B00BC33F1 /* LogoutUseCase.swift */; };
+		241A5A282714206E00BC33F1 /* LogoutUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241A5A272714206E00BC33F1 /* LogoutUseCaseSpec.swift */; };
 		241B4EEA26D3B3F4000409CC /* SideMenuActionItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B4EE926D3B3F4000409CC /* SideMenuActionItemView.swift */; };
 		241B99DC26DF23030041207F /* AutoMockable.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B99DB26DF23030041207F /* AutoMockable.generated.swift */; };
 		241B99DE26DF34720041207F /* SignupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B99DD26DF34720041207F /* SignupUseCase.swift */; };
@@ -46,6 +48,7 @@
 		2477173B2704336A00BF13F2 /* GetCurrentUserUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2477173A2704336A00BF13F2 /* GetCurrentUserUseCaseSpec.swift */; };
 		2477173D27043E7900BF13F2 /* APIUserResponse+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2477173C27043E7900BF13F2 /* APIUserResponse+Dummy.swift */; };
 		2477173F27043EAB00BF13F2 /* user.json in Resources */ = {isa = PBXBuildFile; fileRef = 2477173E27043EAB00BF13F2 /* user.json */; };
+		247CD0F027142A13002D90D1 /* SideMenuActionsViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247CD0EF27142A13002D90D1 /* SideMenuActionsViewModelSpec.swift */; };
 		248E13A926F054AD00439BCC /* Resolver+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248E13A826F054AD00439BCC /* Resolver+Injection.swift */; };
 		248E13AC26F054FD00439BCC /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = 248E13AB26F054FD00439BCC /* Resolver */; };
 		248E13B426F07F5800439BCC /* Resolver+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248E13B326F07F5800439BCC /* Resolver+Tests.swift */; };
@@ -204,6 +207,8 @@
 		21851292A064EB97674233A2 /* Pods-NimbleMediumTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.staging.xcconfig"; sourceTree = "<group>"; };
 		240E217F26FC361000EFC3B5 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		2410D4A027041837009B4A95 /* AuthenticatedInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedInterceptor.swift; sourceTree = "<group>"; };
+		241A5A242713FA9B00BC33F1 /* LogoutUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUseCase.swift; sourceTree = "<group>"; };
+		241A5A272714206E00BC33F1 /* LogoutUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUseCaseSpec.swift; sourceTree = "<group>"; };
 		241B4EE926D3B3F4000409CC /* SideMenuActionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuActionItemView.swift; sourceTree = "<group>"; };
 		241B99DB26DF23030041207F /* AutoMockable.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoMockable.generated.swift; sourceTree = "<group>"; };
 		241B99DD26DF34720041207F /* SignupUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupUseCase.swift; sourceTree = "<group>"; };
@@ -240,6 +245,7 @@
 		2477173A2704336A00BF13F2 /* GetCurrentUserUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrentUserUseCaseSpec.swift; sourceTree = "<group>"; };
 		2477173C27043E7900BF13F2 /* APIUserResponse+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIUserResponse+Dummy.swift"; sourceTree = "<group>"; };
 		2477173E27043EAB00BF13F2 /* user.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = user.json; sourceTree = "<group>"; };
+		247CD0EF27142A13002D90D1 /* SideMenuActionsViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuActionsViewModelSpec.swift; sourceTree = "<group>"; };
 		248E13A826F054AD00439BCC /* Resolver+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resolver+Injection.swift"; sourceTree = "<group>"; };
 		248E13B326F07F5800439BCC /* Resolver+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resolver+Tests.swift"; sourceTree = "<group>"; };
 		249042E526D4D14F00E970B6 /* SignupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -457,6 +463,14 @@
 			path = Interceptors;
 			sourceTree = "<group>";
 		};
+		241A5A262714202C00BC33F1 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				241A5A272714206E00BC33F1 /* LogoutUseCaseSpec.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		24204CA326D6465C00534314 /* SideMenuActions */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,6 +582,23 @@
 			path = SideMenuHeader;
 			sourceTree = "<group>";
 		};
+		247CD0ED271429DB002D90D1 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				247CD0EE271429F4002D90D1 /* SideMenuActions */,
+				246B387726F8A7BD003173FD /* SideMenuHeader */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		247CD0EE271429F4002D90D1 /* SideMenuActions */ = {
+			isa = PBXGroup;
+			children = (
+				247CD0EF27142A13002D90D1 /* SideMenuActionsViewModelSpec.swift */,
+			);
+			path = SideMenuActions;
+			sourceTree = "<group>";
+		};
 		248E13B126F067A300439BCC /* Injection */ = {
 			isa = PBXGroup;
 			children = (
@@ -627,6 +658,7 @@
 			children = (
 				2459B32726D751E300ABCE61 /* LoginUseCase.swift */,
 				241B99DD26DF34720041207F /* SignupUseCase.swift */,
+				241A5A242713FA9B00BC33F1 /* LogoutUseCase.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1123,6 +1155,7 @@
 		2D72E49326C21C2F00861239 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				241A5A262714202C00BC33F1 /* Auth */,
 				24B277D72701C31700332FEA /* Article */,
 				24B277D82701C32600332FEA /* Comment */,
 				24B277D42701C2EE00332FEA /* User */,
@@ -1145,7 +1178,7 @@
 				2DB31D4F26F1960B007254B9 /* ArticleDetail */,
 				2D79A8FA26EF4A70007B81D1 /* Feeds */,
 				24F3D7BC26DE041F00DE2420 /* Login */,
-				246B387726F8A7BD003173FD /* SideMenuHeader */,
+				247CD0ED271429DB002D90D1 /* SideMenu */,
 				249D8084270AFD66000775BC /* UserProfile */,
 			);
 			path = Modules;
@@ -2057,6 +2090,7 @@
 				24204C9E26D5289900534314 /* Background.swift in Sources */,
 				2DEF1F9826E6055A00EB93CC /* GetListArticlesUseCase.swift in Sources */,
 				24B277D32701C1EB00332FEA /* GetUserProfileUseCase.swift in Sources */,
+				241A5A252713FA9B00BC33F1 /* LogoutUseCase.swift in Sources */,
 				248E13A926F054AD00439BCC /* Resolver+Injection.swift in Sources */,
 				2DEF1F9A26E6092500EB93CC /* APIArticlesResponse.swift in Sources */,
 				241F5B8B2701BEFB002E13FC /* UserRepositoryProtocol.swift in Sources */,
@@ -2098,10 +2132,12 @@
 				2D46FAF326F8618D005DD323 /* ArticleRowViewModelSpec.swift in Sources */,
 				2D73312F26F0F3A20052DCC7 /* APIArticleResponse+Dummy.swift in Sources */,
 				2D73313126F0F4800052DCC7 /* GetArticleUseCaseSpec.swift in Sources */,
+				241A5A282714206E00BC33F1 /* LogoutUseCaseSpec.swift in Sources */,
 				2D1A93AC270FFB45003B2011 /* UserProfileFavouritedArticlesTabViewModelSpec.swift in Sources */,
 				2D79A8FC26EF4A7E007B81D1 /* FeedsViewModelSpec.swift in Sources */,
 				2DC224E62702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift in Sources */,
 				2D29A70D26F44426001EA24F /* ArticleCommentsViewModelSpec.swift in Sources */,
+				247CD0F027142A13002D90D1 /* SideMenuActionsViewModelSpec.swift in Sources */,
 				24F3D7C426DE0FAE00DE2420 /* TestError.swift in Sources */,
 				246B387926F8A7D7003173FD /* SideMenuHeaderViewModelSpec.swift in Sources */,
 				24F3D7BE26DE041F00DE2420 /* LoginViewModelSpec.swift in Sources */,
