@@ -19,7 +19,7 @@ protocol AuthRepositoryProtocol: AnyObject {
     func updateCurrentUser(
         username: String,
         email: String,
-        password: String,
+        password: String?,
         image: String?,
         bio: String?
     ) -> Single<User>

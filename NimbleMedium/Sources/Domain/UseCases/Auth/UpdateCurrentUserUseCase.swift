@@ -13,7 +13,7 @@ protocol UpdateCurrentUserUseCaseProtocol: AnyObject {
     func execute(
         username: String,
         email: String,
-        password: String,
+        password: String?,
         image: String?,
         bio: String?
     ) -> Completable
@@ -35,7 +35,7 @@ final class UpdateCurrentUserUseCase: UpdateCurrentUserUseCaseProtocol {
     func execute(
         username: String,
         email: String,
-        password: String,
+        password: String?,
         image: String?,
         bio: String?
     ) -> Completable {

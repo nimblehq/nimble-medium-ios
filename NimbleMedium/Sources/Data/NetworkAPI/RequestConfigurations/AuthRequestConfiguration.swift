@@ -15,7 +15,7 @@ enum AuthRequestConfiguration {
     case updateCurrentUser(
         username: String,
         email: String,
-        password: String,
+        password: String?,
         image: String?,
         bio: String?
     )
@@ -73,14 +73,15 @@ extension AuthRequestConfiguration: RequestConfiguration {
                 let image,
                 let bio
         ):
-            let parameters: [String: Any?] = [
-                "username": username,
-                "email": email,
-                "password": password,
-                "image": image,
-                "bio": bio
+            return [
+                "user": [
+                    "username": username,
+                    "email": email,
+                    "password": password,
+                    "image": image,
+                    "bio": bio
+                ].compactMapValues { $0 }
             ]
-            return parameters.compactMapValues { $0 }
         }
     }
 
