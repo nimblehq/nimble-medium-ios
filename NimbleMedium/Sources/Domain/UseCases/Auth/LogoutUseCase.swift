@@ -17,9 +17,7 @@ final class LogoutUseCase: LogoutUseCaseProtocol {
 
     private let userSessionRepository: UserSessionRepositoryProtocol
 
-    init(
-        userSessionRepository: UserSessionRepositoryProtocol
-    ) {
+    init(userSessionRepository: UserSessionRepositoryProtocol) {
         self.userSessionRepository = userSessionRepository
     }
 

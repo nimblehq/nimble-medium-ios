@@ -32,10 +32,11 @@ final class UserSessionRepository: UserSessionRepositoryProtocol {
         Completable.create { [weak self] observer in
             do {
                 try self?.keychain.remove(.user)
+                observer(.completed)
             } catch {
                 observer(.error(error))
             }
-            observer(.completed)
+
             return Disposables.create()
         }
     }
@@ -44,10 +45,11 @@ final class UserSessionRepository: UserSessionRepositoryProtocol {
         Completable.create { [weak self] observer in
             do {
                 try self?.keychain.set(CodableUser(user: user), for: .user)
+                observer(.completed)
             } catch {
                 observer(.error(error))
             }
-            observer(.completed)
+
             return Disposables.create()
         }
     }
