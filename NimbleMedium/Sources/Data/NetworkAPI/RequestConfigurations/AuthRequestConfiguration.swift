@@ -11,7 +11,14 @@ enum AuthRequestConfiguration {
 
     case login(email: String, password: String)
     case signup(username: String, email: String, password: String)
-    case user
+    case getCurrentUser
+    case updateCurrentUser(
+        username: String,
+        email: String,
+        password: String,
+        image: String?,
+        bio: String?
+    )
 }
 
 extension AuthRequestConfiguration: RequestConfiguration {
@@ -24,7 +31,7 @@ extension AuthRequestConfiguration: RequestConfiguration {
             return "/users/login"
         case .signup:
             return "/users"
-        case .user:
+        case .getCurrentUser, .updateCurrentUser:
             return "/user"
         }
     }
@@ -33,8 +40,10 @@ extension AuthRequestConfiguration: RequestConfiguration {
         switch self {
         case .login, .signup:
             return .post
-        case .user:
+        case .getCurrentUser:
             return .get
+        case .updateCurrentUser:
+            return .put
         }
     }
 
@@ -55,8 +64,23 @@ extension AuthRequestConfiguration: RequestConfiguration {
                     "password": password
                 ]
             ]
-        case .user:
+        case .getCurrentUser:
             return nil
+        case .updateCurrentUser(
+                let username,
+                let email,
+                let password,
+                let image,
+                let bio
+        ):
+            let parameters: [String: Any?] = [
+                "username": username,
+                "email": email,
+                "password": password,
+                "image": image,
+                "bio": bio
+            ]
+            return parameters.compactMapValues { $0 }
         }
     }
 
