@@ -33,12 +33,8 @@ struct EditProfileView: View {
     var navigationBarLeadingContent: some ToolbarContent {
         ToolbarItem(placement: .navigationBarLeading) {
             Button(
-                action: {
-                    presentationMode.wrappedValue.dismiss()
-                },
-                label: {
-                    Image(systemName: SystemImageName.xmark.rawValue)
-                }
+                action: { presentationMode.wrappedValue.dismiss() },
+                label: { Image(systemName: SystemImageName.xmark.rawValue) }
             )
         }
     }

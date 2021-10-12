@@ -10,14 +10,14 @@ import SDWebImageSwiftUI
 import Resolver
 
 struct SideMenuHeaderView: View {
-    
+
     @ObservedViewModel private var viewModel: SideMenuHeaderViewModelProtocol = Resolver.resolve()
-    
+
     @Injected private var homeViewModel: HomeViewModelProtocol
-    
+
     @State private var isShowingEditProfileScreen = false
     @State private var uiModel: UIModel?
-    
+
     var body: some View {
         ZStack(alignment: .center) {
             Color.green.edgesIgnoringSafeArea(.all)
@@ -30,7 +30,7 @@ struct SideMenuHeaderView: View {
         .bind(viewModel.output.didSelectEditProfileOption, to: _isShowingEditProfileScreen)
         .bind(viewModel.output.uiModel, to: _uiModel)
     }
-    
+
     var unauthenticatedMenuHeader: some View {
         VStack(alignment: .center) {
             Text(Localizable.menuHeaderTitle())
@@ -43,11 +43,11 @@ struct SideMenuHeaderView: View {
                 .padding()
         }
     }
-    
+
     init() {
         viewModel.input.bindData(homeViewModel: homeViewModel)
     }
-    
+
     func authenticatedMenuHeader(uiModel: UIModel) -> some View {
         VStack(alignment: .center) {
             Spacer()

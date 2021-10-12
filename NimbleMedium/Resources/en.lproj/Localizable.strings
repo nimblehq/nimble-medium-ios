@@ -19,11 +19,11 @@
 "default.username.value" = "Current User";
 
 "editProfile.textFieldAvatarURL.placeholder" = "Url of the new profile picture";
-"editProfile.textViewBio.placeholder" = "Short bio about you";
 "editProfile.textFieldEmail.placeholder" = "New email";
 "editProfile.textFieldPassword.placeholder" = "New password";
-"editProfile.title.text" = "Edit Profile";
 "editProfile.textFieldUsername.placeholder" = "New username";
+"editProfile.textViewBio.placeholder" = "Short bio about you";
+"editProfile.title.text" = "Edit Profile";
 
 "error.generic" = "Something went wrong.\nPlease try again later.";
 
