@@ -7,15 +7,11 @@
 
 import SwiftUI
 
-enum FollowButtonStyle {
-    case light
-}
-
 struct FollowButton: View {
 
     private let action: () -> Void
     private let isSelected: Bool
-    private let style: FollowButtonStyle
+    private let style: Style
 
     private var textColor: Color {
         switch style {
@@ -52,11 +48,21 @@ struct FollowButton: View {
 
     init(
         isSelected: Bool,
-        style: FollowButtonStyle = .light,
+        style: Style = .light,
         action: @escaping () -> Void
     ) {
         self.style = style
         self.isSelected = isSelected
         self.action = action
+    }
+}
+
+// MARK: - Style
+
+extension FollowButton {
+
+    enum Style {
+
+        case light
     }
 }
