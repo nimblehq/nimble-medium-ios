@@ -16,12 +16,14 @@ protocol SideMenuHeaderViewModelInput {
     func selectEditProfileOption()
 }
 
+// sourcery: AutoMockable
 protocol SideMenuHeaderViewModelOutput {
 
     var didSelectEditProfileOption: Signal<Bool> { get }
     var uiModel: Driver<SideMenuHeaderView.UIModel?> { get }
 }
 
+// sourcery: AutoMockable
 protocol SideMenuHeaderViewModelProtocol: ObservableViewModel {
 
     var input: SideMenuHeaderViewModelInput { get }

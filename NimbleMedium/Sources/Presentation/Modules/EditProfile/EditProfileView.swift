@@ -15,12 +15,16 @@ struct EditProfileView: View {
 
     @Environment(\.presentationMode) var presentationMode
 
-    @State private var uiModel = UIModel()
+    @State private var username = ""
+    @State private var email = ""
     @State private var password = ""
+    @State private var avatarURL = ""
+    @State private var bio = ""
 
     @State private var errorMessage = ""
     @State private var errorToast = false
     @State private var loadingToast = false
+    @State private var firstTimeLoad = true
 
     var body: some View {
         NavigationView {
@@ -40,9 +44,19 @@ struct EditProfileView: View {
                 }
         }
         .accentColor(.white)
-        .onAppear { viewModel.input.getCurrentUserProfile() }
+        .onAppear {
+            viewModel.input.getCurrentUserProfile()
+            firstTimeLoad = true
+        }
         .bind(viewModel.output.isLoading, to: _loadingToast)
-        .bind(viewModel.output.editProfileUIModel, to: _uiModel)
+        .onReceive(viewModel.output.editProfileUIModel) { uiModel in
+            guard firstTimeLoad else { return }
+            username = uiModel.username
+            email = uiModel.email
+            avatarURL = uiModel.avatarURL
+            bio = uiModel.bio
+            firstTimeLoad = false
+        }
         .onReceive(viewModel.output.didUpdateProfile) { _ in presentationMode.wrappedValue.dismiss() }
         .onReceive(viewModel.output.errorMessage) { _ in
             errorMessage = Localizable.errorGeneric()
@@ -66,31 +80,31 @@ struct EditProfileView: View {
             VStack(spacing: 15.0) {
                 AppTextField(
                     placeholder: Localizable.editProfileTextFieldAvatarURLPlaceholder(),
-                    text: $uiModel.avatarURL)
+                    text: $avatarURL)
                 AppTextField(
                     placeholder: Localizable.editProfileTextFieldUsernamePlaceholder(),
-                    text: $uiModel.username)
+                    text: $username)
                 AppTextView(
                     placeholder: Localizable.editProfileTextViewBioPlaceholder(),
-                    text: $uiModel.bio)
+                    text: $bio)
                     .frame(height: 200.0, alignment: .leading)
                 AppTextField(
                     placeholder: Localizable.editProfileTextFieldEmailPlaceholder(),
-                    text: $uiModel.email)
+                    text: $email)
                 AppSecureField(
                     placeholder: Localizable.editProfileTextFieldPasswordPlaceholder(),
                     text: $password)
                 AppMainButton(title: Localizable.actionUpdateText()) {
                     hideKeyboard()
                     viewModel.input.didTapUpdateButton(
-                        username: uiModel.username,
-                        email: uiModel.email,
+                        username: username,
+                        email: email,
                         password: password,
-                        avatarURL: uiModel.avatarURL,
-                        bio: uiModel.bio
+                        avatarURL: avatarURL,
+                        bio: bio
                     )
                 }
-                .disabled(uiModel.allFieldsAreEmpty && password.isEmpty)
+                .disabled(username.isEmpty && email.isEmpty && password.isEmpty && avatarURL.isEmpty && bio.isEmpty)
             }
             .padding()
         }

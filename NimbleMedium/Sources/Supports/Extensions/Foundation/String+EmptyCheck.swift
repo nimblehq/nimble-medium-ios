@@ -10,6 +10,6 @@ import Foundation
 extension String {
 
     func toNilIfEmpty() -> String? {
-        self.isEmpty ? nil : self
+        isEmpty ? nil : self
     }
 }

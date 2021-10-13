@@ -11,23 +11,16 @@ extension EditProfileView {
 
      struct UIModel: Equatable {
 
-         var username: String
-         var email: String
-         var avatarURL: String
-         var bio: String
+         let username: String
+         let email: String
+         let avatarURL: String
+         let bio: String
 
          init(username: String = "", email: String = "", avatarURL: String = "", bio: String = "") {
              self.username = username
              self.email = email
              self.avatarURL = avatarURL
              self.bio = bio
-         }
-
-         var allFieldsAreEmpty: Bool {
-             username.isEmpty &&
-             email.isEmpty &&
-             avatarURL.isEmpty &&
-             bio.isEmpty
          }
      }
  }
