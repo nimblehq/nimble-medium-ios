@@ -27,15 +27,16 @@ struct AppTextView: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<Self>) -> UIViewType {
         let textView = UITextView()
         textView.autocapitalizationType = .sentences
+        textView.delegate = context.coordinator
+        textView.font = .preferredFont(forTextStyle: UIFont.TextStyle.body)
         textView.isSelectable = true
+        textView.layer.borderColor = UIColor.lightGray.cgColor
+        textView.layer.borderWidth = 1.0
+        textView.layer.cornerRadius = 8.0
         textView.text = placeholder
         textView.textColor = placeholderTextColor
+        textView.textContainerInset = UIEdgeInsets(top: 8.0, left: 10.0, bottom: 8.0, right: 10.0)
         textView.tintColor = .black
-        textView.font = .preferredFont(forTextStyle: UIFont.TextStyle.body)
-        textView.delegate = context.coordinator
-        textView.layer.cornerRadius = 8.0
-        textView.layer.borderWidth = 1.0
-        textView.layer.borderColor = UIColor.lightGray.cgColor
         return textView
     }
 

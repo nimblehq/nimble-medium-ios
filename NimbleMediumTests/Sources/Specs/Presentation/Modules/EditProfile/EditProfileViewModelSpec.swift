@@ -88,11 +88,15 @@ final class EditProfileViewModelSpec: QuickSpec {
                 context("when updateCurrentUserUseCase return success") {
 
                     beforeEach {
-                        self.updateCurrentUserUseCase.executeUsernameEmailPasswordImageBioReturnValue = .empty()
+                        self.updateCurrentUserUseCase.executeParamsReturnValue = .empty()
 
                         scheduler.scheduleAt(5) {
                             viewModel.input.didTapUpdateButton(
-                                username: "", email: "", password: "", avatarURL: "", bio: ""
+                                username: "",
+                                email: "",
+                                password: "",
+                                avatarURL: "",
+                                bio: ""
                             )
                         }
                     }
@@ -116,12 +120,16 @@ final class EditProfileViewModelSpec: QuickSpec {
                 context("when updateCurrentUserUseCase return failure") {
 
                     beforeEach {
-                        self.updateCurrentUserUseCase.executeUsernameEmailPasswordImageBioReturnValue =
+                        self.updateCurrentUserUseCase.executeParamsReturnValue =
                             .error(TestError.mock)
 
                         scheduler.scheduleAt(5) {
                             viewModel.input.didTapUpdateButton(
-                                username: "", email: "", password: "", avatarURL: "", bio: ""
+                                username: "",
+                                email: "",
+                                password: "",
+                                avatarURL: "",
+                                bio: ""
                             )
                         }
                     }

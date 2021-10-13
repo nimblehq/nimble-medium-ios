@@ -14,7 +14,11 @@ import Resolver
 protocol EditProfileViewModelInput {
 
     func didTapUpdateButton(
-        username: String, email: String, password: String, avatarURL: String, bio: String
+        username: String,
+        email: String,
+        password: String,
+        avatarURL: String,
+        bio: String
     )
     func getCurrentUserProfile()
 }
@@ -78,7 +82,11 @@ extension EditProfileViewModel: EditProfileViewModelInput {
     }
 
     func didTapUpdateButton(
-        username: String, email: String, password: String, avatarURL: String, bio: String
+        username: String,
+        email: String,
+        password: String,
+        avatarURL: String,
+        bio: String
     ) {
         $isLoading.accept(true)
         updateCurrentUserSessionTrigger.accept((username, email, password.toNilIfEmpty(), avatarURL, bio))
@@ -104,11 +112,13 @@ private extension EditProfileViewModel {
     func updateCurrentUserTriggered(owner: EditProfileViewModel, inputs: UpdateCurrentUserParams) -> Observable<Void> {
         updateCurrentUserUseCase
             .execute(
-                username: inputs.username,
-                email: inputs.email,
-                password: inputs.password,
-                image: inputs.avatarURL,
-                bio: inputs.bio
+                params: UpdateCurrentUserParameters(
+                    username: inputs.username,
+                    email: inputs.email,
+                    password: inputs.password,
+                    image: inputs.avatarURL,
+                    bio: inputs.bio
+                )
             )
             .do(
                 onError: { error in
