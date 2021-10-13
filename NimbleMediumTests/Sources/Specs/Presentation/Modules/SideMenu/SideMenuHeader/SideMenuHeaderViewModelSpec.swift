@@ -31,6 +31,7 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                 Resolver.registerMockServices()
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
+                viewModel = SideMenuHeaderViewModel()
             }
 
             describe("its homeViewModel isSideMenuOpenDidChange call") {
@@ -49,8 +50,6 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                     beforeEach {
                         self.getCurrentSessionUseCase.getCurrentUserSessionReturnValue =
                             .just(user, on: scheduler, at: 50)
-
-                        viewModel = SideMenuHeaderViewModel()
                         viewModel.input.bindData(homeViewModel: self.homeViewModel)
                     }
 
@@ -73,8 +72,6 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                     beforeEach {
                         self.getCurrentSessionUseCase.getCurrentUserSessionReturnValue =
                             .just(nil, on: scheduler, at: 50)
-
-                        viewModel = SideMenuHeaderViewModel()
                         viewModel.input.bindData(homeViewModel: self.homeViewModel)
                     }
 
@@ -93,8 +90,6 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                     beforeEach {
                         self.getCurrentSessionUseCase.getCurrentUserSessionReturnValue =
                             .error(TestError.mock, on: scheduler, at: 50)
-
-                        viewModel = SideMenuHeaderViewModel()
                         viewModel.input.bindData(homeViewModel: self.homeViewModel)
                     }
 
@@ -106,6 +101,21 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                                 .next(50, nil)
                             ]))
                     }
+                }
+            }
+
+            context("when selectEditProfileOption is called") {
+
+                beforeEach {
+                    scheduler.scheduleAt(5) {
+                        viewModel.input.selectEditProfileOption()
+                    }
+                }
+
+                it("returns didSelectEditProfileOption output as true") {
+                    expect(viewModel.output.didSelectEditProfileOption)
+                        .events(scheduler: scheduler, disposeBag: disposeBag)
+                        .to(equal([.next(5, true)]))
                 }
             }
         }

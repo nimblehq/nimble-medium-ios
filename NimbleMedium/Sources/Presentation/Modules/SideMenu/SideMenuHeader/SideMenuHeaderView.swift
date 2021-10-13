@@ -15,6 +15,7 @@ struct SideMenuHeaderView: View {
 
     @Injected private var homeViewModel: HomeViewModelProtocol
 
+    @State private var isShowingEditProfileScreen = false
     @State private var uiModel: UIModel?
 
     var body: some View {
@@ -26,6 +27,7 @@ struct SideMenuHeaderView: View {
                 unauthenticatedMenuHeader
             }
         }
+        .bind(viewModel.output.didSelectEditProfileOption, to: _isShowingEditProfileScreen)
         .bind(viewModel.output.uiModel, to: _uiModel)
     }
 
@@ -64,14 +66,15 @@ struct SideMenuHeaderView: View {
             HStack {
                 Spacer()
                 Button(
-                    action: {
-                        // TODO: Handle edit profile button in integrate task
-                    },
+                    action: { viewModel.input.selectEditProfileOption() },
                     label: { Image(systemName: SystemImageName.squareAndPencil.rawValue) }
                 )
                     .foregroundColor(.white)
                     .padding()
             }
+        }
+        .fullScreenCover(isPresented: $isShowingEditProfileScreen) {
+            EditProfileView()
         }
     }
 }

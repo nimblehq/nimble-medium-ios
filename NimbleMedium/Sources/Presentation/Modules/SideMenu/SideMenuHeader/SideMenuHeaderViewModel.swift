@@ -13,10 +13,12 @@ import RxSwift
 protocol SideMenuHeaderViewModelInput {
 
     func bindData(homeViewModel: HomeViewModelProtocol)
+    func selectEditProfileOption()
 }
 
 protocol SideMenuHeaderViewModelOutput {
 
+    var didSelectEditProfileOption: Signal<Bool> { get }
     var uiModel: Driver<SideMenuHeaderView.UIModel?> { get }
 }
 
@@ -37,6 +39,8 @@ final class SideMenuHeaderViewModel: ObservableObject, SideMenuHeaderViewModelPr
 
     @BehaviorRelayProperty(nil) var uiModel: Driver<SideMenuHeaderView.UIModel?>
 
+    @PublishRelayProperty var didSelectEditProfileOption: Signal<Bool>
+
     private let getCurrentUserSessionTrigger = PublishRelay<Void>()
 
     init() {
@@ -55,6 +59,10 @@ extension SideMenuHeaderViewModel: SideMenuHeaderViewModelInput {
             .filter { $0 }
             .emit(with: self) { owner, _ in owner.getCurrentUserSessionTrigger.accept(()) }
             .disposed(by: disposeBag)
+    }
+
+    func selectEditProfileOption() {
+        $didSelectEditProfileOption.accept(true)
     }
 }
 
