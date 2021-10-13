@@ -30,7 +30,7 @@ struct AppTextView: UIViewRepresentable {
         textView.isSelectable = true
         textView.text = placeholder
         textView.textColor = placeholderTextColor
-        textView.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
+        textView.font = .preferredFont(forTextStyle: UIFont.TextStyle.body)
         textView.delegate = context.coordinator
         textView.layer.cornerRadius = 8.0
         textView.layer.borderWidth = 1.0
