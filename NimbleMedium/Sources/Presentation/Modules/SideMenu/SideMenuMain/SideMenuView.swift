@@ -13,6 +13,7 @@ struct SideMenuView: View {
     @ObservedViewModel private var viewModel: SideMenuViewModelProtocol = Resolver.resolve()
 
     @Injected private var sideMenuActionsViewModel: SideMenuActionsViewModelProtocol
+    @Injected private var sideMenuHeaderViewModel: SideMenuHeaderViewModelProtocol
 
     var body: some View {
         GeometryReader { metrics in
@@ -25,7 +26,10 @@ struct SideMenuView: View {
     }
 
     init() {
-        viewModel.input.bindData(sideMenuActionsViewModel: sideMenuActionsViewModel)
+        viewModel.input.bindData(
+            sideMenuActionsViewModel: sideMenuActionsViewModel,
+            sideMenuHeaderViewModel: sideMenuHeaderViewModel
+        )
     }
 }
 

@@ -14,6 +14,9 @@
 		241B4EEA26D3B3F4000409CC /* SideMenuActionItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B4EE926D3B3F4000409CC /* SideMenuActionItemView.swift */; };
 		241B99DC26DF23030041207F /* AutoMockable.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B99DB26DF23030041207F /* AutoMockable.generated.swift */; };
 		241B99DE26DF34720041207F /* SignupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241B99DD26DF34720041207F /* SignupUseCase.swift */; };
+		241D352C27167C9B007F6BA9 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D352B27167C9B007F6BA9 /* EditProfileViewModel.swift */; };
+		241D352E271682B4007F6BA9 /* String+EmptyCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D352D271682B4007F6BA9 /* String+EmptyCheck.swift */; };
+		241D353027168609007F6BA9 /* EditProfileView+UIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D352F27168609007F6BA9 /* EditProfileView+UIModel.swift */; };
 		241F5B852701A9F8002E13FC /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241F5B842701A9F7002E13FC /* UserRepository.swift */; };
 		241F5B872701AADD002E13FC /* UserRequestConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241F5B862701AADD002E13FC /* UserRequestConfiguration.swift */; };
 		241F5B892701ABEC002E13FC /* APIProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241F5B882701ABEC002E13FC /* APIProfileResponse.swift */; };
@@ -225,6 +228,9 @@
 		241B4EE926D3B3F4000409CC /* SideMenuActionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuActionItemView.swift; sourceTree = "<group>"; };
 		241B99DB26DF23030041207F /* AutoMockable.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoMockable.generated.swift; sourceTree = "<group>"; };
 		241B99DD26DF34720041207F /* SignupUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupUseCase.swift; sourceTree = "<group>"; };
+		241D352B27167C9B007F6BA9 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		241D352D271682B4007F6BA9 /* String+EmptyCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+EmptyCheck.swift"; sourceTree = "<group>"; };
+		241D352F27168609007F6BA9 /* EditProfileView+UIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditProfileView+UIModel.swift"; sourceTree = "<group>"; };
 		241F5B842701A9F7002E13FC /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		241F5B862701AADD002E13FC /* UserRequestConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestConfiguration.swift; sourceTree = "<group>"; };
 		241F5B882701ABEC002E13FC /* APIProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProfileResponse.swift; sourceTree = "<group>"; };
@@ -550,6 +556,8 @@
 			isa = PBXGroup;
 			children = (
 				244E0FF427152DA000C01139 /* EditProfileView.swift */,
+				241D352B27167C9B007F6BA9 /* EditProfileViewModel.swift */,
+				241D352F27168609007F6BA9 /* EditProfileView+UIModel.swift */,
 			);
 			path = EditProfile;
 			sourceTree = "<group>";
@@ -882,9 +890,10 @@
 		2D303B3C26C28AE900EEF1C0 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				2459B31026D74B3100ABCE61 /* JSONDecoder+Default.swift */,
 				2D79A8F726EEFC24007B81D1 /* Date+Format.swift */,
 				2D1D727326EB305F00431679 /* DateFormatter+Formats.swift */,
+				2459B31026D74B3100ABCE61 /* JSONDecoder+Default.swift */,
+				241D352D271682B4007F6BA9 /* String+EmptyCheck.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -2168,6 +2177,7 @@
 				24B277D32701C1EB00332FEA /* GetUserProfileUseCase.swift in Sources */,
 				241A5A252713FA9B00BC33F1 /* LogoutUseCase.swift in Sources */,
 				248E13A926F054AD00439BCC /* Resolver+Injection.swift in Sources */,
+				241D353027168609007F6BA9 /* EditProfileView+UIModel.swift in Sources */,
 				2DEF1F9A26E6092500EB93CC /* APIArticlesResponse.swift in Sources */,
 				241F5B8B2701BEFB002E13FC /* UserRepositoryProtocol.swift in Sources */,
 				2D55E4A926DF235000161052 /* Profile.swift in Sources */,
@@ -2179,12 +2189,14 @@
 				24F3D7AA26DCE54C00DE2420 /* CodableUser.swift in Sources */,
 				2D5485BE26CA0D2C00FFE707 /* PublishRelayProperty.swift in Sources */,
 				2459B31C26D74F4700ABCE61 /* AuthRequestConfiguration.swift in Sources */,
+				241D352E271682B4007F6BA9 /* String+EmptyCheck.swift in Sources */,
 				2D17E4F226F07996001D3F90 /* NavigationBarPrimaryStyle.swift in Sources */,
 				244E0FF527152DA000C01139 /* EditProfileView.swift in Sources */,
 				2D979C30270302650084A3F8 /* GetCreatedArticlesUseCase.swift in Sources */,
 				2DEF1F9426E6029200EB93CC /* DecodableArticle.swift in Sources */,
 				2DB31D4E26F18EAB007254B9 /* ArticleDetailViewModel.swift in Sources */,
 				2D17E4F426F07ABA001D3F90 /* View+If.swift in Sources */,
+				241D352C27167C9B007F6BA9 /* EditProfileViewModel.swift in Sources */,
 				241B4EEA26D3B3F4000409CC /* SideMenuActionItemView.swift in Sources */,
 				2DEFAB2227153CF4007C2378 /* FollowUserUseCase.swift in Sources */,
 				2D084734270D793300DFFF69 /* UserProfileCreatedArticlesTab.swift in Sources */,
