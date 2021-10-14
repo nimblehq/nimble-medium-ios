@@ -10,6 +10,7 @@ import Foundation
 struct APIArticleComment: ArticleComment, Decodable, Equatable {
 
     private enum CodingKeys: String, CodingKey {
+        
         case id, createdAt, updatedAt, body
         case apiAuthor = "author"
     }

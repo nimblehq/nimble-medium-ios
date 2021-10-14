@@ -28,11 +28,11 @@ struct FeedsView: View {
                     FeedList(viewModel: viewModel)
                 }
             }
-            .navigationTitle(Localizable.feedsTitle())
+            .navigationTitle(Localizable.feedsTitleText())
             .modifier(NavigationBarPrimaryStyle(isBackButtonHidden: true))
             .toolbar { navigationBarLeadingContent }
             .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
-                ToastView(Localizable.errorGeneric()) { } background: {
+                ToastView(Localizable.errorGenericMessage()) { } background: {
                     Color.clear
                 }
             }
@@ -107,7 +107,7 @@ private extension FeedsView {
                             )
                         }
                     } else {
-                        Text(Localizable.feedsNoArticle())
+                        Text(Localizable.feedsNoArticleText())
                             .frame(minHeight: geometry.size.height)
                     }
                 }
@@ -155,6 +155,7 @@ private extension FeedsView {
 }
 #if DEBUG
 struct FeedsView_Previews: PreviewProvider {
+    
     static var previews: some View {
         FeedsView(isSideMenuDraggingEnabled: .constant(true))
     }

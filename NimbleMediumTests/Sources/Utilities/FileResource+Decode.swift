@@ -11,7 +11,6 @@ import Rswift
 extension FileResource {
 
     func decoded<T: Decodable>() -> T {
-
         guard let url = url(),
               let data = try? Data(contentsOf: url),
               let object: T = data.decoded() else {

@@ -118,7 +118,6 @@
 		2D55E4AE26DF2FA800161052 /* ArticleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D55E4AD26DF2FA800161052 /* ArticleRow.swift */; };
 		2D5C62B22701A69F00398C96 /* Refresh in Frameworks */ = {isa = PBXBuildFile; productRef = 2D5C62B12701A69F00398C96 /* Refresh */; };
 		2D64E92026C11B48008C80B0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D64E92226C11B48008C80B0 /* Localizable.strings */; };
-		2D69824426C22DC700860A98 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D69824326C22DC700860A98 /* R.generated.swift */; };
 		2D6EFE1B26E9EB8C006B9939 /* DefaultCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 2D6EFE1A26E9EB8C006B9939 /* DefaultCodable */; };
 		2D72E47E26C2185400861239 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D72E47D26C2185400861239 /* Constants.swift */; };
 		2D73312926F0EFD20052DCC7 /* APIArticleResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D73312826F0EFD20052DCC7 /* APIArticleResponse.swift */; };
@@ -129,6 +128,7 @@
 		2D79A8F826EEFC24007B81D1 /* Date+Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D79A8F726EEFC24007B81D1 /* Date+Format.swift */; };
 		2D79A8FC26EF4A7E007B81D1 /* FeedsViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D79A8FB26EF4A7E007B81D1 /* FeedsViewModelSpec.swift */; };
 		2D7BF28E26DCB4E200A30747 /* Publisher+RxSignal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7BF28D26DCB4E200A30747 /* Publisher+RxSignal.swift */; };
+		2D7F49A22716BDB20033FA18 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7F49A02716BDB20033FA18 /* R.generated.swift */; };
 		2D87822F26EB3B3A0080FEF6 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D87822E26EB3B3A0080FEF6 /* R.generated.swift */; };
 		2D87823126EB3C110080FEF6 /* FileResource+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D87823026EB3C110080FEF6 /* FileResource+Decode.swift */; };
 		2D882ED026F1C90200DB6560 /* ArticleComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D882ECF26F1C90200DB6560 /* ArticleComment.swift */; };
@@ -319,7 +319,6 @@
 		2D55E4A826DF235000161052 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		2D55E4AD26DF2FA800161052 /* ArticleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRow.swift; sourceTree = "<group>"; };
 		2D64E92126C11B48008C80B0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		2D69824326C22DC700860A98 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		2D72E47D26C2185400861239 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2D73312826F0EFD20052DCC7 /* APIArticleResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIArticleResponse.swift; sourceTree = "<group>"; };
 		2D73312A26F0F05D0052DCC7 /* GetArticleUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetArticleUseCase.swift; sourceTree = "<group>"; };
@@ -329,6 +328,7 @@
 		2D79A8F726EEFC24007B81D1 /* Date+Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Format.swift"; sourceTree = "<group>"; };
 		2D79A8FB26EF4A7E007B81D1 /* FeedsViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsViewModelSpec.swift; sourceTree = "<group>"; };
 		2D7BF28D26DCB4E200A30747 /* Publisher+RxSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+RxSignal.swift"; sourceTree = "<group>"; };
+		2D7F49A02716BDB20033FA18 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		2D87822E26EB3B3A0080FEF6 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		2D87823026EB3C110080FEF6 /* FileResource+Decode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileResource+Decode.swift"; sourceTree = "<group>"; };
 		2D882ECF26F1C90200DB6560 /* ArticleComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleComment.swift; sourceTree = "<group>"; };
@@ -1341,6 +1341,14 @@
 			path = Combine;
 			sourceTree = "<group>";
 		};
+		2D7F499E2716BDB20033FA18 /* R.swift */ = {
+			isa = PBXGroup;
+			children = (
+				2D7F49A02716BDB20033FA18 /* R.generated.swift */,
+			);
+			path = R.swift;
+			sourceTree = "<group>";
+		};
 		2D882ED526F1CB5300DB6560 /* ArticleComment */ = {
 			isa = PBXGroup;
 			children = (
@@ -1581,8 +1589,8 @@
 			children = (
 				2D17E4F026F07932001D3F90 /* SwiftUI */,
 				2DD4805426D73C67005225CF /* Combine */,
+				2D7F499E2716BDB20033FA18 /* R.swift */,
 				2D5485B526C9FA9A00FFE707 /* Rx */,
-				2D69824326C22DC700860A98 /* R.generated.swift */,
 				2DE3B9B426C1339200272775 /* Typealias.swift */,
 				2DA4ABBE26CF90D000CF7D68 /* AppEnvironment.swift */,
 			);
@@ -1932,11 +1940,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/$PROJECT_NAME/Sources/Supports/Helpers/R.generated.swift,
+				$SRCROOT/$PROJECT_NAME/Sources/Supports/Helpers/R.swift/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/$PROJECT_NAME/Sources/Supports/Helpers/R.generated.swift\"\n";
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/$PROJECT_NAME/Sources/Supports/Helpers/R.swift/R.generated.swift\"\n";
 		};
 		70D4ED73D3FABDF90D65AB83 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2048,6 +2056,7 @@
 				2DE8C09226F97386006061B4 /* ArticleRow+UIModel.swift in Sources */,
 				247717372704287B00BF13F2 /* AuthenticatedNetworkAPIProtocol.swift in Sources */,
 				2DEF1F9026E5FE8E00EB93CC /* ArticleRepositoryProtocol.swift in Sources */,
+				2D7F49A22716BDB20033FA18 /* R.generated.swift in Sources */,
 				2D55E4AE26DF2FA800161052 /* ArticleRow.swift in Sources */,
 				2D882EEC26F1D47300DB6560 /* ArticleCommentRow.swift in Sources */,
 				2D79A8F826EEFC24007B81D1 /* Date+Format.swift in Sources */,
@@ -2112,7 +2121,6 @@
 				2D5485B726C9FAAC00FFE707 /* BehaviorRelayProperty.swift in Sources */,
 				2D7BF28E26DCB4E200A30747 /* Publisher+RxSignal.swift in Sources */,
 				2D1A93A9270FFA98003B2011 /* UserProfileFavouritedArticlesTabViewModel.swift in Sources */,
-				2D69824426C22DC700860A98 /* R.generated.swift in Sources */,
 				247717352704197C00BF13F2 /* AuthenticatedNetworkAPI.swift in Sources */,
 				2DB04AD726C3A4AC003E65F4 /* Color+UIColor.swift in Sources */,
 				2410D4A127041837009B4A95 /* AuthenticatedInterceptor.swift in Sources */,
@@ -2306,6 +2314,7 @@
 				PRODUCT_NAME = "Nimble Medium - stag";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG STAGING";
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = "Release Staging";

@@ -25,7 +25,7 @@ struct LoginView: View {
         NavigationView {
             contentView
                 .onTapGesture { hideKeyboard() }
-                .navigationBarTitle(Localizable.loginTitle(), displayMode: .inline)
+                .navigationBarTitle(Localizable.loginTitleText(), displayMode: .inline)
                 .navigationBarColor(backgroundColor: .green)
                 .toolbar { navigationBarLeadingContent }
                 .toast(isPresented: $errorToast, dismissAfter: 3.0) {
@@ -43,7 +43,7 @@ struct LoginView: View {
             presentationMode.wrappedValue.dismiss()
         }
         .onReceive(viewModel.output.errorMessage) { _ in
-            errorMessage = Localizable.errorGeneric()
+            errorMessage = Localizable.errorGenericMessage()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { errorToast.toggle() }
         }
         .onReceive(viewModel.output.isLoading) {
@@ -99,6 +99,7 @@ struct LoginView: View {
 
 #if DEBUG
 struct LoginView_Previews: PreviewProvider {
+    
     static var previews: some View { LoginView() }
 }
 #endif

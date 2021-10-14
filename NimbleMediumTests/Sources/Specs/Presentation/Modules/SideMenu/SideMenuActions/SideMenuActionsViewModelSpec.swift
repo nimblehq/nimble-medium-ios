@@ -24,7 +24,6 @@ final class SideMenuActionsViewModelSpec: QuickSpec {
     @LazyInjected var getCurrentSessionUseCase: GetCurrentSessionUseCaseProtocolMock
 
     override func spec() {
-
         var viewModel: SideMenuActionsViewModel!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!

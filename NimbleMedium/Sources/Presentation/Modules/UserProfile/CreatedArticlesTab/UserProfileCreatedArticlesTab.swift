@@ -24,7 +24,7 @@ struct UserProfileCreatedArticlesTab: View {
                 UserProfileArticleList(viewModels: articleRowViewModels)
             } else {
                 if isFetchCreatedArticlesFailed {
-                    Text(Localizable.feedsNoArticle())
+                    Text(Localizable.feedsNoArticleText())
                 } else { ProgressView() }
             }
         }
@@ -33,7 +33,7 @@ struct UserProfileCreatedArticlesTab: View {
             UserProfileView.TabItemTitle(Localizable.userProfileCreatedArticlesTitle())
         }
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
-            ToastView(Localizable.errorGeneric()) { } background: {
+            ToastView(Localizable.errorGenericMessage()) { } background: {
                 Color.clear
             }
         }

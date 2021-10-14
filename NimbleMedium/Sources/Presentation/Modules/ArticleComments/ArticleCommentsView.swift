@@ -40,11 +40,11 @@ struct ArticleCommentsView: View {
             }
         }
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
-            ToastView(Localizable.errorGeneric()) { } background: {
+            ToastView(Localizable.errorGenericMessage()) { } background: {
                 Color.clear
             }
         }
-        .navigationTitle(Localizable.feedCommentsTitle())
+        .navigationTitle(Localizable.feedCommentsTitleText())
         .modifier(NavigationBarPrimaryStyle())
         .onReceive(viewModel.output.didFailToFetchArticleComments) { _ in
             isFetchingArticleComments = false

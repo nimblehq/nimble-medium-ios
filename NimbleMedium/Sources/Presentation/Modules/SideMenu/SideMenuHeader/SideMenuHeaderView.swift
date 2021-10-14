@@ -81,6 +81,7 @@ struct SideMenuHeaderView: View {
 
 #if DEBUG
 struct SideMenuHeaderView_Previews: PreviewProvider {
+    
     static var previews: some View {
         SideMenuHeaderView()
     }

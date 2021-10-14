@@ -25,14 +25,14 @@
 "editProfile.textViewBio.placeholder" = "Short bio about you";
 "editProfile.title.text" = "Edit Profile";
 
-"error.generic" = "Something went wrong.\nPlease try again later.";
+"error.generic.message" = "Something went wrong.\nPlease try again later.";
 
 "feedComments.noComment.message" = "No Comment";
-"feedComments.title" = "Comments History";
+"feedComments.title.text" = "Comments History";
 
 "feeds.comments.title" = "Go to comments section";
-"feeds.noArticle" = "No Article";
-"feeds.title" = "Feeds";
+"feeds.noArticle.text" = "No Article";
+"feeds.title.text" = "Feeds";
 
 "followButton.normal.title" = "Follow";
 "followButton.selected.title" = "Unfollow";
@@ -40,7 +40,7 @@
 "login.needAccount.title" = "Need an account?";
 "login.textFieldEmail.placeholder" = "Email";
 "login.textFieldPassword.placeholder" = "Password";
-"login.title" = "Login";
+"login.title.text" = "Login";
 
 "menu.header.description" = "A place to share your knowledge";
 "menu.header.title" = "Nimble Medium";
@@ -55,7 +55,7 @@
 "signup.textFieldEmail.placeholder" = "Email";
 "signup.textFieldPassword.placeholder" = "Password";
 "signup.textFieldUsername.placeholder" = "Username";
-"signup.title" = "Signup";
+"signup.title.text" = "Signup";
 
 "userProfile.createdArticles.title" = "Created Articles";
 "userProfile.current.title" = "My Profile";

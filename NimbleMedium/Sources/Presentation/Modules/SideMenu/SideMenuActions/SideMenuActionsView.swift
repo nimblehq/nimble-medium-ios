@@ -104,6 +104,7 @@ struct SideMenuActionsView: View {
 
 #if DEBUG
 struct SideMenuActionsView_Previews: PreviewProvider {
+    
     static var previews: some View { SideMenuActionsView() }
 }
 #endif

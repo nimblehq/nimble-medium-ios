@@ -20,7 +20,6 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
     @LazyInjected var getCurrentSessionUseCase: GetCurrentSessionUseCaseProtocolMock
 
     override func spec() {
-
         var viewModel: SideMenuHeaderViewModel!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!

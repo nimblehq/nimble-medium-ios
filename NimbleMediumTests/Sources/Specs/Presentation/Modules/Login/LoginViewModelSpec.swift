@@ -19,7 +19,6 @@ final class LoginViewModelSpec: QuickSpec {
     @LazyInjected var loginUseCase: LoginUseCaseProtocolMock
 
     override func spec() {
-
         var viewModel: LoginViewModel!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!

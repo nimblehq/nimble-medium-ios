@@ -13,7 +13,6 @@ import Nimble
 extension Expectation where T: ObserverType {
 
     func events() -> Expectation<RecordedEvents<T.Element>> {
-
         transform { _ in
             guard let testObserver = (try? self.expression.evaluate()) as? TestableObserver<T.Element> else {
                 return []
@@ -25,6 +24,7 @@ extension Expectation where T: ObserverType {
 }
 
 private extension Expectation {
+
     #if swift(>=4.1)
     #else
     init(_ expression: Expression<T>) {

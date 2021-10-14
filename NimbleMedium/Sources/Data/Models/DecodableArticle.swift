@@ -10,6 +10,7 @@ import Foundation
 struct DecodableArticle: Article, Decodable, Equatable {
 
     private enum CodingKeys: String, CodingKey {
+        
         case slug, title, description, body, tagList, createdAt, updatedAt, favorited, favoritesCount
         case apiAuthor = "author"
     }

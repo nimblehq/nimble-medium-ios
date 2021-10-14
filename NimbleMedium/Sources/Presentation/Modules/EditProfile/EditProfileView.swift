@@ -70,6 +70,7 @@ struct EditProfileView: View {
 
 #if DEBUG
 struct EditProfileView_Previews: PreviewProvider {
+    
     static var previews: some View { EditProfileView() }
 }
 #endif

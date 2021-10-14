@@ -11,6 +11,7 @@ import PagerTabStripView
 extension UserProfileView {
 
     class NavTabViewTheme: ObservableObject {
+        
         @Published var textColor = Color.gray
     }
 

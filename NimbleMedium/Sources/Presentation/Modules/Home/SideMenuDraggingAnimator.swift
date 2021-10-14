@@ -20,7 +20,6 @@ final class SideMenuDraggingAnimator {
     }
     
     func onDraggingChanged(_ gesture: DragGesture.Value, _ width: CGFloat, onUpdate: OnUpdateCallback) {
-
         let translation = gesture.translation.width
         var progress = abs(translation) / width
         progress = progress > 1.0 ? 1.0 : progress

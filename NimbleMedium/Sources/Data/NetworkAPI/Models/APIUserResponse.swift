@@ -8,5 +8,6 @@
 import Foundation
 
 struct APIUserResponse: Decodable {
+    
     let user: CodableUser
 }

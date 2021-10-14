@@ -8,5 +8,6 @@
 import Foundation
 
 struct APIProfileResponse: Decodable {
+    
     let profile: DecodableProfile
 }

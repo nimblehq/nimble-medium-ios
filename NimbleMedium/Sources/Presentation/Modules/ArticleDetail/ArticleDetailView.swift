@@ -33,7 +33,7 @@ struct ArticleDetailView: View {
         .navigationTitle(Localizable.articleDetailTitleText())
         .modifier(NavigationBarPrimaryStyle())
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
-            ToastView(Localizable.errorGeneric()) { } background: {
+            ToastView(Localizable.errorGenericMessage()) { } background: {
                 Color.clear
             }
         }
