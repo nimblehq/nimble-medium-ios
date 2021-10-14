@@ -107,7 +107,7 @@ private extension FeedsViewModel {
 
     func getCurrentUserSessionTriggered(owner: FeedsViewModel) -> Observable<Void> {
         getCurrentSessionUseCase
-            .getCurrentUserSession()
+            .execute()
             .map { $0 != nil }
             .do(
                 onSuccess: { owner.$isAuthenticated.accept($0) },

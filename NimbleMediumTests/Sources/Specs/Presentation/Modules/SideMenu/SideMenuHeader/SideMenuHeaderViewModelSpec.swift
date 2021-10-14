@@ -48,7 +48,7 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                     let user = UserDummy()
 
                     beforeEach {
-                        self.getCurrentSessionUseCase.getCurrentUserSessionReturnValue =
+                        self.getCurrentSessionUseCase.executeReturnValue =
                             .just(user, on: scheduler, at: 50)
                         viewModel.input.bindData(homeViewModel: self.homeViewModel)
                     }
@@ -70,7 +70,7 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                 context("when there is an invalid user session") {
 
                     beforeEach {
-                        self.getCurrentSessionUseCase.getCurrentUserSessionReturnValue =
+                        self.getCurrentSessionUseCase.executeReturnValue =
                             .just(nil, on: scheduler, at: 50)
                         viewModel.input.bindData(homeViewModel: self.homeViewModel)
                     }
@@ -88,7 +88,7 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                 context("when there is an error getting the user session") {
 
                     beforeEach {
-                        self.getCurrentSessionUseCase.getCurrentUserSessionReturnValue =
+                        self.getCurrentSessionUseCase.executeReturnValue =
                             .error(TestError.mock, on: scheduler, at: 50)
                         viewModel.input.bindData(homeViewModel: self.homeViewModel)
                     }
