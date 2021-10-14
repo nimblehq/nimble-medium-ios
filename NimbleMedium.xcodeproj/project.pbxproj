@@ -184,6 +184,8 @@
 		2DEFAB1B2715350A007C2378 /* UnfollowUserUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEFAB1A2715350A007C2378 /* UnfollowUserUseCaseSpec.swift */; };
 		2DEFAB1E271537A3007C2378 /* UserRepositorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEFAB1D271537A3007C2378 /* UserRepositorySpec.swift */; };
 		2DEFAB2027153998007C2378 /* AuthenticatedNetworkAPIProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEFAB1F27153998007C2378 /* AuthenticatedNetworkAPIProtocolMock.swift */; };
+		2DEFAB2227153CF4007C2378 /* FollowUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEFAB2127153CF4007C2378 /* FollowUserUseCase.swift */; };
+		2DEFAB2427153D26007C2378 /* FollowUserUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEFAB2327153D26007C2378 /* FollowUserUseCaseSpec.swift */; };
 		50CD01A577A1A5CB6812AF2E /* Pods_NimbleMedium_NimbleMediumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 901D8FC4774E2CF838738DEF /* Pods_NimbleMedium_NimbleMediumUITests.framework */; };
 		7DB2A8DC1F8863DD01F7D438 /* Pods_NimbleMedium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8319E63645C8E624FA94506E /* Pods_NimbleMedium.framework */; };
 		B56F45E43AAEF74BD71B4158 /* Pods_NimbleMediumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBC77E99D264744421CC502 /* Pods_NimbleMediumTests.framework */; };
@@ -389,6 +391,8 @@
 		2DEFAB1A2715350A007C2378 /* UnfollowUserUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnfollowUserUseCaseSpec.swift; sourceTree = "<group>"; };
 		2DEFAB1D271537A3007C2378 /* UserRepositorySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositorySpec.swift; sourceTree = "<group>"; };
 		2DEFAB1F27153998007C2378 /* AuthenticatedNetworkAPIProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedNetworkAPIProtocolMock.swift; sourceTree = "<group>"; };
+		2DEFAB2127153CF4007C2378 /* FollowUserUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowUserUseCase.swift; sourceTree = "<group>"; };
+		2DEFAB2327153D26007C2378 /* FollowUserUseCaseSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowUserUseCaseSpec.swift; sourceTree = "<group>"; };
 		44CDBEC74AB6205DBE05C61C /* Pods-NimbleMedium.debug staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.debug staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.debug staging.xcconfig"; sourceTree = "<group>"; };
 		458DD8FDDDFB794337C4FC53 /* Pods-NimbleMedium-NimbleMediumUITests.debug staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium-NimbleMediumUITests.debug staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium-NimbleMediumUITests/Pods-NimbleMedium-NimbleMediumUITests.debug staging.xcconfig"; sourceTree = "<group>"; };
 		664F4E0BC9D9E468E0506C22 /* Pods-NimbleMediumTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.production.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.production.xcconfig"; sourceTree = "<group>"; };
@@ -690,6 +694,7 @@
 				247717382704329A00BF13F2 /* GetCurrentUserUseCase.swift */,
 				24B277D22701C1EB00332FEA /* GetUserProfileUseCase.swift */,
 				2DEFAB18271531F5007C2378 /* UnfollowUserUseCase.swift */,
+				2DEFAB2127153CF4007C2378 /* FollowUserUseCase.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -708,6 +713,7 @@
 				2477173A2704336A00BF13F2 /* GetCurrentUserUseCaseSpec.swift */,
 				24B277D52701C31100332FEA /* GetUserProfileUseCaseSpec.swift */,
 				2DEFAB1A2715350A007C2378 /* UnfollowUserUseCaseSpec.swift */,
+				2DEFAB2327153D26007C2378 /* FollowUserUseCaseSpec.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2146,6 +2152,7 @@
 				2DB31D4E26F18EAB007254B9 /* ArticleDetailViewModel.swift in Sources */,
 				2D17E4F426F07ABA001D3F90 /* View+If.swift in Sources */,
 				241B4EEA26D3B3F4000409CC /* SideMenuActionItemView.swift in Sources */,
+				2DEFAB2227153CF4007C2378 /* FollowUserUseCase.swift in Sources */,
 				2D084734270D793300DFFF69 /* UserProfileCreatedArticlesTab.swift in Sources */,
 				241F5B872701AADD002E13FC /* UserRequestConfiguration.swift in Sources */,
 				2DD4805826D73C67005225CF /* ObservedViewModel.swift in Sources */,
@@ -2199,6 +2206,7 @@
 				2DB31D5126F1961A007254B9 /* ArticleDetailViewModelSpec.swift in Sources */,
 				2D892BA926E89A6100579856 /* APIArticlesResponse+Dummy.swift in Sources */,
 				2DEFAB1B2715350A007C2378 /* UnfollowUserUseCaseSpec.swift in Sources */,
+				2DEFAB2427153D26007C2378 /* FollowUserUseCaseSpec.swift in Sources */,
 				24B277DC2701C79400332FEA /* APIProfileResponse+Dummy.swift in Sources */,
 				2D882EE426F1CEB600DB6560 /* ArticleCommentRepositorySpec.swift in Sources */,
 				2477173B2704336A00BF13F2 /* GetCurrentUserUseCaseSpec.swift in Sources */,
