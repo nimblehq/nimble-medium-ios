@@ -16,6 +16,7 @@ import Resolver
 
 final class FeedsViewModelSpec: QuickSpec {
 
+    @LazyInjected var getCurrentSessionUseCase: GetCurrentSessionUseCaseProtocolMock
     @LazyInjected var getListArticlesUseCase: GetListArticlesUseCaseProtocolMock
 
     override func spec() {
@@ -47,10 +48,10 @@ final class FeedsViewModelSpec: QuickSpec {
                     return viewModel
                 }
                 .implements(ArticleRowViewModelProtocol.self)
-                
-                viewModel = FeedsViewModel()
+
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
+                viewModel = FeedsViewModel()
             }
 
             describe("its toggleSideMenu() call") {
@@ -174,30 +175,24 @@ final class FeedsViewModelSpec: QuickSpec {
                     }
 
                     it("returns output feedRowViewModels with correct value") {
-                        let ids = inputArticles
-                            .map { $0.id }
+                        let ids = inputArticles.map { $0.id }
                         let doubleIds = ids + ids
-                        expect(
-                            viewModel.output.articleRowViewModels
-                                .map { $0.map { $0.output.id } }
-                        )
-                        .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                            .next(0, []),
-                            .next(10, ids),
-                            .next(20, doubleIds),
-                            .next(30, doubleIds)
-                        ]
+                        expect(viewModel.output.articleRowViewModels.map { $0.map { $0.output.id } })
+                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                                .next(0, []),
+                                .next(10, ids),
+                                .next(20, doubleIds),
+                                .next(30, doubleIds)
+                            ]
                     }
                 }
 
                 context("when ListArticlesUseCase return failure") {
 
                     beforeEach {
-                        self.getListArticlesUseCase.executeTagAuthorFavoritedLimitOffsetReturnValue = .error(
-                            TestError.mock,
-                            on: scheduler,
-                            at: 10
-                        )
+                        self.getListArticlesUseCase.executeTagAuthorFavoritedLimitOffsetReturnValue =
+                            .error(TestError.mock, on: scheduler, at: 10 )
+
                         scheduler.scheduleAt(5) { viewModel.input.loadMore() }
                     }
 
@@ -205,6 +200,121 @@ final class FeedsViewModelSpec: QuickSpec {
                         expect(viewModel.output.didFailToLoadArticle)
                             .events(scheduler: scheduler, disposeBag: disposeBag)
                             .notTo(beEmpty())
+                    }
+                }
+            }
+
+            describe("its viewOnAppear() call") {
+
+                let articles = APIArticlesResponse.dummy.articles
+                let user = UserDummy()
+
+                beforeEach {
+                    self.getCurrentSessionUseCase.executeReturnValue = .just(user)
+                    self.getListArticlesUseCase.executeTagAuthorFavoritedLimitOffsetReturnValue =
+                        .just(articles)
+                }
+
+                context("when listArticlesUseCase returns success") {
+
+                    beforeEach {
+                        self.getListArticlesUseCase.executeTagAuthorFavoritedLimitOffsetReturnValue =
+                            .just(articles, on: scheduler, at: 10)
+
+                        scheduler.scheduleAt(5) { viewModel.input.viewOnAppear() }
+                    }
+
+                    it("returns output with didFinishRefresh signal") {
+                        expect(viewModel.output.didFinishRefresh)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .notTo(beEmpty())
+                    }
+
+                    it("returns output feedRowViewModels with correct value") {
+                        expect(viewModel.output.articleRowViewModels.map { $0.map { $0.output.id } })
+                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                                .next(0, []),
+                                .next(10, articles.map { $0.id })
+                            ]
+                    }
+                }
+
+                context("when listArticlesUseCase returns failure") {
+
+                    beforeEach {
+                        self.getListArticlesUseCase.executeTagAuthorFavoritedLimitOffsetReturnValue =
+                            .error(TestError.mock, on: scheduler, at: 10)
+
+                        scheduler.scheduleAt(5) { viewModel.input.viewOnAppear() }
+                    }
+
+                    it("returns output with didFinishRefresh signal") {
+                        expect(viewModel.output.didFinishRefresh)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .notTo(beEmpty())
+                    }
+
+                    it("returns output didFailToLoadArticle with correct error") {
+                        expect(viewModel.output.didFailToLoadArticle)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .notTo(beEmpty())
+                    }
+                }
+
+                context("when getCurrentSessionUseCase returns a valid user session") {
+
+                    beforeEach {
+                        self.getCurrentSessionUseCase.executeReturnValue =
+                            .just(user, on: scheduler, at: 50)
+
+                        viewModel.input.viewOnAppear()
+                    }
+
+                    it("returns output with isAuthenticated as true") {
+                        expect(viewModel.output.isAuthenticated)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .to(equal([
+                                .next(0, false),
+                                .next(50, true)
+                            ]))
+                    }
+                }
+
+                context("when getCurrentSessionUseCase returns an invalid user session") {
+
+                    beforeEach {
+                        self.getCurrentSessionUseCase.executeReturnValue =
+                            .just(nil, on: scheduler, at: 50)
+
+                        viewModel.input.viewOnAppear()
+                    }
+
+                    it("returns output with isAuthenticated as false") {
+                        expect(viewModel.output.isAuthenticated)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .to(equal([
+                                .next(0, false),
+                                .next(50, false)
+                            ]))
+                    }
+                }
+
+                context("when getCurrentSessionUseCase returns an error getting the user session") {
+
+                    beforeEach {
+                        self.getCurrentSessionUseCase.executeReturnValue =
+                            .error(TestError.mock, on: scheduler, at: 50)
+
+                        viewModel.input.viewOnAppear()
+                    }
+
+                    it("returns output with isAuthenticated as false") {
+                        expect(viewModel.output.isAuthenticated)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .to(equal([
+                                .next(0, false),
+                                .next(50, false)
+                            ]))
                     }
                 }
             }

@@ -10,7 +10,7 @@ import RxSwift
 // sourcery: AutoMockable
 protocol GetCurrentSessionUseCaseProtocol: AnyObject {
 
-    func getCurrentUserSession() -> Single<User?>
+    func execute() -> Single<User?>
 }
 
 final class GetCurrentSessionUseCase: GetCurrentSessionUseCaseProtocol {
@@ -21,7 +21,7 @@ final class GetCurrentSessionUseCase: GetCurrentSessionUseCaseProtocol {
         self.userSessionRepository = userSessionRepository
     }
 
-    func getCurrentUserSession() -> Single<User?> {
+    func execute() -> Single<User?> {
         userSessionRepository
             .getCurrentUser()
     }

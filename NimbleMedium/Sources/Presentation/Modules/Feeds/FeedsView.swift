@@ -16,6 +16,7 @@ struct FeedsView: View {
     
     @State private var isFirstLoad: Bool = true
     @State private var isErrorToastPresented = false
+    @State private var isShowingCreateArticleScreen = false
 
     // TODO: Implement the logic when to show new article ToolbarItem button in integrate task, default to false
     @State private var isAuthenticated = false
@@ -38,27 +39,17 @@ struct FeedsView: View {
                 navigationBarTrailingContent
             }
             .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
-                ToastView(Localizable.errorGeneric()) { } background: {
-                    Color.clear
-                }
+                ToastView(Localizable.errorGeneric()) { } background: { Color.clear }
             }
-            .onAppear {
-                isSideMenuDraggingEnabled = true
-            }
-            .onDisappear {
-                isSideMenuDraggingEnabled = false
-            }
+            .onAppear { isSideMenuDraggingEnabled = true }
+            .onDisappear { isSideMenuDraggingEnabled = false }
         }
         .accentColor(.white)
-        .onReceive(viewModel.output.didFinishRefresh) { _ in
-            if isFirstLoad {
-                isFirstLoad = false
-            }
-        }
-        .onReceive(viewModel.output.didFailToLoadArticle) { _ in
-            isErrorToastPresented = true
-        }
-        .onAppear { viewModel.input.refresh() }
+        .onReceive(viewModel.output.didFinishRefresh) { _ in if isFirstLoad { isFirstLoad = false } }
+        .onReceive(viewModel.output.didFailToLoadArticle) { _ in isErrorToastPresented = true }
+        .onAppear { viewModel.input.viewOnAppear() }
+        .bind(viewModel.output.isAuthenticated, to: _isAuthenticated)
+        .fullScreenCover(isPresented: $isShowingCreateArticleScreen) { CreateArticleView() }
     }
 
     var navigationBarLeadingContent: some ToolbarContent {
@@ -74,9 +65,7 @@ struct FeedsView: View {
         ToolbarItem(placement: .navigationBarTrailing) {
             if isAuthenticated {
                 Button(
-                    action: {
-                        // TODO: Implement the ToolbarItem action in integrate task
-                    },
+                    action: { isShowingCreateArticleScreen = true },
                     label: { Image(systemName: SystemImageName.plusSquare.rawValue) }
                 )
             }

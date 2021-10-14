@@ -83,7 +83,7 @@ private extension SideMenuHeaderViewModel {
 
     func getCurrentUserSessionTriggered(owner: SideMenuHeaderViewModel) -> Observable<Void> {
         getCurrentSessionUseCase
-            .getCurrentUserSession()
+            .execute()
             .map {
                 guard let user = $0 else { return nil }
                 return owner.generateUIModel(from: user)
