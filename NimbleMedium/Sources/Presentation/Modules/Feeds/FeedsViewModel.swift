@@ -12,18 +12,20 @@ import Resolver
 
 protocol FeedsViewModelInput {
 
-    func toggleSideMenu()
-    func refresh()
     func loadMore()
+    func refresh()
+    func toggleSideMenu()
+    func viewOnAppear()
 }
 
 protocol FeedsViewModelOutput {
 
+    var articleRowViewModels: Driver<[ArticleRowViewModelProtocol]> { get }
     var didToggleSideMenu: Signal<Void> { get }
     var didFailToLoadArticle: Signal<Void> { get }
     var didFinishLoadMore: Signal<Bool> { get }
     var didFinishRefresh: Signal<Void> { get }
-    var articleRowViewModels: Driver<[ArticleRowViewModelProtocol]> { get }
+    var isAuthenticated: Driver<Bool> { get }
 }
 
 protocol FeedsViewModelProtocol: ObservableViewModel {
@@ -34,27 +36,32 @@ protocol FeedsViewModelProtocol: ObservableViewModel {
 
 final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
 
-    @Injected private var getListArticlesUseCase: GetListArticlesUseCaseProtocol
+    var input: FeedsViewModelInput { self }
+    var output: FeedsViewModelOutput { self }
 
     private var currentOffset = 0
+    
     private let limit = 10
     private let disposeBag = DisposeBag()
     private let refreshTrigger = PublishRelay<Void>()
     private let loadMoreTrigger = PublishRelay<Void>()
+    private let getCurrentUserSessionTrigger = PublishRelay<Void>()
 
     @PublishRelayProperty var didToggleSideMenu: Signal<Void>
     @PublishRelayProperty var didFailToLoadArticle: Signal<Void>
     @PublishRelayProperty var didFinishLoadMore: Signal<Bool>
     @PublishRelayProperty var didFinishRefresh: Signal<Void>
+    
     @BehaviorRelayProperty([]) var articleRowViewModels: Driver<[ArticleRowViewModelProtocol]>
+    @BehaviorRelayProperty(false) var isAuthenticated: Driver<Bool>
 
-    var input: FeedsViewModelInput { self }
-    var output: FeedsViewModelOutput { self }
+    @Injected private var getCurrentSessionUseCase: GetCurrentSessionUseCaseProtocol
+    @Injected private var getListArticlesUseCase: GetListArticlesUseCaseProtocol
 
     init() {
-        refreshTrigger
+        getCurrentUserSessionTrigger
             .withUnretained(self)
-            .flatMapLatest { $0.0.refreshTriggered(owner: $0.0) }
+            .flatMapLatest { owner, _ in owner.getCurrentUserSessionTriggered(owner: owner) }
             .subscribe()
             .disposed(by: disposeBag)
 
@@ -63,21 +70,32 @@ final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
             .flatMapLatest { $0.0.loadMoreTriggered(owner: $0.0) }
             .subscribe()
             .disposed(by: disposeBag)
+
+        refreshTrigger
+            .withUnretained(self)
+            .flatMapLatest { $0.0.refreshTriggered(owner: $0.0) }
+            .subscribe()
+            .disposed(by: disposeBag)
     }
 }
 
 extension FeedsViewModel: FeedsViewModelInput {
 
-    func toggleSideMenu() {
-        $didToggleSideMenu.accept(())
+    func loadMore() {
+        loadMoreTrigger.accept(())
     }
 
     func refresh() {
         refreshTrigger.accept(())
     }
 
-    func loadMore() {
-        loadMoreTrigger.accept(())
+    func toggleSideMenu() {
+        $didToggleSideMenu.accept(())
+    }
+
+    func viewOnAppear() {
+        getCurrentUserSessionTrigger.accept(())
+        refresh()
     }
 }
 
@@ -87,28 +105,17 @@ extension FeedsViewModel: FeedsViewModelOutput {}
 
 private extension FeedsViewModel {
 
-    func refreshTriggered(owner: FeedsViewModel) -> Observable<Void> {
-        getListArticlesUseCase.execute(
-            tag: nil,
-            author: nil,
-            favorited: nil,
-            limit: limit,
-            offset: 0
-        )
-        .do(
-            onSuccess: {
-                owner.$didFinishRefresh.accept(())
-                owner.currentOffset = 0
-                owner.$articleRowViewModels.accept($0.viewModels)
-            },
-            onError: { _ in
-                owner.$didFinishRefresh.accept(())
-                owner.$didFailToLoadArticle.accept(())
-            }
-        )
-        .asObservable()
-        .mapToVoid()
-        .catchAndReturn(())
+    func getCurrentUserSessionTriggered(owner: FeedsViewModel) -> Observable<Void> {
+        getCurrentSessionUseCase
+            .getCurrentUserSession()
+            .map { $0 != nil }
+            .do(
+                onSuccess: { owner.$isAuthenticated.accept($0) },
+                onError: { _ in owner.$isAuthenticated.accept(false) }
+            )
+            .asObservable()
+            .mapToVoid()
+            .catchAndReturn(())
     }
 
     func loadMoreTriggered(owner: FeedsViewModel) -> Observable<Void> {
@@ -132,6 +139,30 @@ private extension FeedsViewModel {
             },
             onError: { _ in
                 owner.$didFinishLoadMore.accept(true)
+                owner.$didFailToLoadArticle.accept(())
+            }
+        )
+        .asObservable()
+        .mapToVoid()
+        .catchAndReturn(())
+    }
+
+    func refreshTriggered(owner: FeedsViewModel) -> Observable<Void> {
+        getListArticlesUseCase.execute(
+            tag: nil,
+            author: nil,
+            favorited: nil,
+            limit: limit,
+            offset: 0
+        )
+        .do(
+            onSuccess: {
+                owner.$didFinishRefresh.accept(())
+                owner.currentOffset = 0
+                owner.$articleRowViewModels.accept($0.viewModels)
+            },
+            onError: { _ in
+                owner.$didFinishRefresh.accept(())
                 owner.$didFailToLoadArticle.accept(())
             }
         )
