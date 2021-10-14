@@ -9,12 +9,19 @@
 "action.cancel.text" = "Cancel";
 "action.confirm.text" = "Confirm";
 "action.login.text" = "Login";
+"action.publish.text" = "Publish";
 "action.signup.text" = "Signup";
 "action.update.text" = "Update";
 
 "articleDetail.comments.title" = "Go to comments section";
 "articleDetail.fetchFailure.message" = "Unable to load the article";
 "articleDetail.title.text" = "Article";
+
+"createArticle.title.text" = "Create Article";
+"createArticle.textFieldDescription.placeholder" = "What's this article about";
+"createArticle.textFieldTagsList.placeholder" = "Enter tags (separated by comma)";
+"createArticle.textFieldTitle.placeholder" = "Article Title";
+"createArticle.textViewBody.placeholder" = "Write your article";
 
 "default.username.value" = "Current User";
 
