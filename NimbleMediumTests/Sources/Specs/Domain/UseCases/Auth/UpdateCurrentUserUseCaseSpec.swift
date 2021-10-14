@@ -45,10 +45,10 @@ final class UpdateCurrentUserUseCaseSpec: QuickSpec {
 
                     beforeEach {
                         outputCompleted = scheduler.createObserver(Bool.self)
-                        authRepository.updateCurrentUserUsernameEmailPasswordImageBioReturnValue = .just(inputUser)
+                        authRepository.updateCurrentUserParamsReturnValue = .just(inputUser)
                         userSessionRepository.saveUserReturnValue = .empty()
 
-                        usecase.execute(username: "", email: "", password: nil, image: nil, bio: nil)
+                        usecase.execute(params: UpdateCurrentUserParameters.dummy)
                             .asObservable()
                             .materialize()
                             .map { $0.isCompleted }
@@ -67,11 +67,11 @@ final class UpdateCurrentUserUseCaseSpec: QuickSpec {
 
                     beforeEach {
                         outputError = scheduler.createObserver(Optional<Error>.self)
-                        authRepository.updateCurrentUserUsernameEmailPasswordImageBioReturnValue =
+                        authRepository.updateCurrentUserParamsReturnValue =
                             .error(TestError.mock)
                         userSessionRepository.saveUserReturnValue = .empty()
 
-                        usecase.execute(username: "", email: "", password: nil, image: nil, bio: nil)
+                        usecase.execute(params: UpdateCurrentUserParameters.dummy)
                             .asObservable()
                             .materialize()
                             .map { $0.error }
@@ -94,10 +94,10 @@ final class UpdateCurrentUserUseCaseSpec: QuickSpec {
 
                     beforeEach {
                         outputError = scheduler.createObserver(Optional<Error>.self)
-                        authRepository.updateCurrentUserUsernameEmailPasswordImageBioReturnValue = .just(inputUser)
+                        authRepository.updateCurrentUserParamsReturnValue = .just(inputUser)
                         userSessionRepository.saveUserReturnValue = .error(TestError.mock)
 
-                        usecase.execute(username: "", email: "", password: nil, image: nil, bio: nil)
+                        usecase.execute(params: UpdateCurrentUserParameters.dummy)
                             .asObservable()
                             .materialize()
                             .map { $0.error }

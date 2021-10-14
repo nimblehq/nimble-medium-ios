@@ -10,13 +10,7 @@ import RxSwift
 // sourcery: AutoMockable
 protocol UpdateCurrentUserUseCaseProtocol: AnyObject {
 
-    func execute(
-        username: String,
-        email: String,
-        password: String?,
-        image: String?,
-        bio: String?
-    ) -> Completable
+    func execute(params: UpdateCurrentUserParameters) -> Completable
 }
 
 final class UpdateCurrentUserUseCase: UpdateCurrentUserUseCaseProtocol {
@@ -32,17 +26,9 @@ final class UpdateCurrentUserUseCase: UpdateCurrentUserUseCaseProtocol {
         self.userSessionRepository = userSessionRepository
     }
 
-    func execute(
-        username: String,
-        email: String,
-        password: String?,
-        image: String?,
-        bio: String?
-    ) -> Completable {
+    func execute(params: UpdateCurrentUserParameters) -> Completable {
         authRepository
-            .updateCurrentUser(
-                username: username, email: email, password: password, image: image, bio: bio
-            )
+            .updateCurrentUser(params: params)
             .asObservable()
             .withUnretained(self)
             .flatMapLatest { owner, user -> Completable in
