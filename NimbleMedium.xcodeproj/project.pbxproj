@@ -180,6 +180,10 @@
 		2DEF1F9A26E6092500EB93CC /* APIArticlesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEF1F9926E6092500EB93CC /* APIArticlesResponse.swift */; };
 		2DEF1FA126E612B900EB93CC /* ArticleRepositorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEF1FA026E612B900EB93CC /* ArticleRepositorySpec.swift */; };
 		2DEF1FA726E6181F00EB93CC /* Data+Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEF1FA526E6181F00EB93CC /* Data+Decode.swift */; };
+		2DEFAB19271531F5007C2378 /* UnfollowUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEFAB18271531F5007C2378 /* UnfollowUserUseCase.swift */; };
+		2DEFAB1B2715350A007C2378 /* UnfollowUserUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEFAB1A2715350A007C2378 /* UnfollowUserUseCaseSpec.swift */; };
+		2DEFAB1E271537A3007C2378 /* UserRepositorySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEFAB1D271537A3007C2378 /* UserRepositorySpec.swift */; };
+		2DEFAB2027153998007C2378 /* AuthenticatedNetworkAPIProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DEFAB1F27153998007C2378 /* AuthenticatedNetworkAPIProtocolMock.swift */; };
 		50CD01A577A1A5CB6812AF2E /* Pods_NimbleMedium_NimbleMediumUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 901D8FC4774E2CF838738DEF /* Pods_NimbleMedium_NimbleMediumUITests.framework */; };
 		7DB2A8DC1F8863DD01F7D438 /* Pods_NimbleMedium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8319E63645C8E624FA94506E /* Pods_NimbleMedium.framework */; };
 		B56F45E43AAEF74BD71B4158 /* Pods_NimbleMediumTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDBC77E99D264744421CC502 /* Pods_NimbleMediumTests.framework */; };
@@ -381,6 +385,10 @@
 		2DEF1F9926E6092500EB93CC /* APIArticlesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIArticlesResponse.swift; sourceTree = "<group>"; };
 		2DEF1FA026E612B900EB93CC /* ArticleRepositorySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRepositorySpec.swift; sourceTree = "<group>"; };
 		2DEF1FA526E6181F00EB93CC /* Data+Decode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Decode.swift"; sourceTree = "<group>"; };
+		2DEFAB18271531F5007C2378 /* UnfollowUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnfollowUserUseCase.swift; sourceTree = "<group>"; };
+		2DEFAB1A2715350A007C2378 /* UnfollowUserUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnfollowUserUseCaseSpec.swift; sourceTree = "<group>"; };
+		2DEFAB1D271537A3007C2378 /* UserRepositorySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositorySpec.swift; sourceTree = "<group>"; };
+		2DEFAB1F27153998007C2378 /* AuthenticatedNetworkAPIProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedNetworkAPIProtocolMock.swift; sourceTree = "<group>"; };
 		44CDBEC74AB6205DBE05C61C /* Pods-NimbleMedium.debug staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.debug staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.debug staging.xcconfig"; sourceTree = "<group>"; };
 		458DD8FDDDFB794337C4FC53 /* Pods-NimbleMedium-NimbleMediumUITests.debug staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium-NimbleMediumUITests.debug staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium-NimbleMediumUITests/Pods-NimbleMedium-NimbleMediumUITests.debug staging.xcconfig"; sourceTree = "<group>"; };
 		664F4E0BC9D9E468E0506C22 /* Pods-NimbleMediumTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.production.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.production.xcconfig"; sourceTree = "<group>"; };
@@ -681,6 +689,7 @@
 				246B387026F87DA1003173FD /* GetCurrentSessionUseCase.swift */,
 				247717382704329A00BF13F2 /* GetCurrentUserUseCase.swift */,
 				24B277D22701C1EB00332FEA /* GetUserProfileUseCase.swift */,
+				2DEFAB18271531F5007C2378 /* UnfollowUserUseCase.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -698,6 +707,7 @@
 			children = (
 				2477173A2704336A00BF13F2 /* GetCurrentUserUseCaseSpec.swift */,
 				24B277D52701C31100332FEA /* GetUserProfileUseCaseSpec.swift */,
+				2DEFAB1A2715350A007C2378 /* UnfollowUserUseCaseSpec.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -809,6 +819,7 @@
 			isa = PBXGroup;
 			children = (
 				2D892BA626E8698700579856 /* NetworkAPIProtocolMock.swift */,
+				2DEFAB1F27153998007C2378 /* AuthenticatedNetworkAPIProtocolMock.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1153,6 +1164,7 @@
 			children = (
 				24B277DA2701C33C00332FEA /* Article */,
 				24B277D92701C33400332FEA /* Comment */,
+				2DEFAB1C2715378E007C2378 /* User */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1585,6 +1597,14 @@
 				2DEF1F8F26E5FE8E00EB93CC /* ArticleRepositoryProtocol.swift */,
 			);
 			path = Article;
+			sourceTree = "<group>";
+		};
+		2DEFAB1C2715378E007C2378 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				2DEFAB1D271537A3007C2378 /* UserRepositorySpec.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		6BCBF057E18C8FD57CD13FD1 /* Pods */ = {
@@ -2080,6 +2100,7 @@
 				241B99DE26DF34720041207F /* SignupUseCase.swift in Sources */,
 				247717332704192900BF13F2 /* NetworkAPIError.swift in Sources */,
 				246B386F26F87730003173FD /* SideMenuHeaderViewModel.swift in Sources */,
+				2DEFAB19271531F5007C2378 /* UnfollowUserUseCase.swift in Sources */,
 				2497356326D35BBD00177A7C /* MenuOptionButtonStyle.swift in Sources */,
 				2D882ED026F1C90200DB6560 /* ArticleComment.swift in Sources */,
 				2D5485B726C9FAAC00FFE707 /* BehaviorRelayProperty.swift in Sources */,
@@ -2152,6 +2173,7 @@
 				2D1A93AC270FFB45003B2011 /* UserProfileFavouritedArticlesTabViewModelSpec.swift in Sources */,
 				2D79A8FC26EF4A7E007B81D1 /* FeedsViewModelSpec.swift in Sources */,
 				2DC224E62702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift in Sources */,
+				2DEFAB1E271537A3007C2378 /* UserRepositorySpec.swift in Sources */,
 				2D29A70D26F44426001EA24F /* ArticleCommentsViewModelSpec.swift in Sources */,
 				247CD0F027142A13002D90D1 /* SideMenuActionsViewModelSpec.swift in Sources */,
 				24F3D7C426DE0FAE00DE2420 /* TestError.swift in Sources */,
@@ -2164,6 +2186,7 @@
 				2DEF1FA726E6181F00EB93CC /* Data+Decode.swift in Sources */,
 				2D46FAF026F830B0005DD323 /* PrimitiveSequenceType+TestScheduler.swift in Sources */,
 				2DEF1FA126E612B900EB93CC /* ArticleRepositorySpec.swift in Sources */,
+				2DEFAB2027153998007C2378 /* AuthenticatedNetworkAPIProtocolMock.swift in Sources */,
 				2D892BAB26E89E4500579856 /* GetListArticlesUseCaseSpec.swift in Sources */,
 				2D882EE226F1CE8F00DB6560 /* APIArticleCommentsResponse+Dummy.swift in Sources */,
 				2D87822F26EB3B3A0080FEF6 /* R.generated.swift in Sources */,
@@ -2175,6 +2198,7 @@
 				2D892BA726E8698700579856 /* NetworkAPIProtocolMock.swift in Sources */,
 				2DB31D5126F1961A007254B9 /* ArticleDetailViewModelSpec.swift in Sources */,
 				2D892BA926E89A6100579856 /* APIArticlesResponse+Dummy.swift in Sources */,
+				2DEFAB1B2715350A007C2378 /* UnfollowUserUseCaseSpec.swift in Sources */,
 				24B277DC2701C79400332FEA /* APIProfileResponse+Dummy.swift in Sources */,
 				2D882EE426F1CEB600DB6560 /* ArticleCommentRepositorySpec.swift in Sources */,
 				2477173B2704336A00BF13F2 /* GetCurrentUserUseCaseSpec.swift in Sources */,
