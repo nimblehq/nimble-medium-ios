@@ -17,6 +17,9 @@ struct FeedsView: View {
     @State private var isFirstLoad: Bool = true
     @State private var isErrorToastPresented = false
 
+    // TODO: Implement the logic when to show new article ToolbarItem button in integrate task, default to false
+    @State private var isAuthenticated = false
+
     @Binding private var isSideMenuDraggingEnabled: Bool
 
     var body: some View {
@@ -30,7 +33,10 @@ struct FeedsView: View {
             }
             .navigationTitle(Localizable.feedsTitle())
             .modifier(NavigationBarPrimaryStyle(isBackButtonHidden: true))
-            .toolbar { navigationBarLeadingContent }
+            .toolbar {
+                navigationBarLeadingContent
+                navigationBarTrailingContent
+            }
             .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
                 ToastView(Localizable.errorGeneric()) { } background: {
                     Color.clear
@@ -58,13 +64,22 @@ struct FeedsView: View {
     var navigationBarLeadingContent: some ToolbarContent {
         ToolbarItem(placement: .navigationBarLeading) {
             Button(
-                action: {
-                    viewModel.input.toggleSideMenu()
-                },
-                label: {
-                    Image(R.image.menuIcon.name)
-                }
+                action: { viewModel.input.toggleSideMenu() },
+                label: { Image(R.image.menuIcon.name) }
             )
+        }
+    }
+
+    var navigationBarTrailingContent: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            if isAuthenticated {
+                Button(
+                    action: {
+                        // TODO: Implement the ToolbarItem action in integrate task
+                    },
+                    label: { Image(systemName: SystemImageName.plusSquare.rawValue) }
+                )
+            }
         }
     }
 
