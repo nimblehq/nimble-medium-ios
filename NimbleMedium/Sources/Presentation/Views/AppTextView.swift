@@ -27,18 +27,24 @@ struct AppTextView: UIViewRepresentable {
     func makeUIView(context: UIViewRepresentableContext<Self>) -> UIViewType {
         let textView = UITextView()
         textView.autocapitalizationType = .sentences
+        textView.delegate = context.coordinator
+        textView.font = .preferredFont(forTextStyle: UIFont.TextStyle.body)
         textView.isSelectable = true
+        textView.layer.borderColor = UIColor.lightGray.cgColor
+        textView.layer.borderWidth = 1.0
+        textView.layer.cornerRadius = 8.0
         textView.text = placeholder
         textView.textColor = placeholderTextColor
-        textView.font = .preferredFont(forTextStyle: UIFont.TextStyle.body)
-        textView.delegate = context.coordinator
-        textView.layer.cornerRadius = 8.0
-        textView.layer.borderWidth = 1.0
-        textView.layer.borderColor = UIColor.lightGray.cgColor
+        textView.textContainerInset = UIEdgeInsets(top: 8.0, left: 10.0, bottom: 8.0, right: 10.0)
+        textView.tintColor = .black
         return textView
     }
 
     func updateUIView(_ uiView: UIViewType, context: UIViewRepresentableContext<Self>) {
+        if !text.wrappedValue.isEmpty {
+            uiView.text = text.wrappedValue
+            uiView.textColor = .black
+        }
         configuration?(uiView)
     }
 
@@ -59,21 +65,19 @@ struct AppTextView: UIViewRepresentable {
         }
 
         func textViewDidChange(_ textView: UITextView) {
-            self.text.wrappedValue = textView.text
+            text.wrappedValue = textView.text
         }
 
         func textViewDidEndEditing(_ textView: UITextView) {
-            if textView.text.isEmpty {
-                textView.text = placeholder
-                textView.textColor = placeholderTextColor
-            }
+            guard textView.text.isEmpty else { return }
+            textView.text = placeholder
+            textView.textColor = placeholderTextColor
         }
 
         func textViewDidBeginEditing(_ textView: UITextView) {
-            if textView.textColor == placeholderTextColor {
-                textView.text = nil
-                textView.textColor = .black
-            }
+            guard textView.textColor == placeholderTextColor else { return }
+            textView.text = nil
+            textView.textColor = .black
         }
     }
 }

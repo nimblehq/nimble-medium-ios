@@ -29,14 +29,10 @@ extension Resolver {
     }
 
     private static func registerUseCases() {
-        Resolver.mock.register {
-            GetArticleCommentsUseCaseProtocolMock()
-        }
+        Resolver.mock.register { GetArticleCommentsUseCaseProtocolMock() }
         .implements(GetArticleCommentsUseCaseProtocol.self)
         Resolver.mock.register { GetArticleUseCaseProtocolMock() }.implements(GetArticleUseCaseProtocol.self)
-        Resolver.mock.register {
-            GetCurrentSessionUseCaseProtocolMock()
-        }
+        Resolver.mock.register { GetCurrentSessionUseCaseProtocolMock() }
         .implements(GetCurrentSessionUseCaseProtocol.self)
         Resolver.mock.register { GetCurrentUserUseCaseProtocolMock() }.implements(GetCurrentUserUseCaseProtocol.self)
         Resolver.mock.register { GetListArticlesUseCaseProtocolMock() }.implements(GetListArticlesUseCaseProtocol.self)
@@ -44,15 +40,21 @@ extension Resolver {
         Resolver.mock.register { LoginUseCaseProtocolMock() }.implements(LoginUseCaseProtocol.self)
         Resolver.mock.register { LogoutUseCaseProtocolMock() }.implements(LogoutUseCaseProtocol.self)
         Resolver.mock.register { GetCreatedArticlesUseCaseProtocolMock() }
-            .implements(GetCreatedArticlesUseCaseProtocol.self)
+        .implements(GetCreatedArticlesUseCaseProtocol.self)
         Resolver.mock.register { GetFavouritedArticlesUseCaseProtocolMock() }
-            .implements(GetFavouritedArticlesUseCaseProtocol.self)
+        .implements(GetFavouritedArticlesUseCaseProtocol.self)
+        Resolver.mock.register { UpdateCurrentUserUseCaseProtocolMock() }
+        .implements(UpdateCurrentUserUseCaseProtocol.self)
     }
-
+    
     private static func registerViewModels() {
         Resolver.mock.register { ArticleRowViewModelProtocolMock() }.implements(ArticleRowViewModelProtocol.self)
         Resolver.mock.register { HomeViewModelProtocolMock() }.implements(HomeViewModelProtocol.self)
         Resolver.mock.register { LoginViewModelProtocolMock() }.implements(LoginViewModelProtocol.self)
+        Resolver.mock.register { SideMenuActionsViewModelProtocolMock() }
+        .implements(SideMenuActionsViewModelProtocol.self)
+        Resolver.mock.register { SideMenuHeaderViewModelProtocolMock() }
+        .implements(SideMenuHeaderViewModelProtocol.self)
         Resolver.mock.register { SignupViewModelProtocolMock() }.implements(SignupViewModelProtocol.self)
     }
 }

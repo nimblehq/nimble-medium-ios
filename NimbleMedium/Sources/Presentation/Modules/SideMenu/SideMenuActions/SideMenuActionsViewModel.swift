@@ -24,6 +24,7 @@ protocol SideMenuActionsViewModelInput {
     func selectSignupOption()
 }
 
+// sourcery: AutoMockable
 protocol SideMenuActionsViewModelOutput {
 
     var didLogout: Signal<Void> { get }
@@ -33,6 +34,7 @@ protocol SideMenuActionsViewModelOutput {
     var isAuthenticated: Driver<Bool> { get }
 }
 
+// sourcery: AutoMockable
 protocol SideMenuActionsViewModelProtocol: ObservableViewModel {
 
     var input: SideMenuActionsViewModelInput { get }
