@@ -32,7 +32,10 @@ extension Resolver: ResolverRegistering {
             )
         }.implements(AuthRepositoryProtocol.self)
         register {
-            ArticleRepository(networkAPI: resolve())
+            ArticleRepository(
+                authenticatedNetworkAPI: resolve(),
+                networkAPI: resolve()
+            )
         }.implements(ArticleRepositoryProtocol.self)
         register {
             ArticleCommentRepository(
@@ -56,6 +59,9 @@ extension Resolver: ResolverRegistering {
         register {
             CreateArticleCommentUseCase(articleCommentRepository: resolve())
         }.implements(CreateArticleCommentUseCaseProtocol.self)
+        register {
+            CreateArticleUseCase(articleRepository: resolve())
+        }.implements(CreateArticleUseCaseProtocol.self)
         register {
             GetArticleCommentsUseCase(articleCommentRepository: resolve())
         }.implements(GetArticleCommentsUseCaseProtocol.self)

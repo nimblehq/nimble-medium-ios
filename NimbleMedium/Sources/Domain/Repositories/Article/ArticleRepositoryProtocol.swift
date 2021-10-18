@@ -10,6 +10,8 @@ import RxSwift
 // sourcery: AutoMockable
 protocol ArticleRepositoryProtocol: AnyObject {
 
+    func createArticle(params: CreateArticleParameters) -> Single<Article>
+
     func listArticles(
         tag: String?,
         author: String?,
