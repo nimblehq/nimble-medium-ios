@@ -88,6 +88,8 @@
 		24C9393926D89FA300547800 /* AppTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393826D89FA300547800 /* AppTextField.swift */; };
 		24C9393B26D8A1A200547800 /* AppSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393A26D8A1A200547800 /* AppSecureField.swift */; };
 		24C9393D26D8A26300547800 /* AppMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393C26D8A26300547800 /* AppMainButton.swift */; };
+		24D717F8271D3394009B589C /* CreateArticleUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D717F7271D3394009B589C /* CreateArticleUseCaseSpec.swift */; };
+		24D717FA271D3409009B589C /* CreateArticleParameters+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D717F9271D3409009B589C /* CreateArticleParameters+Dummy.swift */; };
 		24F3D7AA26DCE54C00DE2420 /* CodableUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7A926DCE54C00DE2420 /* CodableUser.swift */; };
 		24F3D7AC26DCE84A00DE2420 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7AB26DCE84A00DE2420 /* Keychain.swift */; };
 		24F3D7AE26DCE85F00DE2420 /* KeychainKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7AD26DCE85F00DE2420 /* KeychainKey.swift */; };
@@ -312,6 +314,8 @@
 		24C9393826D89FA300547800 /* AppTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextField.swift; sourceTree = "<group>"; };
 		24C9393A26D8A1A200547800 /* AppSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSecureField.swift; sourceTree = "<group>"; };
 		24C9393C26D8A26300547800 /* AppMainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainButton.swift; sourceTree = "<group>"; };
+		24D717F7271D3394009B589C /* CreateArticleUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateArticleUseCaseSpec.swift; sourceTree = "<group>"; };
+		24D717F9271D3409009B589C /* CreateArticleParameters+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateArticleParameters+Dummy.swift"; sourceTree = "<group>"; };
 		24F3D7A926DCE54C00DE2420 /* CodableUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableUser.swift; sourceTree = "<group>"; };
 		24F3D7AB26DCE84A00DE2420 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		24F3D7AD26DCE85F00DE2420 /* KeychainKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKey.swift; sourceTree = "<group>"; };
@@ -802,6 +806,7 @@
 		24B277D72701C31700332FEA /* Article */ = {
 			isa = PBXGroup;
 			children = (
+				24D717F7271D3394009B589C /* CreateArticleUseCaseSpec.swift */,
 				2DC224E52702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift */,
 				2D73313026F0F4800052DCC7 /* GetArticleUseCaseSpec.swift */,
 				2D892BAA26E89E4500579856 /* GetListArticlesUseCaseSpec.swift */,
@@ -1209,6 +1214,7 @@
 				2D892BA826E89A6100579856 /* APIArticlesResponse+Dummy.swift */,
 				24B277DB2701C79400332FEA /* APIProfileResponse+Dummy.swift */,
 				2477173C27043E7900BF13F2 /* APIUserResponse+Dummy.swift */,
+				24D717F9271D3409009B589C /* CreateArticleParameters+Dummy.swift */,
 				247FE8AA27193DE500E4AEDE /* UpdateCurrentUserParameters+Dummy.swift */,
 			);
 			path = Models;
@@ -2284,6 +2290,7 @@
 				241A5A282714206E00BC33F1 /* LogoutUseCaseSpec.swift in Sources */,
 				2D1A93AC270FFB45003B2011 /* UserProfileFavouritedArticlesTabViewModelSpec.swift in Sources */,
 				2D79A8FC26EF4A7E007B81D1 /* FeedsViewModelSpec.swift in Sources */,
+				24D717FA271D3409009B589C /* CreateArticleParameters+Dummy.swift in Sources */,
 				2DC224E62702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift in Sources */,
 				2DEFAB1E271537A3007C2378 /* UserRepositorySpec.swift in Sources */,
 				2D29A70D26F44426001EA24F /* ArticleCommentsViewModelSpec.swift in Sources */,
@@ -2293,6 +2300,7 @@
 				246B387926F8A7D7003173FD /* SideMenuHeaderViewModelSpec.swift in Sources */,
 				24F3D7BE26DE041F00DE2420 /* LoginViewModelSpec.swift in Sources */,
 				2D882EE626F1CF4600DB6560 /* GetArticleCommentsUseCaseSpec.swift in Sources */,
+				24D717F8271D3394009B589C /* CreateArticleUseCaseSpec.swift in Sources */,
 				2D4BB30626FC77B2005FED5F /* ArticleCommentRowViewModelSpec.swift in Sources */,
 				241B99DC26DF23030041207F /* AutoMockable.generated.swift in Sources */,
 				2477173D27043E7900BF13F2 /* APIUserResponse+Dummy.swift in Sources */,
