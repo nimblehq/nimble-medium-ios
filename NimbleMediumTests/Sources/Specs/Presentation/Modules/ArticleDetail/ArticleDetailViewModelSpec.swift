@@ -11,6 +11,7 @@ import RxNimble
 import RxSwift
 import RxTest
 import Resolver
+import RxCocoa
 
 @testable import NimbleMedium
 
@@ -29,8 +30,11 @@ final class ArticleDetailViewModelSpec: QuickSpec {
 
             beforeEach {
                 Resolver.registerMockServices()
-                viewModel = ArticleDetailViewModel(id: "slug")
                 scheduler = TestScheduler(initialClock: 0)
+
+                SharingScheduler.mock(scheduler: scheduler) {
+                    viewModel = ArticleDetailViewModel(id: "slug")
+                }
                 disposeBag = DisposeBag()
             }
 
@@ -50,8 +54,8 @@ final class ArticleDetailViewModelSpec: QuickSpec {
                     it("returns output uiModel with correct value") {
                         expect(viewModel.output.uiModel)
                             .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                                .next(0, nil),
-                                .next(10, .init(article: inputArticle))
+                                .next(1, nil),
+                                .next(11, .init(article: inputArticle))
                             ]
                     }
                 }
@@ -98,12 +102,12 @@ final class ArticleDetailViewModelSpec: QuickSpec {
                         it("returns output uiModel with correct authorFollowing value") {
                             expect(
                                 viewModel.output.uiModel
-                                    .map { $0?.authorFollowing }
+                                    .map { $0?.authorIsFollowing }
                             )
                                 .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                                    .next(0, nil),
-                                    .next(10, false),
-                                    .next(15, true)
+                                    .next(1, nil),
+                                    .next(11, false),
+                                    .next(16, true)
                                 ]
                         }
                     }
@@ -136,13 +140,13 @@ final class ArticleDetailViewModelSpec: QuickSpec {
                         it("reverts authorFollowing value") {
                             expect(
                                 viewModel.output.uiModel
-                                    .map { $0?.authorFollowing }
+                                    .map { $0?.authorIsFollowing }
                             )
                             .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                                .next(0, nil),
-                                .next(10, false),
-                                .next(15, true),
-                                .next(20, false)
+                                .next(1, nil),
+                                .next(11, false),
+                                .next(16, true),
+                                .next(21, false)
                             ]
                         }
                     }

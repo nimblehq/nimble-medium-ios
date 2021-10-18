@@ -83,7 +83,7 @@ struct ArticleDetailView: View {
                     author(uiModel: uiModel)
                     Spacer()
 
-                    FollowButton(isSelected: uiModel.authorFollowing) {
+                    FollowButton(isSelected: uiModel.authorIsFollowing) {
                         viewModel.input.toggleFollowUser()
                     }
                 }

@@ -16,7 +16,7 @@ extension ArticleDetailView {
         let articleUpdatedAt: String
         let authorName: String
         let authorImage: URL?
-        var authorFollowing: Bool
+        var authorIsFollowing: Bool
 
         init(article: Article) {
             articleTitle = article.title
@@ -24,7 +24,7 @@ extension ArticleDetailView {
             articleUpdatedAt = article.updatedAt.format(with: .monthDayYear)
             authorImage = try? article.author.image?.asURL()
             authorName = article.author.username
-            authorFollowing = article.author.following
+            authorIsFollowing = article.author.following
         }
     }
 }

@@ -62,6 +62,7 @@ final class ArticleDetailViewModel: ObservableObject, ArticleDetailViewModelProt
         toggleFollowUserTrigger
             .withUnretained(self)
             .flatMap { $0.0.toggleAuthorFollowing() }
+            .debounce(.milliseconds(500), scheduler: SharingScheduler.make())
             .withUnretained(self)
             .flatMapLatest { $0.0.toggleFollowUserTriggered(owner: $0.0, following: $0.1) }
             .subscribe()
@@ -101,6 +102,8 @@ private extension ArticleDetailViewModel {
 
     func toggleFollowUserTriggered(owner: ArticleDetailViewModel, following: Bool) -> Observable<Void> {
         guard let author = article?.author else {
+            owner.$didFailToToggleFollow.accept(())
+            owner.updateAuthorFollowing(!following)
             return .empty()
         }
 
@@ -128,14 +131,14 @@ private extension ArticleDetailViewModel {
 
     func toggleAuthorFollowing() -> Observable<Bool> {
         guard let uiModel = $uiModel.value else { return .empty() }
-        updateAuthorFollowing(!uiModel.authorFollowing)
+        updateAuthorFollowing(!uiModel.authorIsFollowing)
 
-        return .just(!uiModel.authorFollowing)
+        return .just(!uiModel.authorIsFollowing)
     }
 
     func updateAuthorFollowing(_ value: Bool) {
         var uiModel = $uiModel.value
-        uiModel?.authorFollowing = value
+        uiModel?.authorIsFollowing = value
         $uiModel.accept(uiModel)
     }
 }
