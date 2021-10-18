@@ -42,6 +42,9 @@ struct ArticleDetailView: View {
             isErrorToastPresented = true
             isFetchArticleDetailFailed = true
         }
+        .onReceive(viewModel.output.didFailToToggleFollow) { _ in
+            isErrorToastPresented = true
+        }
         .bind(viewModel.output.uiModel, to: _uiModel)
     }
 
@@ -80,8 +83,9 @@ struct ArticleDetailView: View {
                     author(uiModel: uiModel)
                     Spacer()
 
-                    // TODO: Add follow ation & handle state
-                    FollowButton(isSelected: false) {}
+                    FollowButton(isSelected: uiModel.authorFollowing) {
+                        viewModel.input.toggleFollowUser()
+                    }
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)

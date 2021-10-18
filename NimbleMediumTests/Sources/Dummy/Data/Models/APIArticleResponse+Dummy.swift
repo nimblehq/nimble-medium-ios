@@ -12,4 +12,10 @@ extension APIArticleResponse {
     static let dummy: APIArticleResponse = {
         R.file.singleArticleJson.decoded()
     }()
+
+    static let dummyWithUnfollowingUser: APIArticleResponse = { dummy }()
+
+    static let dummyWithFollowingUser: APIArticleResponse = {
+        R.file.singleArticleWithFollowingUserJson.decoded()
+    }()
 }
