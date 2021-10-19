@@ -29,6 +29,8 @@ extension Resolver {
     }
 
     private static func registerUseCases() {
+        Resolver.mock.register { CreateArticleCommentUseCaseProtocolMock() }
+        .implements(CreateArticleCommentUseCaseProtocol.self)
         Resolver.mock.register { GetArticleCommentsUseCaseProtocolMock() }
         .implements(GetArticleCommentsUseCaseProtocol.self)
         Resolver.mock.register { GetArticleUseCaseProtocolMock() }.implements(GetArticleUseCaseProtocol.self)

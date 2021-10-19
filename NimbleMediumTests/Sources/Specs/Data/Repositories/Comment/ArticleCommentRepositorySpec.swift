@@ -17,6 +17,7 @@ final class ArticleCommentRepositorySpec: QuickSpec {
 
     override func spec() {
         var repository: ArticleCommentRepository!
+        var authenticatedNetworkAPI: AuthenticatedNetworkAPIProtocolMock!
         var networkAPI: NetworkAPIProtocolMock!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
@@ -25,9 +26,65 @@ final class ArticleCommentRepositorySpec: QuickSpec {
 
             beforeEach {
                 disposeBag = DisposeBag()
+                authenticatedNetworkAPI = AuthenticatedNetworkAPIProtocolMock()
                 networkAPI = NetworkAPIProtocolMock()
-                repository = ArticleCommentRepository(networkAPI: networkAPI)
+                repository = ArticleCommentRepository(
+                    authenticatedNetworkAPI: authenticatedNetworkAPI,
+                    networkAPI: networkAPI
+                )
                 scheduler = TestScheduler(initialClock: 0)
+            }
+
+            describe("its createComment() call") {
+
+                context("when the request returns success") {
+
+                    var outputArticleComment: TestableObserver<APIArticleComment>!
+                    let inputResponse = APIArticleCommentResponse.dummy
+
+                    beforeEach {
+                        outputArticleComment = scheduler.createObserver(APIArticleComment.self)
+                        authenticatedNetworkAPI.setPerformRequestForReturnValue(Single.just(inputResponse))
+                        repository.createComment(articleSlug: "", commentBody: "")
+                            .asObservable()
+                            .compactMap { $0 as? APIArticleComment }
+                            .bind(to: outputArticleComment)
+                            .disposed(by: disposeBag)
+                    }
+
+                    it("returns correct articles") {
+                        expect(outputArticleComment).events() == [
+                            .next(0, inputResponse.comment),
+                            .completed(0)
+                        ]
+                    }
+                }
+
+                context("when the request returns failure") {
+
+                    var outputError: TestableObserver<Error?>!
+
+                    beforeEach {
+                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        authenticatedNetworkAPI.setPerformRequestForReturnValue(
+                            Single<APIArticleCommentResponse>.error(TestError.mock)
+                        )
+                        repository.createComment(articleSlug: "", commentBody: "")
+                            .asObservable()
+                            .materialize()
+                            .map { $0.error }
+                            .bind(to: outputError)
+                            .disposed(by: disposeBag)
+                    }
+
+                    it("returns correct error") {
+                        let error = outputError.events.first?.value.element as? TestError
+
+                        expect(outputError.events.count) == 2
+                        expect(error) == TestError.mock
+                        expect(outputError.events.last?.value.isCompleted) == true
+                    }
+                }
             }
 
             describe("its getComments() call") {

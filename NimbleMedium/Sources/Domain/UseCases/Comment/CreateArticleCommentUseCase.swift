@@ -17,9 +17,7 @@ final class CreateArticleCommentUseCase: CreateArticleCommentUseCaseProtocol {
 
     private let articleCommentRepository: ArticleCommentRepositoryProtocol
 
-    init(
-        articleCommentRepository: ArticleCommentRepositoryProtocol
-    ) {
+    init(articleCommentRepository: ArticleCommentRepositoryProtocol) {
         self.articleCommentRepository = articleCommentRepository
     }
 
