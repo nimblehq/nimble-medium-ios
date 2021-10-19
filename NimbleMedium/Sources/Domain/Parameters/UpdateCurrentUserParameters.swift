@@ -8,6 +8,7 @@
 import Foundation
 
 struct UpdateCurrentUserParameters: Encodable {
+
     let username: String
     let email: String
     let password: String?
