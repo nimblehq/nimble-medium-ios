@@ -11,7 +11,8 @@ extension UserProfileView {
 
      struct UIModel: Equatable {
 
-         let avatarURL: URL?
-         let username: String
+        let avatarURL: URL?
+        let username: String
+        var isFollowing: Bool
      }
  }
