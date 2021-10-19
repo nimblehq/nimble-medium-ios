@@ -35,7 +35,10 @@ extension Resolver: ResolverRegistering {
             ArticleRepository(networkAPI: resolve())
         }.implements(ArticleRepositoryProtocol.self)
         register {
-            ArticleCommentRepository(networkAPI: resolve())
+            ArticleCommentRepository(
+                authenticatedNetworkAPI: resolve(),
+                networkAPI: resolve()
+            )
         }.implements(ArticleCommentRepositoryProtocol.self)
         register {
             UserRepository(
@@ -50,6 +53,9 @@ extension Resolver: ResolverRegistering {
 
     // swiftlint:disable function_body_length
     private static func registerUseCases() {
+        register {
+            CreateArticleCommentUseCase(articleCommentRepository: resolve())
+        }.implements(CreateArticleCommentUseCaseProtocol.self)
         register {
             GetArticleCommentsUseCase(articleCommentRepository: resolve())
         }.implements(GetArticleCommentsUseCaseProtocol.self)

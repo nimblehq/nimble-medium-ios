@@ -31,7 +31,9 @@
 		243508732715676B00A2AE46 /* UpdateCurrentUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243508722715676B00A2AE46 /* UpdateCurrentUserUseCase.swift */; };
 		2435087E27157E2F00A2AE46 /* GetCurrentUserUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435087D27157E2F00A2AE46 /* GetCurrentUserUseCaseSpec.swift */; };
 		243508802715811C00A2AE46 /* UpdateCurrentUserUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435087A2715768E00A2AE46 /* UpdateCurrentUserUseCaseSpec.swift */; };
+		2444593D271EAC6C00CFC001 /* APIArticleCommentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2444593C271EAC6C00CFC001 /* APIArticleCommentResponse.swift */; };
 		2444C3792717D5EA00196035 /* UpdateCurrentUserParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2444C3782717D5EA00196035 /* UpdateCurrentUserParameters.swift */; };
+		244B2210271EA928005D6D68 /* CreateArticleCommentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244B220F271EA928005D6D68 /* CreateArticleCommentUseCase.swift */; };
 		244E0FF527152DA000C01139 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244E0FF427152DA000C01139 /* EditProfileView.swift */; };
 		244E0FF72715316900C01139 /* AppTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244E0FF62715316900C01139 /* AppTextView.swift */; };
 		2459B30726D747DF00ABCE61 /* Constants+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459B30626D747DF00ABCE61 /* Constants+API.swift */; };
@@ -247,7 +249,9 @@
 		243508722715676B00A2AE46 /* UpdateCurrentUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCurrentUserUseCase.swift; sourceTree = "<group>"; };
 		2435087A2715768E00A2AE46 /* UpdateCurrentUserUseCaseSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCurrentUserUseCaseSpec.swift; sourceTree = "<group>"; };
 		2435087D27157E2F00A2AE46 /* GetCurrentUserUseCaseSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCurrentUserUseCaseSpec.swift; sourceTree = "<group>"; };
+		2444593C271EAC6C00CFC001 /* APIArticleCommentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIArticleCommentResponse.swift; sourceTree = "<group>"; };
 		2444C3782717D5EA00196035 /* UpdateCurrentUserParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCurrentUserParameters.swift; sourceTree = "<group>"; };
+		244B220F271EA928005D6D68 /* CreateArticleCommentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateArticleCommentUseCase.swift; sourceTree = "<group>"; };
 		244E0FF427152DA000C01139 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		244E0FF62715316900C01139 /* AppTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextView.swift; sourceTree = "<group>"; };
 		2459B30626D747DF00ABCE61 /* Constants+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+API.swift"; sourceTree = "<group>"; };
@@ -611,6 +615,7 @@
 			children = (
 				2DEF1F9926E6092500EB93CC /* APIArticlesResponse.swift */,
 				2D882ED326F1C9EE00DB6560 /* APIArticleComment.swift */,
+				2444593C271EAC6C00CFC001 /* APIArticleCommentResponse.swift */,
 				2D882ED126F1C9E200DB6560 /* APIArticleCommentsResponse.swift */,
 				2D73312826F0EFD20052DCC7 /* APIArticleResponse.swift */,
 				241F5B882701ABEC002E13FC /* APIProfileResponse.swift */,
@@ -760,6 +765,7 @@
 		24B277D12701C0B100332FEA /* Comment */ = {
 			isa = PBXGroup;
 			children = (
+				244B220F271EA928005D6D68 /* CreateArticleCommentUseCase.swift */,
 				2D882EDD26F1CCA400DB6560 /* GetArticleCommentsUseCase.swift */,
 			);
 			path = Comment;
@@ -2157,6 +2163,7 @@
 				2D882ED226F1C9E200DB6560 /* APIArticleCommentsResponse.swift in Sources */,
 				240E218026FC361000EFC3B5 /* UserProfileView.swift in Sources */,
 				2DEF1F8D26E5FE5300EB93CC /* ArticleRepository.swift in Sources */,
+				2444593D271EAC6C00CFC001 /* APIArticleCommentResponse.swift in Sources */,
 				2D2F456026C25911002C0331 /* View+NavigationBar.swift in Sources */,
 				24F3D7B426DCE96200DE2420 /* UserSessionRepositoryProtocol.swift in Sources */,
 				2D467C3D26BCD58D008F11E1 /* HomeView.swift in Sources */,
@@ -2224,6 +2231,7 @@
 				2D084734270D793300DFFF69 /* UserProfileCreatedArticlesTab.swift in Sources */,
 				241F5B872701AADD002E13FC /* UserRequestConfiguration.swift in Sources */,
 				2DD4805826D73C67005225CF /* ObservedViewModel.swift in Sources */,
+				244B2210271EA928005D6D68 /* CreateArticleCommentUseCase.swift in Sources */,
 				24F3D7AC26DCE84A00DE2420 /* Keychain.swift in Sources */,
 				2D4ADCC926C61192008F8843 /* FeedsViewModel.swift in Sources */,
 				241F5B892701ABEC002E13FC /* APIProfileResponse.swift in Sources */,
