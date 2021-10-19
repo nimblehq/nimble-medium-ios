@@ -87,7 +87,7 @@ private extension CreateArticleViewModel {
                     title: inputs.title,
                     description: inputs.description,
                     body: inputs.body,
-                    tagsList: inputs.tagsList
+                    tagList: inputs.tagsList
                 )
             )
             .do(

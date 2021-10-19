@@ -12,5 +12,5 @@ struct CreateArticleParameters: Encodable {
     let title: String
     let description: String
     let body: String
-    let tagsList: [String]
+    let tagList: [String]
 }
