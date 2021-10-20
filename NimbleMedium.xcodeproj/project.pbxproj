@@ -76,6 +76,9 @@
 		2497356326D35BBD00177A7C /* MenuOptionButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497356226D35BBD00177A7C /* MenuOptionButtonStyle.swift */; };
 		249D8086270AFD88000775BC /* UserProfileViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249D8085270AFD88000775BC /* UserProfileViewModelSpec.swift */; };
 		24A0EB032716E495009CB9B9 /* CreateArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A0EB022716E495009CB9B9 /* CreateArticleView.swift */; };
+		24A2C6FD271D1D44002E4A5A /* CreateArticleUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2C6FC271D1D44002E4A5A /* CreateArticleUseCase.swift */; };
+		24A2C6FF271D1E1B002E4A5A /* CreateArticleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2C6FE271D1E1B002E4A5A /* CreateArticleParameters.swift */; };
+		24A2C701271D1FF7002E4A5A /* Encodable+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2C700271D1FF7002E4A5A /* Encodable+Dictionary.swift */; };
 		24AB4A662706C4010067CD0D /* ObservableType+Void.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB4A652706C4010067CD0D /* ObservableType+Void.swift */; };
 		24AB4A68270AE58F0067CD0D /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB4A67270AE58F0067CD0D /* UserProfileViewModel.swift */; };
 		24B277D32701C1EB00332FEA /* GetUserProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B277D22701C1EB00332FEA /* GetUserProfileUseCase.swift */; };
@@ -85,6 +88,8 @@
 		24C9393926D89FA300547800 /* AppTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393826D89FA300547800 /* AppTextField.swift */; };
 		24C9393B26D8A1A200547800 /* AppSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393A26D8A1A200547800 /* AppSecureField.swift */; };
 		24C9393D26D8A26300547800 /* AppMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393C26D8A26300547800 /* AppMainButton.swift */; };
+		24D717F8271D3394009B589C /* CreateArticleUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D717F7271D3394009B589C /* CreateArticleUseCaseSpec.swift */; };
+		24D717FA271D3409009B589C /* CreateArticleParameters+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D717F9271D3409009B589C /* CreateArticleParameters+Dummy.swift */; };
 		24F3D7AA26DCE54C00DE2420 /* CodableUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7A926DCE54C00DE2420 /* CodableUser.swift */; };
 		24F3D7AC26DCE84A00DE2420 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7AB26DCE84A00DE2420 /* Keychain.swift */; };
 		24F3D7AE26DCE85F00DE2420 /* KeychainKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7AD26DCE85F00DE2420 /* KeychainKey.swift */; };
@@ -297,6 +302,9 @@
 		2497356226D35BBD00177A7C /* MenuOptionButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionButtonStyle.swift; sourceTree = "<group>"; };
 		249D8085270AFD88000775BC /* UserProfileViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModelSpec.swift; sourceTree = "<group>"; };
 		24A0EB022716E495009CB9B9 /* CreateArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateArticleView.swift; sourceTree = "<group>"; };
+		24A2C6FC271D1D44002E4A5A /* CreateArticleUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateArticleUseCase.swift; sourceTree = "<group>"; };
+		24A2C6FE271D1E1B002E4A5A /* CreateArticleParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateArticleParameters.swift; sourceTree = "<group>"; };
+		24A2C700271D1FF7002E4A5A /* Encodable+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Dictionary.swift"; sourceTree = "<group>"; };
 		24AB4A652706C4010067CD0D /* ObservableType+Void.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Void.swift"; sourceTree = "<group>"; };
 		24AB4A67270AE58F0067CD0D /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		24B277D22701C1EB00332FEA /* GetUserProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfileUseCase.swift; sourceTree = "<group>"; };
@@ -306,6 +314,8 @@
 		24C9393826D89FA300547800 /* AppTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextField.swift; sourceTree = "<group>"; };
 		24C9393A26D8A1A200547800 /* AppSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSecureField.swift; sourceTree = "<group>"; };
 		24C9393C26D8A26300547800 /* AppMainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainButton.swift; sourceTree = "<group>"; };
+		24D717F7271D3394009B589C /* CreateArticleUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateArticleUseCaseSpec.swift; sourceTree = "<group>"; };
+		24D717F9271D3409009B589C /* CreateArticleParameters+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateArticleParameters+Dummy.swift"; sourceTree = "<group>"; };
 		24F3D7A926DCE54C00DE2420 /* CodableUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableUser.swift; sourceTree = "<group>"; };
 		24F3D7AB26DCE84A00DE2420 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		24F3D7AD26DCE85F00DE2420 /* KeychainKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKey.swift; sourceTree = "<group>"; };
@@ -581,6 +591,7 @@
 		2444C37A27180EB600196035 /* Parameters */ = {
 			isa = PBXGroup;
 			children = (
+				24A2C6FE271D1E1B002E4A5A /* CreateArticleParameters.swift */,
 				2444C3782717D5EA00196035 /* UpdateCurrentUserParameters.swift */,
 			);
 			path = Parameters;
@@ -741,6 +752,7 @@
 		24B277CE2701C06100332FEA /* Article */ = {
 			isa = PBXGroup;
 			children = (
+				24A2C6FC271D1D44002E4A5A /* CreateArticleUseCase.swift */,
 				2D73312A26F0F05D0052DCC7 /* GetArticleUseCase.swift */,
 				2D979C2F270302650084A3F8 /* GetCreatedArticlesUseCase.swift */,
 				2DC224E32702B68A008382E3 /* GetFavouritedArticlesUseCase.swift */,
@@ -794,6 +806,7 @@
 		24B277D72701C31700332FEA /* Article */ = {
 			isa = PBXGroup;
 			children = (
+				24D717F7271D3394009B589C /* CreateArticleUseCaseSpec.swift */,
 				2DC224E52702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift */,
 				2D73313026F0F4800052DCC7 /* GetArticleUseCaseSpec.swift */,
 				2D892BAA26E89E4500579856 /* GetListArticlesUseCaseSpec.swift */,
@@ -934,6 +947,7 @@
 				2D1D727326EB305F00431679 /* DateFormatter+Formats.swift */,
 				2459B31026D74B3100ABCE61 /* JSONDecoder+Default.swift */,
 				241D352D271682B4007F6BA9 /* String+EmptyCheck.swift */,
+				24A2C700271D1FF7002E4A5A /* Encodable+Dictionary.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1200,6 +1214,7 @@
 				2D892BA826E89A6100579856 /* APIArticlesResponse+Dummy.swift */,
 				24B277DB2701C79400332FEA /* APIProfileResponse+Dummy.swift */,
 				2477173C27043E7900BF13F2 /* APIUserResponse+Dummy.swift */,
+				24D717F9271D3409009B589C /* CreateArticleParameters+Dummy.swift */,
 				247FE8AA27193DE500E4AEDE /* UpdateCurrentUserParameters+Dummy.swift */,
 			);
 			path = Models;
@@ -2193,6 +2208,7 @@
 				24FB783D26FC3A80007534BE /* UserProfileView+UIModel.swift in Sources */,
 				2D73312926F0EFD20052DCC7 /* APIArticleResponse.swift in Sources */,
 				241B99DE26DF34720041207F /* SignupUseCase.swift in Sources */,
+				24A2C701271D1FF7002E4A5A /* Encodable+Dictionary.swift in Sources */,
 				247717332704192900BF13F2 /* NetworkAPIError.swift in Sources */,
 				246B386F26F87730003173FD /* SideMenuHeaderViewModel.swift in Sources */,
 				2DEFAB19271531F5007C2378 /* UnfollowUserUseCase.swift in Sources */,
@@ -2204,6 +2220,7 @@
 				2D69824426C22DC700860A98 /* R.generated.swift in Sources */,
 				247717352704197C00BF13F2 /* AuthenticatedNetworkAPI.swift in Sources */,
 				2DB04AD726C3A4AC003E65F4 /* Color+UIColor.swift in Sources */,
+				24A2C6FF271D1E1B002E4A5A /* CreateArticleParameters.swift in Sources */,
 				2410D4A127041837009B4A95 /* AuthenticatedInterceptor.swift in Sources */,
 				2497356126D34F3200177A7C /* SideMenuActionsView.swift in Sources */,
 				2459B32826D751E300ABCE61 /* LoginUseCase.swift in Sources */,
@@ -2234,6 +2251,7 @@
 				2D084736270D7AB500DFFF69 /* UserProfileCreatedArticlesTabViewModel.swift in Sources */,
 				24F3D7AA26DCE54C00DE2420 /* CodableUser.swift in Sources */,
 				2D5485BE26CA0D2C00FFE707 /* PublishRelayProperty.swift in Sources */,
+				24A2C6FD271D1D44002E4A5A /* CreateArticleUseCase.swift in Sources */,
 				2459B31C26D74F4700ABCE61 /* AuthRequestConfiguration.swift in Sources */,
 				241D352E271682B4007F6BA9 /* String+EmptyCheck.swift in Sources */,
 				2D17E4F226F07996001D3F90 /* NavigationBarPrimaryStyle.swift in Sources */,
@@ -2272,6 +2290,7 @@
 				241A5A282714206E00BC33F1 /* LogoutUseCaseSpec.swift in Sources */,
 				2D1A93AC270FFB45003B2011 /* UserProfileFavouritedArticlesTabViewModelSpec.swift in Sources */,
 				2D79A8FC26EF4A7E007B81D1 /* FeedsViewModelSpec.swift in Sources */,
+				24D717FA271D3409009B589C /* CreateArticleParameters+Dummy.swift in Sources */,
 				2DC224E62702BB4C008382E3 /* GetFavouritedArticlesUseCaseSpec.swift in Sources */,
 				2DEFAB1E271537A3007C2378 /* UserRepositorySpec.swift in Sources */,
 				2D29A70D26F44426001EA24F /* ArticleCommentsViewModelSpec.swift in Sources */,
@@ -2281,6 +2300,7 @@
 				246B387926F8A7D7003173FD /* SideMenuHeaderViewModelSpec.swift in Sources */,
 				24F3D7BE26DE041F00DE2420 /* LoginViewModelSpec.swift in Sources */,
 				2D882EE626F1CF4600DB6560 /* GetArticleCommentsUseCaseSpec.swift in Sources */,
+				24D717F8271D3394009B589C /* CreateArticleUseCaseSpec.swift in Sources */,
 				2D4BB30626FC77B2005FED5F /* ArticleCommentRowViewModelSpec.swift in Sources */,
 				241B99DC26DF23030041207F /* AutoMockable.generated.swift in Sources */,
 				2477173D27043E7900BF13F2 /* APIUserResponse+Dummy.swift in Sources */,

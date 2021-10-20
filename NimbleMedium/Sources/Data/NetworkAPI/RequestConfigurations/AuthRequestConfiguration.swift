@@ -61,15 +61,7 @@ extension AuthRequestConfiguration: RequestConfiguration {
         case .getCurrentUser:
             return nil
         case .updateCurrentUser(let params):
-            return [
-                "user": [
-                    "username": params.username,
-                    "email": params.email,
-                    "password": params.password,
-                    "image": params.image,
-                    "bio": params.bio
-                ].compactMapValues { $0 }
-            ]
+            return ["user": params.dictionary]
         }
     }
 
