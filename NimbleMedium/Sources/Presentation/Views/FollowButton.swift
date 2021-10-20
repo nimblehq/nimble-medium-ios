@@ -34,7 +34,7 @@ struct FollowButton: View {
     }
 
     var body: some View {
-        Button(action: {}, label: {
+        Button(action: action, label: {
             Text(title)
                 .foregroundColor(textColor)
         })

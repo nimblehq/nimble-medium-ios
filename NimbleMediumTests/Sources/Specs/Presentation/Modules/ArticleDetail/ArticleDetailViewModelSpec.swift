@@ -11,12 +11,15 @@ import RxNimble
 import RxSwift
 import RxTest
 import Resolver
+import RxCocoa
 
 @testable import NimbleMedium
 
 final class ArticleDetailViewModelSpec: QuickSpec {
 
     @LazyInjected var getArticleUseCase: GetArticleUseCaseProtocolMock
+    @LazyInjected var followUserUseCase: FollowUserUseCaseProtocolMock
+    @LazyInjected var unfollowUserUseCase: UnfollowUserUseCaseProtocolMock
     
     override func spec() {
         var viewModel: ArticleDetailViewModelProtocol!
@@ -27,8 +30,11 @@ final class ArticleDetailViewModelSpec: QuickSpec {
 
             beforeEach {
                 Resolver.registerMockServices()
-                viewModel = ArticleDetailViewModel(id: "slug")
                 scheduler = TestScheduler(initialClock: 0)
+
+                SharingScheduler.mock(scheduler: scheduler) {
+                    viewModel = ArticleDetailViewModel(id: "slug")
+                }
                 disposeBag = DisposeBag()
             }
 
@@ -48,8 +54,8 @@ final class ArticleDetailViewModelSpec: QuickSpec {
                     it("returns output uiModel with correct value") {
                         expect(viewModel.output.uiModel)
                             .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                                .next(0, nil),
-                                .next(10, .init(article: inputArticle))
+                                .next(1, nil),
+                                .next(11, .init(article: inputArticle))
                             ]
                     }
                 }
@@ -68,6 +74,81 @@ final class ArticleDetailViewModelSpec: QuickSpec {
                         expect(viewModel.output.didFailToFetchArticleDetail)
                             .events(scheduler: scheduler, disposeBag: disposeBag)
                             .notTo(beEmpty())
+                    }
+                }
+            }
+
+            describe("its toggleFollowUser() call") {
+
+                let inputArticle = APIArticleResponse.dummyWithUnfollowingUser.article
+
+                context("when it toggles to follow") {
+
+                    context("when FollowUserUseCase return success") {
+                        
+                        beforeEach {
+                            self.getArticleUseCase.executeSlugReturnValue = .just(inputArticle, on: scheduler, at: 10)
+                            self.followUserUseCase.executeUsernameReturnValue = .empty(on: scheduler, at: 20)
+
+                            scheduler.scheduleAt(5) {
+                                viewModel.input.fetchArticleDetail()
+                            }
+
+                            scheduler.scheduleAt(15) {
+                                viewModel.input.toggleFollowUser()
+                            }
+                        }
+
+                        it("returns output uiModel with correct authorFollowing value") {
+                            expect(
+                                viewModel.output.uiModel
+                                    .map { $0?.authorIsFollowing }
+                            )
+                                .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                                    .next(1, nil),
+                                    .next(11, false),
+                                    .next(16, true)
+                                ]
+                        }
+                    }
+
+                    context("when FollowUserUseCase return failure") {
+
+                        beforeEach {
+                            self.getArticleUseCase.executeSlugReturnValue = .just(inputArticle, on: scheduler, at: 10)
+                            self.followUserUseCase.executeUsernameReturnValue = .error(
+                                TestError.mock,
+                                on: scheduler,
+                                at: 20
+                            )
+
+                            scheduler.scheduleAt(5) {
+                                viewModel.input.fetchArticleDetail()
+                            }
+
+                            scheduler.scheduleAt(15) {
+                                viewModel.input.toggleFollowUser()
+                            }
+                        }
+
+                        it("returns output didFailToToggleFollow with signal") {
+                            expect(viewModel.output.didFailToToggleFollow)
+                                .events(scheduler: scheduler, disposeBag: disposeBag)
+                                .notTo(beEmpty())
+                        }
+
+                        it("reverts authorFollowing value") {
+                            expect(
+                                viewModel.output.uiModel
+                                    .map { $0?.authorIsFollowing }
+                            )
+                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                                .next(1, nil),
+                                .next(11, false),
+                                .next(16, true),
+                                .next(21, false)
+                            ]
+                        }
                     }
                 }
             }

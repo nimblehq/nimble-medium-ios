@@ -107,6 +107,8 @@
 		2D2F456026C25911002C0331 /* View+NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F455F26C25911002C0331 /* View+NavigationBar.swift */; };
 		2D303B3B26C28AC200EEF1C0 /* Constants+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D303B3A26C28AC200EEF1C0 /* Constants+String.swift */; };
 		2D34F40F26FAD8C400C99C6C /* ArticleDetailView+UIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D34F40E26FAD8C400C99C6C /* ArticleDetailView+UIModel.swift */; };
+		2D3FCA112717DC77008C576E /* Completable+TestScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3FCA102717DC77008C576E /* Completable+TestScheduler.swift */; };
+		2D3FCA132717DE74008C576E /* singleArticleWithFollowingUser.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3FCA122717DE74008C576E /* singleArticleWithFollowingUser.json */; };
 		2D467C3D26BCD58D008F11E1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D467C3C26BCD58D008F11E1 /* HomeView.swift */; };
 		2D469D3A270441A300B36AD6 /* UserProfileArticleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D469D39270441A300B36AD6 /* UserProfileArticleList.swift */; };
 		2D469D3F2704430A00B36AD6 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D469D3E2704430A00B36AD6 /* AvatarView.swift */; };
@@ -320,6 +322,8 @@
 		2D2F455F26C25911002C0331 /* View+NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+NavigationBar.swift"; sourceTree = "<group>"; };
 		2D303B3A26C28AC200EEF1C0 /* Constants+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+String.swift"; sourceTree = "<group>"; };
 		2D34F40E26FAD8C400C99C6C /* ArticleDetailView+UIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArticleDetailView+UIModel.swift"; sourceTree = "<group>"; };
+		2D3FCA102717DC77008C576E /* Completable+TestScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Completable+TestScheduler.swift"; sourceTree = "<group>"; };
+		2D3FCA122717DE74008C576E /* singleArticleWithFollowingUser.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = singleArticleWithFollowingUser.json; sourceTree = "<group>"; };
 		2D467C3C26BCD58D008F11E1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		2D469D39270441A300B36AD6 /* UserProfileArticleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileArticleList.swift; sourceTree = "<group>"; };
 		2D469D3E2704430A00B36AD6 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
@@ -894,6 +898,7 @@
 				2D1D727726EB37BD00431679 /* articles.json */,
 				24B277DF2701CBA900332FEA /* profile.json */,
 				2D73312C26F0F35C0052DCC7 /* singleArticle.json */,
+				2D3FCA122717DE74008C576E /* singleArticleWithFollowingUser.json */,
 				2477173E27043EAB00BF13F2 /* user.json */,
 			);
 			path = JSON;
@@ -1299,6 +1304,7 @@
 				2DEF1FA526E6181F00EB93CC /* Data+Decode.swift */,
 				2D87823026EB3C110080FEF6 /* FileResource+Decode.swift */,
 				2D46FAEF26F830B0005DD323 /* PrimitiveSequenceType+TestScheduler.swift */,
+				2D3FCA102717DC77008C576E /* Completable+TestScheduler.swift */,
 				2D46FAF426F87B5D005DD323 /* Expectation+TestableObserver.swift */,
 			);
 			path = Utilities;
@@ -1850,6 +1856,7 @@
 				2D1D727826EB37BD00431679 /* articles.json in Resources */,
 				2D882EE026F1CE5200DB6560 /* articleComments.json in Resources */,
 				2477173F27043EAB00BF13F2 /* user.json in Resources */,
+				2D3FCA132717DE74008C576E /* singleArticleWithFollowingUser.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2265,6 +2272,7 @@
 				2DEF1FA126E612B900EB93CC /* ArticleRepositorySpec.swift in Sources */,
 				2DEFAB2027153998007C2378 /* AuthenticatedNetworkAPIProtocolMock.swift in Sources */,
 				2435087E27157E2F00A2AE46 /* GetCurrentUserUseCaseSpec.swift in Sources */,
+				2D3FCA112717DC77008C576E /* Completable+TestScheduler.swift in Sources */,
 				2D892BAB26E89E4500579856 /* GetListArticlesUseCaseSpec.swift in Sources */,
 				2422A8752716985E0048DBDC /* EditProfileViewModelSpec.swift in Sources */,
 				2D882EE226F1CE8F00DB6560 /* APIArticleCommentsResponse+Dummy.swift in Sources */,

@@ -80,7 +80,7 @@ struct FeedsView: View {
 // MARK: FeedList
 private extension FeedsView {
 
-    struct FeedList: View, Equatable {
+    struct FeedList: View {
 
         let viewModel: FeedsViewModelProtocol
 
@@ -150,10 +150,6 @@ private extension FeedsView {
                 label: { EmptyView() }
             )
             .hidden()
-        }
-
-        static func == (lhs: FeedsView.FeedList, rhs: FeedsView.FeedList) -> Bool {
-            lhs.articleRowViewModels.count != rhs.articleRowViewModels.count
         }
     }
 }
