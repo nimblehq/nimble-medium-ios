@@ -5,9 +5,13 @@
 //  Created by Minh Pham on 13/10/2021.
 //
 
+import Resolver
 import SwiftUI
+import ToastUI
 
 struct CreateArticleView: View {
+
+    @ObservedViewModel private var viewModel: CreateArticleViewModelProtocol = Resolver.resolve()
 
     @Environment(\.presentationMode) var presentationMode
 
@@ -16,6 +20,11 @@ struct CreateArticleView: View {
     @State private var articleBody = ""
     @State private var tagsList = ""
 
+    @State private var errorMessage = ""
+    @State private var errorToast = false
+    @State private var loadingToast = false
+    @State private var firstTimeLoad = true
+
     var body: some View {
         NavigationView {
             contentView
@@ -23,8 +32,23 @@ struct CreateArticleView: View {
                 .navigationBarTitle(Localizable.createArticleTitleText(), displayMode: .inline)
                 .navigationBarColor(backgroundColor: .green)
                 .toolbar { navigationBarLeadingContent }
+                .toast(isPresented: $errorToast, dismissAfter: 3.0) {
+                    ToastView(errorMessage) { } background: {
+                        Color.clear
+                    }
+                }
+                .toast(isPresented: $loadingToast) {
+                    ToastView(String.empty) { }
+                    .toastViewStyle(IndefiniteProgressToastViewStyle())
+                }
         }
         .accentColor(.white)
+        .bind(viewModel.output.isLoading, to: _loadingToast)
+        .onReceive(viewModel.output.didCreateArticle) { _ in presentationMode.wrappedValue.dismiss() }
+        .onReceive(viewModel.output.errorMessage) { _ in
+            errorMessage = Localizable.errorGeneric()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { errorToast.toggle() }
+        }
     }
 
     var navigationBarLeadingContent: some ToolbarContent {
@@ -36,6 +60,7 @@ struct CreateArticleView: View {
         }
     }
 
+    // swiftlint:disable closure_body_length
     var contentView: some View {
         ScrollView {
             VStack(spacing: 15.0) {
@@ -54,9 +79,12 @@ struct CreateArticleView: View {
                     placeholder: Localizable.createArticleTextFieldTagsListPlaceholder(),
                     text: $tagsList)
                 AppMainButton(title: Localizable.actionPublishText()) {
-                    // TODO: Handle update my profile profile details in integrate task, dismiss view for now
-                    presentationMode.wrappedValue.dismiss()
+                    hideKeyboard()
+                    viewModel.input.didTapPublishButton(
+                        title: title, description: description, body: articleBody, tagsList: tagsList
+                    )
                 }
+                .disabled(title.isEmpty && description.isEmpty && articleBody.isEmpty && tagsList.isEmpty)
             }
             .padding()
         }
