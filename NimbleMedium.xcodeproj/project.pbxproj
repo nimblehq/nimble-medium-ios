@@ -61,6 +61,7 @@
 		246B387626F8A6AA003173FD /* SideMenuHeaderView+UIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246B387526F8A6AA003173FD /* SideMenuHeaderView+UIModel.swift */; };
 		246B387926F8A7D7003173FD /* SideMenuHeaderViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246B387826F8A7D7003173FD /* SideMenuHeaderViewModelSpec.swift */; };
 		246B387D26F8AA95003173FD /* UserDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246B387C26F8AA95003173FD /* UserDummy.swift */; };
+		24709CD727215770009D22DC /* DeleteArticleCommentUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24709CD627215770009D22DC /* DeleteArticleCommentUseCaseSpec.swift */; };
 		247717332704192900BF13F2 /* NetworkAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247717322704192900BF13F2 /* NetworkAPIError.swift */; };
 		247717352704197C00BF13F2 /* AuthenticatedNetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247717342704197C00BF13F2 /* AuthenticatedNetworkAPI.swift */; };
 		247717372704287B00BF13F2 /* AuthenticatedNetworkAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247717362704287B00BF13F2 /* AuthenticatedNetworkAPIProtocol.swift */; };
@@ -292,6 +293,7 @@
 		246B387526F8A6AA003173FD /* SideMenuHeaderView+UIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SideMenuHeaderView+UIModel.swift"; sourceTree = "<group>"; };
 		246B387826F8A7D7003173FD /* SideMenuHeaderViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderViewModelSpec.swift; sourceTree = "<group>"; };
 		246B387C26F8AA95003173FD /* UserDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDummy.swift; sourceTree = "<group>"; };
+		24709CD627215770009D22DC /* DeleteArticleCommentUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteArticleCommentUseCaseSpec.swift; sourceTree = "<group>"; };
 		247717322704192900BF13F2 /* NetworkAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPIError.swift; sourceTree = "<group>"; };
 		247717342704197C00BF13F2 /* AuthenticatedNetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedNetworkAPI.swift; sourceTree = "<group>"; };
 		247717362704287B00BF13F2 /* AuthenticatedNetworkAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedNetworkAPIProtocol.swift; sourceTree = "<group>"; };
@@ -837,6 +839,7 @@
 			isa = PBXGroup;
 			children = (
 				2444593E271EAF5200CFC001 /* CreateArticleCommentUseCaseSpec.swift */,
+				24709CD627215770009D22DC /* DeleteArticleCommentUseCaseSpec.swift */,
 				2D882EE526F1CF4600DB6560 /* GetArticleCommentsUseCaseSpec.swift */,
 			);
 			path = Comment;
@@ -2304,6 +2307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24709CD727215770009D22DC /* DeleteArticleCommentUseCaseSpec.swift in Sources */,
 				249D8086270AFD88000775BC /* UserProfileViewModelSpec.swift in Sources */,
 				2D87823126EB3C110080FEF6 /* FileResource+Decode.swift in Sources */,
 				2D979C322703034C0084A3F8 /* GetCreatedArticlesUseCaseSpec.swift in Sources */,

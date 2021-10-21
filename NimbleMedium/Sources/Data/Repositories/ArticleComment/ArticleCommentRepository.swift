@@ -37,7 +37,6 @@ final class ArticleCommentRepository: ArticleCommentRepositoryProtocol {
         )
 
         return authenticatedNetworkAPI.performRequest(requestConfiguration)
-
     }
     
     func getComments(slug: String) -> Single<[ArticleComment]> {

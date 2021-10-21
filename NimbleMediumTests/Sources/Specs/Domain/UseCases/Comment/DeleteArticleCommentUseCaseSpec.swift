@@ -1,8 +1,8 @@
 //
-//  CreateArticleCommentUseCaseSpec.swift
+//  DeleteArticleCommentUseCaseSpec.swift
 //  NimbleMediumTests
 //
-//  Created by Minh Pham on 19/10/2021.
+//  Created by Minh Pham on 21/10/2021.
 //
 
 import Quick
@@ -13,60 +13,57 @@ import RxTest
 
 @testable import NimbleMedium
 
-final class CreateArticleCommentUseCaseSpec: QuickSpec {
+final class DeleteArticleCommentUseCaseSpec: QuickSpec {
 
     override func spec() {
-        var usecase: CreateArticleCommentUseCase!
+        var usecase: DeleteArticleCommentUseCase!
         var articleCommentRepository: ArticleCommentRepositoryProtocolMock!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
 
-        describe("an CreateArticleCommentUseCase") {
+        describe("an DeleteArticleCommentUseCase") {
 
             beforeEach {
                 disposeBag = DisposeBag()
                 articleCommentRepository = ArticleCommentRepositoryProtocolMock()
-                usecase = CreateArticleCommentUseCase(articleCommentRepository: articleCommentRepository)
+                usecase = DeleteArticleCommentUseCase(articleCommentRepository: articleCommentRepository)
                 scheduler = TestScheduler(initialClock: 0)
             }
 
             describe("its execute() call") {
 
-                context("when articleCommentRepository.createComment() returns success") {
+                context("when articleCommentRepository.deleteComment() returns success") {
 
-                    let inputArticleComment = APIArticleCommentResponse.dummy.comment
-                    var outputArticleComment: TestableObserver<APIArticleComment>!
+                    var outputCompleted: TestableObserver<Bool>!
 
                     beforeEach {
-                        outputArticleComment = scheduler.createObserver(APIArticleComment.self)
-                        articleCommentRepository.createCommentArticleSlugCommentBodyReturnValue =
-                            .just(inputArticleComment)
+                        outputCompleted = scheduler.createObserver(Bool.self)
+                        articleCommentRepository.deleteCommentArticleSlugCommentIdReturnValue =
+                            .empty()
 
-                        usecase.execute(articleSlug: "", commentBody: "")
+                        usecase.execute(articleSlug: "", commentId: "")
                             .asObservable()
-                            .compactMap { $0 as? APIArticleComment }
-                            .bind(to: outputArticleComment)
+                            .materialize()
+                            .map { $0.isCompleted }
+                            .bind(to: outputCompleted)
                             .disposed(by: disposeBag)
                     }
 
-                    it("returns correct article comment") {
-                        expect(outputArticleComment.events) == [
-                            .next(0, inputArticleComment),
-                            .completed(0)
-                        ]
+                    it("returns completed delete article comment event") {
+                        expect(outputCompleted.events.first?.value.element) == true
                     }
                 }
 
-                context("when articleCommentRepository.createComment() returns failure") {
+                context("when articleCommentRepository.deleteComment() returns failure") {
 
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
                         outputError = scheduler.createObserver(Optional<Error>.self)
-                        articleCommentRepository.createCommentArticleSlugCommentBodyReturnValue =
+                        articleCommentRepository.deleteCommentArticleSlugCommentIdReturnValue =
                             .error(TestError.mock)
 
-                        usecase.execute(articleSlug: "", commentBody: "")
+                        usecase.execute(articleSlug: "", commentId: "")
                             .asObservable()
                             .materialize()
                             .map { $0.error }
