@@ -38,8 +38,10 @@
 "feedComments.title" = "Comments History";
 
 "feeds.comments.title" = "Go to comments section";
+"feeds.globalFeedTab.title" = "Global Feed";
 "feeds.noArticle" = "No Article";
 "feeds.title" = "Feeds";
+"feeds.yourFeedTab.title" = "Your Feed";
 
 "followButton.normal.title" = "Follow";
 "followButton.selected.title" = "Unfollow";
