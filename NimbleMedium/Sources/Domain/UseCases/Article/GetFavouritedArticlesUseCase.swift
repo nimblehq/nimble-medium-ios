@@ -24,12 +24,7 @@ final class GetFavouritedArticlesUseCase: GetFavouritedArticlesUseCaseProtocol {
     }
 
     func execute(username: String) -> Single<[Article]> {
-        articleRepository.listArticles(
-            tag: nil,
-            author: nil,
-            favorited: username,
-            limit: 25,
-            offset: nil
-        )
+        articleRepository
+            .listArticles( params: .init(favorited: username, limit: 25))
     }
 }

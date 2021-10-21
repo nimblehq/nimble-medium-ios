@@ -33,13 +33,13 @@ final class GetCurrentUserFollowingArticlesUseCase: GetCurrentUserFollowingArtic
                     return .error(NetworkAPIError.generic)
                 }
 
-                return self.articleRepository.listArticles(
-                    tag: nil,
-                    author: nil,
+                let params = GetArticlesParameters(
                     favorited: user.username,
                     limit: limit,
                     offset: offset
                 )
+                return self.articleRepository
+                    .listArticles(params: params)
             }
     }
 }

@@ -24,12 +24,7 @@ final class GetCreatedArticlesUseCase: GetCreatedArticlesUseCaseProtocol {
     }
 
     func execute(username: String) -> Single<[Article]> {
-        articleRepository.listArticles(
-            tag: nil,
-            author: username,
-            favorited: nil,
-            limit: 25,
-            offset: nil
-        )
+        articleRepository
+            .listArticles(params: .init(author: username, limit: 25))
     }
 }

@@ -79,7 +79,7 @@ final class GetCurrentUserFollowingArticlesUseCaseSpec: QuickSpec {
                         beforeEach {
                             outputArticles = scheduler.createObserver([DecodableArticle].self)
                             self.articleRepository
-                                .listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(inputArticles)
+                                .listArticlesParamsReturnValue = .just(inputArticles)
 
                             useCase.execute(
                                 limit: nil,
@@ -105,7 +105,7 @@ final class GetCurrentUserFollowingArticlesUseCaseSpec: QuickSpec {
                         beforeEach {
                             outputError = scheduler.createObserver(Optional<Error>.self)
                             self.articleRepository
-                                .listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .error(TestError.mock)
+                                .listArticlesParamsReturnValue = .error(TestError.mock)
 
                             useCase.execute(
                                 limit: nil,

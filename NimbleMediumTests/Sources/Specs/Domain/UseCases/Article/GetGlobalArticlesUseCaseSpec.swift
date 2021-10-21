@@ -39,7 +39,7 @@ final class GetGlobalArticlesUseCaseSpec: QuickSpec {
 
                     beforeEach {
                         outputArticles = scheduler.createObserver([DecodableArticle].self)
-                        articleRepository.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(inputArticles)
+                        articleRepository.listArticlesParamsReturnValue = .just(inputArticles)
 
                         usecase.execute(
                             limit: nil,
@@ -64,7 +64,7 @@ final class GetGlobalArticlesUseCaseSpec: QuickSpec {
 
                     beforeEach {
                         outputError = scheduler.createObserver(Optional<Error>.self)
-                        articleRepository.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .error(TestError.mock)
+                        articleRepository.listArticlesParamsReturnValue = .error(TestError.mock)
 
                         usecase.execute(
                             limit: nil,

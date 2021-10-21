@@ -94,13 +94,7 @@ final class ArticleRepositorySpec: QuickSpec {
                     beforeEach {
                         outputArticles = scheduler.createObserver([DecodableArticle].self)
                         networkAPI.setPerformRequestForReturnValue(Single.just(inputResponse))
-                        repository.listArticles(
-                            tag: nil,
-                            author: nil,
-                            favorited: nil,
-                            limit: nil,
-                            offset: nil
-                        )
+                        repository.listArticles(params: .init())
                         .asObservable()
                         .map { $0.compactMap { $0 as? DecodableArticle } }
                         .bind(to: outputArticles)
@@ -122,13 +116,7 @@ final class ArticleRepositorySpec: QuickSpec {
                     beforeEach {
                         outputError = scheduler.createObserver(Optional<Error>.self)
                         networkAPI.setPerformRequestForReturnValue(Single<APIArticlesResponse>.error(TestError.mock))
-                        repository.listArticles(
-                            tag: nil,
-                            author: nil,
-                            favorited: nil,
-                            limit: nil,
-                            offset: nil
-                        )
+                        repository.listArticles(params: .init())
                         .asObservable()
                         .materialize()
                         .map { $0.error }

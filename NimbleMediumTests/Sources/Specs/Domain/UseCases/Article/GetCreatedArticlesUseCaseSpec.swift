@@ -39,7 +39,7 @@ final class GetCreatedArticlesUseCaseSpec: QuickSpec {
 
                     beforeEach {
                         outputArticles = scheduler.createObserver([DecodableArticle].self)
-                        articleRepository.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(inputArticles)
+                        articleRepository.listArticlesParamsReturnValue = .just(inputArticles)
 
                         useCase.execute(username: "any")
                             .asObservable()
@@ -61,7 +61,7 @@ final class GetCreatedArticlesUseCaseSpec: QuickSpec {
 
                     beforeEach {
                         outputError = scheduler.createObserver(Optional<Error>.self)
-                        articleRepository.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .error(TestError.mock)
+                        articleRepository.listArticlesParamsReturnValue = .error(TestError.mock)
 
                         useCase.execute(username: "any")
                             .asObservable()

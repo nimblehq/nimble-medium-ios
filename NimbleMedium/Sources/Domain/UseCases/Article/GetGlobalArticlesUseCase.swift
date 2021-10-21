@@ -32,13 +32,8 @@ final class GetGlobalArticlesUseCase: GetGlobalArticlesUseCaseProtocol {
         limit: Int?,
         offset: Int?
     ) -> Single<[Article]> {
-        articleRepository.listArticles(
-            tag: nil,
-            author: nil,
-            favorited: nil,
-            limit: limit,
-            offset: offset
-        )
+        articleRepository
+            .listArticles(params: .init(limit: limit, offset: offset))
     }
 }
 
