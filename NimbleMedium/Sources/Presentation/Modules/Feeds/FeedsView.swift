@@ -27,15 +27,10 @@ struct FeedsView: View {
     var body: some View {
         NavigationView {
             PagerTabStripView(selection: $selectedTabIndex) {
-                // TODO: Update correct data in Integrate task
-                FeedsTabView()
-                    .pagerTabItem {
-                        PagerTabItemTitle(Localizable.feedsYourFeedTabTitle())
-                    }
-                FeedsTabView()
-                    .pagerTabItem {
-                        PagerTabItemTitle(Localizable.feedsGlobalFeedTabTitle())
-                    }
+                if isAuthenticated {
+                    FeedsTabView(viewModel: viewModel.output.yourFeedsViewModel)
+                }
+                FeedsTabView(viewModel: viewModel.output.globalFeedsViewModel)
             }
             .pagerTabStripViewStyle(
                 .normal(

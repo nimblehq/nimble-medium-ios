@@ -149,7 +149,10 @@ extension Resolver: ResolverRegistering {
         register { CreateArticleViewModel() }.implements(CreateArticleViewModelProtocol.self)
         register { EditProfileViewModel() }.implements(EditProfileViewModelProtocol.self)
         register { FeedsViewModel() }.implements(FeedsViewModelProtocol.self).scope(.cached)
-        register { FeedsTabViewModel() }.implements(FeedsTabViewModelProtocol.self).scope(.cached)
+        register(FeedsTabViewModelProtocol.self) { _, args in
+            FeedsTabViewModel(tabType: args.get())
+        }
+        .scope(.unique)
         register { HomeViewModel() }.implements(HomeViewModelProtocol.self).scope(.cached)
         register { LoginViewModel() }.implements(LoginViewModelProtocol.self).scope(.cached)
         register { SideMenuActionsViewModel() }.implements(SideMenuActionsViewModelProtocol.self).scope(.cached)

@@ -50,7 +50,7 @@ final class FeedsTabViewModelSpec: QuickSpec {
 
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
-                viewModel = FeedsTabViewModel()
+                viewModel = FeedsTabViewModel(tabType: .global)
             }
 
             describe("its refresh() call") {

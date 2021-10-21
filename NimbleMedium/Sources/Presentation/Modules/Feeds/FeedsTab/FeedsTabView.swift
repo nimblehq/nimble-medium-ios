@@ -9,14 +9,16 @@ import Refresh
 import Resolver
 import SwiftUI
 import ToastUI
+import PagerTabStripView
 
 struct FeedsTabView: View {
 
-    @ObservedViewModel private var viewModel: FeedsTabViewModelProtocol = Resolver.resolve()
+    @ObservedViewModel private var viewModel: FeedsTabViewModelProtocol
     
     @State private var isFirstLoad: Bool = true
     @State private var isErrorToastPresented = false
     @State private var isShowingCreateArticleScreen = false
+    @State private var tabType = TabType.mine
 
     var body: some View {
         Group {
@@ -27,15 +29,19 @@ struct FeedsTabView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .pagerTabItem { PagerTabItemTitle(tabType.title) }
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
             ToastView(Localizable.errorGeneric()) { } background: { Color.clear }
         }
         .onReceive(viewModel.output.didFinishRefresh) { _ in if isFirstLoad { isFirstLoad = false } }
         .onReceive(viewModel.output.didFailToLoadArticle) { _ in isErrorToastPresented = true }
+        .bind(viewModel.output.tabType, to: _tabType)
         .fullScreenCover(isPresented: $isShowingCreateArticleScreen) { CreateArticleView() }
-        .onAppear {
-            viewModel.input.refresh()
-        }
+        .onAppear { viewModel.input.refresh() }
+    }
+
+    init(viewModel: FeedsTabViewModelProtocol) {
+        self.viewModel = viewModel
     }
 }
 
@@ -120,10 +126,27 @@ extension FeedsTabView {
     }
 }
 
+extension FeedsTabView {
+
+    enum TabType {
+        case mine
+        case global
+
+        var title: String {
+            switch self {
+            case .mine:
+                return Localizable.feedsYourFeedTabTitle()
+            case .global:
+                return Localizable.feedsGlobalFeedTabTitle()
+            }
+        }
+    }
+}
+
 #if DEBUG
 struct FeedsTabView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedsTabView()
+        FeedsTabView(viewModel: Resolver.resolve())
     }
 }
 #endif

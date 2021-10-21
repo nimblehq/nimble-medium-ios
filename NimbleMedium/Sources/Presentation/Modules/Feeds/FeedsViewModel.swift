@@ -18,6 +18,8 @@ protocol FeedsViewModelInput {
 
 protocol FeedsViewModelOutput {
 
+    var yourFeedsViewModel: FeedsTabViewModelProtocol { get }
+    var globalFeedsViewModel: FeedsTabViewModelProtocol { get }
     var didToggleSideMenu: Signal<Void> { get }
     var isAuthenticated: Driver<Bool> { get }
 }
@@ -42,9 +44,21 @@ final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
     @PublishRelayProperty var didToggleSideMenu: Signal<Void>
     @BehaviorRelayProperty(false) var isAuthenticated: Driver<Bool>
 
+    let yourFeedsViewModel: FeedsTabViewModelProtocol
+    let globalFeedsViewModel: FeedsTabViewModelProtocol
+
     @Injected private var getCurrentSessionUseCase: GetCurrentSessionUseCaseProtocol
 
     init() {
+        yourFeedsViewModel = Resolver.resolve(
+            FeedsTabViewModelProtocol.self,
+            args: FeedsTabView.TabType.mine
+        )
+        globalFeedsViewModel = Resolver.resolve(
+            FeedsTabViewModelProtocol.self,
+            args: FeedsTabView.TabType.global
+        )
+
         getCurrentUserSessionTrigger
             .withUnretained(self)
             .flatMapLatest { owner, _ in owner.getCurrentUserSessionTriggered(owner: owner) }
