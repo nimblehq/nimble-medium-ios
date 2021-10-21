@@ -5,7 +5,6 @@
 //  Created by Minh Pham on 26/08/2021.
 //
 
-import Foundation
 import RxSwift
 import Alamofire
 import RxAlamofire
@@ -43,6 +42,27 @@ extension NetworkAPIProtocol {
         }
         .observe(on: MainScheduler.instance)
         .asSingle()
+    }
+
+    func request(
+        session: Session,
+        configuration: RequestConfiguration,
+        decoder: JSONDecoder
+    ) -> Completable {
+        return session.rx.request(
+            configuration.method,
+            configuration.url,
+            parameters: configuration.parameters,
+            encoding: configuration.encoding,
+            headers: configuration.headers,
+            interceptor: configuration.interceptor
+        )
+        .responseData()
+        .observe(on: ConcurrentDispatchQueueScheduler(qos: .background))
+        .validate()
+        .flatMap { _ -> Completable in .empty() }
+        .observe(on: MainScheduler.instance)
+        .asCompletable()
     }
 }
 
