@@ -16,7 +16,7 @@ import Resolver
 
 final class FeedsTabViewModelSpec: QuickSpec {
 
-    @LazyInjected var getListArticlesUseCase: GetListArticlesUseCaseProtocolMock
+    @LazyInjected var getGlobalArticlesUseCase: GetGlobalArticlesUseCaseProtocolMock
 
     override func spec() {
         var viewModel: FeedsTabViewModelProtocol!
@@ -60,8 +60,8 @@ final class FeedsTabViewModelSpec: QuickSpec {
 
                     beforeEach {
 
-                        self.getListArticlesUseCase
-                            .executeTagAuthorFavoritedLimitOffsetReturnValue = .just(
+                        self.getGlobalArticlesUseCase
+                            .executeLimitOffsetReturnValue = .just(
                                 inputArticles,
                                 on: scheduler,
                                 at: 10
@@ -93,8 +93,8 @@ final class FeedsTabViewModelSpec: QuickSpec {
                 context("when ListArticlesUseCase return failure") {
 
                     beforeEach {
-                        self.getListArticlesUseCase
-                            .executeTagAuthorFavoritedLimitOffsetReturnValue = .error(
+                        self.getGlobalArticlesUseCase
+                            .executeLimitOffsetReturnValue = .error(
                                 TestError.mock,
                                 on: scheduler,
                                 at: 10
@@ -125,14 +125,14 @@ final class FeedsTabViewModelSpec: QuickSpec {
                     let inputArticles = APIArticlesResponse.dummy.articles
 
                     beforeEach {
-                        self.getListArticlesUseCase.executeTagAuthorFavoritedLimitOffsetReturnValue = .just(
+                        self.getGlobalArticlesUseCase.executeLimitOffsetReturnValue = .just(
                             inputArticles,
                             on: scheduler,
                             at: 10
                         )
                         scheduler.scheduleAt(5) {
                             viewModel.input.loadMore()
-                            self.getListArticlesUseCase.executeTagAuthorFavoritedLimitOffsetReturnValue = .just(
+                            self.getGlobalArticlesUseCase.executeLimitOffsetReturnValue = .just(
                                 inputArticles,
                                 on: scheduler,
                                 at: 20
@@ -140,7 +140,7 @@ final class FeedsTabViewModelSpec: QuickSpec {
                         }
                         scheduler.scheduleAt(15) {
                             viewModel.input.loadMore()
-                            self.getListArticlesUseCase.executeTagAuthorFavoritedLimitOffsetReturnValue = .just(
+                            self.getGlobalArticlesUseCase.executeLimitOffsetReturnValue = .just(
                                 [],
                                 on: scheduler,
                                 at: 30
@@ -174,7 +174,7 @@ final class FeedsTabViewModelSpec: QuickSpec {
                 context("when ListArticlesUseCase return failure") {
 
                     beforeEach {
-                        self.getListArticlesUseCase.executeTagAuthorFavoritedLimitOffsetReturnValue =
+                        self.getGlobalArticlesUseCase.executeLimitOffsetReturnValue =
                             .error(TestError.mock, on: scheduler, at: 10 )
 
                         scheduler.scheduleAt(5) { viewModel.input.loadMore() }

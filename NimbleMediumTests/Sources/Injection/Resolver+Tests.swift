@@ -25,7 +25,8 @@ extension Resolver {
     }
 
     private static func registerRepositories() {
-        // TODO: To be mplemented
+        Resolver.mock.register { ArticleRepositoryProtocolMock() }
+        .implements(ArticleRepositoryProtocol.self)
     }
 
     private static func registerUseCases() {
@@ -39,7 +40,8 @@ extension Resolver {
         Resolver.mock.register { GetCurrentSessionUseCaseProtocolMock() }
         .implements(GetCurrentSessionUseCaseProtocol.self)
         Resolver.mock.register { GetCurrentUserUseCaseProtocolMock() }.implements(GetCurrentUserUseCaseProtocol.self)
-        Resolver.mock.register { GetListArticlesUseCaseProtocolMock() }.implements(GetListArticlesUseCaseProtocol.self)
+        Resolver.mock.register { GetGlobalArticlesUseCaseProtocolMock() }
+        .implements(GetGlobalArticlesUseCaseProtocol.self)
         Resolver.mock.register { GetUserProfileUseCaseProtocolMock() }.implements(GetUserProfileUseCaseProtocol.self)
         Resolver.mock.register { LoginUseCaseProtocolMock() }.implements(LoginUseCaseProtocol.self)
         Resolver.mock.register { LogoutUseCaseProtocolMock() }.implements(LogoutUseCaseProtocol.self)

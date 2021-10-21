@@ -7,19 +7,18 @@
 
 import RxSwift
 
-// sourcery: AutoMockable
-protocol GetListArticlesUseCaseProtocol {
+protocol GetArticlesUseCaseProtocol {
 
     func execute(
-        tag: String?,
-        author: String?,
-        favorited: String?,
         limit: Int?,
         offset: Int?
     ) -> Single<[Article]>
 }
 
-final class GetListArticlesUseCase: GetListArticlesUseCaseProtocol {
+// sourcery: AutoMockable
+protocol GetGlobalArticlesUseCaseProtocol: GetArticlesUseCaseProtocol {}
+
+final class GetGlobalArticlesUseCase: GetGlobalArticlesUseCaseProtocol {
 
     private let articleRepository: ArticleRepositoryProtocol
 
@@ -30,36 +29,27 @@ final class GetListArticlesUseCase: GetListArticlesUseCaseProtocol {
     }
 
     func execute(
-        tag: String?,
-        author: String?,
-        favorited: String?,
         limit: Int?,
         offset: Int?
     ) -> Single<[Article]> {
         articleRepository.listArticles(
-            tag: tag,
-            author: author,
-            favorited: favorited,
+            tag: nil,
+            author: nil,
+            favorited: nil,
             limit: limit,
             offset: offset
         )
     }
 }
 
-extension GetListArticlesUseCaseProtocol {
+extension GetArticlesUseCaseProtocol {
 
     func execute(
-        tag: String?,
-        author: String?,
-        favorited: String?,
         limit: Int? = Constants.Article.maxPerPage,
         offset: Int?
     ) -> Single<[Article]> {
 
         execute(
-            tag: tag,
-            author: author,
-            favorited: favorited,
             limit: limit,
             offset: offset
         )

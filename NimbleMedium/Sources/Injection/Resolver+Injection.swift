@@ -87,8 +87,14 @@ extension Resolver: ResolverRegistering {
             )
         }.implements(UpdateCurrentUserUseCaseProtocol.self)
         register {
-            GetListArticlesUseCase(articleRepository: resolve())
-        }.implements(GetListArticlesUseCaseProtocol.self)
+            GetGlobalArticlesUseCase(articleRepository: resolve())
+        }.implements(GetGlobalArticlesUseCaseProtocol.self)
+        register {
+            GetCurrentUserFollowingArticlesUseCase(
+                articleRepository: resolve(),
+                getCurrentSessionUseCase: resolve()
+            )
+        }.implements(GetCurrentUserFollowingArticlesUseCaseProtocol.self)
         register {
             GetUserProfileUseCase(userRepository: resolve())
         }.implements(GetUserProfileUseCaseProtocol.self)
