@@ -18,7 +18,7 @@ struct FeedsTabView: View {
     @State private var isFirstLoad: Bool = true
     @State private var isErrorToastPresented = false
     @State private var isShowingCreateArticleScreen = false
-    @State private var tabType = TabType.mine
+    @State private var tabType = TabType.yourFeeds
 
     var body: some View {
         Group {
@@ -29,7 +29,6 @@ struct FeedsTabView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .pagerTabItem { PagerTabItemTitle(tabType.title) }
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
             ToastView(Localizable.errorGeneric()) { } background: { Color.clear }
         }
@@ -129,17 +128,8 @@ extension FeedsTabView {
 extension FeedsTabView {
 
     enum TabType {
-        case mine
-        case global
-
-        var title: String {
-            switch self {
-            case .mine:
-                return Localizable.feedsYourFeedTabTitle()
-            case .global:
-                return Localizable.feedsGlobalFeedTabTitle()
-            }
-        }
+        case yourFeeds
+        case globalFeeds
     }
 }
 

@@ -48,15 +48,15 @@ final class FeedsTabViewModel: ObservableObject, FeedsTabViewModelProtocol {
     @PublishRelayProperty var didFinishRefresh: Signal<Void>
     
     @BehaviorRelayProperty([]) var articleRowViewModels: Driver<[ArticleRowViewModelProtocol]>
-    @BehaviorRelayProperty(.mine) var tabType: Driver<FeedsTabView.TabType>
+    @BehaviorRelayProperty(.yourFeeds) var tabType: Driver<FeedsTabView.TabType>
 
     private let getArticlesUseCase: GetArticlesUseCaseProtocol
 
     init(tabType: FeedsTabView.TabType) {
         switch tabType {
-        case .mine:
+        case .yourFeeds:
             getArticlesUseCase = Resolver.resolve(GetCurrentUserFollowingArticlesUseCaseProtocol.self)
-        case .global:
+        case .globalFeeds:
             getArticlesUseCase = Resolver.resolve(GetGlobalArticlesUseCaseProtocol.self)
         }
 

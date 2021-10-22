@@ -26,19 +26,13 @@ struct FeedsView: View {
 
     var body: some View {
         NavigationView {
-            PagerTabStripView(selection: $selectedTabIndex) {
+            Group {
                 if isAuthenticated {
-                    FeedsTabView(viewModel: viewModel.output.yourFeedsViewModel)
+                    pagerTabs
+                } else {
+                    FeedsTabView(viewModel: viewModel.output.globalFeedsViewModel)
                 }
-                FeedsTabView(viewModel: viewModel.output.globalFeedsViewModel)
             }
-            .pagerTabStripViewStyle(
-                .normal(
-                    indicatorBarColor: .green,
-                    tabItemHeight: 50.0,
-                    placedInToolbar: false
-                )
-            )
             .navigationTitle(Localizable.feedsTitle())
             .modifier(NavigationBarPrimaryStyle(isBackButtonHidden: true))
             .toolbar {
@@ -71,6 +65,22 @@ struct FeedsView: View {
                 )
             }
         }
+    }
+
+    var pagerTabs: some View {
+        PagerTabStripView(selection: $selectedTabIndex) {
+            FeedsTabView(viewModel: viewModel.output.yourFeedsViewModel)
+                .pagerTabItem { PagerTabItemTitle(Localizable.feedsYourFeedTabTitle()) }
+            FeedsTabView(viewModel: viewModel.output.globalFeedsViewModel)
+                .pagerTabItem { PagerTabItemTitle(Localizable.feedsGlobalFeedTabTitle()) }
+        }
+        .pagerTabStripViewStyle(
+            .normal(
+                indicatorBarColor: .green,
+                tabItemHeight: 50.0,
+                placedInToolbar: false
+            )
+        )
     }
 
     init(isSideMenuDraggingEnabled: Binding<Bool>) {

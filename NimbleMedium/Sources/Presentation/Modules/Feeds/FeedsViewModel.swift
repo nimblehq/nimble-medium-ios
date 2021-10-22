@@ -52,11 +52,11 @@ final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
     init() {
         yourFeedsViewModel = Resolver.resolve(
             FeedsTabViewModelProtocol.self,
-            args: FeedsTabView.TabType.mine
+            args: FeedsTabView.TabType.yourFeeds
         )
         globalFeedsViewModel = Resolver.resolve(
             FeedsTabViewModelProtocol.self,
-            args: FeedsTabView.TabType.global
+            args: FeedsTabView.TabType.globalFeeds
         )
 
         getCurrentUserSessionTrigger
