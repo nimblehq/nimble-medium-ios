@@ -10,6 +10,8 @@ import Alamofire
 enum UserRequestConfiguration {
 
     case profile(username: String)
+    case follow(username: String)
+    case unfollow(username: String)
 }
 
 extension UserRequestConfiguration: RequestConfiguration {
@@ -20,6 +22,9 @@ extension UserRequestConfiguration: RequestConfiguration {
         switch self {
         case .profile(let username):
             return "/profiles/\(username)"
+        case .unfollow(let username),
+             .follow(let username):
+            return "/profiles/\(username)/follow"
         }
     }
 
@@ -27,15 +32,28 @@ extension UserRequestConfiguration: RequestConfiguration {
         switch self {
         case .profile:
             return .get
+        case .follow:
+            return .post
+        case .unfollow:
+            return .delete
         }
     }
 
     var parameters: Parameters? {
         switch self {
-        case .profile:
+        case .profile,
+             .follow,
+             .unfollow:
             return nil
         }
     }
 
-    var encoding: ParameterEncoding { URLEncoding.queryString }
+    var encoding: ParameterEncoding {
+        switch self {
+        case .profile:
+            return URLEncoding.queryString
+        default:
+            return URLEncoding.default
+        }
+    }
 }

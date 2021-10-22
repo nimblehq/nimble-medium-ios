@@ -13,13 +13,17 @@ import RxSwift
 protocol SideMenuHeaderViewModelInput {
 
     func bindData(homeViewModel: HomeViewModelProtocol)
+    func selectEditProfileOption()
 }
 
+// sourcery: AutoMockable
 protocol SideMenuHeaderViewModelOutput {
 
+    var didSelectEditProfileOption: Signal<Bool> { get }
     var uiModel: Driver<SideMenuHeaderView.UIModel?> { get }
 }
 
+// sourcery: AutoMockable
 protocol SideMenuHeaderViewModelProtocol: ObservableViewModel {
 
     var input: SideMenuHeaderViewModelInput { get }
@@ -36,6 +40,8 @@ final class SideMenuHeaderViewModel: ObservableObject, SideMenuHeaderViewModelPr
     @Injected var getCurrentSessionUseCase: GetCurrentSessionUseCaseProtocol
 
     @BehaviorRelayProperty(nil) var uiModel: Driver<SideMenuHeaderView.UIModel?>
+
+    @PublishRelayProperty var didSelectEditProfileOption: Signal<Bool>
 
     private let getCurrentUserSessionTrigger = PublishRelay<Void>()
 
@@ -56,6 +62,10 @@ extension SideMenuHeaderViewModel: SideMenuHeaderViewModelInput {
             .emit(with: self) { owner, _ in owner.getCurrentUserSessionTrigger.accept(()) }
             .disposed(by: disposeBag)
     }
+
+    func selectEditProfileOption() {
+        $didSelectEditProfileOption.accept(true)
+    }
 }
 
 extension SideMenuHeaderViewModel: SideMenuHeaderViewModelOutput {}
@@ -75,7 +85,7 @@ private extension SideMenuHeaderViewModel {
 
     func getCurrentUserSessionTriggered(owner: SideMenuHeaderViewModel) -> Observable<Void> {
         getCurrentSessionUseCase
-            .getCurrentUserSession()
+            .execute()
             .map {
                 guard let user = $0 else { return nil }
                 return owner.generateUIModel(from: user)

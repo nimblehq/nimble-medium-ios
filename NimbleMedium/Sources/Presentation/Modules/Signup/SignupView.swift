@@ -69,19 +69,19 @@ struct SignupView: View {
     var contentView: some View {
         Background {
             VStack(spacing: 15.0) {
-                AuthTextFieldView(
+                AppTextField(
                     placeholder: Localizable.signupTextFieldUsernamePlaceholder(),
                     text: $username
                 )
-                AuthTextFieldView(
+                AppTextField(
                     placeholder: Localizable.signupTextFieldEmailPlaceholder(),
                     text: $email,
                     supportEmailKeyboard: true
                 )
-                AuthSecureFieldView(
+                AppSecureField(
                     placeholder: Localizable.signupTextFieldPasswordPlaceholder(),
                     text: $password)
-                AppMainButton(title: Localizable.actionSignup()) {
+                AppMainButton(title: Localizable.actionSignupText()) {
                     hideKeyboard()
                     viewModel.input.didTapSignupButton(username: username, email: email, password: password)
                 }

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AlamofireNetworkActivityLogger
 
 @main
 struct App: SwiftUI.App {

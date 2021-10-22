@@ -32,13 +32,22 @@ extension Resolver: ResolverRegistering {
             )
         }.implements(AuthRepositoryProtocol.self)
         register {
-            ArticleRepository(networkAPI: resolve())
+            ArticleRepository(
+                authenticatedNetworkAPI: resolve(),
+                networkAPI: resolve()
+            )
         }.implements(ArticleRepositoryProtocol.self)
         register {
-            ArticleCommentRepository(networkAPI: resolve())
+            ArticleCommentRepository(
+                authenticatedNetworkAPI: resolve(),
+                networkAPI: resolve()
+            )
         }.implements(ArticleCommentRepositoryProtocol.self)
         register {
-            UserRepository(networkAPI: resolve())
+            UserRepository(
+                networkAPI: resolve(),
+                authenticatedNetworkAPI: resolve()
+            )
         }.implements(UserRepositoryProtocol.self)
         register {
             UserSessionRepository(keychain: resolve())
@@ -47,6 +56,15 @@ extension Resolver: ResolverRegistering {
 
     // swiftlint:disable function_body_length
     private static func registerUseCases() {
+        register {
+            CreateArticleCommentUseCase(articleCommentRepository: resolve())
+        }.implements(CreateArticleCommentUseCaseProtocol.self)
+        register {
+            CreateArticleUseCase(articleRepository: resolve())
+        }.implements(CreateArticleUseCaseProtocol.self)
+        register {
+            DeleteArticleCommentUseCase(articleCommentRepository: resolve())
+        }.implements(DeleteArticleCommentUseCaseProtocol.self)
         register {
             GetArticleCommentsUseCase(articleCommentRepository: resolve())
         }.implements(GetArticleCommentsUseCaseProtocol.self)
@@ -63,8 +81,20 @@ extension Resolver: ResolverRegistering {
             )
         }.implements(GetCurrentUserUseCaseProtocol.self)
         register {
-            GetListArticlesUseCase(articleRepository: resolve())
-        }.implements(GetListArticlesUseCaseProtocol.self)
+            UpdateCurrentUserUseCase(
+                authRepository: resolve(),
+                userSessionRepository: resolve()
+            )
+        }.implements(UpdateCurrentUserUseCaseProtocol.self)
+        register {
+            GetGlobalArticlesUseCase(articleRepository: resolve())
+        }.implements(GetGlobalArticlesUseCaseProtocol.self)
+        register {
+            GetCurrentUserFollowingArticlesUseCase(
+                articleRepository: resolve(),
+                getCurrentSessionUseCase: resolve()
+            )
+        }.implements(GetCurrentUserFollowingArticlesUseCaseProtocol.self)
         register {
             GetUserProfileUseCase(userRepository: resolve())
         }.implements(GetUserProfileUseCaseProtocol.self)
@@ -74,6 +104,9 @@ extension Resolver: ResolverRegistering {
                 userSessionRepository: resolve()
             )
         }.implements(LoginUseCaseProtocol.self)
+        register {
+            LogoutUseCase(userSessionRepository: resolve())
+        }.implements(LogoutUseCaseProtocol.self)
         register {
             SignupUseCase(
                 authRepository: resolve(),
@@ -92,6 +125,12 @@ extension Resolver: ResolverRegistering {
         register {
             GetCreatedArticlesUseCase(articleRepository: resolve())
         }.implements(GetCreatedArticlesUseCaseProtocol.self)
+        register {
+            UnfollowUserUseCase(userRepository: resolve())
+        }.implements(UnfollowUserUseCaseProtocol.self)
+        register {
+            FollowUserUseCase(userRepository: resolve())
+        }.implements(FollowUserUseCaseProtocol.self)
     }
 
     private static func registerViewModels() {
@@ -107,7 +146,13 @@ extension Resolver: ResolverRegistering {
         register { _, args in
             ArticleRowViewModel(article: args.get())
         }.implements(ArticleRowViewModelProtocol.self)
+        register { CreateArticleViewModel() }.implements(CreateArticleViewModelProtocol.self)
+        register { EditProfileViewModel() }.implements(EditProfileViewModelProtocol.self)
         register { FeedsViewModel() }.implements(FeedsViewModelProtocol.self).scope(.cached)
+        register(FeedsTabViewModelProtocol.self) { _, args in
+            FeedsTabViewModel(tabType: args.get())
+        }
+        .scope(.unique)
         register { HomeViewModel() }.implements(HomeViewModelProtocol.self).scope(.cached)
         register { LoginViewModel() }.implements(LoginViewModelProtocol.self).scope(.cached)
         register { SideMenuActionsViewModel() }.implements(SideMenuActionsViewModelProtocol.self).scope(.cached)

@@ -30,7 +30,7 @@ struct UserProfileCreatedArticlesTab: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .pagerTabItem {
-            UserProfileView.TabItemTitle(Localizable.userProfileCreatedArticlesTitle())
+            PagerTabItemTitle(Localizable.userProfileCreatedArticlesTitle())
         }
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
             ToastView(Localizable.errorGeneric()) { } background: {

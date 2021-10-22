@@ -31,9 +31,10 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                 Resolver.registerMockServices()
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
+                viewModel = SideMenuHeaderViewModel()
             }
 
-            describe("its sideMenuDidOpen call") {
+            describe("its homeViewModel isSideMenuOpenDidChange call") {
 
                 beforeEach {
                     let homeViewModelOutput = HomeViewModelOutputMock()
@@ -47,10 +48,8 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                     let user = UserDummy()
 
                     beforeEach {
-                        self.getCurrentSessionUseCase.getCurrentUserSessionReturnValue =
+                        self.getCurrentSessionUseCase.executeReturnValue =
                             .just(user, on: scheduler, at: 50)
-
-                        viewModel = SideMenuHeaderViewModel()
                         viewModel.input.bindData(homeViewModel: self.homeViewModel)
                     }
 
@@ -71,10 +70,8 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                 context("when there is an invalid user session") {
 
                     beforeEach {
-                        self.getCurrentSessionUseCase.getCurrentUserSessionReturnValue =
+                        self.getCurrentSessionUseCase.executeReturnValue =
                             .just(nil, on: scheduler, at: 50)
-
-                        viewModel = SideMenuHeaderViewModel()
                         viewModel.input.bindData(homeViewModel: self.homeViewModel)
                     }
 
@@ -91,10 +88,8 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                 context("when there is an error getting the user session") {
 
                     beforeEach {
-                        self.getCurrentSessionUseCase.getCurrentUserSessionReturnValue =
+                        self.getCurrentSessionUseCase.executeReturnValue =
                             .error(TestError.mock, on: scheduler, at: 50)
-
-                        viewModel = SideMenuHeaderViewModel()
                         viewModel.input.bindData(homeViewModel: self.homeViewModel)
                     }
 
@@ -106,6 +101,21 @@ final class SideMenuHeaderViewModelSpec: QuickSpec {
                                 .next(50, nil)
                             ]))
                     }
+                }
+            }
+
+            context("when selectEditProfileOption is called") {
+
+                beforeEach {
+                    scheduler.scheduleAt(5) {
+                        viewModel.input.selectEditProfileOption()
+                    }
+                }
+
+                it("returns didSelectEditProfileOption output as true") {
+                    expect(viewModel.output.didSelectEditProfileOption)
+                        .events(scheduler: scheduler, disposeBag: disposeBag)
+                        .to(equal([.next(5, true)]))
                 }
             }
         }

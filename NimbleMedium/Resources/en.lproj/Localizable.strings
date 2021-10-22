@@ -6,14 +6,31 @@
   
 */
 
-"action.login" = "Login";
-"action.signup" = "Signup";
+"action.cancel.text" = "Cancel";
+"action.confirm.text" = "Confirm";
+"action.login.text" = "Login";
+"action.publish.text" = "Publish";
+"action.signup.text" = "Signup";
+"action.update.text" = "Update";
 
 "articleDetail.comments.title" = "Go to comments section";
 "articleDetail.fetchFailure.message" = "Unable to load the article";
 "articleDetail.title.text" = "Article";
 
+"createArticle.title.text" = "Create Article";
+"createArticle.textFieldDescription.placeholder" = "What's this article about";
+"createArticle.textFieldTagsList.placeholder" = "Enter tags (separated by comma)";
+"createArticle.textFieldTitle.placeholder" = "Article Title";
+"createArticle.textViewBody.placeholder" = "Write your article";
+
 "default.username.value" = "Current User";
+
+"editProfile.textFieldAvatarURL.placeholder" = "Url of the new profile picture";
+"editProfile.textFieldEmail.placeholder" = "New email";
+"editProfile.textFieldPassword.placeholder" = "New password";
+"editProfile.textFieldUsername.placeholder" = "New username";
+"editProfile.textViewBio.placeholder" = "Short bio about you";
+"editProfile.title.text" = "Edit Profile";
 
 "error.generic" = "Something went wrong.\nPlease try again later.";
 
@@ -21,8 +38,13 @@
 "feedComments.title" = "Comments History";
 
 "feeds.comments.title" = "Go to comments section";
+"feeds.globalFeedTab.title" = "Global Feed";
 "feeds.noArticle" = "No Article";
 "feeds.title" = "Feeds";
+"feeds.yourFeedTab.title" = "Your Feed";
+
+"followButton.normal.title" = "Follow";
+"followButton.selected.title" = "Unfollow";
 
 "login.needAccount.title" = "Need an account?";
 "login.textFieldEmail.placeholder" = "Email";
@@ -35,6 +57,8 @@
 "menu.option.logout" = "Logout";
 "menu.option.myProfile" = "My Profile";
 "menu.option.signup" = "Signup";
+
+"popup.confirmLogout.title" = "Are you sure you want to logout?";
 
 "signup.haveAccount.title" = "Have an account?";
 "signup.textFieldEmail.placeholder" = "Email";

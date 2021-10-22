@@ -15,6 +15,7 @@ struct SideMenuHeaderView: View {
 
     @Injected private var homeViewModel: HomeViewModelProtocol
 
+    @State private var isShowingEditProfileScreen = false
     @State private var uiModel: UIModel?
 
     var body: some View {
@@ -26,6 +27,7 @@ struct SideMenuHeaderView: View {
                 unauthenticatedMenuHeader
             }
         }
+        .bind(viewModel.output.didSelectEditProfileOption, to: _isShowingEditProfileScreen)
         .bind(viewModel.output.uiModel, to: _uiModel)
     }
 
@@ -48,6 +50,9 @@ struct SideMenuHeaderView: View {
 
     func authenticatedMenuHeader(uiModel: UIModel) -> some View {
         VStack(alignment: .center) {
+            Spacer()
+            Spacer()
+            Spacer()
             AvatarView(url: uiModel.avatarURL)
                 .size(100.0)
                 .circle()
@@ -57,6 +62,19 @@ struct SideMenuHeaderView: View {
                 .lineLimit(2)
                 .multilineTextAlignment(.center)
                 .padding()
+            Spacer()
+            HStack {
+                Spacer()
+                Button(
+                    action: { viewModel.input.selectEditProfileOption() },
+                    label: { Image(systemName: SystemImageName.squareAndPencil.rawValue) }
+                )
+                    .foregroundColor(.white)
+                    .padding()
+            }
+        }
+        .fullScreenCover(isPresented: $isShowingEditProfileScreen) {
+            EditProfileView()
         }
     }
 }

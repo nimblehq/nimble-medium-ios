@@ -11,5 +11,7 @@ import RxSwift
 // sourcery: AutoMockable
 protocol ArticleCommentRepositoryProtocol {
 
+    func createComment(articleSlug: String, commentBody: String) -> Single<ArticleComment>
+    func deleteComment(articleSlug: String, commentId: String) -> Completable
     func getComments(slug: String) -> Single<[ArticleComment]>
 }

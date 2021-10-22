@@ -12,7 +12,10 @@ import RxSwift
 
 protocol SideMenuViewModelInput {
 
-    func bindData(sideMenuActionsViewModel: SideMenuActionsViewModelProtocol)
+    func bindData(
+        sideMenuActionsViewModel: SideMenuActionsViewModelProtocol,
+        sideMenuHeaderViewModel: SideMenuHeaderViewModelProtocol
+    )
 }
 
 protocol SideMenuViewModelOutput {
@@ -38,7 +41,17 @@ final class SideMenuViewModel: ObservableObject, SideMenuViewModelProtocol {
 
 extension SideMenuViewModel: SideMenuViewModelInput {
 
-    func bindData(sideMenuActionsViewModel: SideMenuActionsViewModelProtocol) {
+    func bindData(
+        sideMenuActionsViewModel: SideMenuActionsViewModelProtocol,
+        sideMenuHeaderViewModel: SideMenuHeaderViewModelProtocol
+    ) {
+        sideMenuActionsViewModel.output.didLogout.asObservable()
+            .withUnretained(self)
+            .bind { _ in
+                self.$didSelectMenuOption.accept(())
+            }
+            .disposed(by: disposeBag)
+        
         sideMenuActionsViewModel.output.didSelectLoginOption.asObservable()
             .withUnretained(self)
             .bind { _ in
@@ -54,6 +67,13 @@ extension SideMenuViewModel: SideMenuViewModelInput {
             .disposed(by: disposeBag)
         
         sideMenuActionsViewModel.output.didSelectSignupOption.asObservable()
+            .withUnretained(self)
+            .bind { _ in
+                self.$didSelectMenuOption.accept(())
+            }
+            .disposed(by: disposeBag)
+
+        sideMenuHeaderViewModel.output.didSelectEditProfileOption.asObservable()
             .withUnretained(self)
             .bind { _ in
                 self.$didSelectMenuOption.accept(())

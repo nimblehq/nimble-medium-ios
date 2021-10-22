@@ -42,6 +42,9 @@ struct ArticleDetailView: View {
             isErrorToastPresented = true
             isFetchArticleDetailFailed = true
         }
+        .onReceive(viewModel.output.didFailToToggleFollow) { _ in
+            isErrorToastPresented = true
+        }
         .bind(viewModel.output.uiModel, to: _uiModel)
     }
 
@@ -76,7 +79,14 @@ struct ArticleDetailView: View {
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .font(.title)
-                author(uiModel: uiModel)
+                HStack {
+                    author(uiModel: uiModel)
+                    Spacer()
+
+                    FollowButton(isSelected: uiModel.authorIsFollowing) {
+                        viewModel.input.toggleFollowUser()
+                    }
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.vertical, 16.0)

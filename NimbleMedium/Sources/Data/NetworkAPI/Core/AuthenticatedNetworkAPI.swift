@@ -29,4 +29,12 @@ final class AuthenticatedNetworkAPI: AuthenticatedNetworkAPIProtocol {
             decoder: decoder
         )
     }
+
+    func performRequest(_ configuration: RequestConfiguration) -> Completable {
+        request(
+            session: session,
+            configuration: configuration,
+            decoder: decoder
+        )
+    }
 }
