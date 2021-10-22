@@ -44,7 +44,7 @@ final class LogoutUseCaseSpec: QuickSpec {
                             .asObservable()
                             .materialize()
                             .map { $0.isCompleted }
-                            .bind(to: outputCompleted )
+                            .bind(to: outputCompleted)
                             .disposed(by: disposeBag)
                     }
                     

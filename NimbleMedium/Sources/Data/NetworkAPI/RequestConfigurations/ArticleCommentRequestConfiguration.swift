@@ -10,6 +10,7 @@ import Alamofire
 enum ArticleCommentRequestConfiguration {
 
     case createComment(slug: String, body: String)
+    case deleteComment(slug: String, id: String)
     case getComments(slug: String)
 }
 
@@ -21,6 +22,8 @@ extension ArticleCommentRequestConfiguration: RequestConfiguration {
         switch self {
         case .createComment(let slug, _), .getComments(let slug):
             return "/articles/\(slug)/comments"
+        case .deleteComment(let slug, let id):
+            return "/articles/\(slug)/comments/\(id)"
         }
     }
 
@@ -28,6 +31,8 @@ extension ArticleCommentRequestConfiguration: RequestConfiguration {
         switch self {
         case .createComment:
             return .post
+        case .deleteComment:
+            return .delete
         case .getComments:
             return .get
         }
@@ -37,14 +42,14 @@ extension ArticleCommentRequestConfiguration: RequestConfiguration {
         switch self {
         case .createComment(_, let body):
             return ["comment": ["body": body]]
-        case .getComments:
+        case .deleteComment, .getComments:
             return [:]
         }
     }
 
     var encoding: ParameterEncoding {
         switch self {
-        case .createComment:
+        case .createComment, .deleteComment:
             return URLEncoding.default
         case .getComments:
             return URLEncoding.queryString

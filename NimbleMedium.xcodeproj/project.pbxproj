@@ -31,6 +31,7 @@
 		243508732715676B00A2AE46 /* UpdateCurrentUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243508722715676B00A2AE46 /* UpdateCurrentUserUseCase.swift */; };
 		2435087E27157E2F00A2AE46 /* GetCurrentUserUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435087D27157E2F00A2AE46 /* GetCurrentUserUseCaseSpec.swift */; };
 		243508802715811C00A2AE46 /* UpdateCurrentUserUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435087A2715768E00A2AE46 /* UpdateCurrentUserUseCaseSpec.swift */; };
+		244023DA27214F190023B5DF /* DeleteArticleCommentUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244023D927214F190023B5DF /* DeleteArticleCommentUseCase.swift */; };
 		244137C9271E755700A1542D /* CreateArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244137C8271E755700A1542D /* CreateArticleViewModel.swift */; };
 		244137CB271E76EF00A1542D /* String+Delimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244137CA271E76EF00A1542D /* String+Delimiter.swift */; };
 		244137CE271E7CA300A1542D /* CreateArticleViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244137CD271E7CA300A1542D /* CreateArticleViewModelSpec.swift */; };
@@ -60,6 +61,7 @@
 		246B387626F8A6AA003173FD /* SideMenuHeaderView+UIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246B387526F8A6AA003173FD /* SideMenuHeaderView+UIModel.swift */; };
 		246B387926F8A7D7003173FD /* SideMenuHeaderViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246B387826F8A7D7003173FD /* SideMenuHeaderViewModelSpec.swift */; };
 		246B387D26F8AA95003173FD /* UserDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246B387C26F8AA95003173FD /* UserDummy.swift */; };
+		24709CD727215770009D22DC /* DeleteArticleCommentUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24709CD627215770009D22DC /* DeleteArticleCommentUseCaseSpec.swift */; };
 		247717332704192900BF13F2 /* NetworkAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247717322704192900BF13F2 /* NetworkAPIError.swift */; };
 		247717352704197C00BF13F2 /* AuthenticatedNetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247717342704197C00BF13F2 /* AuthenticatedNetworkAPI.swift */; };
 		247717372704287B00BF13F2 /* AuthenticatedNetworkAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247717362704287B00BF13F2 /* AuthenticatedNetworkAPIProtocol.swift */; };
@@ -262,6 +264,7 @@
 		243508722715676B00A2AE46 /* UpdateCurrentUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCurrentUserUseCase.swift; sourceTree = "<group>"; };
 		2435087A2715768E00A2AE46 /* UpdateCurrentUserUseCaseSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCurrentUserUseCaseSpec.swift; sourceTree = "<group>"; };
 		2435087D27157E2F00A2AE46 /* GetCurrentUserUseCaseSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCurrentUserUseCaseSpec.swift; sourceTree = "<group>"; };
+		244023D927214F190023B5DF /* DeleteArticleCommentUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteArticleCommentUseCase.swift; sourceTree = "<group>"; };
 		244137C8271E755700A1542D /* CreateArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateArticleViewModel.swift; sourceTree = "<group>"; };
 		244137CA271E76EF00A1542D /* String+Delimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Delimiter.swift"; sourceTree = "<group>"; };
 		244137CD271E7CA300A1542D /* CreateArticleViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateArticleViewModelSpec.swift; sourceTree = "<group>"; };
@@ -290,6 +293,7 @@
 		246B387526F8A6AA003173FD /* SideMenuHeaderView+UIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SideMenuHeaderView+UIModel.swift"; sourceTree = "<group>"; };
 		246B387826F8A7D7003173FD /* SideMenuHeaderViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderViewModelSpec.swift; sourceTree = "<group>"; };
 		246B387C26F8AA95003173FD /* UserDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDummy.swift; sourceTree = "<group>"; };
+		24709CD627215770009D22DC /* DeleteArticleCommentUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteArticleCommentUseCaseSpec.swift; sourceTree = "<group>"; };
 		247717322704192900BF13F2 /* NetworkAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPIError.swift; sourceTree = "<group>"; };
 		247717342704197C00BF13F2 /* AuthenticatedNetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedNetworkAPI.swift; sourceTree = "<group>"; };
 		247717362704287B00BF13F2 /* AuthenticatedNetworkAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedNetworkAPIProtocol.swift; sourceTree = "<group>"; };
@@ -803,6 +807,7 @@
 			isa = PBXGroup;
 			children = (
 				244B220F271EA928005D6D68 /* CreateArticleCommentUseCase.swift */,
+				244023D927214F190023B5DF /* DeleteArticleCommentUseCase.swift */,
 				2D882EDD26F1CCA400DB6560 /* GetArticleCommentsUseCase.swift */,
 			);
 			path = Comment;
@@ -834,6 +839,7 @@
 			isa = PBXGroup;
 			children = (
 				2444593E271EAF5200CFC001 /* CreateArticleCommentUseCaseSpec.swift */,
+				24709CD627215770009D22DC /* DeleteArticleCommentUseCaseSpec.swift */,
 				2D882EE526F1CF4600DB6560 /* GetArticleCommentsUseCaseSpec.swift */,
 			);
 			path = Comment;
@@ -2188,6 +2194,7 @@
 				2D9032D026F04D96005CA3F5 /* ArticleDetailView.swift in Sources */,
 				244E0FF72715316900C01139 /* AppTextView.swift in Sources */,
 				2459B31926D74E5100ABCE61 /* APIUserResponse.swift in Sources */,
+				244023DA27214F190023B5DF /* DeleteArticleCommentUseCase.swift in Sources */,
 				249042E826D4D14F00E970B6 /* SignupView.swift in Sources */,
 				24AB4A68270AE58F0067CD0D /* UserProfileViewModel.swift in Sources */,
 				241F5B852701A9F8002E13FC /* UserRepository.swift in Sources */,
@@ -2300,6 +2307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24709CD727215770009D22DC /* DeleteArticleCommentUseCaseSpec.swift in Sources */,
 				249D8086270AFD88000775BC /* UserProfileViewModelSpec.swift in Sources */,
 				2D87823126EB3C110080FEF6 /* FileResource+Decode.swift in Sources */,
 				2D979C322703034C0084A3F8 /* GetCreatedArticlesUseCaseSpec.swift in Sources */,

@@ -30,6 +30,14 @@ final class ArticleCommentRepository: ArticleCommentRepositoryProtocol {
             .performRequest(requestConfiguration, for: APIArticleCommentResponse.self)
             .map { $0.comment as ArticleComment }
     }
+
+    func deleteComment(articleSlug: String, commentId: String) -> Completable {
+        let requestConfiguration = ArticleCommentRequestConfiguration.deleteComment(
+            slug: articleSlug, id: commentId
+        )
+
+        return authenticatedNetworkAPI.performRequest(requestConfiguration)
+    }
     
     func getComments(slug: String) -> Single<[ArticleComment]> {
         let requestConfiguration = ArticleCommentRequestConfiguration
