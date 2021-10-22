@@ -12,6 +12,7 @@ import RxSwift
 protocol UserProfileViewModelInput {
 
     func getUserProfile()
+    func toggleFollowUser()
 }
 
 protocol UserProfileViewModelOutput {
@@ -20,6 +21,7 @@ protocol UserProfileViewModelOutput {
     var errorMessage: Signal<String> { get }
     var createdArticlesViewModel: UserProfileCreatedArticlesTabViewModelProtocol { get }
     var favouritedArticlesViewModel: UserProfileFavouritedArticlesTabViewModelProtocol { get }
+    var didFailToToggleFollow: Signal<Void> { get }
 }
 
 protocol UserProfileViewModelProtocol: ObservableViewModel {
@@ -33,6 +35,7 @@ final class UserProfileViewModel: ObservableObject, UserProfileViewModelProtocol
     private let disposeBag = DisposeBag()
     private let getCurrentUserTrigger = PublishRelay<Void>()
     private let getOtherUserProfileTrigger = PublishRelay<String>()
+    private let toggleFollowUserTrigger = PublishRelay<Void>()
     private let username: String?
 
     var input: UserProfileViewModelInput { self }
@@ -42,9 +45,12 @@ final class UserProfileViewModel: ObservableObject, UserProfileViewModelProtocol
     @PublishRelayProperty var errorMessage: Signal<String>
 
     @BehaviorRelayProperty(nil) var userProfileUIModel: Driver<UserProfileView.UIModel?>
+    @PublishRelayProperty var didFailToToggleFollow: Signal<Void>
 
     @Injected var getCurrentUserUseCase: GetCurrentUserUseCaseProtocol
     @Injected var getUserProfileUseCase: GetUserProfileUseCaseProtocol
+    @Injected var followUserUseCase: FollowUserUseCaseProtocol
+    @Injected var unfollowUserUseCase: UnfollowUserUseCaseProtocol
 
     let createdArticlesViewModel: UserProfileCreatedArticlesTabViewModelProtocol
     let favouritedArticlesViewModel: UserProfileFavouritedArticlesTabViewModelProtocol
@@ -71,6 +77,22 @@ final class UserProfileViewModel: ObservableObject, UserProfileViewModelProtocol
             .flatMapLatest { owner, input in owner.getOtherUserProfileTriggered(owner: owner, username: input) }
             .subscribe()
             .disposed(by: disposeBag)
+
+        toggleFollowUserTrigger
+            .withUnretained(self)
+            .filter { $0.0.username != nil }
+            .flatMap { $0.0.toggleAuthorFollowing() }
+            .debounce(.milliseconds(500), scheduler: SharingScheduler.make())
+            .withUnretained(self)
+            .flatMapLatest {
+                $0.0.toggleFollowUserTriggered(
+                    owner: $0.0,
+                    following: $0.1,
+                    username: $0.0.username ?? ""
+                )
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
     }
 }
 
@@ -82,6 +104,10 @@ extension UserProfileViewModel: UserProfileViewModelInput {
         } else {
             getCurrentUserTrigger.accept(())
         }
+    }
+
+    func toggleFollowUser() {
+        toggleFollowUserTrigger.accept(())
     }
 }
 
@@ -130,7 +156,8 @@ private extension UserProfileViewModel {
         }
         return UserProfileView.UIModel(
             avatarURL: try? profile.image?.asURL(),
-            username: username
+            username: username,
+            isFollowing: profile.following
         )
     }
 
@@ -141,7 +168,48 @@ private extension UserProfileViewModel {
         }
         return UserProfileView.UIModel(
             avatarURL: try? user.image?.asURL(),
-            username: username
+            username: username,
+            isFollowing: false
         )
+    }
+
+    func toggleFollowUserTriggered(
+        owner: UserProfileViewModel,
+        following: Bool,
+        username: String
+    ) -> Observable<Void> {
+        var completable: Completable?
+        switch following {
+        case true:
+            completable = owner.followUserUseCase
+                .execute(username: username)
+        case false:
+            completable = owner.unfollowUserUseCase
+                .execute(username: username)
+        }
+
+        return completable?
+            .do(
+                onError: { _ in
+                    owner.$didFailToToggleFollow.accept(())
+                    owner.updateAuthorFollowing(!following)
+                }
+            )
+            .asObservable()
+            .mapToVoid()
+            .catchAndReturn(()) ?? .empty()
+    }
+
+    func toggleAuthorFollowing() -> Observable<Bool> {
+        guard let uiModel = $userProfileUIModel.value else { return .empty() }
+        updateAuthorFollowing(!uiModel.isFollowing)
+
+        return .just(!uiModel.isFollowing)
+    }
+
+    func updateAuthorFollowing(_ value: Bool) {
+        var uiModel = $userProfileUIModel.value
+        uiModel?.isFollowing = value
+        $userProfileUIModel.accept(uiModel)
     }
 }

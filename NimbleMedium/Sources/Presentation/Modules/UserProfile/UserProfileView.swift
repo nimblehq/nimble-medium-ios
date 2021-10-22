@@ -20,7 +20,8 @@ struct UserProfileView: View {
     @ObservedViewModel var viewModel: UserProfileViewModelProtocol
 
     private let username: String?
-    
+    private var isCurrentUserProfile: Bool { username == nil }
+
     @State private var selectedTabIndex: Int = 0
 
     var body: some View {
@@ -72,8 +73,12 @@ struct UserProfileView: View {
             HStack {
                 Spacer()
 
-                // TODO: Add follow ation & handle state
-                FollowButton(isSelected: true, style: .dark) {}
+                if !isCurrentUserProfile {
+                    FollowButton(isSelected: uiModel?.isFollowing ?? false, style: .dark) {
+                        viewModel.input.toggleFollowUser()
+                    }
+                }
+               
             }
             .padding(.horizontal, 20.0)
         }
