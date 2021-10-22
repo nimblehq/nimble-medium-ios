@@ -23,7 +23,7 @@ struct FeedsTabView: View {
             if isFirstLoad {
                 ProgressView()
             } else {
-                FeedList(viewModel: viewModel)
+                EquatableView(content: FeedList(viewModel: viewModel))
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -40,9 +40,9 @@ struct FeedsTabView: View {
 }
 
 // MARK: FeedList
-private extension FeedsTabView {
+extension FeedsTabView {
 
-    struct FeedList: View, Equatable {
+     private struct FeedList: View, Equatable {
 
         let viewModel: FeedsTabViewModelProtocol
 
