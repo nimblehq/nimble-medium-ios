@@ -28,20 +28,8 @@ final class ArticleRepository: ArticleRepositoryProtocol {
             .map { $0.article as Article }
     }
 
-    func listArticles(
-        tag: String?,
-        author: String?,
-        favorited: String?,
-        limit: Int?,
-        offset: Int?
-    ) -> Single<[Article]> {
-        let requestConfiguration = ArticleRequestConfiguration.listArticles(
-            tag: tag,
-            author: author,
-            favorited: favorited,
-            limit: limit,
-            offset: offset
-        )
+    func listArticles(params: GetArticlesParameters) -> Single<[Article]> {
+        let requestConfiguration = ArticleRequestConfiguration.listArticles(params: params)
 
         return networkAPI
             .performRequest(requestConfiguration, for: APIArticlesResponse.self)

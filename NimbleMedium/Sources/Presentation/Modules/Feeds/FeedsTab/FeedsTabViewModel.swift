@@ -48,7 +48,7 @@ final class FeedsTabViewModel: ObservableObject, FeedsTabViewModelProtocol {
     
     @BehaviorRelayProperty([]) var articleRowViewModels: Driver<[ArticleRowViewModelProtocol]>
 
-    @Injected private var getListArticlesUseCase: GetListArticlesUseCaseProtocol
+    @Injected private var getGlobalArticlesUseCase: GetGlobalArticlesUseCaseProtocol
 
     init() {
         loadMoreTrigger
@@ -85,10 +85,7 @@ private extension FeedsTabViewModel {
     func loadMoreTriggered(owner: FeedsTabViewModel) -> Observable<Void> {
         let offset = currentOffset + limit
 
-        return getListArticlesUseCase.execute(
-            tag: nil,
-            author: nil,
-            favorited: nil,
+        return getGlobalArticlesUseCase.execute(
             limit: limit,
             offset: offset
         )
@@ -112,10 +109,7 @@ private extension FeedsTabViewModel {
     }
 
     func refreshTriggered(owner: FeedsTabViewModel) -> Observable<Void> {
-        getListArticlesUseCase.execute(
-            tag: nil,
-            author: nil,
-            favorited: nil,
+        getGlobalArticlesUseCase.execute(
             limit: limit,
             offset: 0
         )

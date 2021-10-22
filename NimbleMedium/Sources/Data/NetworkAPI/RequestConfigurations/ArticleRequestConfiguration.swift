@@ -10,13 +10,7 @@ import Alamofire
 enum ArticleRequestConfiguration {
 
     case createArticle(params: CreateArticleParameters)
-    case listArticles(
-            tag: String?,
-            author: String?,
-            favorited: String?,
-            limit: Int?,
-            offset: Int?
-         )
+    case listArticles(params: GetArticlesParameters)
     case getArticle(slug: String)
 }
 
@@ -46,21 +40,8 @@ extension ArticleRequestConfiguration: RequestConfiguration {
         switch self {
         case .createArticle(let params):
             return ["article": params.dictionary]
-        case .listArticles(
-                let tag,
-                let author,
-                let favorited,
-                let limit,
-                let offset
-        ):
-            let parameters: [String: Any?] = [
-                "tag": tag,
-                "author": author,
-                "favorited": favorited,
-                "limit": limit,
-                "offset": offset
-            ]
-            return parameters.compactMapValues { $0 }
+        case .listArticles(let params):
+            return params.dictionary.compactMapValues { $0 }
         case .getArticle:
             return nil
         }

@@ -1,5 +1,5 @@
 //
-//  GetListArticlesUseCaseSpec.swift
+//  GetGlobalArticlesUseCaseSpec.swift
 //  NimbleMediumTests
 //
 //  Created by Mark G on 08/09/2021.
@@ -13,24 +13,24 @@ import RxTest
 
 @testable import NimbleMedium
 
-final class GetListArticlesUseCaseSpec: QuickSpec {
+final class GetGlobalArticlesUseCaseSpec: QuickSpec {
 
     override func spec() {
-        var usecase: GetListArticlesUseCase!
+        var usecase: GetGlobalArticlesUseCase!
         var articleRepository: ArticleRepositoryProtocolMock!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
 
-        describe("an GetListArticlesUseCase") {
+        describe("an GetGlobalArticlesUseCase") {
 
             beforeEach {
                 disposeBag = DisposeBag()
                 articleRepository = ArticleRepositoryProtocolMock()
-                usecase = GetListArticlesUseCase(articleRepository: articleRepository)
+                usecase = GetGlobalArticlesUseCase(articleRepository: articleRepository)
                 scheduler = TestScheduler(initialClock: 0)
             }
 
-            describe("its listArticles() call") {
+            describe("its execute() call") {
 
                 context("when articleRepository.listArticles() returns success") {
 
@@ -39,12 +39,9 @@ final class GetListArticlesUseCaseSpec: QuickSpec {
 
                     beforeEach {
                         outputArticles = scheduler.createObserver([DecodableArticle].self)
-                        articleRepository.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .just(inputArticles)
+                        articleRepository.listArticlesParamsReturnValue = .just(inputArticles)
 
                         usecase.execute(
-                            tag: nil,
-                            author: nil,
-                            favorited: nil,
                             limit: nil,
                             offset: nil
                         )
@@ -67,12 +64,9 @@ final class GetListArticlesUseCaseSpec: QuickSpec {
 
                     beforeEach {
                         outputError = scheduler.createObserver(Optional<Error>.self)
-                        articleRepository.listArticlesTagAuthorFavoritedLimitOffsetReturnValue = .error(TestError.mock)
+                        articleRepository.listArticlesParamsReturnValue = .error(TestError.mock)
 
                         usecase.execute(
-                            tag: nil,
-                            author: nil,
-                            favorited: nil,
                             limit: nil,
                             offset: nil
                         )
