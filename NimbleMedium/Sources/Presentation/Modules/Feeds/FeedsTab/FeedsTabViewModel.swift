@@ -18,6 +18,7 @@ protocol FeedsTabViewModelInput {
 
 protocol FeedsTabViewModelOutput {
 
+    var tabType: Driver<FeedsTabView.TabType> { get }
     var articleRowViewModels: Driver<[ArticleRowViewModelProtocol]> { get }
     var didFailToLoadArticle: Signal<Void> { get }
     var didFinishLoadMore: Signal<Bool> { get }
@@ -47,10 +48,20 @@ final class FeedsTabViewModel: ObservableObject, FeedsTabViewModelProtocol {
     @PublishRelayProperty var didFinishRefresh: Signal<Void>
     
     @BehaviorRelayProperty([]) var articleRowViewModels: Driver<[ArticleRowViewModelProtocol]>
+    @BehaviorRelayProperty(.yourFeeds) var tabType: Driver<FeedsTabView.TabType>
 
-    @Injected private var getGlobalArticlesUseCase: GetGlobalArticlesUseCaseProtocol
+    private let getArticlesUseCase: GetArticlesUseCaseProtocol
 
-    init() {
+    init(tabType: FeedsTabView.TabType) {
+        switch tabType {
+        case .yourFeeds:
+            getArticlesUseCase = Resolver.resolve(GetCurrentUserFollowingArticlesUseCaseProtocol.self)
+        case .globalFeeds:
+            getArticlesUseCase = Resolver.resolve(GetGlobalArticlesUseCaseProtocol.self)
+        }
+
+        $tabType.accept(tabType)
+
         loadMoreTrigger
             .withUnretained(self)
             .flatMapLatest { $0.0.loadMoreTriggered(owner: $0.0) }
@@ -85,7 +96,7 @@ private extension FeedsTabViewModel {
     func loadMoreTriggered(owner: FeedsTabViewModel) -> Observable<Void> {
         let offset = currentOffset + limit
 
-        return getGlobalArticlesUseCase.execute(
+        return getArticlesUseCase.execute(
             limit: limit,
             offset: offset
         )
@@ -109,7 +120,7 @@ private extension FeedsTabViewModel {
     }
 
     func refreshTriggered(owner: FeedsTabViewModel) -> Observable<Void> {
-        getGlobalArticlesUseCase.execute(
+        getArticlesUseCase.execute(
             limit: limit,
             offset: 0
         )
