@@ -17,7 +17,6 @@ struct FeedsTabView: View {
     
     @State private var isFirstLoad: Bool = true
     @State private var isErrorToastPresented = false
-    @State private var isShowingCreateArticleScreen = false
     @State private var tabType = TabType.yourFeeds
 
     var body: some View {
@@ -35,7 +34,6 @@ struct FeedsTabView: View {
         .onReceive(viewModel.output.didFinishRefresh) { _ in if isFirstLoad { isFirstLoad = false } }
         .onReceive(viewModel.output.didFailToLoadArticle) { _ in isErrorToastPresented = true }
         .bind(viewModel.output.tabType, to: _tabType)
-        .fullScreenCover(isPresented: $isShowingCreateArticleScreen) { CreateArticleView() }
         .onAppear { viewModel.input.refresh() }
     }
 

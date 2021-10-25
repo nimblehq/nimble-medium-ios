@@ -45,6 +45,7 @@ struct FeedsView: View {
         .accentColor(.white)
         .onAppear { viewModel.input.viewOnAppear() }
         .bind(viewModel.output.isAuthenticated, to: _isAuthenticated)
+        .fullScreenCover(isPresented: $isShowingCreateArticleScreen) { CreateArticleView() }
     }
 
     var navigationBarLeadingContent: some ToolbarContent {
