@@ -18,6 +18,9 @@ struct ArticleDetailView: View {
     @State private var isErrorToastPresented = false
     @State private var isFetchArticleDetailFailed = false
 
+    // swiftlint:disable identifier_name
+    @State private var isPresentedDeleteArticleConfirmationAlert = false
+
     private let slug: String
 
     var body: some View {
@@ -31,6 +34,7 @@ struct ArticleDetailView: View {
             }
         }
         .navigationTitle(Localizable.articleDetailTitleText())
+        .toolbar { navigationBarTrailingContent }
         .modifier(NavigationBarPrimaryStyle())
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
             ToastView(Localizable.errorGeneric()) {} background: {
@@ -46,6 +50,18 @@ struct ArticleDetailView: View {
             isErrorToastPresented = true
         }
         .bind(viewModel.output.uiModel, to: _uiModel)
+        .alert(isPresented: $isPresentedDeleteArticleConfirmationAlert) {
+            Alert(
+                title: Text(Localizable.popupConfirmDeleteArticleTitle()),
+                primaryButton: .destructive(
+                    Text(Localizable.actionConfirmText()),
+                    action: {
+                        // TODO: Delete Article
+                    }
+                ),
+                secondaryButton: .default(Text(Localizable.actionCancelText()))
+            )
+        }
     }
 
     var comments: some View {
@@ -61,6 +77,15 @@ struct ArticleDetailView: View {
             }
         )
         .padding(.all, 16.0)
+    }
+
+    var navigationBarTrailingContent: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            Button(
+                action: { isPresentedDeleteArticleConfirmationAlert = true },
+                label: { Image(systemName: SystemImageName.minusSquare.rawValue) }
+            )
+        }
     }
 
     init(slug: String) {
