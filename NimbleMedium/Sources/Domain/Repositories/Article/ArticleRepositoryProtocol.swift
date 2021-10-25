@@ -12,6 +12,8 @@ protocol ArticleRepositoryProtocol: AnyObject {
 
     func createArticle(params: CreateArticleParameters) -> Single<Article>
 
+    func deleteArticle(slug: String) -> Completable
+
     func listArticles(params: GetArticlesParameters) -> Single<[Article]>
 
     func getArticle(slug: String) -> Single<Article>

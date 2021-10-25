@@ -95,6 +95,7 @@
 		24C9393D26D8A26300547800 /* AppMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393C26D8A26300547800 /* AppMainButton.swift */; };
 		24D717F8271D3394009B589C /* CreateArticleUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D717F7271D3394009B589C /* CreateArticleUseCaseSpec.swift */; };
 		24D717FA271D3409009B589C /* CreateArticleParameters+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D717F9271D3409009B589C /* CreateArticleParameters+Dummy.swift */; };
+		24E986E9272681DD0048692D /* DeleteMyArticleUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E986E8272681DD0048692D /* DeleteMyArticleUseCase.swift */; };
 		24F3D7AA26DCE54C00DE2420 /* CodableUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7A926DCE54C00DE2420 /* CodableUser.swift */; };
 		24F3D7AC26DCE84A00DE2420 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7AB26DCE84A00DE2420 /* Keychain.swift */; };
 		24F3D7AE26DCE85F00DE2420 /* KeychainKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7AD26DCE85F00DE2420 /* KeychainKey.swift */; };
@@ -332,6 +333,7 @@
 		24C9393C26D8A26300547800 /* AppMainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainButton.swift; sourceTree = "<group>"; };
 		24D717F7271D3394009B589C /* CreateArticleUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateArticleUseCaseSpec.swift; sourceTree = "<group>"; };
 		24D717F9271D3409009B589C /* CreateArticleParameters+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateArticleParameters+Dummy.swift"; sourceTree = "<group>"; };
+		24E986E8272681DD0048692D /* DeleteMyArticleUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMyArticleUseCase.swift; sourceTree = "<group>"; };
 		24F3D7A926DCE54C00DE2420 /* CodableUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableUser.swift; sourceTree = "<group>"; };
 		24F3D7AB26DCE84A00DE2420 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		24F3D7AD26DCE85F00DE2420 /* KeychainKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKey.swift; sourceTree = "<group>"; };
@@ -784,6 +786,7 @@
 			isa = PBXGroup;
 			children = (
 				24A2C6FC271D1D44002E4A5A /* CreateArticleUseCase.swift */,
+				24E986E8272681DD0048692D /* DeleteMyArticleUseCase.swift */,
 				2D73312A26F0F05D0052DCC7 /* GetArticleUseCase.swift */,
 				2D979C2F270302650084A3F8 /* GetCreatedArticlesUseCase.swift */,
 				2DC224E32702B68A008382E3 /* GetFavouritedArticlesUseCase.swift */,
@@ -2228,6 +2231,7 @@
 				24A0EB032716E495009CB9B9 /* CreateArticleView.swift in Sources */,
 				2D9032D026F04D96005CA3F5 /* ArticleDetailView.swift in Sources */,
 				244E0FF72715316900C01139 /* AppTextView.swift in Sources */,
+				24E986E9272681DD0048692D /* DeleteMyArticleUseCase.swift in Sources */,
 				2459B31926D74E5100ABCE61 /* APIUserResponse.swift in Sources */,
 				244023DA27214F190023B5DF /* DeleteArticleCommentUseCase.swift in Sources */,
 				249042E826D4D14F00E970B6 /* SignupView.swift in Sources */,

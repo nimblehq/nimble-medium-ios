@@ -10,6 +10,7 @@ import Alamofire
 enum ArticleRequestConfiguration {
 
     case createArticle(params: CreateArticleParameters)
+    case deleteArticle(slug: String)
     case listArticles(params: GetArticlesParameters)
     case getArticle(slug: String)
 }
@@ -22,7 +23,7 @@ extension ArticleRequestConfiguration: RequestConfiguration {
         switch self {
         case .createArticle, .listArticles:
             return "/articles"
-        case .getArticle(let slug):
+        case .deleteArticle(let slug), .getArticle(let slug):
             return "articles/\(slug)"
         }
     }
@@ -31,6 +32,8 @@ extension ArticleRequestConfiguration: RequestConfiguration {
         switch self {
         case .createArticle:
             return .post
+        case .deleteArticle:
+            return .delete
         case .listArticles, .getArticle:
             return .get
         }
@@ -42,7 +45,7 @@ extension ArticleRequestConfiguration: RequestConfiguration {
             return ["article": params.dictionary]
         case .listArticles(let params):
             return params.dictionary.compactMapValues { $0 }
-        case .getArticle:
+        case .deleteArticle, .getArticle:
             return nil
         }
     }
