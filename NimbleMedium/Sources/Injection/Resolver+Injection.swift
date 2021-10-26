@@ -66,6 +66,9 @@ extension Resolver: ResolverRegistering {
             DeleteArticleCommentUseCase(articleCommentRepository: resolve())
         }.implements(DeleteArticleCommentUseCaseProtocol.self)
         register {
+            DeleteMyArticleUseCase(articleRepository: resolve())
+        }.implements(DeleteMyArticleUseCaseProtocol.self)
+        register {
             GetArticleCommentsUseCase(articleCommentRepository: resolve())
         }.implements(GetArticleCommentsUseCaseProtocol.self)
         register {

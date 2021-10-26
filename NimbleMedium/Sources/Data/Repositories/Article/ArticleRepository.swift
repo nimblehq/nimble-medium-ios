@@ -28,6 +28,11 @@ final class ArticleRepository: ArticleRepositoryProtocol {
             .map { $0.article as Article }
     }
 
+    func deleteArticle(slug: String) -> Completable {
+        let requestConfiguration = ArticleRequestConfiguration.deleteArticle(slug: slug)
+        return authenticatedNetworkAPI.performRequest(requestConfiguration)
+    }
+
     func listArticles(params: GetArticlesParameters) -> Single<[Article]> {
         let requestConfiguration = ArticleRequestConfiguration.listArticles(params: params)
 
