@@ -69,6 +69,9 @@ extension Resolver: ResolverRegistering {
             DeleteMyArticleUseCase(articleRepository: resolve())
         }.implements(DeleteMyArticleUseCaseProtocol.self)
         register {
+            FollowUserUseCase(userRepository: resolve())
+        }.implements(FollowUserUseCaseProtocol.self)
+        register {
             GetArticleCommentsUseCase(articleCommentRepository: resolve())
         }.implements(GetArticleCommentsUseCaseProtocol.self)
         register {
@@ -132,8 +135,8 @@ extension Resolver: ResolverRegistering {
             UnfollowUserUseCase(userRepository: resolve())
         }.implements(UnfollowUserUseCaseProtocol.self)
         register {
-            FollowUserUseCase(userRepository: resolve())
-        }.implements(FollowUserUseCaseProtocol.self)
+            UpdateMyArticleUseCase(articleRepository: resolve())
+        }.implements(UpdateMyArticleUseCaseProtocol.self)
     }
 
     private static func registerViewModels() {

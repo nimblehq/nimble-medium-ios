@@ -13,6 +13,7 @@ enum ArticleRequestConfiguration {
     case deleteArticle(slug: String)
     case listArticles(params: GetArticlesParameters)
     case getArticle(slug: String)
+    case updateArticle(slug: String, params: UpdateMyArticleParameters)
 }
 
 extension ArticleRequestConfiguration: RequestConfiguration {
@@ -23,7 +24,7 @@ extension ArticleRequestConfiguration: RequestConfiguration {
         switch self {
         case .createArticle, .listArticles:
             return "/articles"
-        case .deleteArticle(let slug), .getArticle(let slug):
+        case .deleteArticle(let slug), .getArticle(let slug), .updateArticle(let slug, _):
             return "articles/\(slug)"
         }
     }
@@ -34,8 +35,10 @@ extension ArticleRequestConfiguration: RequestConfiguration {
             return .post
         case .deleteArticle:
             return .delete
-        case .listArticles, .getArticle:
+        case .getArticle, .listArticles:
             return .get
+        case .updateArticle:
+            return .put
         }
     }
 
@@ -43,16 +46,19 @@ extension ArticleRequestConfiguration: RequestConfiguration {
         switch self {
         case .createArticle(let params):
             return ["article": params.dictionary]
-        case .listArticles(let params):
-            return params.dictionary.compactMapValues { $0 }
         case .deleteArticle, .getArticle:
             return nil
+        case .listArticles(let params):
+            return params.dictionary.compactMapValues { $0 }
+        case  .updateArticle(_, let params):
+            let finalParams = params.dictionary.compactMapValues { $0 }
+            return ["article": finalParams]
         }
     }
 
     var encoding: ParameterEncoding {
         switch self {
-        case .createArticle:
+        case .createArticle, .updateArticle:
             return URLEncoding.default
         default:
             return URLEncoding.queryString
