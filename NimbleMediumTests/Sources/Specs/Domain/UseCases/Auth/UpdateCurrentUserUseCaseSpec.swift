@@ -22,7 +22,7 @@ final class UpdateCurrentUserUseCaseSpec: QuickSpec {
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
 
-        describe("a GetCurrentUserUseCase") {
+        describe("a UpdateCurrentUserUseCase") {
 
             beforeEach {
                 disposeBag = DisposeBag()

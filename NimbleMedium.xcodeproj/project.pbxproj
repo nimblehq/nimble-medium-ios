@@ -97,6 +97,8 @@
 		24C9393D26D8A26300547800 /* AppMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393C26D8A26300547800 /* AppMainButton.swift */; };
 		24D717F8271D3394009B589C /* CreateArticleUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D717F7271D3394009B589C /* CreateArticleUseCaseSpec.swift */; };
 		24D717FA271D3409009B589C /* CreateArticleParameters+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D717F9271D3409009B589C /* CreateArticleParameters+Dummy.swift */; };
+		24E0400C2727FEF400A1985B /* UpdateMyArticleUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E0400B2727FEF400A1985B /* UpdateMyArticleUseCaseSpec.swift */; };
+		24E0400E2727FFB600A1985B /* UpdateMyArticleParameters+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E0400D2727FFB600A1985B /* UpdateMyArticleParameters+Dummy.swift */; };
 		24E986E9272681DD0048692D /* DeleteMyArticleUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E986E8272681DD0048692D /* DeleteMyArticleUseCase.swift */; };
 		24E986EB272687C20048692D /* DeleteMyArticleUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E986EA272687C20048692D /* DeleteMyArticleUseCaseSpec.swift */; };
 		24F3D7AA26DCE54C00DE2420 /* CodableUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7A926DCE54C00DE2420 /* CodableUser.swift */; };
@@ -338,6 +340,8 @@
 		24C9393C26D8A26300547800 /* AppMainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainButton.swift; sourceTree = "<group>"; };
 		24D717F7271D3394009B589C /* CreateArticleUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateArticleUseCaseSpec.swift; sourceTree = "<group>"; };
 		24D717F9271D3409009B589C /* CreateArticleParameters+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateArticleParameters+Dummy.swift"; sourceTree = "<group>"; };
+		24E0400B2727FEF400A1985B /* UpdateMyArticleUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMyArticleUseCaseSpec.swift; sourceTree = "<group>"; };
+		24E0400D2727FFB600A1985B /* UpdateMyArticleParameters+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdateMyArticleParameters+Dummy.swift"; sourceTree = "<group>"; };
 		24E986E8272681DD0048692D /* DeleteMyArticleUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMyArticleUseCase.swift; sourceTree = "<group>"; };
 		24E986EA272687C20048692D /* DeleteMyArticleUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMyArticleUseCaseSpec.swift; sourceTree = "<group>"; };
 		24F3D7A926DCE54C00DE2420 /* CodableUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableUser.swift; sourceTree = "<group>"; };
@@ -857,6 +861,7 @@
 				2D892BAA26E89E4500579856 /* GetGlobalArticlesUseCaseSpec.swift */,
 				2D979C312703034C0084A3F8 /* GetCreatedArticlesUseCaseSpec.swift */,
 				2DC824BD271FF6890024CFEF /* GetCurrentUserFollowingArticlesUseCaseSpec.swift */,
+				24E0400B2727FEF400A1985B /* UpdateMyArticleUseCaseSpec.swift */,
 			);
 			path = Article;
 			sourceTree = "<group>";
@@ -1282,6 +1287,7 @@
 				2477173C27043E7900BF13F2 /* APIUserResponse+Dummy.swift */,
 				24D717F9271D3409009B589C /* CreateArticleParameters+Dummy.swift */,
 				247FE8AA27193DE500E4AEDE /* UpdateCurrentUserParameters+Dummy.swift */,
+				24E0400D2727FFB600A1985B /* UpdateMyArticleParameters+Dummy.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2367,6 +2373,7 @@
 				2D46FAF326F8618D005DD323 /* ArticleRowViewModelSpec.swift in Sources */,
 				2D73312F26F0F3A20052DCC7 /* APIArticleResponse+Dummy.swift in Sources */,
 				2D73313126F0F4800052DCC7 /* GetArticleUseCaseSpec.swift in Sources */,
+				24E0400E2727FFB600A1985B /* UpdateMyArticleParameters+Dummy.swift in Sources */,
 				241A5A282714206E00BC33F1 /* LogoutUseCaseSpec.swift in Sources */,
 				2D1A93AC270FFB45003B2011 /* UserProfileFavouritedArticlesTabViewModelSpec.swift in Sources */,
 				2D79A8FC26EF4A7E007B81D1 /* FeedsViewModelSpec.swift in Sources */,
@@ -2392,6 +2399,7 @@
 				2DEFAB2027153998007C2378 /* AuthenticatedNetworkAPIProtocolMock.swift in Sources */,
 				2435087E27157E2F00A2AE46 /* GetCurrentUserUseCaseSpec.swift in Sources */,
 				2D3FCA112717DC77008C576E /* Completable+TestScheduler.swift in Sources */,
+				24E0400C2727FEF400A1985B /* UpdateMyArticleUseCaseSpec.swift in Sources */,
 				2D892BAB26E89E4500579856 /* GetGlobalArticlesUseCaseSpec.swift in Sources */,
 				2444593F271EAF5200CFC001 /* CreateArticleCommentUseCaseSpec.swift in Sources */,
 				24445941271EB04500CFC001 /* APIArticleCommentResponse+Dummy.swift in Sources */,
