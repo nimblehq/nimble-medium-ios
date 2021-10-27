@@ -85,6 +85,7 @@ PODS:
   - RxTest (6.2.0):
     - RxSwift (= 6.2.0)
   - Sourcery (1.5.0)
+  - SwiftFormat/CLI (0.48.16)
   - SwiftLint (0.44.0)
   - Wormholy (1.6.4)
 
@@ -103,6 +104,7 @@ DEPENDENCIES:
   - RxNimble/RxTest
   - RxSwift
   - Sourcery
+  - SwiftFormat/CLI
   - SwiftLint
   - Wormholy
 
@@ -135,6 +137,7 @@ SPEC REPOS:
     - RxSwift
     - RxTest
     - Sourcery
+    - SwiftFormat
     - SwiftLint
     - Wormholy
 
@@ -166,9 +169,10 @@ SPEC CHECKSUMS:
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   RxTest: 0c692fa672b694373ba86d2b00033595297a2831
   Sourcery: eecfeb011c61d150ffc4f306d2fbf52ae89019d5
+  SwiftFormat: b8a60419c4a8680f67faa80e2da710fd9dc85ca5
   SwiftLint: e96c0a8c770c7ebbc4d36c55baf9096bb65c4584
   Wormholy: 2e70f64227e010d363f8d33268369f77faf12471
 
-PODFILE CHECKSUM: 3c0efd2f05c15d8b0c34757a73ae296c7fcba51d
+PODFILE CHECKSUM: 7c9bd7c958c2f9c5b5c9d033a88ac005f13d26d1
 
 COCOAPODS: 1.10.2

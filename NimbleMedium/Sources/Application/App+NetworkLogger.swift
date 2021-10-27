@@ -11,9 +11,9 @@ extension App {
 
     func configureNetworkLogger() {
         #if DEBUG
-        // Print alamofire request & response log
-        NetworkActivityLogger.shared.level = .debug
-        NetworkActivityLogger.shared.startLogging()
+            // Print alamofire request & response log
+            NetworkActivityLogger.shared.level = .debug
+            NetworkActivityLogger.shared.startLogging()
         #endif
     }
 }

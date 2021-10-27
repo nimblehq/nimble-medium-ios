@@ -5,10 +5,10 @@
 //  Created by Minh Pham on 25/08/2021.
 //
 
-import RxSwift
-import RxCocoa
 import Combine
 import Resolver
+import RxCocoa
+import RxSwift
 
 // sourcery: AutoMockable
 protocol SideMenuActionsViewModelInput {
@@ -120,11 +120,11 @@ extension SideMenuActionsViewModel: SideMenuActionsViewModelInput {
     }
 }
 
-extension SideMenuActionsViewModel: SideMenuActionsViewModelOutput { }
+extension SideMenuActionsViewModel: SideMenuActionsViewModelOutput {}
 
-private extension SideMenuActionsViewModel {
+extension SideMenuActionsViewModel {
 
-    func getCurrentUserSessionTriggered(owner: SideMenuActionsViewModel) -> Observable<Void> {
+    private func getCurrentUserSessionTriggered(owner: SideMenuActionsViewModel) -> Observable<Void> {
         getCurrentSessionUseCase
             .execute()
             .map { $0 != nil }
@@ -137,7 +137,7 @@ private extension SideMenuActionsViewModel {
             .catchAndReturn(())
     }
 
-    func logoutTriggered(owner: SideMenuActionsViewModel) -> Observable<Void> {
+    private func logoutTriggered(owner: SideMenuActionsViewModel) -> Observable<Void> {
         logoutUseCase
             .execute()
             .do(

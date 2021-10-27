@@ -5,8 +5,8 @@
 //  Created by Mark G on 15/09/2021.
 //
 
-import Quick
 import Nimble
+import Quick
 import RxNimble
 import RxSwift
 import RxTest
@@ -65,7 +65,7 @@ final class ArticleCommentRepositorySpec: QuickSpec {
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
-                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        outputError = scheduler.createObserver(Error?.self)
                         authenticatedNetworkAPI.setPerformRequestForReturnValue(
                             Single<APIArticleCommentResponse>.error(TestError.mock)
                         )
@@ -117,7 +117,7 @@ final class ArticleCommentRepositorySpec: QuickSpec {
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
-                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        outputError = scheduler.createObserver(Error?.self)
                         networkAPI.setPerformRequestForReturnValue(
                             Single<APIArticleCommentsResponse>.error(TestError.mock)
                         )

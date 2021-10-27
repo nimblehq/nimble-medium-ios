@@ -5,8 +5,8 @@
 //  Created by Mark G on 14/09/2021.
 //
 
-import SwiftUI
 import SDWebImageSwiftUI
+import SwiftUI
 
 struct AuthorView: View {
 
@@ -45,6 +45,7 @@ struct AuthorView: View {
 }
 
 // MARK: Style
+
 extension AuthorView {
 
     func authorNameColor(_ color: Color) -> Self {

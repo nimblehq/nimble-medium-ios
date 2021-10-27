@@ -5,8 +5,8 @@
 //  Created by Minh Pham on 29/09/2021.
 //
 
-import Quick
 import Nimble
+import Quick
 import RxNimble
 import RxSwift
 import RxTest
@@ -70,8 +70,8 @@ final class GetCurrentUserUseCaseSpec: QuickSpec {
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
-                        outputError = scheduler.createObserver(Optional<Error>.self)
-                        authRepository.getCurrentUserReturnValue =  .error(TestError.mock)
+                        outputError = scheduler.createObserver(Error?.self)
+                        authRepository.getCurrentUserReturnValue = .error(TestError.mock)
                         userSessionRepository.saveUserReturnValue = .empty()
 
                         usecase.execute()
@@ -96,7 +96,7 @@ final class GetCurrentUserUseCaseSpec: QuickSpec {
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
-                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        outputError = scheduler.createObserver(Error?.self)
                         authRepository.getCurrentUserReturnValue = .just(inputUser)
                         userSessionRepository.saveUserReturnValue = .error(TestError.mock)
 

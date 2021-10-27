@@ -5,8 +5,8 @@
 //  Created by Minh Pham on 21/10/2021.
 //
 
-import Quick
 import Nimble
+import Quick
 import RxNimble
 import RxSwift
 import RxTest
@@ -59,7 +59,7 @@ final class DeleteArticleCommentUseCaseSpec: QuickSpec {
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
-                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        outputError = scheduler.createObserver(Error?.self)
                         articleCommentRepository.deleteCommentArticleSlugCommentIdReturnValue =
                             .error(TestError.mock)
 

@@ -5,12 +5,12 @@
 //  Created by Mark G on 07/10/2021.
 //
 
-import Quick
 import Nimble
+import Quick
+import Resolver
 import RxNimble
 import RxSwift
 import RxTest
-import Resolver
 
 @testable import NimbleMedium
 
@@ -56,10 +56,10 @@ final class UserProfileFavouritedArticlesTabViewModelSpec: QuickSpec {
                             viewModel.output.articleRowVieModels
                                 .map { $0.map { $0.output.id } }
                         )
-                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                                .next(0, []),
-                                .next(10, expectedValue)
-                            ]
+                        .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                            .next(0, []),
+                            .next(10, expectedValue)
+                        ]
                     }
 
                     it("returns output didFetchFavouritedArticles with singal") {

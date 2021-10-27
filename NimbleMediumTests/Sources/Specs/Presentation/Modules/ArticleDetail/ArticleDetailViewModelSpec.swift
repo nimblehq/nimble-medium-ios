@@ -5,13 +5,13 @@
 //  Created by Mark G on 15/09/2021.
 //
 
-import Quick
 import Nimble
+import Quick
+import Resolver
+import RxCocoa
 import RxNimble
 import RxSwift
 import RxTest
-import Resolver
-import RxCocoa
 
 @testable import NimbleMedium
 
@@ -20,7 +20,7 @@ final class ArticleDetailViewModelSpec: QuickSpec {
     @LazyInjected var getArticleUseCase: GetArticleUseCaseProtocolMock
     @LazyInjected var followUserUseCase: FollowUserUseCaseProtocolMock
     @LazyInjected var unfollowUserUseCase: UnfollowUserUseCaseProtocolMock
-    
+
     override func spec() {
         var viewModel: ArticleDetailViewModelProtocol!
         var scheduler: TestScheduler!
@@ -85,7 +85,7 @@ final class ArticleDetailViewModelSpec: QuickSpec {
                 context("when it toggles to follow") {
 
                     context("when FollowUserUseCase return success") {
-                        
+
                         beforeEach {
                             self.getArticleUseCase.executeSlugReturnValue = .just(inputArticle, on: scheduler, at: 10)
                             self.followUserUseCase.executeUsernameReturnValue = .empty(on: scheduler, at: 20)
@@ -104,11 +104,11 @@ final class ArticleDetailViewModelSpec: QuickSpec {
                                 viewModel.output.uiModel
                                     .map { $0?.authorIsFollowing }
                             )
-                                .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                                    .next(1, nil),
-                                    .next(11, false),
-                                    .next(16, true)
-                                ]
+                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                                .next(1, nil),
+                                .next(11, false),
+                                .next(16, true)
+                            ]
                         }
                     }
 

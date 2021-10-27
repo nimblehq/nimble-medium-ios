@@ -70,9 +70,9 @@ extension SideMenuHeaderViewModel: SideMenuHeaderViewModelInput {
 
 extension SideMenuHeaderViewModel: SideMenuHeaderViewModelOutput {}
 
-private extension SideMenuHeaderViewModel {
+extension SideMenuHeaderViewModel {
 
-    func generateUIModel(from user: User) -> SideMenuHeaderView.UIModel {
+    private func generateUIModel(from user: User) -> SideMenuHeaderView.UIModel {
         var username = Localizable.defaultUsernameValue()
         if !user.username.isEmpty {
             username = user.username
@@ -83,7 +83,7 @@ private extension SideMenuHeaderViewModel {
         )
     }
 
-    func getCurrentUserSessionTriggered(owner: SideMenuHeaderViewModel) -> Observable<Void> {
+    private func getCurrentUserSessionTriggered(owner: SideMenuHeaderViewModel) -> Observable<Void> {
         getCurrentSessionUseCase
             .execute()
             .map {

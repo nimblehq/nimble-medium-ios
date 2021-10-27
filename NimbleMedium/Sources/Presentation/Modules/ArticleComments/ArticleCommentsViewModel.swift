@@ -5,10 +5,10 @@
 //  Created by Mark G on 17/09/2021.
 //
 
-import RxSwift
-import RxCocoa
 import Combine
 import Resolver
+import RxCocoa
+import RxSwift
 
 protocol ArticleCommentsViewModelInput {
 
@@ -64,9 +64,10 @@ extension ArticleCommentsViewModel: ArticleCommentsViewModelInput {
 extension ArticleCommentsViewModel: ArticleCommentsViewModelOutput {}
 
 // MARK: Private
-private extension ArticleCommentsViewModel {
 
-    func fetchArticleCommentsTriggered(owner: ArticleCommentsViewModel) -> Observable<Void> {
+extension ArticleCommentsViewModel {
+
+    private func fetchArticleCommentsTriggered(owner: ArticleCommentsViewModel) -> Observable<Void> {
         getArticleCommentsUseCase.execute(slug: id)
             .do(
                 onSuccess: {

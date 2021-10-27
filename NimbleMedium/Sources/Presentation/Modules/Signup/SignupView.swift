@@ -30,12 +30,12 @@ struct SignupView: View {
                 .navigationBarColor(backgroundColor: .green)
                 .toolbar { navigationBarLeadingContent }
                 .toast(isPresented: $errorToast, dismissAfter: 3.0) {
-                    ToastView(errorMessage) { } background: {
+                    ToastView(errorMessage) {} background: {
                         Color.clear
                     }
                 }
                 .toast(isPresented: $loadingToast) {
-                    ToastView(String.empty) { }
+                    ToastView(String.empty) {}
                         .toastViewStyle(IndefiniteProgressToastViewStyle())
                 }
         }
@@ -80,7 +80,8 @@ struct SignupView: View {
                 )
                 AppSecureField(
                     placeholder: Localizable.signupTextFieldPasswordPlaceholder(),
-                    text: $password)
+                    text: $password
+                )
                 AppMainButton(title: Localizable.actionSignupText()) {
                     hideKeyboard()
                     viewModel.input.didTapSignupButton(username: username, email: email, password: password)
@@ -103,7 +104,7 @@ struct SignupView: View {
 }
 
 #if DEBUG
-struct SignupView_Previews: PreviewProvider {
-    static var previews: some View { SignupView() }
-}
+    struct SignupView_Previews: PreviewProvider {
+        static var previews: some View { SignupView() }
+    }
 #endif

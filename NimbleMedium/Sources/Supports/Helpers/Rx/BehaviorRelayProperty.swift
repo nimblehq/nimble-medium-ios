@@ -15,7 +15,7 @@ struct BehaviorRelayProperty<Element, Wrapped> {
 
     let projectedValue: BehaviorRelay<Element>
     let wrappedValue: Wrapped
-    
+
     init(_ value: Element, transform: (BehaviorRelay<Element>) -> Wrapped) {
         projectedValue = BehaviorRelay(value: value)
         wrappedValue = transform(projectedValue)

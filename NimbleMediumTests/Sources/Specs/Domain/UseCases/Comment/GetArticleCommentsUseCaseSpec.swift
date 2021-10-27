@@ -5,8 +5,8 @@
 //  Created by Mark G on 15/09/2021.
 //
 
-import Quick
 import Nimble
+import Quick
 import RxNimble
 import RxSwift
 import RxTest
@@ -42,10 +42,10 @@ final class GetArticleCommentsUseCaseSpec: QuickSpec {
                         articleCommentRepository.getCommentsSlugReturnValue = .just(inputArticleComments)
 
                         usecase.execute(slug: "")
-                        .asObservable()
-                        .map { $0.compactMap { $0 as? APIArticleComment } }
-                        .bind(to: outputArticleComments)
-                        .disposed(by: disposeBag)
+                            .asObservable()
+                            .map { $0.compactMap { $0 as? APIArticleComment } }
+                            .bind(to: outputArticleComments)
+                            .disposed(by: disposeBag)
                     }
 
                     it("returns correct article comments") {
@@ -58,15 +58,15 @@ final class GetArticleCommentsUseCaseSpec: QuickSpec {
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
-                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        outputError = scheduler.createObserver(Error?.self)
                         articleCommentRepository.getCommentsSlugReturnValue = .error(TestError.mock)
 
                         usecase.execute(slug: "")
-                        .asObservable()
-                        .materialize()
-                        .map { $0.error }
-                        .bind(to: outputError)
-                        .disposed(by: disposeBag)
+                            .asObservable()
+                            .materialize()
+                            .map { $0.error }
+                            .bind(to: outputError)
+                            .disposed(by: disposeBag)
                     }
 
                     it("returns correct error") {

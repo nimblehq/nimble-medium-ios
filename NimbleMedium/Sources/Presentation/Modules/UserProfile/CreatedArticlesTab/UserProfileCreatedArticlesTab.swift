@@ -5,8 +5,8 @@
 //  Created by Mark G on 06/10/2021.
 //
 
-import SwiftUI
 import PagerTabStripView
+import SwiftUI
 import ToastUI
 
 struct UserProfileCreatedArticlesTab: View {
@@ -33,7 +33,7 @@ struct UserProfileCreatedArticlesTab: View {
             PagerTabItemTitle(Localizable.userProfileCreatedArticlesTitle())
         }
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
-            ToastView(Localizable.errorGeneric()) { } background: {
+            ToastView(Localizable.errorGeneric()) {} background: {
                 Color.clear
             }
         }

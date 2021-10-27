@@ -5,8 +5,8 @@
 //  Created by Mark G on 29/09/2021.
 //
 
-import SwiftUI
 import SDWebImageSwiftUI
+import SwiftUI
 
 struct AvatarView: View {
 
@@ -41,7 +41,7 @@ struct AvatarView: View {
     init(url: URL? = nil) {
         self.url = url
     }
-    
+
     func size(_ value: CGFloat) -> Self {
         var view = self
         view.size = value

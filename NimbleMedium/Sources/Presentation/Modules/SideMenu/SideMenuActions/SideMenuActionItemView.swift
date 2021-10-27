@@ -11,7 +11,7 @@ struct SideMenuActionItemView: View {
 
     private var text: String
     private var iconName: String
-    private var action: (() -> Void)
+    private var action: () -> Void
 
     var body: some View {
         Button(action: action) {

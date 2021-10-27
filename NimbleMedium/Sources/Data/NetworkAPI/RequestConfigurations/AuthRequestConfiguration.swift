@@ -43,14 +43,14 @@ extension AuthRequestConfiguration: RequestConfiguration {
 
     var parameters: Parameters? {
         switch self {
-        case .login(let email, let password):
+        case let .login(email, password):
             return [
                 "user": [
                     "email": email,
                     "password": password
                 ]
             ]
-        case .signup(let username, let email, let password):
+        case let .signup(username, email, password):
             return [
                 "user": [
                     "username": username,
@@ -60,7 +60,7 @@ extension AuthRequestConfiguration: RequestConfiguration {
             ]
         case .getCurrentUser:
             return nil
-        case .updateCurrentUser(let params):
+        case let .updateCurrentUser(params):
             return ["user": params.dictionary]
         }
     }

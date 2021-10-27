@@ -5,8 +5,8 @@
 //  Created by Mark G on 11/08/2021.
 //
 
-import SwiftUI
 import Resolver
+import SwiftUI
 
 struct SideMenuView: View {
 
@@ -34,7 +34,7 @@ struct SideMenuView: View {
 }
 
 #if DEBUG
-struct SideMenuView_Previews: PreviewProvider {
-    static var previews: some View { SideMenuView() }
-}
+    struct SideMenuView_Previews: PreviewProvider {
+        static var previews: some View { SideMenuView() }
+    }
 #endif

@@ -13,9 +13,11 @@ import Resolver
 extension Resolver {
 
     // MARK: - Mock Container
+
     static var mock = Resolver(parent: .main)
 
     // MARK: - Register Mock Services
+
     static func registerMockServices() {
         root = Resolver.mock
         defaultScope = .application
@@ -26,45 +28,45 @@ extension Resolver {
 
     private static func registerRepositories() {
         Resolver.mock.register { ArticleRepositoryProtocolMock() }
-        .implements(ArticleRepositoryProtocol.self)
+            .implements(ArticleRepositoryProtocol.self)
     }
 
     private static func registerUseCases() {
         Resolver.mock.register { CreateArticleCommentUseCaseProtocolMock() }
-        .implements(CreateArticleCommentUseCaseProtocol.self)
+            .implements(CreateArticleCommentUseCaseProtocol.self)
         Resolver.mock.register { CreateArticleUseCaseProtocolMock() }
-        .implements(CreateArticleUseCaseProtocol.self)
+            .implements(CreateArticleUseCaseProtocol.self)
         Resolver.mock.register { GetArticleCommentsUseCaseProtocolMock() }
-        .implements(GetArticleCommentsUseCaseProtocol.self)
+            .implements(GetArticleCommentsUseCaseProtocol.self)
         Resolver.mock.register { GetArticleUseCaseProtocolMock() }.implements(GetArticleUseCaseProtocol.self)
         Resolver.mock.register { GetCurrentSessionUseCaseProtocolMock() }
-        .implements(GetCurrentSessionUseCaseProtocol.self)
+            .implements(GetCurrentSessionUseCaseProtocol.self)
         Resolver.mock.register { GetCurrentUserUseCaseProtocolMock() }.implements(GetCurrentUserUseCaseProtocol.self)
         Resolver.mock.register { GetGlobalArticlesUseCaseProtocolMock() }
-        .implements(GetGlobalArticlesUseCaseProtocol.self)
+            .implements(GetGlobalArticlesUseCaseProtocol.self)
         Resolver.mock.register { GetUserProfileUseCaseProtocolMock() }.implements(GetUserProfileUseCaseProtocol.self)
         Resolver.mock.register { LoginUseCaseProtocolMock() }.implements(LoginUseCaseProtocol.self)
         Resolver.mock.register { LogoutUseCaseProtocolMock() }.implements(LogoutUseCaseProtocol.self)
         Resolver.mock.register { GetCreatedArticlesUseCaseProtocolMock() }
-        .implements(GetCreatedArticlesUseCaseProtocol.self)
+            .implements(GetCreatedArticlesUseCaseProtocol.self)
         Resolver.mock.register { GetFavouritedArticlesUseCaseProtocolMock() }
-        .implements(GetFavouritedArticlesUseCaseProtocol.self)
+            .implements(GetFavouritedArticlesUseCaseProtocol.self)
         Resolver.mock.register { UpdateCurrentUserUseCaseProtocolMock() }
-        .implements(UpdateCurrentUserUseCaseProtocol.self)
+            .implements(UpdateCurrentUserUseCaseProtocol.self)
         Resolver.mock.register { FollowUserUseCaseProtocolMock() }
             .implements(FollowUserUseCaseProtocol.self)
         Resolver.mock.register { UnfollowUserUseCaseProtocolMock() }
             .implements(UnfollowUserUseCaseProtocol.self)
     }
-    
+
     private static func registerViewModels() {
         Resolver.mock.register { ArticleRowViewModelProtocolMock() }.implements(ArticleRowViewModelProtocol.self)
         Resolver.mock.register { HomeViewModelProtocolMock() }.implements(HomeViewModelProtocol.self)
         Resolver.mock.register { LoginViewModelProtocolMock() }.implements(LoginViewModelProtocol.self)
         Resolver.mock.register { SideMenuActionsViewModelProtocolMock() }
-        .implements(SideMenuActionsViewModelProtocol.self)
+            .implements(SideMenuActionsViewModelProtocol.self)
         Resolver.mock.register { SideMenuHeaderViewModelProtocolMock() }
-        .implements(SideMenuHeaderViewModelProtocol.self)
+            .implements(SideMenuHeaderViewModelProtocol.self)
         Resolver.mock.register { SignupViewModelProtocolMock() }.implements(SignupViewModelProtocol.self)
     }
 }

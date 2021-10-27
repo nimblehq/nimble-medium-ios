@@ -5,10 +5,10 @@
 //  Created by Mark G on 20/09/2021.
 //
 
-import RxTest
+import Nimble
 import RxNimble
 import RxSwift
-import Nimble
+import RxTest
 
 extension Expectation where T: ObserverType {
 
@@ -24,20 +24,20 @@ extension Expectation where T: ObserverType {
     }
 }
 
-private extension Expectation {
+extension Expectation {
     #if swift(>=4.1)
     #else
-    init(_ expression: Expression<T>) {
-        self.expression = expression
-    }
+        fileprivate init(_ expression: Expression<T>) {
+            self.expression = expression
+        }
     #endif
 
-    func transform<U>(_ closure: @escaping (T?) throws -> U?) -> Expectation<U> {
+    private func transform<U>(_ closure: @escaping (T?) throws -> U?) -> Expectation<U> {
         let exp = expression.cast(closure)
         #if swift(>=4.1)
-        return Expectation<U>(expression: exp)
+            return Expectation<U>(expression: exp)
         #else
-        return Expectation<U>(exp)
+            return Expectation<U>(exp)
         #endif
     }
 }

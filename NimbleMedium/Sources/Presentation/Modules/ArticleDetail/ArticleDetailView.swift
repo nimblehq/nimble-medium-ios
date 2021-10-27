@@ -5,9 +5,9 @@
 //  Created by Mark G on 14/09/2021.
 //
 
-import SwiftUI
-import SDWebImageSwiftUI
 import Resolver
+import SDWebImageSwiftUI
+import SwiftUI
 import ToastUI
 
 struct ArticleDetailView: View {
@@ -33,7 +33,7 @@ struct ArticleDetailView: View {
         .navigationTitle(Localizable.articleDetailTitleText())
         .modifier(NavigationBarPrimaryStyle())
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
-            ToastView(Localizable.errorGeneric()) { } background: {
+            ToastView(Localizable.errorGeneric()) {} background: {
                 Color.clear
             }
         }
@@ -65,7 +65,7 @@ struct ArticleDetailView: View {
 
     init(slug: String) {
         self.slug = slug
-        
+
         viewModel = Resolver.resolve(
             ArticleDetailViewModelProtocol.self,
             args: slug
@@ -108,5 +108,4 @@ struct ArticleDetailView: View {
         )
         .authorNameColor(.white)
     }
-
 }

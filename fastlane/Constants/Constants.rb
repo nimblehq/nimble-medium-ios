@@ -5,6 +5,11 @@ class Constants
   #### PROJECT ####
   #################
 
+  # Workspace path
+   def self.WORKSPACE_PATH
+     './NimbleMedium.xcworkspace'
+   end
+
   # Project path
   def self.PROJECT_PATH
     './NimbleMedium.xcodeproj'
@@ -56,6 +61,16 @@ class Constants
   # a target name for UI tests
   def self.UI_TESTS_TARGET
     'NimbleMediumUITests'
+  end
+
+  # xcov output directory path
+  def self.XCOV_OUTPUT_DIRECTORY_PATH
+    './fastlane/xcov_output'
+  end
+
+  # test output directory path
+  def self.TEST_OUTPUT_DIRECTORY_PATH
+    './fastlane/test_output'
   end
 
   ##################

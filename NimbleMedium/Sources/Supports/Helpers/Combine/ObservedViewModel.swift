@@ -5,8 +5,8 @@
 //  Created by Mark G on 25/08/2021.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 @propertyWrapper
 struct ObservedViewModel<ViewModel>: DynamicProperty {

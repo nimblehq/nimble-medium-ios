@@ -5,8 +5,8 @@
 //  Created by Mark G on 28/09/2021.
 //
 
-import Quick
 import Nimble
+import Quick
 import RxNimble
 import RxSwift
 import RxTest
@@ -42,12 +42,12 @@ final class GetFavouritedArticlesUseCaseSpec: QuickSpec {
                         articleRepository.listArticlesParamsReturnValue = .just(inputArticles)
 
                         usecase.execute(username: "any")
-                        .asObservable()
-                        .map {
-                            $0.compactMap { $0 as? DecodableArticle }
-                        }
-                        .bind(to: outputArticles)
-                        .disposed(by: disposeBag)
+                            .asObservable()
+                            .map {
+                                $0.compactMap { $0 as? DecodableArticle }
+                            }
+                            .bind(to: outputArticles)
+                            .disposed(by: disposeBag)
                     }
 
                     it("returns correct articles") {
@@ -60,15 +60,15 @@ final class GetFavouritedArticlesUseCaseSpec: QuickSpec {
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
-                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        outputError = scheduler.createObserver(Error?.self)
                         articleRepository.listArticlesParamsReturnValue = .error(TestError.mock)
 
                         usecase.execute(username: "any")
-                        .asObservable()
-                        .materialize()
-                        .map { $0.error }
-                        .bind(to: outputError)
-                        .disposed(by: disposeBag)
+                            .asObservable()
+                            .materialize()
+                            .map { $0.error }
+                            .bind(to: outputError)
+                            .disposed(by: disposeBag)
                     }
 
                     it("returns correct error") {

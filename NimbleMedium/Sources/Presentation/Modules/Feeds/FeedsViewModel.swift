@@ -5,10 +5,10 @@
 //  Created by Mark G on 12/08/2021.
 //
 
-import RxSwift
-import RxCocoa
-import SwiftUI
 import Resolver
+import RxCocoa
+import RxSwift
+import SwiftUI
 
 protocol FeedsViewModelInput {
 
@@ -36,7 +36,7 @@ final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
     var output: FeedsViewModelOutput { self }
 
     private var currentOffset = 0
-    
+
     private let limit = 10
     private let disposeBag = DisposeBag()
     private let getCurrentUserSessionTrigger = PublishRelay<Void>()
@@ -82,9 +82,9 @@ extension FeedsViewModel: FeedsViewModelOutput {}
 
 // MARK: - Private
 
-private extension FeedsViewModel {
+extension FeedsViewModel {
 
-    func getCurrentUserSessionTriggered(owner: FeedsViewModel) -> Observable<Void> {
+    private func getCurrentUserSessionTriggered(owner: FeedsViewModel) -> Observable<Void> {
         getCurrentSessionUseCase
             .execute()
             .map { $0 != nil }

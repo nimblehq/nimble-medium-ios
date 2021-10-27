@@ -5,16 +5,16 @@
 //  Created by Mark G on 11/08/2021.
 //
 
+import PagerTabStripView
 import Refresh
 import Resolver
 import SwiftUI
 import ToastUI
-import PagerTabStripView
 
 struct FeedsView: View {
 
     @ObservedViewModel private var viewModel: FeedsViewModelProtocol = Resolver.resolve()
-    
+
     @State private var isFirstLoad: Bool = true
     @State private var isShowingCreateArticleScreen = false
     @State private var selectedTabIndex: Int = 0
@@ -90,9 +90,9 @@ struct FeedsView: View {
 }
 
 #if DEBUG
-struct FeedsView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedsView(isSideMenuDraggingEnabled: .constant(true))
+    struct FeedsView_Previews: PreviewProvider {
+        static var previews: some View {
+            FeedsView(isSideMenuDraggingEnabled: .constant(true))
+        }
     }
-}
 #endif

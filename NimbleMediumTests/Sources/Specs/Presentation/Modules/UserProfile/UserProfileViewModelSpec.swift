@@ -5,13 +5,13 @@
 //  Created by Minh Pham on 04/10/2021.
 //
 
-import Quick
 import Nimble
+import Quick
+import Resolver
+import RxCocoa
 import RxNimble
 import RxSwift
 import RxTest
-import RxCocoa
-import Resolver
 
 @testable import NimbleMedium
 

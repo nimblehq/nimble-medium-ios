@@ -18,7 +18,7 @@ final class SideMenuDraggingAnimator {
         self.isOpen = isOpen
         progress = isOpen ? 1.0 : 0.0
     }
-    
+
     func onDraggingChanged(_ gesture: DragGesture.Value, _ width: CGFloat, onUpdate: OnUpdateCallback) {
 
         let translation = gesture.translation.width

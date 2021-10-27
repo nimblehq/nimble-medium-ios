@@ -5,8 +5,8 @@
 //  Created by Mark G on 15/09/2021.
 //
 
-import SwiftUI
 import Resolver
+import SwiftUI
 import ToastUI
 
 struct ArticleCommentsView: View {
@@ -40,7 +40,7 @@ struct ArticleCommentsView: View {
             }
         }
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
-            ToastView(Localizable.errorGeneric()) { } background: {
+            ToastView(Localizable.errorGeneric()) {} background: {
                 Color.clear
             }
         }

@@ -5,11 +5,11 @@
 //  Created by Minh Pham on 23/09/2021.
 //
 
+import PagerTabStripView
 import Resolver
 import SDWebImageSwiftUI
 import SwiftUI
 import ToastUI
-import PagerTabStripView
 
 struct UserProfileView: View {
 
@@ -48,7 +48,7 @@ struct UserProfileView: View {
         .modifier(NavigationBarPrimaryStyle())
         .onAppear { viewModel.input.getUserProfile() }
         .toast(isPresented: $errorToast, dismissAfter: 3.0) {
-            ToastView(errorMessage) { } background: {
+            ToastView(errorMessage) {} background: {
                 Color.clear
             }
         }
@@ -78,7 +78,6 @@ struct UserProfileView: View {
                         viewModel.input.toggleFollowUser()
                     }
                 }
-               
             }
             .padding(.horizontal, 20.0)
         }
@@ -95,7 +94,7 @@ struct UserProfileView: View {
 }
 
 #if DEBUG
-struct UserProfileView_Previews: PreviewProvider {
-    static var previews: some View { UserProfileView() }
-}
+    struct UserProfileView_Previews: PreviewProvider {
+        static var previews: some View { UserProfileView() }
+    }
 #endif

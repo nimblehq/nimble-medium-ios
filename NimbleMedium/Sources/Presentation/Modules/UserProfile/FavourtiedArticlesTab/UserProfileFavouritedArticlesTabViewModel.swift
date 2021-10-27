@@ -33,7 +33,7 @@ protocol UserProfileFavouritedArticlesTabViewModelProtocol: ObservableViewModel 
 
 // swiftlint:disable type_name
 final class UserProfileFavouritedArticlesTabViewModel: ObservableObject,
-                                                       UserProfileFavouritedArticlesTabViewModelProtocol {
+    UserProfileFavouritedArticlesTabViewModelProtocol {
 
     @Injected private var getFavouritedArticlesUseCase: GetFavouritedArticlesUseCaseProtocol
 
@@ -68,9 +68,10 @@ extension UserProfileFavouritedArticlesTabViewModel: UserProfileFavouritedArticl
 extension UserProfileFavouritedArticlesTabViewModel: UserProfileFavouritedArticlesTabViewModelOutput {}
 
 // MARK: Private
-private extension UserProfileFavouritedArticlesTabViewModel {
 
-    func fetchFavouritedArticlesTriggered(owner: UserProfileFavouritedArticlesTabViewModel) -> Observable<Void> {
+extension UserProfileFavouritedArticlesTabViewModel {
+
+    private func fetchFavouritedArticlesTriggered(owner: UserProfileFavouritedArticlesTabViewModel) -> Observable<Void> {
         Observable.just(username)
             .compactMap { $0 }
             .flatMap {

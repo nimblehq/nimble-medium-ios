@@ -5,9 +5,9 @@
 //  Created by Minh Pham on 23/08/2021.
 //
 
-import SwiftUI
-import RxSwift
 import Resolver
+import RxSwift
+import SwiftUI
 
 struct SideMenuActionsView: View {
 
@@ -103,7 +103,7 @@ struct SideMenuActionsView: View {
 }
 
 #if DEBUG
-struct SideMenuActionsView_Previews: PreviewProvider {
-    static var previews: some View { SideMenuActionsView() }
-}
+    struct SideMenuActionsView_Previews: PreviewProvider {
+        static var previews: some View { SideMenuActionsView() }
+    }
 #endif
