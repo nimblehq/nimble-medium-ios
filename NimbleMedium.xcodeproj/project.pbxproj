@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		240A802E2727AF12007F06B7 /* UpdateMyArticleUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240A802D2727AF12007F06B7 /* UpdateMyArticleUseCase.swift */; };
+		240A80302727B074007F06B7 /* UpdateMyArticleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240A802F2727B074007F06B7 /* UpdateMyArticleParameters.swift */; };
 		240E218026FC361000EFC3B5 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240E217F26FC361000EFC3B5 /* UserProfileView.swift */; };
 		2410D4A127041837009B4A95 /* AuthenticatedInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410D4A027041837009B4A95 /* AuthenticatedInterceptor.swift */; };
 		241A5A252713FA9B00BC33F1 /* LogoutUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241A5A242713FA9B00BC33F1 /* LogoutUseCase.swift */; };
@@ -95,6 +97,8 @@
 		24C9393D26D8A26300547800 /* AppMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393C26D8A26300547800 /* AppMainButton.swift */; };
 		24D717F8271D3394009B589C /* CreateArticleUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D717F7271D3394009B589C /* CreateArticleUseCaseSpec.swift */; };
 		24D717FA271D3409009B589C /* CreateArticleParameters+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D717F9271D3409009B589C /* CreateArticleParameters+Dummy.swift */; };
+		24E0400C2727FEF400A1985B /* UpdateMyArticleUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E0400B2727FEF400A1985B /* UpdateMyArticleUseCaseSpec.swift */; };
+		24E0400E2727FFB600A1985B /* UpdateMyArticleParameters+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E0400D2727FFB600A1985B /* UpdateMyArticleParameters+Dummy.swift */; };
 		24E986E9272681DD0048692D /* DeleteMyArticleUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E986E8272681DD0048692D /* DeleteMyArticleUseCase.swift */; };
 		24E986EB272687C20048692D /* DeleteMyArticleUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E986EA272687C20048692D /* DeleteMyArticleUseCaseSpec.swift */; };
 		24F3D7AA26DCE54C00DE2420 /* CodableUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7A926DCE54C00DE2420 /* CodableUser.swift */; };
@@ -248,6 +252,8 @@
 		1B8DA573BF5543E0BD2D9E94 /* Pods-NimbleMediumTests.release production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.release production.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.release production.xcconfig"; sourceTree = "<group>"; };
 		1FB4ECE354F839DF02D6976B /* Pods-NimbleMedium.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMedium.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMedium/Pods-NimbleMedium.staging.xcconfig"; sourceTree = "<group>"; };
 		21851292A064EB97674233A2 /* Pods-NimbleMediumTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NimbleMediumTests.staging.xcconfig"; path = "Target Support Files/Pods-NimbleMediumTests/Pods-NimbleMediumTests.staging.xcconfig"; sourceTree = "<group>"; };
+		240A802D2727AF12007F06B7 /* UpdateMyArticleUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMyArticleUseCase.swift; sourceTree = "<group>"; };
+		240A802F2727B074007F06B7 /* UpdateMyArticleParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMyArticleParameters.swift; sourceTree = "<group>"; };
 		240E217F26FC361000EFC3B5 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		2410D4A027041837009B4A95 /* AuthenticatedInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedInterceptor.swift; sourceTree = "<group>"; };
 		241A5A242713FA9B00BC33F1 /* LogoutUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUseCase.swift; sourceTree = "<group>"; };
@@ -334,6 +340,8 @@
 		24C9393C26D8A26300547800 /* AppMainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainButton.swift; sourceTree = "<group>"; };
 		24D717F7271D3394009B589C /* CreateArticleUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateArticleUseCaseSpec.swift; sourceTree = "<group>"; };
 		24D717F9271D3409009B589C /* CreateArticleParameters+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateArticleParameters+Dummy.swift"; sourceTree = "<group>"; };
+		24E0400B2727FEF400A1985B /* UpdateMyArticleUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMyArticleUseCaseSpec.swift; sourceTree = "<group>"; };
+		24E0400D2727FFB600A1985B /* UpdateMyArticleParameters+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdateMyArticleParameters+Dummy.swift"; sourceTree = "<group>"; };
 		24E986E8272681DD0048692D /* DeleteMyArticleUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMyArticleUseCase.swift; sourceTree = "<group>"; };
 		24E986EA272687C20048692D /* DeleteMyArticleUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMyArticleUseCaseSpec.swift; sourceTree = "<group>"; };
 		24F3D7A926DCE54C00DE2420 /* CodableUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableUser.swift; sourceTree = "<group>"; };
@@ -626,6 +634,7 @@
 			children = (
 				24A2C6FE271D1E1B002E4A5A /* CreateArticleParameters.swift */,
 				2D6AFB642721087900C523BB /* GetArticlesParameters.swift */,
+				240A802F2727B074007F06B7 /* UpdateMyArticleParameters.swift */,
 				2444C3782717D5EA00196035 /* UpdateCurrentUserParameters.swift */,
 			);
 			path = Parameters;
@@ -657,9 +666,9 @@
 		2459B31626D74E1800ABCE61 /* RequestConfigurations */ = {
 			isa = PBXGroup;
 			children = (
-				2459B31B26D74F4700ABCE61 /* AuthRequestConfiguration.swift */,
-				2DEF1F9126E5FF4100EB93CC /* ArticleRequestConfiguration.swift */,
 				2D882EDB26F1CBE900DB6560 /* ArticleCommentRequestConfiguration.swift */,
+				2DEF1F9126E5FF4100EB93CC /* ArticleRequestConfiguration.swift */,
+				2459B31B26D74F4700ABCE61 /* AuthRequestConfiguration.swift */,
 				241F5B862701AADD002E13FC /* UserRequestConfiguration.swift */,
 			);
 			path = RequestConfigurations;
@@ -691,8 +700,8 @@
 			isa = PBXGroup;
 			children = (
 				2DEF1F8E26E5FE7A00EB93CC /* Article */,
+				2D882ED826F1CB8A00DB6560 /* ArticleComment */,
 				2459B32326D750ED00ABCE61 /* Auth */,
-				2D882ED826F1CB8A00DB6560 /* Comment */,
 				24F3D7B226DCE94D00DE2420 /* User */,
 			);
 			path = Repositories;
@@ -794,6 +803,7 @@
 				2DC224E32702B68A008382E3 /* GetFavouritedArticlesUseCase.swift */,
 				2DEF1F9726E6055A00EB93CC /* GetGlobalArticlesUseCase.swift */,
 				2DC824BB271FF2BD0024CFEF /* GetCurrentUserFollowingArticlesUseCase.swift */,
+				240A802D2727AF12007F06B7 /* UpdateMyArticleUseCase.swift */,
 			);
 			path = Article;
 			sourceTree = "<group>";
@@ -821,14 +831,14 @@
 			path = User;
 			sourceTree = "<group>";
 		};
-		24B277D12701C0B100332FEA /* Comment */ = {
+		24B277D12701C0B100332FEA /* ArticleComment */ = {
 			isa = PBXGroup;
 			children = (
 				244B220F271EA928005D6D68 /* CreateArticleCommentUseCase.swift */,
 				244023D927214F190023B5DF /* DeleteArticleCommentUseCase.swift */,
 				2D882EDD26F1CCA400DB6560 /* GetArticleCommentsUseCase.swift */,
 			);
-			path = Comment;
+			path = ArticleComment;
 			sourceTree = "<group>";
 		};
 		24B277D42701C2EE00332FEA /* User */ = {
@@ -851,6 +861,7 @@
 				2D892BAA26E89E4500579856 /* GetGlobalArticlesUseCaseSpec.swift */,
 				2D979C312703034C0084A3F8 /* GetCreatedArticlesUseCaseSpec.swift */,
 				2DC824BD271FF6890024CFEF /* GetCurrentUserFollowingArticlesUseCaseSpec.swift */,
+				24E0400B2727FEF400A1985B /* UpdateMyArticleUseCaseSpec.swift */,
 			);
 			path = Article;
 			sourceTree = "<group>";
@@ -1165,8 +1176,8 @@
 			isa = PBXGroup;
 			children = (
 				24B277CE2701C06100332FEA /* Article */,
+				24B277D12701C0B100332FEA /* ArticleComment */,
 				24B277CF2701C07F00332FEA /* Auth */,
-				24B277D12701C0B100332FEA /* Comment */,
 				24B277D02701C09500332FEA /* User */,
 			);
 			path = UseCases;
@@ -1276,6 +1287,7 @@
 				2477173C27043E7900BF13F2 /* APIUserResponse+Dummy.swift */,
 				24D717F9271D3409009B589C /* CreateArticleParameters+Dummy.swift */,
 				247FE8AA27193DE500E4AEDE /* UpdateCurrentUserParameters+Dummy.swift */,
+				24E0400D2727FFB600A1985B /* UpdateMyArticleParameters+Dummy.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1508,12 +1520,12 @@
 			path = ArticleComment;
 			sourceTree = "<group>";
 		};
-		2D882ED826F1CB8A00DB6560 /* Comment */ = {
+		2D882ED826F1CB8A00DB6560 /* ArticleComment */ = {
 			isa = PBXGroup;
 			children = (
 				2D882ED926F1CBA200DB6560 /* ArticleCommentRepositoryProtocol.swift */,
 			);
-			path = Comment;
+			path = ArticleComment;
 			sourceTree = "<group>";
 		};
 		2D882EE726F1D39000DB6560 /* ArticleComments */ = {
@@ -1654,10 +1666,10 @@
 		2DB2677D26BBF12E00FF05BB /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				2459B32526D7512300ABCE61 /* User.swift */,
 				2D55E4A626DF231700161052 /* Article.swift */,
-				2D55E4A826DF235000161052 /* Profile.swift */,
 				2D882ECF26F1C90200DB6560 /* ArticleComment.swift */,
+				2D55E4A826DF235000161052 /* Profile.swift */,
+				2459B32526D7512300ABCE61 /* User.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1682,8 +1694,8 @@
 		2DB2678026BBF14C00FF05BB /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				2D882ED526F1CB5300DB6560 /* ArticleComment */,
 				2DEF1F8B26E5FE3E00EB93CC /* Article */,
+				2D882ED526F1CB5300DB6560 /* ArticleComment */,
 				2459B31D26D7500D00ABCE61 /* Auth */,
 				24F3D7AF26DCE8BB00DE2420 /* User */,
 			);
@@ -2334,6 +2346,7 @@
 				2DEFAB2227153CF4007C2378 /* FollowUserUseCase.swift in Sources */,
 				2D084734270D793300DFFF69 /* UserProfileCreatedArticlesTab.swift in Sources */,
 				241F5B872701AADD002E13FC /* UserRequestConfiguration.swift in Sources */,
+				240A80302727B074007F06B7 /* UpdateMyArticleParameters.swift in Sources */,
 				2DD4805826D73C67005225CF /* ObservedViewModel.swift in Sources */,
 				244B2210271EA928005D6D68 /* CreateArticleCommentUseCase.swift in Sources */,
 				24F3D7AC26DCE84A00DE2420 /* Keychain.swift in Sources */,
@@ -2345,6 +2358,7 @@
 				2DE3B9B526C1339200272775 /* Typealias.swift in Sources */,
 				2459B31126D74B3100ABCE61 /* JSONDecoder+Default.swift in Sources */,
 				2D57DD1E271EAE09005718E2 /* FeedsTabViewModel.swift in Sources */,
+				240A802E2727AF12007F06B7 /* UpdateMyArticleUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2359,6 +2373,7 @@
 				2D46FAF326F8618D005DD323 /* ArticleRowViewModelSpec.swift in Sources */,
 				2D73312F26F0F3A20052DCC7 /* APIArticleResponse+Dummy.swift in Sources */,
 				2D73313126F0F4800052DCC7 /* GetArticleUseCaseSpec.swift in Sources */,
+				24E0400E2727FFB600A1985B /* UpdateMyArticleParameters+Dummy.swift in Sources */,
 				241A5A282714206E00BC33F1 /* LogoutUseCaseSpec.swift in Sources */,
 				2D1A93AC270FFB45003B2011 /* UserProfileFavouritedArticlesTabViewModelSpec.swift in Sources */,
 				2D79A8FC26EF4A7E007B81D1 /* FeedsViewModelSpec.swift in Sources */,
@@ -2384,6 +2399,7 @@
 				2DEFAB2027153998007C2378 /* AuthenticatedNetworkAPIProtocolMock.swift in Sources */,
 				2435087E27157E2F00A2AE46 /* GetCurrentUserUseCaseSpec.swift in Sources */,
 				2D3FCA112717DC77008C576E /* Completable+TestScheduler.swift in Sources */,
+				24E0400C2727FEF400A1985B /* UpdateMyArticleUseCaseSpec.swift in Sources */,
 				2D892BAB26E89E4500579856 /* GetGlobalArticlesUseCaseSpec.swift in Sources */,
 				2444593F271EAF5200CFC001 /* CreateArticleCommentUseCaseSpec.swift in Sources */,
 				24445941271EB04500CFC001 /* APIArticleCommentResponse+Dummy.swift in Sources */,
