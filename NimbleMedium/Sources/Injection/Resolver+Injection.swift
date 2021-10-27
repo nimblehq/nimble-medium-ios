@@ -132,6 +132,9 @@ extension Resolver: ResolverRegistering {
             GetCreatedArticlesUseCase(articleRepository: resolve())
         }.implements(GetCreatedArticlesUseCaseProtocol.self)
         register {
+            ToggleArticleFavoriteStatusUseCase(articleRepository: resolve())
+        }.implements(ToggleArticleFavoriteStatusUseCaseProtocol.self)
+        register {
             UnfollowUserUseCase(userRepository: resolve())
         }.implements(UnfollowUserUseCaseProtocol.self)
         register {

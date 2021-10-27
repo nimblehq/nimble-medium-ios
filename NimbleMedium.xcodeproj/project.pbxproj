@@ -86,6 +86,7 @@
 		24A2C6FD271D1D44002E4A5A /* CreateArticleUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2C6FC271D1D44002E4A5A /* CreateArticleUseCase.swift */; };
 		24A2C6FF271D1E1B002E4A5A /* CreateArticleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2C6FE271D1E1B002E4A5A /* CreateArticleParameters.swift */; };
 		24A2C701271D1FF7002E4A5A /* Encodable+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2C700271D1FF7002E4A5A /* Encodable+Dictionary.swift */; };
+		24A564AE2728F6F000D146B7 /* ToggleArticleFavoriteStatusUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A564AD2728F6F000D146B7 /* ToggleArticleFavoriteStatusUseCase.swift */; };
 		24AB4A662706C4010067CD0D /* ObservableType+Void.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB4A652706C4010067CD0D /* ObservableType+Void.swift */; };
 		24AB4A68270AE58F0067CD0D /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AB4A67270AE58F0067CD0D /* UserProfileViewModel.swift */; };
 		24B277D32701C1EB00332FEA /* GetUserProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B277D22701C1EB00332FEA /* GetUserProfileUseCase.swift */; };
@@ -329,6 +330,7 @@
 		24A2C6FC271D1D44002E4A5A /* CreateArticleUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateArticleUseCase.swift; sourceTree = "<group>"; };
 		24A2C6FE271D1E1B002E4A5A /* CreateArticleParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateArticleParameters.swift; sourceTree = "<group>"; };
 		24A2C700271D1FF7002E4A5A /* Encodable+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Dictionary.swift"; sourceTree = "<group>"; };
+		24A564AD2728F6F000D146B7 /* ToggleArticleFavoriteStatusUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleArticleFavoriteStatusUseCase.swift; sourceTree = "<group>"; };
 		24AB4A652706C4010067CD0D /* ObservableType+Void.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Void.swift"; sourceTree = "<group>"; };
 		24AB4A67270AE58F0067CD0D /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		24B277D22701C1EB00332FEA /* GetUserProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfileUseCase.swift; sourceTree = "<group>"; };
@@ -803,6 +805,7 @@
 				2DC224E32702B68A008382E3 /* GetFavouritedArticlesUseCase.swift */,
 				2DEF1F9726E6055A00EB93CC /* GetGlobalArticlesUseCase.swift */,
 				2DC824BB271FF2BD0024CFEF /* GetCurrentUserFollowingArticlesUseCase.swift */,
+				24A564AD2728F6F000D146B7 /* ToggleArticleFavoriteStatusUseCase.swift */,
 				240A802D2727AF12007F06B7 /* UpdateMyArticleUseCase.swift */,
 			);
 			path = Article;
@@ -2277,6 +2280,7 @@
 				24204CA026D625D300534314 /* SideMenuActionsViewModel.swift in Sources */,
 				2459B30F26D7494800ABCE61 /* RequestConfiguration.swift in Sources */,
 				2DEF1F9226E5FF4100EB93CC /* ArticleRequestConfiguration.swift in Sources */,
+				24A564AE2728F6F000D146B7 /* ToggleArticleFavoriteStatusUseCase.swift in Sources */,
 				2459B30726D747DF00ABCE61 /* Constants+API.swift in Sources */,
 				2D882EDC26F1CBE900DB6560 /* ArticleCommentRequestConfiguration.swift in Sources */,
 				2D469D3A270441A300B36AD6 /* UserProfileArticleList.swift in Sources */,
