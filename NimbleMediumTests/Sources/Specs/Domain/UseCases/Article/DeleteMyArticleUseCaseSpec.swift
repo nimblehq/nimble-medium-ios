@@ -38,8 +38,7 @@ final class DeleteMyArticleUseCaseSpec: QuickSpec {
 
                     beforeEach {
                         outputCompleted = scheduler.createObserver(Bool.self)
-                        articleRepository.deleteArticleSlugReturnValue =
-                            .empty()
+                        articleRepository.deleteArticleSlugReturnValue = .empty()
 
                         usecase.execute(slug: "")
                             .asObservable()

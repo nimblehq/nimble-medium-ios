@@ -22,7 +22,7 @@ final class ToggleArticleFavoriteStatusUseCase: ToggleArticleFavoriteStatusUseCa
     }
 
     func execute(slug: String, isFavorite: Bool) -> Completable {
-        if (isFavorite) {
+        if isFavorite {
             return articleRepository
                 .favoriteArticle(slug: slug)
                 .asCompletable()

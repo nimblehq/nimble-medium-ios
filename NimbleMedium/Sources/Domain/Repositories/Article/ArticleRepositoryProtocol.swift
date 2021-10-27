@@ -12,7 +12,7 @@ protocol ArticleRepositoryProtocol: AnyObject {
 
     func createArticle(params: CreateArticleParameters) -> Single<Article>
 
-    func deleteArticle(slug: String) -> Single<Article>
+    func deleteArticle(slug: String) -> Completable
 
     func favoriteArticle(slug: String) -> Single<Article>
 
