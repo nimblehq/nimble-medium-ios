@@ -5,12 +5,12 @@
 //  Created by Mark G on 08/09/2021.
 //
 
-import Quick
 import Nimble
+import Quick
+import Resolver
 import RxNimble
 import RxSwift
 import RxTest
-import Resolver
 
 @testable import NimbleMedium
 
@@ -43,18 +43,18 @@ final class GetCurrentUserFollowingArticlesUseCaseSpec: QuickSpec {
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
-                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        outputError = scheduler.createObserver(Error?.self)
                         self.getCurrentSessionUseCase.executeReturnValue = .just(nil)
 
                         useCase.execute(
                             limit: nil,
                             offset: nil
                         )
-                            .asObservable()
-                            .materialize()
-                            .map { $0.error }
-                            .bind(to: outputError)
-                            .disposed(by: disposeBag)
+                        .asObservable()
+                        .materialize()
+                        .map { $0.error }
+                        .bind(to: outputError)
+                        .disposed(by: disposeBag)
                     }
 
                     it("returns generic error") {
@@ -85,12 +85,12 @@ final class GetCurrentUserFollowingArticlesUseCaseSpec: QuickSpec {
                                 limit: nil,
                                 offset: nil
                             )
-                                .asObservable()
-                                .map {
-                                    $0.compactMap { $0 as? DecodableArticle }
-                                }
-                                .bind(to: outputArticles)
-                                .disposed(by: disposeBag)
+                            .asObservable()
+                            .map {
+                                $0.compactMap { $0 as? DecodableArticle }
+                            }
+                            .bind(to: outputArticles)
+                            .disposed(by: disposeBag)
                         }
 
                         it("returns correct articles") {
@@ -103,7 +103,7 @@ final class GetCurrentUserFollowingArticlesUseCaseSpec: QuickSpec {
                         var outputError: TestableObserver<Error?>!
 
                         beforeEach {
-                            outputError = scheduler.createObserver(Optional<Error>.self)
+                            outputError = scheduler.createObserver(Error?.self)
                             self.articleRepository
                                 .listArticlesParamsReturnValue = .error(TestError.mock)
 
@@ -111,11 +111,11 @@ final class GetCurrentUserFollowingArticlesUseCaseSpec: QuickSpec {
                                 limit: nil,
                                 offset: nil
                             )
-                                .asObservable()
-                                .materialize()
-                                .map { $0.error }
-                                .bind(to: outputError)
-                                .disposed(by: disposeBag)
+                            .asObservable()
+                            .materialize()
+                            .map { $0.error }
+                            .bind(to: outputError)
+                            .disposed(by: disposeBag)
                         }
 
                         it("returns correct error") {
@@ -123,25 +123,24 @@ final class GetCurrentUserFollowingArticlesUseCaseSpec: QuickSpec {
                             expect(error) == TestError.mock
                         }
                     }
-
                 }
 
                 context("when GetCurrentSessionUseCase returns failure") {
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
-                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        outputError = scheduler.createObserver(Error?.self)
                         self.getCurrentSessionUseCase.executeReturnValue = .error(TestError.mock)
 
                         useCase.execute(
                             limit: nil,
                             offset: nil
                         )
-                            .asObservable()
-                            .materialize()
-                            .map { $0.error }
-                            .bind(to: outputError)
-                            .disposed(by: disposeBag)
+                        .asObservable()
+                        .materialize()
+                        .map { $0.error }
+                        .bind(to: outputError)
+                        .disposed(by: disposeBag)
                     }
 
                     it("returns correct error") {

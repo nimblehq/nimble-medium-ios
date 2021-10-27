@@ -11,9 +11,9 @@ enum AppEnvironment {
 
     static func based<T>(staging: T, production: T) -> T {
         #if PRODUCTION
-        return production
+            return production
         #else
-        return staging
+            return staging
         #endif
     }
 }

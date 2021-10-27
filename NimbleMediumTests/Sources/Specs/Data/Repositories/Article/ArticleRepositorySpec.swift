@@ -5,8 +5,8 @@
 //  Created by Mark G on 06/09/2021.
 //
 
-import Quick
 import Nimble
+import Quick
 import RxNimble
 import RxSwift
 import RxTest
@@ -62,7 +62,7 @@ final class ArticleRepositorySpec: QuickSpec {
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
-                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        outputError = scheduler.createObserver(Error?.self)
                         authenticatedNetworkAPI.setPerformRequestForReturnValue(
                             Single<APIArticleResponse>.error(TestError.mock)
                         )
@@ -111,7 +111,7 @@ final class ArticleRepositorySpec: QuickSpec {
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
-                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        outputError = scheduler.createObserver(Error?.self)
                         authenticatedNetworkAPI.performRequestReturnValue = .error(TestError.mock)
                         repository.deleteArticle(slug: "")
                             .asObservable()
@@ -160,7 +160,7 @@ final class ArticleRepositorySpec: QuickSpec {
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
-                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        outputError = scheduler.createObserver(Error?.self)
                         networkAPI.setPerformRequestForReturnValue(Single<APIArticleResponse>.error(TestError.mock))
                         repository.getArticle(slug: "slug")
                             .asObservable()
@@ -183,7 +183,7 @@ final class ArticleRepositorySpec: QuickSpec {
             describe("its listArticles() call") {
 
                 context("when the request returns success") {
-                    
+
                     var outputArticles: TestableObserver<[DecodableArticle]>!
                     let inputResponse = APIArticlesResponse.dummy
 
@@ -191,10 +191,10 @@ final class ArticleRepositorySpec: QuickSpec {
                         outputArticles = scheduler.createObserver([DecodableArticle].self)
                         networkAPI.setPerformRequestForReturnValue(Single.just(inputResponse))
                         repository.listArticles(params: .init())
-                        .asObservable()
-                        .map { $0.compactMap { $0 as? DecodableArticle } }
-                        .bind(to: outputArticles)
-                        .disposed(by: disposeBag)
+                            .asObservable()
+                            .map { $0.compactMap { $0 as? DecodableArticle } }
+                            .bind(to: outputArticles)
+                            .disposed(by: disposeBag)
                     }
 
                     it("returns correct articles") {
@@ -210,14 +210,14 @@ final class ArticleRepositorySpec: QuickSpec {
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
-                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        outputError = scheduler.createObserver(Error?.self)
                         networkAPI.setPerformRequestForReturnValue(Single<APIArticlesResponse>.error(TestError.mock))
                         repository.listArticles(params: .init())
-                        .asObservable()
-                        .materialize()
-                        .map { $0.error }
-                        .bind(to: outputError)
-                        .disposed(by: disposeBag)
+                            .asObservable()
+                            .materialize()
+                            .map { $0.error }
+                            .bind(to: outputError)
+                            .disposed(by: disposeBag)
                     }
 
                     it("returns correct error") {
@@ -257,7 +257,7 @@ final class ArticleRepositorySpec: QuickSpec {
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
-                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        outputError = scheduler.createObserver(Error?.self)
                         authenticatedNetworkAPI.setPerformRequestForReturnValue(
                             Single<APIArticleResponse>.error(TestError.mock)
                         )

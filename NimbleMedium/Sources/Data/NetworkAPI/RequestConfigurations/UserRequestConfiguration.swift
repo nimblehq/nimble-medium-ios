@@ -20,10 +20,10 @@ extension UserRequestConfiguration: RequestConfiguration {
 
     var endpoint: String {
         switch self {
-        case .profile(let username):
+        case let .profile(username):
             return "/profiles/\(username)"
-        case .unfollow(let username),
-             .follow(let username):
+        case let .unfollow(username),
+             let .follow(username):
             return "/profiles/\(username)/follow"
         }
     }

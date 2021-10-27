@@ -5,8 +5,8 @@
 //  Created by Mark G on 14/10/2021.
 //
 
-import RxTest
 import RxSwift
+import RxTest
 
 extension Completable {
 

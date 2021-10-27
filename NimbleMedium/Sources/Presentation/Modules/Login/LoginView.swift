@@ -5,9 +5,9 @@
 //  Created by Minh Pham on 24/08/2021.
 //
 
+import Resolver
 import SwiftUI
 import ToastUI
-import Resolver
 
 struct LoginView: View {
 
@@ -29,12 +29,12 @@ struct LoginView: View {
                 .navigationBarColor(backgroundColor: .green)
                 .toolbar { navigationBarLeadingContent }
                 .toast(isPresented: $errorToast, dismissAfter: 3.0) {
-                    ToastView(errorMessage) { } background: {
+                    ToastView(errorMessage) {} background: {
                         Color.clear
                     }
                 }
                 .toast(isPresented: $loadingToast) {
-                    ToastView(String.empty) { }
+                    ToastView(String.empty) {}
                         .toastViewStyle(IndefiniteProgressToastViewStyle())
                 }
         }
@@ -75,7 +75,8 @@ struct LoginView: View {
                 )
                 AppSecureField(
                     placeholder: Localizable.loginTextFieldPasswordPlaceholder(),
-                    text: $password)
+                    text: $password
+                )
                 AppMainButton(title: Localizable.actionLoginText()) {
                     hideKeyboard()
                     viewModel.input.didTapLoginButton(email: email, password: password)
@@ -98,7 +99,7 @@ struct LoginView: View {
 }
 
 #if DEBUG
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View { LoginView() }
-}
+    struct LoginView_Previews: PreviewProvider {
+        static var previews: some View { LoginView() }
+    }
 #endif

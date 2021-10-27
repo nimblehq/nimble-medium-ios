@@ -5,16 +5,16 @@
 //  Created by Mark G on 11/08/2021.
 //
 
+import PagerTabStripView
 import Refresh
 import Resolver
 import SwiftUI
 import ToastUI
-import PagerTabStripView
 
 struct FeedsTabView: View {
 
     @ObservedViewModel private var viewModel: FeedsTabViewModelProtocol
-    
+
     @State private var isFirstLoad: Bool = true
     @State private var isErrorToastPresented = false
     @State private var tabType = TabType.yourFeeds
@@ -29,7 +29,7 @@ struct FeedsTabView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
-            ToastView(Localizable.errorGeneric()) { } background: { Color.clear }
+            ToastView(Localizable.errorGeneric()) {} background: { Color.clear }
         }
         .onReceive(viewModel.output.didFinishRefresh) { _ in if isFirstLoad { isFirstLoad = false } }
         .onReceive(viewModel.output.didFailToLoadArticle) { _ in isErrorToastPresented = true }
@@ -43,9 +43,10 @@ struct FeedsTabView: View {
 }
 
 // MARK: FeedList
+
 extension FeedsTabView {
 
-     private struct FeedList: View, Equatable {
+    private struct FeedList: View, Equatable {
 
         let viewModel: FeedsTabViewModelProtocol
 
@@ -132,9 +133,9 @@ extension FeedsTabView {
 }
 
 #if DEBUG
-struct FeedsTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedsTabView(viewModel: Resolver.resolve())
+    struct FeedsTabView_Previews: PreviewProvider {
+        static var previews: some View {
+            FeedsTabView(viewModel: Resolver.resolve())
+        }
     }
-}
 #endif

@@ -21,7 +21,7 @@ extension DateFormatter {
         formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
     }()
-    
+
     convenience init(with format: String) {
         self.init()
         dateFormat = format

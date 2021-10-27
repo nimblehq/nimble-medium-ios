@@ -17,7 +17,7 @@ protocol ArticleCommentRowViewModelInput {}
 protocol ArticleCommentRowViewModelOutput {
 
     var id: Int { get }
-    var uiModel: Driver<ArticleCommentRow.UIModel > { get }
+    var uiModel: Driver<ArticleCommentRow.UIModel> { get }
 }
 
 // sourcery: AutoMockable

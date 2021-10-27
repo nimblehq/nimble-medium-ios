@@ -5,8 +5,8 @@
 //  Created by Mark G on 06/09/2021.
 //
 
-import Foundation
 import DefaultCodable
+import Foundation
 
 struct DecodableProfile: Profile, Decodable, Equatable {
 

@@ -71,7 +71,7 @@ final class UserProfileViewModel: ObservableObject, UserProfileViewModelProtocol
             .flatMapLatest { owner, _ in owner.getCurrentUserTriggered(owner: owner) }
             .subscribe()
             .disposed(by: disposeBag)
-        
+
         getOtherUserProfileTrigger
             .withUnretained(self)
             .flatMapLatest { owner, input in owner.getOtherUserProfileTriggered(owner: owner, username: input) }
@@ -111,11 +111,11 @@ extension UserProfileViewModel: UserProfileViewModelInput {
     }
 }
 
-extension UserProfileViewModel: UserProfileViewModelOutput { }
+extension UserProfileViewModel: UserProfileViewModelOutput {}
 
-private extension UserProfileViewModel {
+extension UserProfileViewModel {
 
-    func getCurrentUserTriggered(owner: UserProfileViewModel) -> Observable<Void> {
+    private func getCurrentUserTriggered(owner: UserProfileViewModel) -> Observable<Void> {
         getCurrentUserUseCase
             .execute()
             .do(
@@ -132,7 +132,7 @@ private extension UserProfileViewModel {
             .catchAndReturn(())
     }
 
-    func getOtherUserProfileTriggered(owner: UserProfileViewModel, username: String) -> Observable<Void> {
+    private func getOtherUserProfileTriggered(owner: UserProfileViewModel, username: String) -> Observable<Void> {
         getUserProfileUseCase
             .execute(username: username)
             .do(
@@ -149,7 +149,7 @@ private extension UserProfileViewModel {
             .catchAndReturn(())
     }
 
-    func generateUIModel(fromProfile profile: Profile) -> UserProfileView.UIModel {
+    private func generateUIModel(fromProfile profile: Profile) -> UserProfileView.UIModel {
         var username = Localizable.defaultUsernameValue()
         if !profile.username.isEmpty {
             username = profile.username
@@ -161,7 +161,7 @@ private extension UserProfileViewModel {
         )
     }
 
-    func generateUIModel(fromUser user: User) -> UserProfileView.UIModel {
+    private func generateUIModel(fromUser user: User) -> UserProfileView.UIModel {
         var username = Localizable.defaultUsernameValue()
         if !user.username.isEmpty {
             username = user.username
@@ -173,7 +173,7 @@ private extension UserProfileViewModel {
         )
     }
 
-    func toggleFollowUserTriggered(
+    private func toggleFollowUserTriggered(
         owner: UserProfileViewModel,
         following: Bool,
         username: String
@@ -200,14 +200,14 @@ private extension UserProfileViewModel {
             .catchAndReturn(()) ?? .empty()
     }
 
-    func toggleAuthorFollowing() -> Observable<Bool> {
+    private func toggleAuthorFollowing() -> Observable<Bool> {
         guard let uiModel = $userProfileUIModel.value else { return .empty() }
         updateAuthorFollowing(!uiModel.isFollowing)
 
         return .just(!uiModel.isFollowing)
     }
 
-    func updateAuthorFollowing(_ value: Bool) {
+    private func updateAuthorFollowing(_ value: Bool) {
         var uiModel = $userProfileUIModel.value
         uiModel?.isFollowing = value
         $userProfileUIModel.accept(uiModel)

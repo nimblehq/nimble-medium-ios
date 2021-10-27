@@ -1822,6 +1822,7 @@
 				2DB726B726C117D500C16716 /* R.swift */,
 				24F3D7BF26DE068800DE2420 /* Sourcery */,
 				2D467C4626BCDAA9008F11E1 /* SwiftLint */,
+				2D52B8F42722A58D00C1C140 /* SwiftFormat Lint */,
 				2DB2674626BBEC4300FF05BB /* Sources */,
 				2DB2674726BBEC4300FF05BB /* Frameworks */,
 				2DB2674826BBEC4300FF05BB /* Resources */,
@@ -1895,7 +1896,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					2DB2674926BBEC4300FF05BB = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -2033,7 +2034,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+			shellScript = "if [ -z \"$CI\" ]; then\n    ${PODS_ROOT}/SwiftLint/swiftlint\nfi\n";
+		};
+		2D52B8F42722A58D00C1C140 /* SwiftFormat Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftFormat Lint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ -z \"$CI\" ]; then\n    \"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" \"$SRCROOT\" --lint --lenient\nfi\n";
 		};
 		2D87822D26EB39E00080FEF6 /* R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2519,6 +2538,7 @@
 				PRODUCT_NAME = "Nimble Medium - stag";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG STAGING";
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = "Release Staging";

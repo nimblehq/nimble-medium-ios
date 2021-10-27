@@ -5,12 +5,12 @@
 //  Created by Minh Pham on 11/10/2021.
 //
 
-import Quick
 import Nimble
+import Quick
+import Resolver
 import RxNimble
 import RxSwift
 import RxTest
-import Resolver
 
 @testable import NimbleMedium
 
@@ -19,7 +19,7 @@ final class SideMenuActionsViewModelSpec: QuickSpec {
     @LazyInjected var homeViewModel: HomeViewModelProtocolMock
     @LazyInjected var loginViewModel: LoginViewModelProtocolMock
     @LazyInjected var signupViewModel: SignupViewModelProtocolMock
-    
+
     @LazyInjected var logoutUseCase: LogoutUseCaseProtocolMock
     @LazyInjected var getCurrentSessionUseCase: GetCurrentSessionUseCaseProtocolMock
 
@@ -225,9 +225,9 @@ final class SideMenuActionsViewModelSpec: QuickSpec {
 
         func bindData() {
             viewModel.input.bindData(
-                loginViewModel: self.loginViewModel,
-                signupViewModel: self.signupViewModel,
-                homeViewModel: self.homeViewModel
+                loginViewModel: loginViewModel,
+                signupViewModel: signupViewModel,
+                homeViewModel: homeViewModel
             )
         }
     }

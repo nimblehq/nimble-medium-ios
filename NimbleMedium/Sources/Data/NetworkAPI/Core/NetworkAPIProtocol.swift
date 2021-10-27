@@ -5,9 +5,9 @@
 //  Created by Minh Pham on 26/08/2021.
 //
 
-import RxSwift
 import Alamofire
 import RxAlamofire
+import RxSwift
 
 protocol NetworkAPIProtocol {
 
@@ -73,7 +73,7 @@ extension ObservableType where Element == (HTTPURLResponse, Data) {
     fileprivate func validate() -> Observable<Data> {
         map { _, data -> Data in
             // Handle addition data check here if needed
-            return data
+            data
         }
     }
 }

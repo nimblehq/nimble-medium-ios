@@ -5,10 +5,10 @@
 //  Created by Mark G on 15/09/2021.
 //
 
-import RxSwift
-import RxCocoa
 import Combine
 import Resolver
+import RxCocoa
+import RxSwift
 
 protocol ArticleDetailViewModelInput {
 
@@ -35,7 +35,7 @@ final class ArticleDetailViewModel: ObservableObject, ArticleDetailViewModelProt
     @Injected var getArticleUseCase: GetArticleUseCaseProtocol
     @Injected var followUserUseCase: FollowUserUseCaseProtocol
     @Injected var unfollowUserUseCase: UnfollowUserUseCaseProtocol
-    
+
     private let disposeBag = DisposeBag()
     private let fetchArticleDetailTrigger = PublishRelay<Void>()
     private let toggleFollowUserTrigger = PublishRelay<Void>()
@@ -84,23 +84,24 @@ extension ArticleDetailViewModel: ArticleDetailViewModelInput {
 extension ArticleDetailViewModel: ArticleDetailViewModelOutput {}
 
 // MARK: Private
-private extension ArticleDetailViewModel {
 
-    func fetchArticleDetailTriggered(owner: ArticleDetailViewModel) -> Observable<Void> {
+extension ArticleDetailViewModel {
+
+    private func fetchArticleDetailTriggered(owner: ArticleDetailViewModel) -> Observable<Void> {
         getArticleUseCase.execute(slug: id)
-        .do(
-            onSuccess: {
-                owner.article = $0
-                owner.$uiModel.accept(.init(article: $0))
-            },
-            onError: { _ in owner.$didFailToFetchArticleDetail.accept(()) }
-        )
-        .asObservable()
-        .mapToVoid()
-        .catchAndReturn(())
+            .do(
+                onSuccess: {
+                    owner.article = $0
+                    owner.$uiModel.accept(.init(article: $0))
+                },
+                onError: { _ in owner.$didFailToFetchArticleDetail.accept(()) }
+            )
+            .asObservable()
+            .mapToVoid()
+            .catchAndReturn(())
     }
 
-    func toggleFollowUserTriggered(owner: ArticleDetailViewModel, following: Bool) -> Observable<Void> {
+    private func toggleFollowUserTriggered(owner: ArticleDetailViewModel, following: Bool) -> Observable<Void> {
         guard let author = article?.author else {
             owner.$didFailToToggleFollow.accept(())
             owner.updateAuthorFollowing(!following)
@@ -129,14 +130,14 @@ private extension ArticleDetailViewModel {
             .catchAndReturn(()) ?? .empty()
     }
 
-    func toggleAuthorFollowing() -> Observable<Bool> {
+    private func toggleAuthorFollowing() -> Observable<Bool> {
         guard let uiModel = $uiModel.value else { return .empty() }
         updateAuthorFollowing(!uiModel.authorIsFollowing)
 
         return .just(!uiModel.authorIsFollowing)
     }
 
-    func updateAuthorFollowing(_ value: Bool) {
+    private func updateAuthorFollowing(_ value: Bool) {
         var uiModel = $uiModel.value
         uiModel?.authorIsFollowing = value
         $uiModel.accept(uiModel)

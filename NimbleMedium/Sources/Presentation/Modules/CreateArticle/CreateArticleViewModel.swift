@@ -5,10 +5,10 @@
 //  Created by Minh Pham on 19/10/2021.
 //
 
-import RxSwift
-import RxCocoa
 import Combine
 import Resolver
+import RxCocoa
+import RxSwift
 
 // sourcery: AutoMockable
 protocol CreateArticleViewModelInput {
@@ -76,11 +76,11 @@ extension CreateArticleViewModel: CreateArticleViewModelInput {
     }
 }
 
-extension CreateArticleViewModel: CreateArticleViewModelOutput { }
+extension CreateArticleViewModel: CreateArticleViewModelOutput {}
 
-private extension CreateArticleViewModel {
+extension CreateArticleViewModel {
 
-    func createArticleTriggered(owner: CreateArticleViewModel, inputs: CreateArticleParams) -> Observable<Void> {
+    private func createArticleTriggered(owner: CreateArticleViewModel, inputs: CreateArticleParams) -> Observable<Void> {
         createArticleUseCase
             .execute(
                 params: CreateArticleParameters(

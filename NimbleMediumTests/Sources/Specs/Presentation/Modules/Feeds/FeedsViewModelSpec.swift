@@ -5,12 +5,12 @@
 //  Created by Mark G on 13/09/2021.
 //
 
-import Quick
 import Nimble
+import Quick
+import Resolver
 import RxNimble
 import RxSwift
 import RxTest
-import Resolver
 
 @testable import NimbleMedium
 

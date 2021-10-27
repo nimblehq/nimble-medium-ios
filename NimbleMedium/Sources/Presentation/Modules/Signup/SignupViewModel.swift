@@ -69,11 +69,11 @@ extension SignupViewModel: SignupViewModelInput {
     }
 }
 
-extension SignupViewModel: SignupViewModelOutput { }
+extension SignupViewModel: SignupViewModelOutput {}
 
-private extension SignupViewModel {
+extension SignupViewModel {
 
-    func signupTriggered(owner: SignupViewModel, inputs: SignupParams) -> Observable<Void> {
+    private func signupTriggered(owner: SignupViewModel, inputs: SignupParams) -> Observable<Void> {
         signupUseCase
             .execute(username: inputs.username, email: inputs.email, password: inputs.password)
             .do(

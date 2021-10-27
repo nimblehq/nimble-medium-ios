@@ -5,10 +5,10 @@
 //  Created by Mark G on 12/08/2021.
 //
 
-import RxSwift
-import RxCocoa
-import SwiftUI
 import Resolver
+import RxCocoa
+import RxSwift
+import SwiftUI
 
 protocol FeedsTabViewModelInput {
 
@@ -37,7 +37,7 @@ final class FeedsTabViewModel: ObservableObject, FeedsTabViewModelProtocol {
     var output: FeedsTabViewModelOutput { self }
 
     private var currentOffset = 0
-    
+
     private let limit = 10
     private let disposeBag = DisposeBag()
     private let refreshTrigger = PublishRelay<Void>()
@@ -46,7 +46,7 @@ final class FeedsTabViewModel: ObservableObject, FeedsTabViewModelProtocol {
     @PublishRelayProperty var didFailToLoadArticle: Signal<Void>
     @PublishRelayProperty var didFinishLoadMore: Signal<Bool>
     @PublishRelayProperty var didFinishRefresh: Signal<Void>
-    
+
     @BehaviorRelayProperty([]) var articleRowViewModels: Driver<[ArticleRowViewModelProtocol]>
     @BehaviorRelayProperty(.yourFeeds) var tabType: Driver<FeedsTabView.TabType>
 
@@ -91,9 +91,9 @@ extension FeedsTabViewModel: FeedsTabViewModelOutput {}
 
 // MARK: - Private
 
-private extension FeedsTabViewModel {
+extension FeedsTabViewModel {
 
-    func loadMoreTriggered(owner: FeedsTabViewModel) -> Observable<Void> {
+    private func loadMoreTriggered(owner: FeedsTabViewModel) -> Observable<Void> {
         let offset = currentOffset + limit
 
         return getArticlesUseCase.execute(
@@ -119,7 +119,7 @@ private extension FeedsTabViewModel {
         .catchAndReturn(())
     }
 
-    func refreshTriggered(owner: FeedsTabViewModel) -> Observable<Void> {
+    private func refreshTriggered(owner: FeedsTabViewModel) -> Observable<Void> {
         getArticlesUseCase.execute(
             limit: limit,
             offset: 0

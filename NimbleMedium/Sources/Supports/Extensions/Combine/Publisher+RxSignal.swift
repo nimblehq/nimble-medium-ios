@@ -7,8 +7,8 @@
 //
 
 import Combine
-import RxCombine
 import RxCocoa
+import RxCombine
 
 extension Published.Publisher {
 

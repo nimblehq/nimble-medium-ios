@@ -17,7 +17,7 @@ protocol ArticleRowViewModelInput {}
 protocol ArticleRowViewModelOutput {
 
     var id: String { get }
-    var uiModel: Driver<ArticleRow.UIModel > { get }
+    var uiModel: Driver<ArticleRow.UIModel> { get }
 }
 
 // sourcery: AutoMockable

@@ -7,7 +7,7 @@
 
 enum Constants {
 
-    enum API { }
+    enum API {}
 
     enum Article {
 

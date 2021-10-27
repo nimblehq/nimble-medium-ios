@@ -5,8 +5,8 @@
 //  Created by Minh Pham on 19/10/2021.
 //
 
-import Quick
 import Nimble
+import Quick
 import RxNimble
 import RxSwift
 import RxTest
@@ -62,7 +62,7 @@ final class CreateArticleCommentUseCaseSpec: QuickSpec {
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
-                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        outputError = scheduler.createObserver(Error?.self)
                         articleCommentRepository.createCommentArticleSlugCommentBodyReturnValue =
                             .error(TestError.mock)
 

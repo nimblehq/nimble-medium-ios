@@ -5,9 +5,9 @@
 //  Created by Minh Pham on 24/08/2021.
 //
 
-import RxSwift
-import RxCocoa
 import Resolver
+import RxCocoa
+import RxSwift
 
 // sourcery: AutoMockable
 protocol LoginViewModelInput {
@@ -72,9 +72,9 @@ extension LoginViewModel: LoginViewModelInput {
 
 extension LoginViewModel: LoginViewModelOutput {}
 
-private extension LoginViewModel {
+extension LoginViewModel {
 
-    func loginTriggered(owner: LoginViewModel, inputs: LoginParams) -> Observable<Void> {
+    private func loginTriggered(owner: LoginViewModel, inputs: LoginParams) -> Observable<Void> {
         loginUseCase.execute(email: inputs.email, password: inputs.password)
             .do(
                 onError: { error in

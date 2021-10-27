@@ -51,7 +51,7 @@ extension SideMenuViewModel: SideMenuViewModelInput {
                 self.$didSelectMenuOption.accept(())
             }
             .disposed(by: disposeBag)
-        
+
         sideMenuActionsViewModel.output.didSelectLoginOption.asObservable()
             .withUnretained(self)
             .bind { _ in
@@ -65,7 +65,7 @@ extension SideMenuViewModel: SideMenuViewModelInput {
                 self.$didSelectMenuOption.accept(())
             }
             .disposed(by: disposeBag)
-        
+
         sideMenuActionsViewModel.output.didSelectSignupOption.asObservable()
             .withUnretained(self)
             .bind { _ in

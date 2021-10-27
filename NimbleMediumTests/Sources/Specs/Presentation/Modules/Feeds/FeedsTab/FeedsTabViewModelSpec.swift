@@ -5,12 +5,12 @@
 //  Created by Mark G on 13/09/2021.
 //
 
-import Quick
 import Nimble
+import Quick
+import Resolver
 import RxNimble
 import RxSwift
 import RxTest
-import Resolver
 
 @testable import NimbleMedium
 
@@ -83,10 +83,10 @@ final class FeedsTabViewModelSpec: QuickSpec {
                             viewModel.output.articleRowViewModels
                                 .map { $0.map { $0.output.id } }
                         )
-                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                                .next(0, []),
-                                .next(10, inputArticles.map { $0.id })
-                            ]
+                        .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                            .next(0, []),
+                            .next(10, inputArticles.map { $0.id })
+                        ]
                     }
                 }
 
@@ -175,7 +175,7 @@ final class FeedsTabViewModelSpec: QuickSpec {
 
                     beforeEach {
                         self.getGlobalArticlesUseCase.executeLimitOffsetReturnValue =
-                            .error(TestError.mock, on: scheduler, at: 10 )
+                            .error(TestError.mock, on: scheduler, at: 10)
 
                         scheduler.scheduleAt(5) { viewModel.input.loadMore() }
                     }

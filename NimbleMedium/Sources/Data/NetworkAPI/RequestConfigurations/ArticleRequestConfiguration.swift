@@ -44,13 +44,13 @@ extension ArticleRequestConfiguration: RequestConfiguration {
 
     var parameters: Parameters? {
         switch self {
-        case .createArticle(let params):
+        case let .createArticle(params):
             return ["article": params.dictionary]
         case .deleteArticle, .getArticle:
             return nil
         case .listArticles(let params):
             return params.dictionary.compactMapValues { $0 }
-        case  .updateArticle(_, let params):
+        case .updateArticle(_, let params):
             let finalParams = params.dictionary.compactMapValues { $0 }
             return ["article": finalParams]
         }

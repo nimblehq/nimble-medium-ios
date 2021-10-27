@@ -66,9 +66,10 @@ extension UserProfileCreatedArticlesTabViewModel: UserProfileCreatedArticlesTabV
 extension UserProfileCreatedArticlesTabViewModel: UserProfileCreatedArticlesTabViewModelOutput {}
 
 // MARK: Private
-private extension UserProfileCreatedArticlesTabViewModel {
 
-    func fetchCreatedArticlesTriggered(owner: UserProfileCreatedArticlesTabViewModel) -> Observable<Void> {
+extension UserProfileCreatedArticlesTabViewModel {
+
+    private func fetchCreatedArticlesTriggered(owner: UserProfileCreatedArticlesTabViewModel) -> Observable<Void> {
         Observable.just(username)
             .compactMap { $0 }
             .flatMap {

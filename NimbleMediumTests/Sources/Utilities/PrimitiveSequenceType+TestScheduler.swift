@@ -5,8 +5,8 @@
 //  Created by Mark G on 20/09/2021.
 //
 
-import RxTest
 import RxSwift
+import RxTest
 
 extension PrimitiveSequenceType {
 

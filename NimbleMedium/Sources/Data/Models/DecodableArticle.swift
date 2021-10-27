@@ -23,7 +23,7 @@ struct DecodableArticle: Article, Decodable, Equatable {
     let updatedAt: Date
     let favorited: Bool
     let favoritesCount: Int
-    
+
     private let apiAuthor: DecodableProfile
     var author: Profile {
         apiAuthor
