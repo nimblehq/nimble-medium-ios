@@ -123,10 +123,10 @@ extension ArticleDetailViewModel {
             .asObservable()
             .withLatestFrom(
                 getCurrentSessionUseCase.execute(),
-                resultSelector: { ($0, $1) }
+                resultSelector: { article, user in (article, user) }
             )
-            .do(onNext: {
-                owner.$isArticleAuthor.accept($0.author.username == $1?.username)
+            .do(onNext: { article, user in
+                owner.$isArticleAuthor.accept(article.author.username == user?.username)
             })
             .mapToVoid()
             .catchAndReturn(())
