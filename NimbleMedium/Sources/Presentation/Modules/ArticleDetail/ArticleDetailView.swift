@@ -71,10 +71,7 @@ struct ArticleDetailView: View {
                 title: Text(Localizable.popupConfirmDeleteArticleTitle()),
                 primaryButton: .destructive(
                     Text(Localizable.actionConfirmText()),
-                    action: {
-                        isLoadingToastPresented = true
-                        viewModel.input.deleteArticle()
-                    }
+                    action: { viewModel.input.deleteArticle() }
                 ),
                 secondaryButton: .default(Text(Localizable.actionCancelText()))
             )
