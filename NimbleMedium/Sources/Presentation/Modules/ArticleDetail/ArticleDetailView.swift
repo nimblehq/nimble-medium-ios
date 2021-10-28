@@ -98,11 +98,17 @@ struct ArticleDetailView: View {
     }
 
     var navigationBarTrailingContent: some ToolbarContent {
-        ToolbarItem(placement: .navigationBarTrailing) {
+        ToolbarItemGroup(placement: .navigationBarTrailing) {
             if isArticleAuthor {
                 Button(
                     action: { isDeleteArticleConfirmationAlertPresented = true },
                     label: { Image(systemName: SystemImageName.minusSquare.rawValue) }
+                )
+                Button(
+                    action: {
+                        // TODO: Show Edit Article screen
+                    },
+                    label: { Image(systemName: SystemImageName.squareAndPencil.rawValue) }
                 )
             }
         }
