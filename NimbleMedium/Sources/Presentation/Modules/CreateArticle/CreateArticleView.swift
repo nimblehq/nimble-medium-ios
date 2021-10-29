@@ -60,28 +60,19 @@ struct CreateArticleView: View {
         }
     }
 
-    // swiftlint:disable closure_body_length
     var contentView: some View {
         ScrollView {
             VStack(spacing: 15.0) {
-                AppTextField(
-                    placeholder: Localizable.createArticleTextFieldTitlePlaceholder(),
-                    text: $title
-                )
-                .font(.system(size: 20))
-                AppTextField(
-                    placeholder: Localizable.createArticleTextFieldDescriptionPlaceholder(),
-                    text: $description
-                )
-                AppTextView(
-                    placeholder: Localizable.createArticleTextViewBodyPlaceholder(),
-                    text: $articleBody
-                )
-                .frame(height: 200.0, alignment: .leading)
-                AppTextField(
-                    placeholder: Localizable.createArticleTextFieldTagsListPlaceholder(),
-                    text: $tagsList
-                )
+                ArticleInputFields(fields: [
+                    .textField(
+                        placeholder: Localizable.createArticleTextFieldTitlePlaceholder(), text: $title, fontSize: 20
+                    ),
+                    .textField(
+                        placeholder: Localizable.createArticleTextFieldDescriptionPlaceholder(), text: $description
+                    ),
+                    .textView(placeholder: Localizable.createArticleTextViewBodyPlaceholder(), text: $articleBody),
+                    .textField(placeholder: Localizable.createArticleTextFieldTagsListPlaceholder(), text: $tagsList)
+                ])
                 AppMainButton(title: Localizable.actionPublishText()) {
                     hideKeyboard()
                     viewModel.input.didTapPublishButton(

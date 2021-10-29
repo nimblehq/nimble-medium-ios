@@ -31,6 +31,7 @@
 		2422A87927169E980048DBDC /* SideMenuViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422A87827169E980048DBDC /* SideMenuViewModelSpec.swift */; };
 		2424B22C26D4A22B00CF07B5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2424B22B26D4A22B00CF07B5 /* LoginView.swift */; };
 		2424B22F26D4A2EF00CF07B5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2424B22E26D4A2EF00CF07B5 /* LoginViewModel.swift */; };
+		242F0171272BBB9F000BF910 /* FieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F0170272BBB9F000BF910 /* FieldType.swift */; };
 		243508732715676B00A2AE46 /* UpdateCurrentUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243508722715676B00A2AE46 /* UpdateCurrentUserUseCase.swift */; };
 		2435087E27157E2F00A2AE46 /* GetCurrentUserUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435087D27157E2F00A2AE46 /* GetCurrentUserUseCaseSpec.swift */; };
 		243508802715811C00A2AE46 /* UpdateCurrentUserUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2435087A2715768E00A2AE46 /* UpdateCurrentUserUseCaseSpec.swift */; };
@@ -104,6 +105,7 @@
 		24E0400E2727FFB600A1985B /* UpdateMyArticleParameters+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E0400D2727FFB600A1985B /* UpdateMyArticleParameters+Dummy.swift */; };
 		24E986E9272681DD0048692D /* DeleteMyArticleUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E986E8272681DD0048692D /* DeleteMyArticleUseCase.swift */; };
 		24E986EB272687C20048692D /* DeleteMyArticleUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E986EA272687C20048692D /* DeleteMyArticleUseCaseSpec.swift */; };
+		24E9C0DB272BADF100AB20A6 /* ArticleInputFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E9C0DA272BADF100AB20A6 /* ArticleInputFields.swift */; };
 		24F3D7AA26DCE54C00DE2420 /* CodableUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7A926DCE54C00DE2420 /* CodableUser.swift */; };
 		24F3D7AC26DCE84A00DE2420 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7AB26DCE84A00DE2420 /* Keychain.swift */; };
 		24F3D7AE26DCE85F00DE2420 /* KeychainKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3D7AD26DCE85F00DE2420 /* KeychainKey.swift */; };
@@ -280,6 +282,7 @@
 		2422A87827169E980048DBDC /* SideMenuViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModelSpec.swift; sourceTree = "<group>"; };
 		2424B22B26D4A22B00CF07B5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2424B22E26D4A2EF00CF07B5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		242F0170272BBB9F000BF910 /* FieldType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldType.swift; sourceTree = "<group>"; };
 		243508722715676B00A2AE46 /* UpdateCurrentUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCurrentUserUseCase.swift; sourceTree = "<group>"; };
 		2435087A2715768E00A2AE46 /* UpdateCurrentUserUseCaseSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCurrentUserUseCaseSpec.swift; sourceTree = "<group>"; };
 		2435087D27157E2F00A2AE46 /* GetCurrentUserUseCaseSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCurrentUserUseCaseSpec.swift; sourceTree = "<group>"; };
@@ -351,6 +354,7 @@
 		24E0400D2727FFB600A1985B /* UpdateMyArticleParameters+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdateMyArticleParameters+Dummy.swift"; sourceTree = "<group>"; };
 		24E986E8272681DD0048692D /* DeleteMyArticleUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMyArticleUseCase.swift; sourceTree = "<group>"; };
 		24E986EA272687C20048692D /* DeleteMyArticleUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMyArticleUseCaseSpec.swift; sourceTree = "<group>"; };
+		24E9C0DA272BADF100AB20A6 /* ArticleInputFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleInputFields.swift; sourceTree = "<group>"; };
 		24F3D7A926DCE54C00DE2420 /* CodableUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableUser.swift; sourceTree = "<group>"; };
 		24F3D7AB26DCE84A00DE2420 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		24F3D7AD26DCE85F00DE2420 /* KeychainKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainKey.swift; sourceTree = "<group>"; };
@@ -628,6 +632,15 @@
 				2424B22E26D4A2EF00CF07B5 /* LoginViewModel.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		242F016F272BBB8A000BF910 /* ArticleInputFields */ = {
+			isa = PBXGroup;
+			children = (
+				24E9C0DA272BADF100AB20A6 /* ArticleInputFields.swift */,
+				242F0170272BBB9F000BF910 /* FieldType.swift */,
+			);
+			path = ArticleInputFields;
 			sourceTree = "<group>";
 		};
 		244137CC271E7C9000A1542D /* CreateArticle */ = {
@@ -1214,6 +1227,7 @@
 		2D72E48326C218D300861239 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				242F016F272BBB8A000BF910 /* ArticleInputFields */,
 				24C9393C26D8A26300547800 /* AppMainButton.swift */,
 				24C9393A26D8A1A200547800 /* AppSecureField.swift */,
 				24C9393826D89FA300547800 /* AppTextField.swift */,
@@ -2278,6 +2292,7 @@
 				243508732715676B00A2AE46 /* UpdateCurrentUserUseCase.swift in Sources */,
 				246B387626F8A6AA003173FD /* SideMenuHeaderView+UIModel.swift in Sources */,
 				249042E726D4D14F00E970B6 /* SignupViewModel.swift in Sources */,
+				24E9C0DB272BADF100AB20A6 /* ArticleInputFields.swift in Sources */,
 				246A8FB826D39C24009F9753 /* SideMenuHeaderView.swift in Sources */,
 				2D57DD1D271EAE09005718E2 /* FeedsTabView.swift in Sources */,
 				2459B32226D750E200ABCE61 /* AuthRepositoryProtocol.swift in Sources */,
@@ -2388,6 +2403,7 @@
 				241D352C27167C9B007F6BA9 /* EditProfileViewModel.swift in Sources */,
 				241B4EEA26D3B3F4000409CC /* SideMenuActionItemView.swift in Sources */,
 				2DEFAB2227153CF4007C2378 /* FollowUserUseCase.swift in Sources */,
+				242F0171272BBB9F000BF910 /* FieldType.swift in Sources */,
 				2D084734270D793300DFFF69 /* UserProfileCreatedArticlesTab.swift in Sources */,
 				241F5B872701AADD002E13FC /* UserRequestConfiguration.swift in Sources */,
 				240A80302727B074007F06B7 /* UpdateMyArticleParameters.swift in Sources */,
