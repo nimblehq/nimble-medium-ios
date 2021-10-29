@@ -19,7 +19,7 @@ struct ArticleDetailView: View {
     @State private var isFetchArticleDetailFailed = false
 
     // swiftlint:disable identifier_name
-    @State private var isPresentedDeleteArticleConfirmationAlert = false
+    @State private var isDeleteArticleConfirmationAlertPresented = false
 
     private let slug: String
 
@@ -50,7 +50,7 @@ struct ArticleDetailView: View {
             isErrorToastPresented = true
         }
         .bind(viewModel.output.uiModel, to: _uiModel)
-        .alert(isPresented: $isPresentedDeleteArticleConfirmationAlert) {
+        .alert(isPresented: $isDeleteArticleConfirmationAlertPresented) {
             Alert(
                 title: Text(Localizable.popupConfirmDeleteArticleTitle()),
                 primaryButton: .destructive(
@@ -82,7 +82,7 @@ struct ArticleDetailView: View {
     var navigationBarTrailingContent: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
             Button(
-                action: { isPresentedDeleteArticleConfirmationAlert = true },
+                action: { isDeleteArticleConfirmationAlertPresented = true },
                 label: { Image(systemName: SystemImageName.minusSquare.rawValue) }
             )
         }
