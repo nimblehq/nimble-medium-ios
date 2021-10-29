@@ -13,6 +13,7 @@ import RxTest
 
 @testable import NimbleMedium
 
+// swiftlint:disable type_body_length
 final class ArticleRepositorySpec: QuickSpec {
 
     override func spec() {
@@ -131,6 +132,55 @@ final class ArticleRepositorySpec: QuickSpec {
                 }
             }
 
+            describe("its favoriteArticle() call") {
+
+                context("when the request returns success") {
+
+                    var outputArticle: TestableObserver<DecodableArticle>!
+                    let inputResponse = APIArticleResponse.dummy
+
+                    beforeEach {
+                        outputArticle = scheduler.createObserver(DecodableArticle.self)
+                        authenticatedNetworkAPI.setPerformRequestForReturnValue(Single.just(inputResponse))
+                        repository.favoriteArticle(slug: "")
+                            .asObservable()
+                            .compactMap { $0 as? DecodableArticle }
+                            .bind(to: outputArticle)
+                            .disposed(by: disposeBag)
+                    }
+
+                    it("returns the correctly updated article") {
+                        expect(outputArticle.events.first?.value.element) == inputResponse.article
+                    }
+                }
+
+                context("when the request returns failure") {
+
+                    var outputError: TestableObserver<Error?>!
+
+                    beforeEach {
+                        outputError = scheduler.createObserver(Error?.self)
+                        authenticatedNetworkAPI.setPerformRequestForReturnValue(
+                            Single<APIArticleResponse>.error(TestError.mock)
+                        )
+                        repository.favoriteArticle(slug: "")
+                            .asObservable()
+                            .materialize()
+                            .map { $0.error }
+                            .bind(to: outputError)
+                            .disposed(by: disposeBag)
+                    }
+
+                    it("returns correct error") {
+                        let error = outputError.events.first?.value.element as? TestError
+
+                        expect(outputError.events.count) == 2
+                        expect(error) == TestError.mock
+                        expect(outputError.events.last?.value.isCompleted) == true
+                    }
+                }
+            }
+
             describe("its getArticle() call") {
 
                 context("when the request returns success") {
@@ -213,6 +263,55 @@ final class ArticleRepositorySpec: QuickSpec {
                         outputError = scheduler.createObserver(Error?.self)
                         networkAPI.setPerformRequestForReturnValue(Single<APIArticlesResponse>.error(TestError.mock))
                         repository.listArticles(params: .init())
+                            .asObservable()
+                            .materialize()
+                            .map { $0.error }
+                            .bind(to: outputError)
+                            .disposed(by: disposeBag)
+                    }
+
+                    it("returns correct error") {
+                        let error = outputError.events.first?.value.element as? TestError
+
+                        expect(outputError.events.count) == 2
+                        expect(error) == TestError.mock
+                        expect(outputError.events.last?.value.isCompleted) == true
+                    }
+                }
+            }
+
+            describe("its unfavoriteArticle() call") {
+
+                context("when the request returns success") {
+
+                    var outputArticle: TestableObserver<DecodableArticle>!
+                    let inputResponse = APIArticleResponse.dummy
+
+                    beforeEach {
+                        outputArticle = scheduler.createObserver(DecodableArticle.self)
+                        authenticatedNetworkAPI.setPerformRequestForReturnValue(Single.just(inputResponse))
+                        repository.unfavoriteArticle(slug: "")
+                            .asObservable()
+                            .compactMap { $0 as? DecodableArticle }
+                            .bind(to: outputArticle)
+                            .disposed(by: disposeBag)
+                    }
+
+                    it("returns the correctly updated article") {
+                        expect(outputArticle.events.first?.value.element) == inputResponse.article
+                    }
+                }
+
+                context("when the request returns failure") {
+
+                    var outputError: TestableObserver<Error?>!
+
+                    beforeEach {
+                        outputError = scheduler.createObserver(Error?.self)
+                        authenticatedNetworkAPI.setPerformRequestForReturnValue(
+                            Single<APIArticleResponse>.error(TestError.mock)
+                        )
+                        repository.unfavoriteArticle(slug: "")
                             .asObservable()
                             .materialize()
                             .map { $0.error }

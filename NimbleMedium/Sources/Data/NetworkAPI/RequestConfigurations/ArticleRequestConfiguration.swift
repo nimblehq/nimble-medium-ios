@@ -11,8 +11,10 @@ enum ArticleRequestConfiguration {
 
     case createArticle(params: CreateArticleParameters)
     case deleteArticle(slug: String)
+    case favoriteArticle(slug: String)
     case listArticles(params: GetArticlesParameters)
     case getArticle(slug: String)
+    case unfavoriteArticle(slug: String)
     case updateArticle(slug: String, params: UpdateMyArticleParameters)
 }
 
@@ -24,6 +26,8 @@ extension ArticleRequestConfiguration: RequestConfiguration {
         switch self {
         case .createArticle, .listArticles:
             return "/articles"
+        case .favoriteArticle(let slug), .unfavoriteArticle(let slug):
+            return "articles/\(slug)/favorite"
         case .deleteArticle(let slug), .getArticle(let slug), .updateArticle(let slug, _):
             return "articles/\(slug)"
         }
@@ -31,9 +35,9 @@ extension ArticleRequestConfiguration: RequestConfiguration {
 
     var method: HTTPMethod {
         switch self {
-        case .createArticle:
+        case .createArticle, .favoriteArticle:
             return .post
-        case .deleteArticle:
+        case .deleteArticle, .unfavoriteArticle:
             return .delete
         case .getArticle, .listArticles:
             return .get
@@ -46,7 +50,7 @@ extension ArticleRequestConfiguration: RequestConfiguration {
         switch self {
         case let .createArticle(params):
             return ["article": params.dictionary]
-        case .deleteArticle, .getArticle:
+        case .deleteArticle, .favoriteArticle, .getArticle, .unfavoriteArticle:
             return nil
         case .listArticles(let params):
             return params.dictionary.compactMapValues { $0 }

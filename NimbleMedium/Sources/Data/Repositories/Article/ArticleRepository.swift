@@ -33,6 +33,14 @@ final class ArticleRepository: ArticleRepositoryProtocol {
         return authenticatedNetworkAPI.performRequest(requestConfiguration)
     }
 
+    func favoriteArticle(slug: String) -> Single<Article> {
+        let requestConfiguration = ArticleRequestConfiguration.favoriteArticle(slug: slug)
+
+        return authenticatedNetworkAPI
+            .performRequest(requestConfiguration, for: APIArticleResponse.self)
+            .map { $0.article as Article }
+    }
+
     func getArticle(slug: String) -> Single<Article> {
         let requestConfiguration = ArticleRequestConfiguration
             .getArticle(slug: slug)
@@ -48,6 +56,14 @@ final class ArticleRepository: ArticleRepositoryProtocol {
         return networkAPI
             .performRequest(requestConfiguration, for: APIArticlesResponse.self)
             .map { $0.articles.map { $0 as Article } }
+    }
+
+    func unfavoriteArticle(slug: String) -> Single<Article> {
+        let requestConfiguration = ArticleRequestConfiguration.unfavoriteArticle(slug: slug)
+
+        return authenticatedNetworkAPI
+            .performRequest(requestConfiguration, for: APIArticleResponse.self)
+            .map { $0.article as Article }
     }
 
     func updateArticle(slug: String, params: UpdateMyArticleParameters) -> Single<Article> {
