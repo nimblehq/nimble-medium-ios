@@ -137,6 +137,8 @@ struct ArticleDetailView: View {
                     FollowButton(isSelected: uiModel.authorIsFollowing) {
                         viewModel.input.toggleFollowUser()
                     }
+                    // TODO: Update favourite state & action
+                    FavouriteButton(count: 0, isSelected: true) {}
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
