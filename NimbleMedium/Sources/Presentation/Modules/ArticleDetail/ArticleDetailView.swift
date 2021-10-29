@@ -16,10 +16,14 @@ struct ArticleDetailView: View {
 
     @State private var uiModel: UIModel?
     @State private var isErrorToastPresented = false
+    @State private var isLoadingToastPresented = false
     @State private var isFetchArticleDetailFailed = false
+    @State private var isArticleAuthor = false
 
     // swiftlint:disable identifier_name
     @State private var isDeleteArticleConfirmationAlertPresented = false
+
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     private let slug: String
 
@@ -47,20 +51,37 @@ struct ArticleDetailView: View {
             isFetchArticleDetailFailed = true
         }
         .onReceive(viewModel.output.didFailToToggleFollow) { _ in
-            isErrorToastPresented = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                isErrorToastPresented = true
+            }
         }
+        .onReceive(viewModel.output.didDeleteArticle) { _ in
+            presentationMode.wrappedValue.dismiss()
+        }
+        .onReceive(viewModel.output.didFailToDeleteArticle) { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                isErrorToastPresented = true
+            }
+        }
+        .bind(viewModel.output.isLoading, to: _isLoadingToastPresented)
         .bind(viewModel.output.uiModel, to: _uiModel)
+        .bind(viewModel.output.isArticleAuthor, to: _isArticleAuthor)
         .alert(isPresented: $isDeleteArticleConfirmationAlertPresented) {
             Alert(
                 title: Text(Localizable.popupConfirmDeleteArticleTitle()),
                 primaryButton: .destructive(
                     Text(Localizable.actionConfirmText()),
                     action: {
-                        // TODO: Delete Article
+                        isLoadingToastPresented = true
+                        viewModel.input.deleteArticle()
                     }
                 ),
                 secondaryButton: .default(Text(Localizable.actionCancelText()))
             )
+        }
+        .toast(isPresented: $isLoadingToastPresented) {
+            ToastView(String.empty) {}
+                .toastViewStyle(IndefiniteProgressToastViewStyle())
         }
     }
 
@@ -81,10 +102,12 @@ struct ArticleDetailView: View {
 
     var navigationBarTrailingContent: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
-            Button(
-                action: { isDeleteArticleConfirmationAlertPresented = true },
-                label: { Image(systemName: SystemImageName.minusSquare.rawValue) }
-            )
+            if isArticleAuthor {
+                Button(
+                    action: { isDeleteArticleConfirmationAlertPresented = true },
+                    label: { Image(systemName: SystemImageName.minusSquare.rawValue) }
+                )
+            }
         }
     }
 

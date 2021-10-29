@@ -20,6 +20,8 @@ final class ArticleDetailViewModelSpec: QuickSpec {
     @LazyInjected var getArticleUseCase: GetArticleUseCaseProtocolMock
     @LazyInjected var followUserUseCase: FollowUserUseCaseProtocolMock
     @LazyInjected var unfollowUserUseCase: UnfollowUserUseCaseProtocolMock
+    @LazyInjected var deleteArticleUseCase: DeleteMyArticleUseCaseProtocolMock
+    @LazyInjected var getCurrentSessionUseCase: GetCurrentSessionUseCaseProtocolMock
 
     override func spec() {
         var viewModel: ArticleDetailViewModelProtocol!
@@ -44,6 +46,7 @@ final class ArticleDetailViewModelSpec: QuickSpec {
                     let inputArticle = APIArticleResponse.dummy.article
 
                     beforeEach {
+                        self.getCurrentSessionUseCase.executeReturnValue = .just(nil, on: scheduler, at: 15)
                         self.getArticleUseCase.executeSlugReturnValue = .just(inputArticle, on: scheduler, at: 10)
 
                         scheduler.scheduleAt(5) {
@@ -56,6 +59,50 @@ final class ArticleDetailViewModelSpec: QuickSpec {
                             .events(scheduler: scheduler, disposeBag: disposeBag) == [
                                 .next(1, nil),
                                 .next(11, .init(article: inputArticle))
+                            ]
+                    }
+                }
+
+                context("when GetCurrentSessionUseCase return a user is the author") {
+                    let inputArticle = APIArticleResponse.dummy.article
+                    let inputUser = APIUserResponse.dummy(with: inputArticle.author.username).user
+
+                    beforeEach {
+                        self.getArticleUseCase.executeSlugReturnValue = .just(inputArticle, on: scheduler, at: 10)
+                        self.getCurrentSessionUseCase.executeReturnValue = .just(inputUser)
+
+                        scheduler.scheduleAt(5) {
+                            viewModel.input.fetchArticleDetail()
+                        }
+                    }
+
+                    it("returns output isArticleAuthor with correct value") {
+                        expect(viewModel.output.isArticleAuthor)
+                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                                .next(1, false),
+                                .next(11, true)
+                            ]
+                    }
+                }
+
+                context("when GetCurrentSessionUseCase return a user is not the author") {
+                    let inputArticle = APIArticleResponse.dummy.article
+                    let inputUser = APIUserResponse.dummy(with: "\(inputArticle.author.username)x").user
+
+                    beforeEach {
+                        self.getArticleUseCase.executeSlugReturnValue = .just(inputArticle, on: scheduler, at: 10)
+                        self.getCurrentSessionUseCase.executeReturnValue = .just(inputUser)
+
+                        scheduler.scheduleAt(5) {
+                            viewModel.input.fetchArticleDetail()
+                        }
+                    }
+
+                    it("returns output isArticleAuthor with correct value") {
+                        expect(viewModel.output.isArticleAuthor)
+                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                                .next(1, false),
+                                .next(11, false)
                             ]
                     }
                 }
@@ -149,6 +196,61 @@ final class ArticleDetailViewModelSpec: QuickSpec {
                                 .next(21, false)
                             ]
                         }
+                    }
+                }
+            }
+
+            describe("its deleteArticle() call") {
+
+                context("when DeleteArticleUseCase return success") {
+
+                    beforeEach {
+                        self.deleteArticleUseCase.executeSlugReturnValue = .empty(on: scheduler, at: 10)
+
+                        scheduler.scheduleAt(5) {
+                            viewModel.input.deleteArticle()
+                        }
+                    }
+
+                    it("returns output didDeleteArticle with signal") {
+                        expect(viewModel.output.didDeleteArticle)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .notTo(beEmpty())
+                    }
+
+                    it("returns output isLoading with correct value") {
+                        expect(viewModel.output.isLoading)
+                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                                .next(1, false),
+                                .next(6, true),
+                                .next(11, false)
+                            ]
+                    }
+                }
+
+                context("when DeleteArticleUseCase return failure") {
+
+                    beforeEach {
+                        self.deleteArticleUseCase.executeSlugReturnValue = .error(TestError.mock, on: scheduler, at: 10)
+
+                        scheduler.scheduleAt(5) {
+                            viewModel.input.deleteArticle()
+                        }
+                    }
+
+                    it("returns output didFailToFetchArticleDetail with signal") {
+                        expect(viewModel.output.didFailToDeleteArticle)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .notTo(beEmpty())
+                    }
+
+                    it("returns output isLoading with correct value") {
+                        expect(viewModel.output.isLoading)
+                            .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                                .next(1, false),
+                                .next(6, true),
+                                .next(11, false)
+                            ]
                     }
                 }
             }
