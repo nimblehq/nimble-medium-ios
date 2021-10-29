@@ -19,11 +19,16 @@ struct ArticleRow: View {
         Group {
             if let uiModel = uiModel {
                 VStack(alignment: .leading, spacing: 16.0) {
-                    AuthorView(
-                        articleUpdateAt: uiModel.articleUpdatedAt,
-                        authorName: uiModel.authorName,
-                        authorImage: uiModel.authorImage
-                    )
+                    HStack(alignment: .top) {
+                        AuthorView(
+                            articleUpdateAt: uiModel.articleUpdatedAt,
+                            authorName: uiModel.authorName,
+                            authorImage: uiModel.authorImage
+                        )
+                        Spacer()
+                        // TODO: Update favourite state & action
+                        FavouriteButton(count: 0, isSelected: false) {}
+                    }
                     VStack(alignment: .leading) {
                         Text(uiModel.articleTitle)
                             .fontWeight(.bold)

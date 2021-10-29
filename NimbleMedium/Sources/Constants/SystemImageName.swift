@@ -12,4 +12,5 @@ enum SystemImageName: String {
     case plusSquare = "plus.square"
     case squareAndPencil = "square.and.pencil"
     case xmark
+    case heartFill = "heart.fill"
 }
