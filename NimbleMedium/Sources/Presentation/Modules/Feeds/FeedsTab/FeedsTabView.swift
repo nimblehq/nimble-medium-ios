@@ -11,7 +11,7 @@ import Resolver
 import SwiftUI
 import ToastUI
 
-struct FeedsTabView: View {
+struct FeedsTabView: View, Equatable {
 
     @ObservedViewModel private var viewModel: FeedsTabViewModelProtocol
 
@@ -39,6 +39,12 @@ struct FeedsTabView: View {
 
     init(viewModel: FeedsTabViewModelProtocol) {
         self.viewModel = viewModel
+    }
+
+    static func == (lhs: FeedsTabView, rhs: FeedsTabView) -> Bool {
+        lhs.isFirstLoad == rhs.isFirstLoad
+            && lhs.isErrorToastPresented == rhs.isErrorToastPresented
+            && lhs.tabType == rhs.tabType
     }
 }
 

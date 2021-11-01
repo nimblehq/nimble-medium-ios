@@ -57,6 +57,8 @@ extension Resolver {
             .implements(FollowUserUseCaseProtocol.self)
         Resolver.mock.register { UnfollowUserUseCaseProtocolMock() }
             .implements(UnfollowUserUseCaseProtocol.self)
+        Resolver.mock.register { DeleteMyArticleUseCaseProtocolMock() }
+            .implements(DeleteMyArticleUseCaseProtocol.self)
     }
 
     private static func registerViewModels() {

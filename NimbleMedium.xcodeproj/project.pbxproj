@@ -190,6 +190,7 @@
 		2D979C322703034C0084A3F8 /* GetCreatedArticlesUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D979C312703034C0084A3F8 /* GetCreatedArticlesUseCaseSpec.swift */; };
 		2DA4ABBF26CF90D000CF7D68 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA4ABBE26CF90D000CF7D68 /* AppEnvironment.swift */; };
 		2DA4ABC126CF91E200CF7D68 /* App+Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA4ABC026CF91E200CF7D68 /* App+Firebase.swift */; };
+		2DAA03EB272A57B400992C7B /* String+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAA03EA272A57B400992C7B /* String+Data.swift */; };
 		2DAF7F1727141C4000C001B8 /* FollowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAF7F1627141C4000C001B8 /* FollowButton.swift */; };
 		2DB04AD726C3A4AC003E65F4 /* Color+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB04AD626C3A4AC003E65F4 /* Color+UIColor.swift */; };
 		2DB04AD926C3A6F8003E65F4 /* NimbleMediumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB04AD826C3A6F8003E65F4 /* NimbleMediumUITests.swift */; };
@@ -433,6 +434,7 @@
 		2DA4ABBB26CF901700CF7D68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "NimbleMedium/Configurations/Plists/GoogleService/Staging/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		2DA4ABBE26CF90D000CF7D68 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		2DA4ABC026CF91E200CF7D68 /* App+Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Firebase.swift"; sourceTree = "<group>"; };
+		2DAA03EA272A57B400992C7B /* String+Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Data.swift"; sourceTree = "<group>"; };
 		2DAF7F1627141C4000C001B8 /* FollowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowButton.swift; sourceTree = "<group>"; };
 		2DB04AD626C3A4AC003E65F4 /* Color+UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+UIColor.swift"; sourceTree = "<group>"; };
 		2DB04AD826C3A6F8003E65F4 /* NimbleMediumUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NimbleMediumUITests.swift; sourceTree = "<group>"; };
@@ -1410,6 +1412,7 @@
 				2D87822E26EB3B3A0080FEF6 /* R.generated.swift */,
 				24F3D7C326DE0FAE00DE2420 /* TestError.swift */,
 				2DEF1FA526E6181F00EB93CC /* Data+Decode.swift */,
+				2DAA03EA272A57B400992C7B /* String+Data.swift */,
 				2D87823026EB3C110080FEF6 /* FileResource+Decode.swift */,
 				2D46FAEF26F830B0005DD323 /* PrimitiveSequenceType+TestScheduler.swift */,
 				2D3FCA102717DC77008C576E /* Completable+TestScheduler.swift */,
@@ -2434,6 +2437,7 @@
 				2422A87927169E980048DBDC /* SideMenuViewModelSpec.swift in Sources */,
 				2D87822F26EB3B3A0080FEF6 /* R.generated.swift in Sources */,
 				24B277D62701C31100332FEA /* GetUserProfileUseCaseSpec.swift in Sources */,
+				2DAA03EB272A57B400992C7B /* String+Data.swift in Sources */,
 				248E13B426F07F5800439BCC /* Resolver+Tests.swift in Sources */,
 				2D46FAF526F87B5D005DD323 /* Expectation+TestableObserver.swift in Sources */,
 				24E986EB272687C20048692D /* DeleteMyArticleUseCaseSpec.swift in Sources */,

@@ -14,6 +14,7 @@ protocol ArticleDetailViewModelInput {
 
     func fetchArticleDetail()
     func toggleFollowUser()
+    func deleteArticle()
 }
 
 protocol ArticleDetailViewModelOutput {
@@ -22,6 +23,10 @@ protocol ArticleDetailViewModelOutput {
     var didFailToFetchArticleDetail: Signal<Void> { get }
     var didFailToToggleFollow: Signal<Void> { get }
     var uiModel: Driver<ArticleDetailView.UIModel?> { get }
+    var didDeleteArticle: Signal<Void> { get }
+    var didFailToDeleteArticle: Signal<Void> { get }
+    var isLoading: Driver<Bool> { get }
+    var isArticleAuthor: Driver<Bool> { get }
 }
 
 protocol ArticleDetailViewModelProtocol: ObservableViewModel {
@@ -35,16 +40,23 @@ final class ArticleDetailViewModel: ObservableObject, ArticleDetailViewModelProt
     @Injected var getArticleUseCase: GetArticleUseCaseProtocol
     @Injected var followUserUseCase: FollowUserUseCaseProtocol
     @Injected var unfollowUserUseCase: UnfollowUserUseCaseProtocol
+    @Injected var deleteArticleUseCase: DeleteMyArticleUseCaseProtocol
+    @Injected var getCurrentSessionUseCase: GetCurrentSessionUseCaseProtocol
 
     private let disposeBag = DisposeBag()
     private let fetchArticleDetailTrigger = PublishRelay<Void>()
     private let toggleFollowUserTrigger = PublishRelay<Void>()
+    private let deleteArticleTrigger = PublishRelay<Void>()
     private var article: Article?
 
     @PublishRelayProperty var didFetch: Signal<Void>
     @PublishRelayProperty var didFailToFetchArticleDetail: Signal<Void>
     @PublishRelayProperty var didFailToToggleFollow: Signal<Void>
+    @PublishRelayProperty var didDeleteArticle: Signal<Void>
+    @PublishRelayProperty var didFailToDeleteArticle: Signal<Void>
     @BehaviorRelayProperty(nil) var uiModel: Driver<ArticleDetailView.UIModel?>
+    @BehaviorRelayProperty(false) var isLoading: Driver<Bool>
+    @BehaviorRelayProperty(false) var isArticleAuthor: Driver<Bool>
 
     let id: String
     var input: ArticleDetailViewModelInput { self }
@@ -67,6 +79,12 @@ final class ArticleDetailViewModel: ObservableObject, ArticleDetailViewModelProt
             .flatMapLatest { $0.0.toggleFollowUserTriggered(owner: $0.0, following: $0.1) }
             .subscribe()
             .disposed(by: disposeBag)
+
+        deleteArticleTrigger
+            .withUnretained(self)
+            .flatMapLatest { $0.0.deleteArticleTriggered(owner: $0.0) }
+            .subscribe()
+            .disposed(by: disposeBag)
     }
 }
 
@@ -79,6 +97,11 @@ extension ArticleDetailViewModel: ArticleDetailViewModelInput {
     func toggleFollowUser() {
         toggleFollowUserTrigger.accept(())
     }
+
+    func deleteArticle() {
+        $isLoading.accept(true)
+        deleteArticleTrigger.accept(())
+    }
 }
 
 extension ArticleDetailViewModel: ArticleDetailViewModelOutput {}
@@ -88,7 +111,8 @@ extension ArticleDetailViewModel: ArticleDetailViewModelOutput {}
 extension ArticleDetailViewModel {
 
     private func fetchArticleDetailTriggered(owner: ArticleDetailViewModel) -> Observable<Void> {
-        getArticleUseCase.execute(slug: id)
+        getArticleUseCase
+            .execute(slug: id)
             .do(
                 onSuccess: {
                     owner.article = $0
@@ -97,6 +121,13 @@ extension ArticleDetailViewModel {
                 onError: { _ in owner.$didFailToFetchArticleDetail.accept(()) }
             )
             .asObservable()
+            .withLatestFrom(
+                getCurrentSessionUseCase.execute(),
+                resultSelector: { article, user in (article, user) }
+            )
+            .do(onNext: { article, user in
+                owner.$isArticleAuthor.accept(article.author.username == user?.username)
+            })
             .mapToVoid()
             .catchAndReturn(())
     }
@@ -128,6 +159,23 @@ extension ArticleDetailViewModel {
             .asObservable()
             .mapToVoid()
             .catchAndReturn(()) ?? .empty()
+    }
+
+    private func deleteArticleTriggered(owner: ArticleDetailViewModel) -> Observable<Void> {
+        deleteArticleUseCase.execute(slug: id)
+            .do(
+                onError: { _ in
+                    owner.$isLoading.accept(false)
+                    owner.$didFailToDeleteArticle.accept(())
+                },
+                onCompleted: {
+                    owner.$isLoading.accept(false)
+                    owner.$didDeleteArticle.accept(())
+                }
+            )
+            .asObservable()
+            .mapToVoid()
+            .catchAndReturn(())
     }
 
     private func toggleAuthorFollowing() -> Observable<Bool> {
