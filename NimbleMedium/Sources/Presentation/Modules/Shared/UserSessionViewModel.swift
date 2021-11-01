@@ -10,16 +10,19 @@ import RxCocoa
 import RxSwift
 import SwiftUI
 
+// sourcery: AutoMockable
 protocol UserSessionViewModelInput {
 
     func getUserSession()
 }
 
+// sourcery: AutoMockable
 protocol UserSessionViewModelOutput {
 
     var isAuthenticated: Driver<Bool> { get }
 }
 
+// sourcery: AutoMockable
 protocol UserSessionViewModelProtocol: ObservableViewModel {
 
     var input: UserSessionViewModelInput { get }

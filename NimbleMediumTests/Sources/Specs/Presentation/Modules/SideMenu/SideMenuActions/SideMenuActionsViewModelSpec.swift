@@ -29,9 +29,12 @@ final class SideMenuActionsViewModelSpec: QuickSpec {
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
 
+        var userSessionViewModel: UserSessionViewModelProtocolMock!
+
         var homeViewModelOutput: HomeViewModelOutputMock!
         var loginViewModelOutput: LoginViewModelOutputMock!
         var signupViewModelOutput: SignupViewModelOutputMock!
+        var userSessionViewModelInput: UserSessionViewModelInputMock!
 
         describe("a SideMenuActionsViewModel") {
 
@@ -40,6 +43,7 @@ final class SideMenuActionsViewModelSpec: QuickSpec {
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
                 viewModel = SideMenuActionsViewModel()
+                userSessionViewModel = UserSessionViewModelProtocolMock()
 
                 homeViewModelOutput = HomeViewModelOutputMock()
                 homeViewModelOutput.underlyingIsSideMenuOpenDidChange = .just(false)
@@ -47,77 +51,18 @@ final class SideMenuActionsViewModelSpec: QuickSpec {
 
                 loginViewModelOutput = LoginViewModelOutputMock()
                 loginViewModelOutput.underlyingDidSelectNoAccount = .just(())
+                loginViewModelOutput.underlyingDidLogin = .just(())
                 self.loginViewModel.output = loginViewModelOutput
 
                 signupViewModelOutput = SignupViewModelOutputMock()
                 signupViewModelOutput.underlyingDidSelectHaveAccount = .just(())
                 self.signupViewModel.output = signupViewModelOutput
+
+                userSessionViewModelInput = UserSessionViewModelInputMock()
+                userSessionViewModel.input = userSessionViewModelInput
             }
 
             describe("its bindData call") {
-
-                context("when homeViewModel isSideMenuOpenDidChange emits event") {
-
-                    beforeEach {
-                        homeViewModelOutput.underlyingIsSideMenuOpenDidChange = .just(true)
-                    }
-
-                    context("when getCurrentSessionUseCase returns a valid user session") {
-
-                        let user = UserDummy()
-
-                        beforeEach {
-                            self.getCurrentSessionUseCase.executeReturnValue =
-                                .just(user, on: scheduler, at: 50)
-                            bindData()
-                        }
-
-                        it("returns output with isAuthenticated as true") {
-                            expect(viewModel.output.isAuthenticated)
-                                .events(scheduler: scheduler, disposeBag: disposeBag)
-                                .to(equal([
-                                    .next(0, false),
-                                    .next(50, true)
-                                ]))
-                        }
-                    }
-
-                    context("when getCurrentSessionUseCase returns an invalid user session") {
-
-                        beforeEach {
-                            self.getCurrentSessionUseCase.executeReturnValue =
-                                .just(nil, on: scheduler, at: 50)
-                            bindData()
-                        }
-
-                        it("returns output with isAuthenticated as false") {
-                            expect(viewModel.output.isAuthenticated)
-                                .events(scheduler: scheduler, disposeBag: disposeBag)
-                                .to(equal([
-                                    .next(0, false),
-                                    .next(50, false)
-                                ]))
-                        }
-                    }
-
-                    context("when getCurrentSessionUseCase returns an error getting the user session") {
-
-                        beforeEach {
-                            self.getCurrentSessionUseCase.executeReturnValue =
-                                .error(TestError.mock, on: scheduler, at: 50)
-                            bindData()
-                        }
-
-                        it("returns output with isAuthenticated as false") {
-                            expect(viewModel.output.isAuthenticated)
-                                .events(scheduler: scheduler, disposeBag: disposeBag)
-                                .to(equal([
-                                    .next(0, false),
-                                    .next(50, false)
-                                ]))
-                        }
-                    }
-                }
 
                 context("when loginViewModel didSelectNoAccount emits event") {
 
@@ -132,6 +77,19 @@ final class SideMenuActionsViewModelSpec: QuickSpec {
                     }
                 }
 
+                context("when loginViewModel didLogin emits event") {
+
+                    it("returns output with didLogin as true") {
+                        scheduler.scheduleAt(5) {
+                            bindData()
+                        }
+
+                        expect(viewModel.output.didLogin)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .notTo(beEmpty())
+                    }
+                }
+
                 context("when signupViewModel didSelectHaveAccount emits event") {
 
                     it("returns output with didSelectLoginOption as true") {
@@ -142,6 +100,18 @@ final class SideMenuActionsViewModelSpec: QuickSpec {
                         expect(viewModel.output.didSelectLoginOption)
                             .events(scheduler: scheduler, disposeBag: disposeBag)
                             .to(equal([.next(5, true)]))
+                    }
+                }
+
+                context("when homeViewModel isSideMenuOpenDidChange emits event") {
+
+                    beforeEach {
+                        homeViewModelOutput.underlyingIsSideMenuOpenDidChange = .just(true)
+                        bindData()
+                    }
+
+                    it("calls userSessionViewModel's input getUserSession") {
+                        expect(userSessionViewModelInput.getUserSessionCalled) == true
                     }
                 }
             }
@@ -227,7 +197,8 @@ final class SideMenuActionsViewModelSpec: QuickSpec {
             viewModel.input.bindData(
                 loginViewModel: loginViewModel,
                 signupViewModel: signupViewModel,
-                homeViewModel: homeViewModel
+                homeViewModel: homeViewModel,
+                userSessionViewModel: userSessionViewModel
             )
         }
     }

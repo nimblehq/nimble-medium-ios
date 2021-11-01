@@ -32,7 +32,7 @@ struct SideMenuActionsView: View {
             unauthenticatedMenuHeader
         }
     }
-    
+
     var body: some View {
         contentsView
             .onAppear {
