@@ -6,9 +6,10 @@
 //
 
 enum SystemImageName: String {
+    
     case chevronBackward = "chevron.backward"
+    case minusSquare = "minus.square"
     case plusSquare = "plus.square"
     case squareAndPencil = "square.and.pencil"
     case xmark
-    case minusSquare = "minus.square"
 }
