@@ -14,6 +14,8 @@ extension ArticleDetailView {
         let articleTitle: String
         let articleBody: String
         let articleUpdatedAt: String
+        let articleFavouriteCount: Int
+        var articleIsFavorited: Bool = false
         let authorName: String
         let authorImage: URL?
         var authorIsFollowing: Bool
@@ -25,6 +27,8 @@ extension ArticleDetailView {
             authorImage = try? article.author.image?.asURL()
             authorName = article.author.username
             authorIsFollowing = article.author.following
+            articleFavouriteCount = article.favoritesCount
+            articleIsFavorited = article.favorited
         }
     }
 }

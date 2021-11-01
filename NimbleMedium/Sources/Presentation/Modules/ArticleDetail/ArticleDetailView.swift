@@ -6,6 +6,7 @@
 //
 
 import Resolver
+import RxSwift
 import SDWebImageSwiftUI
 import SwiftUI
 import ToastUI
@@ -50,7 +51,13 @@ struct ArticleDetailView: View {
             isErrorToastPresented = true
             isFetchArticleDetailFailed = true
         }
-        .onReceive(viewModel.output.didFailToToggleFollow) { _ in
+        .onReceive(
+            Observable.of(
+                viewModel.output.didFailToToggleFollow,
+                viewModel.output.didFailToToggleFavouriteArticle
+            )
+            .merge()
+        ) { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 isErrorToastPresented = true
             }
@@ -133,12 +140,7 @@ struct ArticleDetailView: View {
                 HStack {
                     author(uiModel: uiModel)
                     Spacer()
-
-                    FollowButton(isSelected: uiModel.authorIsFollowing) {
-                        viewModel.input.toggleFollowUser()
-                    }
-                    // TODO: Update favourite state & action
-                    FavouriteButton(count: 0, isSelected: true) {}
+                    if !isArticleAuthor { unAuthorButtons(uiModel: uiModel) }
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -150,6 +152,20 @@ struct ArticleDetailView: View {
                 .padding(.horizontal, 8.0)
 
             comments
+        }
+    }
+
+    func unAuthorButtons(uiModel: UIModel) -> some View {
+        Group {
+            FollowButton(isSelected: uiModel.authorIsFollowing) {
+                viewModel.input.toggleFollowUser()
+            }
+            FavouriteButton(
+                count: uiModel.articleFavouriteCount,
+                isSelected: uiModel.articleIsFavorited
+            ) {
+                viewModel.input.toggleFavouriteArticle()
+            }
         }
     }
 
