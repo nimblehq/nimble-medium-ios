@@ -25,6 +25,12 @@
 
 "default.username.value" = "Current User";
 
+"editArticle.title.text" = "Update Article";
+"editArticle.textFieldDescription.placeholder" = "What's this article about";
+"editArticle.textFieldTagsList.placeholder" = "Enter tags (separated by comma)";
+"editArticle.textFieldTitle.placeholder" = "Article Title";
+"editArticle.textViewBody.placeholder" = "Write your article";
+
 "editProfile.textFieldAvatarURL.placeholder" = "Url of the new profile picture";
 "editProfile.textFieldEmail.placeholder" = "New email";
 "editProfile.textFieldPassword.placeholder" = "New password";
