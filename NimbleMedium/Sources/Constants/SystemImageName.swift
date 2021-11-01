@@ -8,6 +8,7 @@
 enum SystemImageName: String {
     
     case chevronBackward = "chevron.backward"
+    case heartFill = "heart.fill"
     case minusSquare = "minus.square"
     case plusSquare = "plus.square"
     case squareAndPencil = "square.and.pencil"
