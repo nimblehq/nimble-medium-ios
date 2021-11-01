@@ -14,12 +14,13 @@ import ToastUI
 struct FeedsView: View {
 
     @ObservedViewModel private var viewModel: FeedsViewModelProtocol = Resolver.resolve()
+    @ObservedViewModel private var sideMenuActionsViewModel: SideMenuActionsViewModelProtocol = Resolver.resolve()
+
+    @EnvironmentObject private var userSessionViewModel: UserSessionViewModel
 
     @State private var isFirstLoad: Bool = true
     @State private var isShowingCreateArticleScreen = false
     @State private var selectedTabIndex: Int = 0
-
-    // TODO: Implement the logic when to show new article ToolbarItem button in integrate task, default to false
     @State private var isAuthenticated = false
 
     @Binding private var isSideMenuDraggingEnabled: Bool
@@ -43,8 +44,14 @@ struct FeedsView: View {
             .onDisappear { isSideMenuDraggingEnabled = false }
         }
         .accentColor(.white)
-        .onAppear { viewModel.input.viewOnAppear() }
-        .bind(viewModel.output.isAuthenticated, to: _isAuthenticated)
+        .onAppear {
+            userSessionViewModel.input.getUserSession()
+            viewModel.input.bindData(
+                sideMenuActionsViewModel: sideMenuActionsViewModel,
+                userSessionViewModel: userSessionViewModel
+            )
+        }
+        .bind(userSessionViewModel.output.isAuthenticated, to: _isAuthenticated)
         .fullScreenCover(isPresented: $isShowingCreateArticleScreen) { CreateArticleView() }
     }
 

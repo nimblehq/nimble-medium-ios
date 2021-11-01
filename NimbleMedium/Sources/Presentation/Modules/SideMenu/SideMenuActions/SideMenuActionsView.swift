@@ -17,18 +17,33 @@ struct SideMenuActionsView: View {
     @Injected private var signupViewModel: SignupViewModelProtocol
     @Injected private var homeViewModel: HomeViewModelProtocol
 
+    @EnvironmentObject private var userSessionViewModel: UserSessionViewModel
+
     @State private var isAuthenticated = false
     @State private var isShowingLoginScreen = false
     @State private var isShowingSignupScreen = false
     @State private var isShowingMyProfileScreen = false
     @State private var showLogoutConfirmationAlert = false
 
-    var body: some View {
+    @ViewBuilder var contentsView: some View {
         if isAuthenticated {
             authenticatedMenuOptions
         } else {
             unauthenticatedMenuHeader
         }
+    }
+    
+    var body: some View {
+        contentsView
+            .onAppear {
+                viewModel.input.bindData(
+                    loginViewModel: loginViewModel,
+                    signupViewModel: signupViewModel,
+                    homeViewModel: homeViewModel,
+                    userSessionViewModel: userSessionViewModel
+                )
+            }
+            .bind(userSessionViewModel.output.isAuthenticated, to: _isAuthenticated)
     }
 
     var authenticatedMenuOptions: some View {
@@ -63,7 +78,6 @@ struct SideMenuActionsView: View {
             }
         }
         .bind(viewModel.output.didSelectMyProfileOption, to: _isShowingMyProfileScreen)
-        .bind(viewModel.output.isAuthenticated, to: _isAuthenticated)
     }
 
     var unauthenticatedMenuHeader: some View {
@@ -90,15 +104,6 @@ struct SideMenuActionsView: View {
         }
         .bind(viewModel.output.didSelectLoginOption, to: _isShowingLoginScreen)
         .bind(viewModel.output.didSelectSignupOption, to: _isShowingSignupScreen)
-        .bind(viewModel.output.isAuthenticated, to: _isAuthenticated)
-    }
-
-    init() {
-        viewModel.input.bindData(
-            loginViewModel: loginViewModel,
-            signupViewModel: signupViewModel,
-            homeViewModel: homeViewModel
-        )
     }
 }
 

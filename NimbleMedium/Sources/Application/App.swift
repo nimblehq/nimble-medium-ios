@@ -10,9 +10,12 @@ import SwiftUI
 @main
 struct App: SwiftUI.App {
 
+    @StateObject var userSessionViewModel = UserSessionViewModel()
+
     var body: some Scene {
         WindowGroup {
             HomeView()
+                .environmentObject(userSessionViewModel)
         }
     }
 
