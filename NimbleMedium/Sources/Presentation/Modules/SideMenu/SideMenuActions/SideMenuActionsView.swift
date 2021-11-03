@@ -25,7 +25,7 @@ struct SideMenuActionsView: View {
     @State private var isShowingMyProfileScreen = false
     @State private var showLogoutConfirmationAlert = false
 
-    @ViewBuilder var contentsView: some View {
+    @ViewBuilder var contentView: some View {
         if isAuthenticated {
             authenticatedMenuOptions
         } else {
@@ -34,7 +34,7 @@ struct SideMenuActionsView: View {
     }
 
     var body: some View {
-        contentsView
+        contentView
             .onAppear {
                 viewModel.input.bindData(
                     loginViewModel: loginViewModel,
