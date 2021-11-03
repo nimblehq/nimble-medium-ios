@@ -8,12 +8,14 @@
 import Resolver
 import SDWebImageSwiftUI
 import SwiftUI
+import ToastUI
 
 struct ArticleRow: View {
 
     @ObservedViewModel private var viewModel: ArticleRowViewModelProtocol
 
     @State var uiModel: UIModel?
+    @State private var isErrorToastPresented = false
 
     var body: some View {
         Group {
@@ -26,8 +28,9 @@ struct ArticleRow: View {
                             authorImage: uiModel.authorImage
                         )
                         Spacer()
-                        // TODO: Update favourite state & action
-                        FavouriteButton(count: 0, isSelected: false) {}
+                        if uiModel.articleCanFavorite {
+                            favouriteButton(uiModel: uiModel)
+                        }
                     }
                     VStack(alignment: .leading) {
                         Text(uiModel.articleTitle)
@@ -44,12 +47,27 @@ struct ArticleRow: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .onReceive(viewModel.output.uiModel) {
-            uiModel = $0
+        .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
+            ToastView(Localizable.errorGeneric()) {} background: {
+                Color.clear
+            }
+        }
+        .bind(viewModel.output.uiModel, to: _uiModel)
+        .onReceive(viewModel.output.didFailToToggleFavouriteArticle) {
+            isErrorToastPresented = true
         }
     }
 
     init(viewModel: ArticleRowViewModelProtocol) {
         self.viewModel = viewModel
+    }
+
+    func favouriteButton(uiModel: UIModel) -> some View {
+        FavouriteButton(
+            count: uiModel.articleFavoriteCount,
+            isSelected: uiModel.articleIsFavorited
+        ) {
+            viewModel.input.toggleFavouriteArticle()
+        }
     }
 }
