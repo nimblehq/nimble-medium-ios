@@ -37,8 +37,8 @@ final class ArticleRowViewModelSpec: QuickSpec {
                     articleTitle: article.title,
                     articleDescription: article.description,
                     articleUpdatedAt: article.updatedAt.format(with: .monthDayYear),
-                    articleFavouriteCount: article.favoritesCount,
-                    articleCanFavourite: false,
+                    articleFavoriteCount: article.favoritesCount,
+                    articleCanFavorite: false,
                     authorImage: try? article.author.image?.asURL(),
                     authorName: article.author.username
                 )
@@ -80,11 +80,11 @@ final class ArticleRowViewModelSpec: QuickSpec {
                     it("returns output uiModel with correct articleIsFavorited value") {
                         expect(
                             viewModel.output.uiModel
-                                .map { $0.articleIsFavorited }
+                                .map { $0?.articleIsFavorited }
                         )
                         .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                            .next(0, false),
-                            .next(5, !article.favorited)
+                            .next(1, false),
+                            .next(6, !article.favorited)
                         ]
                     }
                 }
@@ -112,12 +112,12 @@ final class ArticleRowViewModelSpec: QuickSpec {
                     it("reverts articleIsFavorited value") {
                         expect(
                             viewModel.output.uiModel
-                                .map { $0.articleIsFavorited }
+                                .map { $0?.articleIsFavorited }
                         )
                         .events(scheduler: scheduler, disposeBag: disposeBag) == [
-                            .next(0, false),
-                            .next(5, !article.favorited),
-                            .next(10, article.favorited)
+                            .next(1, false),
+                            .next(6, !article.favorited),
+                            .next(11, article.favorited)
                         ]
                     }
                 }

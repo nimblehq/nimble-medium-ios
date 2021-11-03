@@ -28,7 +28,7 @@ struct ArticleRow: View {
                             authorImage: uiModel.authorImage
                         )
                         Spacer()
-                        if uiModel.articleCanFavourite {
+                        if uiModel.articleCanFavorite {
                             favouriteButton(uiModel: uiModel)
                         }
                     }
@@ -52,9 +52,7 @@ struct ArticleRow: View {
                 Color.clear
             }
         }
-        .onReceive(viewModel.output.uiModel) {
-            uiModel = $0
-        }
+        .bind(viewModel.output.uiModel, to: _uiModel)
         .onReceive(viewModel.output.didFailToToggleFavouriteArticle) {
             isErrorToastPresented = true
         }
@@ -66,7 +64,7 @@ struct ArticleRow: View {
 
     func favouriteButton(uiModel: UIModel) -> some View {
         FavouriteButton(
-            count: uiModel.articleFavouriteCount,
+            count: uiModel.articleFavoriteCount,
             isSelected: uiModel.articleIsFavorited
         ) {
             viewModel.input.toggleFavouriteArticle()

@@ -20,7 +20,7 @@ protocol ArticleRowViewModelInput {
 protocol ArticleRowViewModelOutput {
 
     var id: String { get }
-    var uiModel: Driver<ArticleRow.UIModel> { get }
+    var uiModel: Driver<ArticleRow.UIModel?> { get }
     var didFailToToggleFavouriteArticle: Signal<Void> { get }
 }
 
@@ -44,14 +44,9 @@ final class ArticleRowViewModel: ObservableObject, ArticleRowViewModelProtocol {
     var output: ArticleRowViewModelOutput { self }
 
     @PublishRelayProperty var didFailToToggleFavouriteArticle: Signal<Void>
+    @BehaviorRelayProperty(nil) var uiModel: Driver<ArticleRow.UIModel?>
 
-    let uiModelSubject: BehaviorRelay<ArticleRow.UIModel?> = .init(value: nil)
     let id: String
-    var uiModel: Driver<ArticleRow.UIModel> {
-        uiModelSubject
-            .compactMap { $0 }
-            .asDriver(onErrorDriveWith: .empty())
-    }
 
     init(article: Article) {
         id = article.id
@@ -59,14 +54,14 @@ final class ArticleRowViewModel: ObservableObject, ArticleRowViewModelProtocol {
 
         getCurrentSessionUseCase.execute()
             .subscribe(with: self) { owner, user in
-                owner.uiModelSubject.accept(
+                owner.$uiModel.accept(
                     .init(
                         id: article.id,
                         articleTitle: article.title,
                         articleDescription: article.description,
                         articleUpdatedAt: article.updatedAt.format(with: .monthDayYear),
-                        articleFavouriteCount: article.favoritesCount,
-                        articleCanFavourite: user?.username != article.author.username,
+                        articleFavoriteCount: article.favoritesCount,
+                        articleCanFavorite: user?.username != article.author.username,
                         authorImage: try? article.author.image?.asURL(),
                         authorName: article.author.username
                     )
@@ -116,16 +111,16 @@ extension ArticleRowViewModel {
     }
 
     private func updateToggleFavouriteArticle() -> Observable<Bool> {
-        guard let uiModel = uiModelSubject.value else { return .empty() }
+        guard let uiModel = $uiModel.value else { return .empty() }
         updateFavouriteArticle(!uiModel.articleIsFavorited)
 
         return .just(!uiModel.articleIsFavorited)
     }
 
     private func updateFavouriteArticle(_ value: Bool) {
-        var uiModel = uiModelSubject.value
+        var uiModel = $uiModel.value
         uiModel?.articleIsFavorited = value
-        uiModelSubject.accept(uiModel)
+        $uiModel.accept(uiModel)
     }
 }
 

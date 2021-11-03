@@ -38,8 +38,8 @@ final class FeedsTabViewModelSpec: QuickSpec {
                         articleTitle: article.title,
                         articleDescription: article.description,
                         articleUpdatedAt: article.updatedAt.format(with: .monthDayYear),
-                        articleFavouriteCount: article.favoritesCount,
-                        articleCanFavourite: false,
+                        articleFavoriteCount: article.favoritesCount,
+                        articleCanFavorite: false,
                         authorImage: try? article.author.image?.asURL(),
                         authorName: article.author.username
                     )
