@@ -14,6 +14,7 @@ import ToastUI
 struct ArticleDetailView: View {
 
     @ObservedViewModel private var viewModel: ArticleDetailViewModelProtocol
+    let editArticleViewModel: EditArticleViewModelProtocol
 
     @State private var uiModel: UIModel?
     @State private var isErrorToastPresented = false
@@ -88,7 +89,7 @@ struct ArticleDetailView: View {
             ToastView(String.empty) {}
                 .toastViewStyle(IndefiniteProgressToastViewStyle())
         }
-        .fullScreenCover(isPresented: $isEditArticlePresented) { EditArticleView(slug: slug) }
+        .fullScreenCover(isPresented: $isEditArticlePresented) { EditArticleView() }
     }
 
     var comments: some View {
@@ -124,10 +125,16 @@ struct ArticleDetailView: View {
     init(slug: String) {
         self.slug = slug
 
+        editArticleViewModel = Resolver.resolve(
+            EditArticleViewModelProtocol.self,
+            args: slug
+        )
+
         viewModel = Resolver.resolve(
             ArticleDetailViewModelProtocol.self,
             args: slug
         )
+        viewModel.input.bindData(editArticleViewModel: editArticleViewModel)
     }
 
     func articleDetail(uiModel: UIModel) -> some View {

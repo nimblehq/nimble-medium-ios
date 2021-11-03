@@ -12,6 +12,7 @@ import RxSwift
 
 protocol ArticleDetailViewModelInput {
 
+    func bindData(editArticleViewModel: EditArticleViewModelProtocol)
     func fetchArticleDetail()
     func toggleFollowUser()
     func toggleFavouriteArticle()
@@ -20,7 +21,6 @@ protocol ArticleDetailViewModelInput {
 
 protocol ArticleDetailViewModelOutput {
 
-    var editArticleViewModel: EditArticleViewModelProtocol { get }
     var id: String { get }
     var didFailToFetchArticleDetail: Signal<Void> { get }
     var didFailToToggleFollow: Signal<Void> { get }
@@ -55,7 +55,6 @@ final class ArticleDetailViewModel: ObservableObject, ArticleDetailViewModelProt
     private var article: Article?
     private var articleIsFavourite: Bool = false
 
-    let editArticleViewModel: EditArticleViewModelProtocol
     @PublishRelayProperty var didFetch: Signal<Void>
     @PublishRelayProperty var didFailToFetchArticleDetail: Signal<Void>
     @PublishRelayProperty var didFailToToggleFollow: Signal<Void>
@@ -72,13 +71,6 @@ final class ArticleDetailViewModel: ObservableObject, ArticleDetailViewModelProt
 
     init(id: String) {
         self.id = id
-
-        editArticleViewModel = Resolver.resolve(EditArticleViewModelProtocol.self, args: id)
-        editArticleViewModel.output.didUpdateArticle
-            .emit(with: self) { owner, _ in
-                owner.fetchArticleDetail()
-            }
-            .disposed(by: disposeBag)
 
         fetchArticleDetailTrigger
             .withUnretained(self)
@@ -113,6 +105,14 @@ final class ArticleDetailViewModel: ObservableObject, ArticleDetailViewModelProt
 }
 
 extension ArticleDetailViewModel: ArticleDetailViewModelInput {
+
+    func bindData(editArticleViewModel: EditArticleViewModelProtocol) {
+        editArticleViewModel.output.didUpdateArticle
+            .emit(with: self) { owner, _ in
+                owner.fetchArticleDetail()
+            }
+            .disposed(by: disposeBag)
+    }
 
     func fetchArticleDetail() {
         fetchArticleDetailTrigger.accept(())

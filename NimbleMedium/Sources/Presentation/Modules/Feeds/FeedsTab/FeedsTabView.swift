@@ -116,12 +116,16 @@ extension FeedsTabView {
         }
 
         var articleDetailNavigationLink: some View {
-            NavigationLink(
-                destination: ArticleDetailView(slug: activeDetailID),
-                isActive: $isShowingFeedDetail,
-                label: { EmptyView() }
-            )
-            .hidden()
+            Group {
+                if !activeDetailID.isEmpty {
+                    NavigationLink(
+                        destination: ArticleDetailView(slug: activeDetailID),
+                        isActive: $isShowingFeedDetail,
+                        label: { EmptyView() }
+                    )
+                    .hidden()
+                } else { EmptyView() }
+            }
         }
 
         static func == (lhs: FeedsTabView.FeedList, rhs: FeedsTabView.FeedList) -> Bool {

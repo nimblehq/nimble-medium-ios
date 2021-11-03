@@ -110,13 +110,13 @@ struct EditArticleView: View {
         }
     }
 
-    init(viewModel: EditArticleViewModelProtocol) {
-        self.viewModel = viewModel
+    init() {
+        viewModel = Resolver.resolve()
     }
 }
 
 #if DEBUG
     struct EditArticleView_Previews: PreviewProvider {
-        static var previews: some View { EditArticleView(viewModel: Resolver.resolve()) }
+        static var previews: some View { EditArticleView() }
     }
 #endif

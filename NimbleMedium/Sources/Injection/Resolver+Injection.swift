@@ -177,8 +177,9 @@ extension Resolver: ResolverRegistering {
         register { _, args in
             UserProfileFavouritedArticlesTabViewModel(username: args.get())
         }.implements(UserProfileFavouritedArticlesTabViewModelProtocol.self)
-        register { _, args in
+        register(EditArticleViewModelProtocol.self) { _, args in
             EditArticleViewModel(slug: args.get())
-        }.implements(EditArticleViewModelProtocol.self)
+        }
+        .scope(.shared)
     }
 }
