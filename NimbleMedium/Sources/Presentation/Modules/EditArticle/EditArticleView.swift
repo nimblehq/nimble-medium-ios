@@ -13,7 +13,7 @@ struct EditArticleView: View {
 
     @Environment(\.presentationMode) var presentationMode
 
-    @ObservedViewModel private var viewModel: EditArticleViewModelProtocol
+    @ObservedViewModel private var viewModel: EditArticleViewModelProtocol = Resolver.resolve()
 
     @State private var title = ""
     @State private var description = ""
@@ -108,10 +108,6 @@ struct EditArticleView: View {
             }
             .padding()
         }
-    }
-
-    init() {
-        viewModel = Resolver.resolve()
     }
 }
 

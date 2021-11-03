@@ -112,7 +112,7 @@ extension EditArticleViewModel {
                             description: $0.description,
                             articleBody: $0.body,
                             tagsList: $0.tagList.joined(separator: ",")
-                         )
+                        )
                     )
                 },
                 onError: { _ in owner.$didFailToFetchArticleDetail.accept(()) }
