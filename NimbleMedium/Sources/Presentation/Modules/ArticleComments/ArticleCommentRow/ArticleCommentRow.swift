@@ -12,6 +12,8 @@ struct ArticleCommentRow: View {
 
     @ObservedViewModel private var viewModel: ArticleCommentRowViewModelProtocol
 
+    // TODO: Update to correct value in integrate task, default to hide the delete button for now
+    @State var isMyComment: Bool = false
     @State var uiModel: UIModel?
 
     var body: some View {
@@ -54,6 +56,16 @@ struct ArticleCommentRow: View {
                 .foregroundColor(.green)
             Text(uiModel.commentUpdatedAt)
                 .foregroundColor(.gray)
+            if isMyComment {
+                Spacer()
+                Button(
+                    action: {
+                        // TODO: Handle delete comment in integrate task
+                    },
+                    label: { Image(systemName: SystemImageName.trashFill.rawValue) }
+                )
+                .foregroundColor(.black)
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.all, 16.0)

@@ -13,5 +13,6 @@ enum SystemImageName: String {
     case minusSquare = "minus.square"
     case plusSquare = "plus.square"
     case squareAndPencil = "square.and.pencil"
+    case trashFill = "trash.fill"
     case xmark
 }
