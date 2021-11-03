@@ -86,16 +86,15 @@ struct EditArticleView: View {
     var form: some View {
         ScrollView {
             VStack(spacing: 15.0) {
-                ArticleInputFields(fields: [
-                    .textField(
-                        placeholder: Localizable.editArticleTextFieldTitlePlaceholder(), text: $title, fontSize: 20
-                    ),
-                    .textField(
-                        placeholder: Localizable.editArticleTextFieldDescriptionPlaceholder(), text: $description
-                    ),
-                    .textView(placeholder: Localizable.editArticleTextViewBodyPlaceholder(), text: $articleBody),
-                    .textField(placeholder: Localizable.editArticleTextFieldTagsListPlaceholder(), text: $tagsList)
-                ])
+                AppTextField(placeholder: Localizable.editArticleTextFieldTitlePlaceholder(), text: $title)
+                    .font(.system(size: 20))
+                AppTextField(
+                    placeholder: Localizable.editArticleTextFieldDescriptionPlaceholder(),
+                    text: $description
+                )
+                AppTextView(placeholder: Localizable.editArticleTextViewBodyPlaceholder(), text: $articleBody)
+                    .frame(height: 200.0, alignment: .leading)
+                AppTextField(placeholder: Localizable.editArticleTextFieldTagsListPlaceholder(), text: $tagsList)
                 AppMainButton(title: Localizable.actionUpdateText()) {
                     viewModel.input.didTapUpdateButton(
                         title: title,
