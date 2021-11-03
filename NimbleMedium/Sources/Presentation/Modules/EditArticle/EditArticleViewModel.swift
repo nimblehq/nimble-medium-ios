@@ -106,7 +106,14 @@ extension EditArticleViewModel {
             .execute(slug: slug)
             .do(
                 onSuccess: {
-                    owner.$uiModel.accept(.init(article: $0))
+                    owner.$uiModel.accept(
+                        .init(
+                            title: $0.title,
+                            description: $0.description,
+                            articleBody: $0.body,
+                            tagsList: $0.tagList.joined(separator: ",")
+                         )
+                    )
                 },
                 onError: { _ in owner.$didFailToFetchArticleDetail.accept(()) }
             )

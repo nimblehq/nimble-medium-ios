@@ -50,7 +50,12 @@ final class EditArticleViewModelSpec: QuickSpec {
                         expect(viewModel.output.uiModel)
                             .events(scheduler: scheduler, disposeBag: disposeBag) == [
                                 .next(0, nil),
-                                .next(10, .init(article: inputArticle))
+                                .next(10, .init(
+                                    title: inputArticle.title,
+                                    description: inputArticle.description,
+                                    articleBody: inputArticle.body,
+                                    tagsList: inputArticle.tagList.joined(separator: ",")
+                                ))
                             ]
                     }
                 }

@@ -15,12 +15,5 @@ extension EditArticleView {
         let description: String
         let articleBody: String
         let tagsList: String
-
-        init(article: Article) {
-            title = article.title
-            description = article.description
-            articleBody = article.body
-            tagsList = article.tagList.joined(separator: ",")
-        }
     }
 }
