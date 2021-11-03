@@ -219,9 +219,7 @@ extension ArticleDetailViewModel {
                     owner.$didFailToToggleFavouriteArticle.accept(())
                     owner.updateFavouriteArticle(owner.articleIsFavourite)
                 },
-                onCompleted: {
-                    owner.articleIsFavourite = isFavourite
-                }
+                onCompleted: { owner.articleIsFavourite = isFavourite }
             )
             .asObservable()
             .mapToVoid()

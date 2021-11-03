@@ -140,7 +140,7 @@ struct ArticleDetailView: View {
                 HStack {
                     author(uiModel: uiModel)
                     Spacer()
-                    if !isArticleAuthor { unAuthorButtons(uiModel: uiModel) }
+                    if !isArticleAuthor { interactionButtons(uiModel: uiModel) }
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -155,13 +155,13 @@ struct ArticleDetailView: View {
         }
     }
 
-    func unAuthorButtons(uiModel: UIModel) -> some View {
+    func interactionButtons(uiModel: UIModel) -> some View {
         Group {
             FollowButton(isSelected: uiModel.authorIsFollowing) {
                 viewModel.input.toggleFollowUser()
             }
             FavouriteButton(
-                count: uiModel.articleFavouriteCount,
+                count: uiModel.articleFavoriteCount,
                 isSelected: uiModel.articleIsFavorited
             ) {
                 viewModel.input.toggleFavouriteArticle()
