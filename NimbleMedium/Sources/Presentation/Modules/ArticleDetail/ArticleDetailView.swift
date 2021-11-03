@@ -20,7 +20,7 @@ struct ArticleDetailView: View {
     @State private var isLoadingToastPresented = false
     @State private var isFetchArticleDetailFailed = false
     @State private var isArticleAuthor = false
-    @State private var isEditArticlePresenting = false
+    @State private var isEditArticlePresented = false
 
     // swiftlint:disable identifier_name
     @State private var isDeleteArticleConfirmationAlertPresented = false
@@ -88,7 +88,7 @@ struct ArticleDetailView: View {
             ToastView(String.empty) {}
                 .toastViewStyle(IndefiniteProgressToastViewStyle())
         }
-        .fullScreenCover(isPresented: $isEditArticlePresenting) { EditArticleView(slug: slug) }
+        .fullScreenCover(isPresented: $isEditArticlePresented) { EditArticleView(slug: slug) }
     }
 
     var comments: some View {
@@ -114,7 +114,7 @@ struct ArticleDetailView: View {
                     label: { Image(systemName: SystemImageName.minusSquare.rawValue) }
                 )
                 Button(
-                    action: { isEditArticlePresenting = true },
+                    action: { isEditArticlePresented = true },
                     label: { Image(systemName: SystemImageName.squareAndPencil.rawValue) }
                 )
             }
