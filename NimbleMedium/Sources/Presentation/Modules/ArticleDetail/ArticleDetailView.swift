@@ -114,9 +114,7 @@ struct ArticleDetailView: View {
                     label: { Image(systemName: SystemImageName.minusSquare.rawValue) }
                 )
                 Button(
-                    action: {
-                        isEditArticlePresenting = true
-                    },
+                    action: { isEditArticlePresenting = true },
                     label: { Image(systemName: SystemImageName.squareAndPencil.rawValue) }
                 )
             }
