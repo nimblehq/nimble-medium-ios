@@ -22,6 +22,7 @@ final class ArticleDetailViewModelSpec: QuickSpec {
     @LazyInjected var unfollowUserUseCase: UnfollowUserUseCaseProtocolMock
     @LazyInjected var deleteArticleUseCase: DeleteMyArticleUseCaseProtocolMock
     @LazyInjected var getCurrentSessionUseCase: GetCurrentSessionUseCaseProtocolMock
+    @LazyInjected var toggleArticleFavoriteStatusUseCase: ToggleArticleFavoriteStatusUseCaseProtocolMock
 
     override func spec() {
         var viewModel: ArticleDetailViewModelProtocol!
@@ -263,6 +264,85 @@ final class ArticleDetailViewModelSpec: QuickSpec {
                                 .next(5, true),
                                 .next(10, false)
                             ]
+                    }
+                }
+            }
+
+            describe("its toggleFollowUser() call") {
+
+                let inputArticle = APIArticleResponse.dummyWithUnfollowingUser.article
+
+                beforeEach {
+                    SharingScheduler.mock(scheduler: scheduler) {
+                        viewModel = ArticleDetailViewModel(id: "slug")
+                    }
+                }
+
+                context("when ToggleArticleFavoriteStatusUseCase return success") {
+
+                    beforeEach {
+                        self.getArticleUseCase.executeSlugReturnValue = .just(inputArticle, on: scheduler, at: 10)
+                        self.toggleArticleFavoriteStatusUseCase
+                            .executeSlugIsFavoriteReturnValue = .empty(on: scheduler, at: 20)
+
+                        scheduler.scheduleAt(5) {
+                            viewModel.input.fetchArticleDetail()
+                        }
+
+                        scheduler.scheduleAt(15) {
+                            viewModel.input.toggleFavouriteArticle()
+                        }
+                    }
+
+                    it("returns output uiModel with correct authorFollowing value") {
+                        expect(
+                            viewModel.output.uiModel
+                                .map { $0?.articleIsFavorited }
+                        )
+                        .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                            .next(1, nil),
+                            .next(11, inputArticle.favorited),
+                            .next(16, !inputArticle.favorited)
+                        ]
+                    }
+                }
+
+                context("when ToggleArticleFavoriteStatusUseCase return failure") {
+
+                    beforeEach {
+                        self.getArticleUseCase.executeSlugReturnValue = .just(inputArticle, on: scheduler, at: 10)
+                        self.toggleArticleFavoriteStatusUseCase.executeSlugIsFavoriteReturnValue = .error(
+                            TestError.mock,
+                            on: scheduler,
+                            at: 20
+                        )
+
+                        scheduler.scheduleAt(5) {
+                            viewModel.input.fetchArticleDetail()
+                        }
+
+                        scheduler.scheduleAt(15) {
+                            viewModel.input.toggleFavouriteArticle()
+                        }
+                    }
+
+                    it("returns output didFailToToggleFavouriteArticle with signal") {
+                        expect(viewModel.output.didFailToToggleFavouriteArticle)
+                            .events(scheduler: scheduler, disposeBag: disposeBag)
+                            .notTo(beEmpty())
+                    }
+
+                    it("reverts articleIsFavorited value") {
+                        expect(
+                            viewModel.output.uiModel
+                                .map { $0?.articleIsFavorited }
+                        )
+                        .events(scheduler: scheduler, disposeBag: disposeBag) == [
+                            .next(1, nil),
+                            .next(11, inputArticle.favorited),
+                            .next(16, !inputArticle.favorited),
+                            .next(21, inputArticle.favorited)
+                        ]
                     }
                 }
             }

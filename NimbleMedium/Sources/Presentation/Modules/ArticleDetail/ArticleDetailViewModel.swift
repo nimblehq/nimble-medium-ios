@@ -14,6 +14,7 @@ protocol ArticleDetailViewModelInput {
 
     func fetchArticleDetail()
     func toggleFollowUser()
+    func toggleFavouriteArticle()
     func deleteArticle()
 }
 
@@ -22,6 +23,7 @@ protocol ArticleDetailViewModelOutput {
     var id: String { get }
     var didFailToFetchArticleDetail: Signal<Void> { get }
     var didFailToToggleFollow: Signal<Void> { get }
+    var didFailToToggleFavouriteArticle: Signal<Void> { get }
     var uiModel: Driver<ArticleDetailView.UIModel?> { get }
     var didDeleteArticle: Signal<Void> { get }
     var didFailToDeleteArticle: Signal<Void> { get }
@@ -42,16 +44,20 @@ final class ArticleDetailViewModel: ObservableObject, ArticleDetailViewModelProt
     @Injected var unfollowUserUseCase: UnfollowUserUseCaseProtocol
     @Injected var deleteArticleUseCase: DeleteMyArticleUseCaseProtocol
     @Injected var getCurrentSessionUseCase: GetCurrentSessionUseCaseProtocol
+    @Injected private var toggleArticleFavoriteStatusUseCase: ToggleArticleFavoriteStatusUseCaseProtocol
 
     private let disposeBag = DisposeBag()
     private let fetchArticleDetailTrigger = PublishRelay<Void>()
     private let toggleFollowUserTrigger = PublishRelay<Void>()
+    private let toggleFavouriteArticleTrigger = PublishRelay<Void>()
     private let deleteArticleTrigger = PublishRelay<Void>()
     private var article: Article?
+    private var articleIsFavourite: Bool = false
 
     @PublishRelayProperty var didFetch: Signal<Void>
     @PublishRelayProperty var didFailToFetchArticleDetail: Signal<Void>
     @PublishRelayProperty var didFailToToggleFollow: Signal<Void>
+    @PublishRelayProperty var didFailToToggleFavouriteArticle: Signal<Void>
     @PublishRelayProperty var didDeleteArticle: Signal<Void>
     @PublishRelayProperty var didFailToDeleteArticle: Signal<Void>
     @BehaviorRelayProperty(nil) var uiModel: Driver<ArticleDetailView.UIModel?>
@@ -80,6 +86,15 @@ final class ArticleDetailViewModel: ObservableObject, ArticleDetailViewModelProt
             .subscribe()
             .disposed(by: disposeBag)
 
+        toggleFavouriteArticleTrigger
+            .withUnretained(self)
+            .flatMap { $0.0.updateToggleFavouriteArticle() }
+            .debounce(.milliseconds(500), scheduler: SharingScheduler.make())
+            .withUnretained(self)
+            .flatMapLatest { $0.0.toggleFavouriteArticleTriggered(owner: $0.0, isFavourite: $0.1) }
+            .subscribe()
+            .disposed(by: disposeBag)
+
         deleteArticleTrigger
             .withUnretained(self)
             .flatMapLatest { $0.0.deleteArticleTriggered(owner: $0.0) }
@@ -96,6 +111,10 @@ extension ArticleDetailViewModel: ArticleDetailViewModelInput {
 
     func toggleFollowUser() {
         toggleFollowUserTrigger.accept(())
+    }
+
+    func toggleFavouriteArticle() {
+        toggleFavouriteArticleTrigger.accept(())
     }
 
     func deleteArticle() {
@@ -116,6 +135,7 @@ extension ArticleDetailViewModel {
             .do(
                 onSuccess: {
                     owner.article = $0
+                    owner.articleIsFavourite = $0.favorited
                     owner.$uiModel.accept(.init(article: $0))
                 },
                 onError: { _ in owner.$didFailToFetchArticleDetail.accept(()) }
@@ -188,6 +208,34 @@ extension ArticleDetailViewModel {
     private func updateAuthorFollowing(_ value: Bool) {
         var uiModel = $uiModel.value
         uiModel?.authorIsFollowing = value
+        $uiModel.accept(uiModel)
+    }
+
+    private func toggleFavouriteArticleTriggered(owner: ArticleDetailViewModel, isFavourite: Bool) -> Observable<Void> {
+        toggleArticleFavoriteStatusUseCase
+            .execute(slug: id, isFavorite: isFavourite)
+            .do(
+                onError: { _ in
+                    owner.$didFailToToggleFavouriteArticle.accept(())
+                    owner.updateFavouriteArticle(owner.articleIsFavourite)
+                },
+                onCompleted: { owner.articleIsFavourite = isFavourite }
+            )
+            .asObservable()
+            .mapToVoid()
+            .catchAndReturn(())
+    }
+
+    private func updateToggleFavouriteArticle() -> Observable<Bool> {
+        guard let uiModel = $uiModel.value else { return .empty() }
+        updateFavouriteArticle(!uiModel.articleIsFavorited)
+
+        return .just(!uiModel.articleIsFavorited)
+    }
+
+    private func updateFavouriteArticle(_ value: Bool) {
+        var uiModel = $uiModel.value
+        uiModel?.articleIsFavorited = value
         $uiModel.accept(uiModel)
     }
 }
