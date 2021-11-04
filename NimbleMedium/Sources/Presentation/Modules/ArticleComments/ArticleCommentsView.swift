@@ -13,30 +13,26 @@ struct ArticleCommentsView: View {
 
     @ObservedViewModel private var viewModel: ArticleCommentsViewModelProtocol
 
+    @EnvironmentObject private var userSessionViewModel: UserSessionViewModel
+
     @State private var articleCommentRowViewModels: [ArticleCommentRowViewModelProtocol]?
     @State private var isErrorToastPresented = false
     @State private var isFetchingArticleComments = true
     @State private var isFetchArticleCommentsFailed = false
     @State private var commentContent: String = ""
+    @State private var isCreateCommentEnabled = false
+    @State private var isAuthenticated = false
+    private var isPostCommentButtonEnabled: Bool {
+        isCreateCommentEnabled && !commentContent.isEmpty
+    }
 
     var body: some View {
         VStack {
             comments
-            Spacer()
-            HStack {
-                AppTextView(
-                    placeholder: Localizable.feedCommentsCommentTextViewPlaceholder(),
-                    text: $commentContent
-                )
-                Button {
-                    // TODO: Integrate send comment
-                } label: {
-                    Image(systemName: SystemImageName.arrowshapeTurnUpForwardCircleFill.rawValue)
-                        .foregroundColor(.black)
-                }
+            if isAuthenticated {
+                Spacer()
+                commentInput
             }
-            .frame(height: 50)
-            .padding(.horizontal, 20.0)
         }
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
             ToastView(Localizable.errorGeneric()) {} background: {
@@ -50,12 +46,17 @@ struct ArticleCommentsView: View {
             isErrorToastPresented = true
             isFetchArticleCommentsFailed = true
         }
+        .onReceive(viewModel.output.didFailToCreateArticleComment) { _ in
+            isErrorToastPresented = true
+        }
         .onReceive(viewModel.output.didFetchArticleComments) {
             isFetchingArticleComments = false
         }
         .onReceive(viewModel.output.articleCommentRowViewModels) {
             articleCommentRowViewModels = $0
         }
+        .bind(viewModel.output.isCreateCommentEnabled, to: _isCreateCommentEnabled)
+        .bind(userSessionViewModel.output.isAuthenticated, to: _isAuthenticated)
         .onAppear { viewModel.input.fetchArticleComments() }
     }
 
@@ -81,6 +82,25 @@ struct ArticleCommentsView: View {
             }
         }
         .frame(maxHeight: .infinity)
+    }
+
+    var commentInput: some View {
+        HStack {
+            AppTextView(
+                placeholder: Localizable.feedCommentsCommentTextViewPlaceholder(),
+                text: $commentContent
+            )
+            .disabled(!isCreateCommentEnabled)
+            Button {
+                viewModel.input.createArticleComment(content: commentContent)
+            } label: {
+                Image(systemName: SystemImageName.arrowshapeTurnUpForwardCircleFill.rawValue)
+                    .foregroundColor(isPostCommentButtonEnabled ? .black : .gray)
+            }
+            .disabled(!isPostCommentButtonEnabled)
+        }
+        .frame(height: 50)
+        .padding(.horizontal, 20.0)
     }
 
     init(id: String) {
