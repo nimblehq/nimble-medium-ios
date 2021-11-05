@@ -48,6 +48,7 @@ final class ArticleCommentsViewModel: ObservableObject, ArticleCommentsViewModel
     @PublishRelayProperty var didFailToCreateArticleComment: Signal<Void>
     @BehaviorRelayProperty([]) var articleCommentRowViewModels: Driver<[ArticleCommentRowViewModelProtocol]>
     @BehaviorRelayProperty(false) var isCreateCommentEnabled: Driver<Bool>
+
     var input: ArticleCommentsViewModelInput { self }
     var output: ArticleCommentsViewModelOutput { self }
 
@@ -86,12 +87,16 @@ extension ArticleCommentsViewModel: ArticleCommentsViewModelOutput {}
 extension ArticleCommentsViewModel {
 
     private func fetchArticleCommentsTriggered(owner: ArticleCommentsViewModel) -> Observable<Void> {
-        getArticleCommentsUseCase.execute(slug: id)
+        getArticleCommentsUseCase.execute(slug: owner.id)
             .do(
                 onSuccess: {
                     owner.$isCreateCommentEnabled.accept(true)
                     owner.$didFetchArticleComments.accept(())
-                    owner.$articleCommentRowViewModels.accept($0.viewModels)
+                    owner.$articleCommentRowViewModels.accept(
+                        $0.map {
+                            owner.articleCommentRowViewModel(from: $0)
+                        }
+                    )
                 },
                 onError: { _ in
                     owner.$isCreateCommentEnabled.accept(true)
@@ -123,5 +128,20 @@ extension ArticleCommentsViewModel {
         .asObservable()
         .mapToVoid()
         .catchAndReturn(())
+    }
+
+    private func articleCommentRowViewModel(from comment: ArticleComment) -> ArticleCommentRowViewModelProtocol {
+
+        let viewModel = Resolver.resolve(
+            ArticleCommentRowViewModelProtocol.self,
+            args: ArticleCommentRowViewModelArgs(slug: id, comment: comment)
+        )
+        viewModel.output.didDeleteComment
+            .emit(with: self) { owner, _ in
+                owner.fetchArticleComments()
+            }
+            .disposed(by: disposeBag)
+
+        return viewModel
     }
 }

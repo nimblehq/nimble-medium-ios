@@ -144,7 +144,7 @@ extension Resolver: ResolverRegistering {
 
     private static func registerViewModels() {
         register { _, args in
-            ArticleCommentRowViewModel(comment: args.get())
+            ArticleCommentRowViewModel(args: args.get())
         }.implements(ArticleCommentRowViewModelProtocol.self)
         register(ArticleCommentsViewModelProtocol.self) { _, args in
             ArticleCommentsViewModel(id: args.get())

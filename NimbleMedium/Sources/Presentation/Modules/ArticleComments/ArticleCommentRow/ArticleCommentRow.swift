@@ -7,14 +7,16 @@
 
 import SDWebImageSwiftUI
 import SwiftUI
+import ToastUI
 
 struct ArticleCommentRow: View {
 
     @ObservedViewModel private var viewModel: ArticleCommentRowViewModelProtocol
 
-    // TODO: Update to correct value in integrate task, default to hide the delete button for now
-    @State var isMyComment: Bool = false
-    @State var uiModel: UIModel?
+    @State private var isAuthor: Bool = false
+    @State private var uiModel: UIModel?
+    @State private var isLoadingToastPresented = false
+    @State private var isErrorToastPresented = false
 
     var body: some View {
         Group {
@@ -39,8 +41,21 @@ struct ArticleCommentRow: View {
                 EmptyView()
             }
         }
-        .onReceive(viewModel.output.uiModel) {
-            uiModel = $0
+        .bind(viewModel.output.uiModel, to: _uiModel)
+        .bind(viewModel.output.isLoading, to: _isLoadingToastPresented)
+        .onReceive(viewModel.output.didFailToDeleteComment) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                isErrorToastPresented = true
+            }
+        }
+        .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
+            ToastView(Localizable.errorGeneric()) {} background: {
+                Color.clear
+            }
+        }
+        .toast(isPresented: $isLoadingToastPresented) {
+            ToastView(String.empty) {}
+                .toastViewStyle(IndefiniteProgressToastViewStyle())
         }
     }
 
@@ -56,12 +71,10 @@ struct ArticleCommentRow: View {
                 .foregroundColor(.green)
             Text(uiModel.commentUpdatedAt)
                 .foregroundColor(.gray)
-            if isMyComment {
+            if uiModel.isAuthor {
                 Spacer()
                 Button(
-                    action: {
-                        // TODO: Handle delete comment in integrate task
-                    },
+                    action: { viewModel.input.deleteComment() },
                     label: { Image(systemName: SystemImageName.trashFill.rawValue) }
                 )
                 .foregroundColor(.black)
