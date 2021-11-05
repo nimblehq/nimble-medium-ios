@@ -22,6 +22,7 @@ struct ArticleCommentsView: View {
     @State private var commentContent: String = ""
     @State private var isCreateCommentEnabled = false
     @State private var isAuthenticated = false
+
     private var isPostCommentButtonEnabled: Bool {
         isCreateCommentEnabled && !commentContent.isEmpty
     }
