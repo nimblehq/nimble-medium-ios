@@ -13,13 +13,17 @@ import RxSwift
 protocol ArticleCommentsViewModelInput {
 
     func fetchArticleComments()
+    func createArticleComment(content: String)
 }
 
 protocol ArticleCommentsViewModelOutput {
 
     var didFetchArticleComments: Signal<Void> { get }
     var didFailToFetchArticleComments: Signal<Void> { get }
+    var didCreateArticleComment: Signal<Void> { get }
+    var didFailToCreateArticleComment: Signal<Void> { get }
     var articleCommentRowViewModels: Driver<[ArticleCommentRowViewModelProtocol]> { get }
+    var isCreateCommentEnabled: Driver<Bool> { get }
 }
 
 protocol ArticleCommentsViewModelProtocol: ObservableViewModel {
@@ -31,15 +35,19 @@ protocol ArticleCommentsViewModelProtocol: ObservableViewModel {
 final class ArticleCommentsViewModel: ObservableObject, ArticleCommentsViewModelProtocol {
 
     @Injected var getArticleCommentsUseCase: GetArticleCommentsUseCaseProtocol
+    @Injected var createArticleCommentUseCase: CreateArticleCommentUseCaseProtocol
 
     private let disposeBag = DisposeBag()
     private let fetchArticleCommentsTrigger = PublishRelay<Void>()
+    private let createArticleCommentTrigger = PublishRelay<String>()
     private let id: String
 
     @PublishRelayProperty var didFetchArticleComments: Signal<Void>
     @PublishRelayProperty var didFailToFetchArticleComments: Signal<Void>
+    @PublishRelayProperty var didCreateArticleComment: Signal<Void>
+    @PublishRelayProperty var didFailToCreateArticleComment: Signal<Void>
     @BehaviorRelayProperty([]) var articleCommentRowViewModels: Driver<[ArticleCommentRowViewModelProtocol]>
-
+    @BehaviorRelayProperty(false) var isCreateCommentEnabled: Driver<Bool>
     var input: ArticleCommentsViewModelInput { self }
     var output: ArticleCommentsViewModelOutput { self }
 
@@ -51,6 +59,12 @@ final class ArticleCommentsViewModel: ObservableObject, ArticleCommentsViewModel
             .flatMapLatest { $0.0.fetchArticleCommentsTriggered(owner: $0.0) }
             .subscribe()
             .disposed(by: disposeBag)
+
+        createArticleCommentTrigger
+            .withUnretained(self)
+            .flatMapLatest { $0.0.createArticleCommentTriggered(owner: $0.0, content: $0.1) }
+            .subscribe()
+            .disposed(by: disposeBag)
     }
 }
 
@@ -58,6 +72,10 @@ extension ArticleCommentsViewModel: ArticleCommentsViewModelInput {
 
     func fetchArticleComments() {
         fetchArticleCommentsTrigger.accept(())
+    }
+
+    func createArticleComment(content: String) {
+        createArticleCommentTrigger.accept(content)
     }
 }
 
@@ -71,13 +89,39 @@ extension ArticleCommentsViewModel {
         getArticleCommentsUseCase.execute(slug: id)
             .do(
                 onSuccess: {
+                    owner.$isCreateCommentEnabled.accept(true)
                     owner.$didFetchArticleComments.accept(())
                     owner.$articleCommentRowViewModels.accept($0.viewModels)
                 },
-                onError: { _ in owner.$didFailToFetchArticleComments.accept(()) }
+                onError: { _ in
+                    owner.$isCreateCommentEnabled.accept(true)
+                    owner.$didFailToFetchArticleComments.accept(())
+                }
             )
             .asObservable()
             .mapToVoid()
             .catchAndReturn(())
+    }
+
+    private func createArticleCommentTriggered(owner: ArticleCommentsViewModel, content: String) -> Observable<Void> {
+        owner.$isCreateCommentEnabled.accept(false)
+        return createArticleCommentUseCase.execute(
+            articleSlug: id,
+            commentBody: content
+        )
+        .do(
+            onSuccess: { _ in
+                owner.$isCreateCommentEnabled.accept(true)
+                owner.fetchArticleComments()
+                owner.$didCreateArticleComment.accept(())
+            },
+            onError: { _ in
+                owner.$isCreateCommentEnabled.accept(true)
+                owner.$didFailToCreateArticleComment.accept(())
+            }
+        )
+        .asObservable()
+        .mapToVoid()
+        .catchAndReturn(())
     }
 }

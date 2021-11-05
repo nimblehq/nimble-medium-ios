@@ -146,9 +146,9 @@ extension Resolver: ResolverRegistering {
         register { _, args in
             ArticleCommentRowViewModel(comment: args.get())
         }.implements(ArticleCommentRowViewModelProtocol.self)
-        register { _, args in
+        register(ArticleCommentsViewModelProtocol.self) { _, args in
             ArticleCommentsViewModel(id: args.get())
-        }.implements(ArticleCommentsViewModelProtocol.self)
+        }.scope(.shared)
         register { _, args in
             ArticleDetailViewModel(id: args.get())
         }.implements(ArticleDetailViewModelProtocol.self)
