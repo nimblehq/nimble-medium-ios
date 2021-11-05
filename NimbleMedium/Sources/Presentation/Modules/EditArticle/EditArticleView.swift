@@ -13,12 +13,16 @@ struct EditArticleView: View {
 
     @Environment(\.presentationMode) var presentationMode
 
+    @ObservedViewModel private var viewModel: EditArticleViewModelProtocol = Resolver.resolve()
+
     @State private var title = ""
     @State private var description = ""
     @State private var articleBody = ""
     @State private var tagsList = ""
-
-    private let slug: String
+    @State private var isFetchArticleDetailFailed = false
+    @State private var isFetchArticleDetailSuccess = false
+    @State private var isLoadingToastPresented = false
+    @State private var isErrorToastPresented = false
 
     var body: some View {
         NavigationView {
@@ -29,6 +33,35 @@ struct EditArticleView: View {
                 .toolbar { navigationBarLeadingContent }
         }
         .accentColor(.white)
+        .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
+            ToastView(Localizable.errorGeneric()) {} background: {
+                Color.clear
+            }
+        }
+        .onAppear { viewModel.input.fetchArticleDetail() }
+        .onReceive(viewModel.output.didFailToUpdateArticle) { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                isErrorToastPresented = true
+            }
+        }
+        .onReceive(viewModel.output.didUpdateArticle) { _ in presentationMode.wrappedValue.dismiss() }
+        .onReceive(viewModel.output.didFailToFetchArticleDetail) { _ in
+            isErrorToastPresented = true
+            isFetchArticleDetailFailed = true
+        }
+        .bind(viewModel.output.isLoading, to: _isLoadingToastPresented)
+        .onReceive(viewModel.output.uiModel) {
+            guard let uiModel = $0 else { return }
+            isFetchArticleDetailSuccess = true
+            title = uiModel.title
+            description = uiModel.description
+            articleBody = uiModel.articleBody
+            tagsList = uiModel.tagsList
+        }
+        .toast(isPresented: $isLoadingToastPresented) {
+            ToastView(String.empty) {}
+                .toastViewStyle(IndefiniteProgressToastViewStyle())
+        }
     }
 
     var navigationBarLeadingContent: some ToolbarContent {
@@ -41,6 +74,16 @@ struct EditArticleView: View {
     }
 
     var contentView: some View {
+        Group {
+            if isFetchArticleDetailSuccess { form } else {
+                if isFetchArticleDetailFailed {
+                    Text(Localizable.articleDetailFetchFailureMessage())
+                } else { ProgressView() }
+            }
+        }
+    }
+
+    var form: some View {
         ScrollView {
             VStack(spacing: 15.0) {
                 ArticleInputFields(fields: [
@@ -54,20 +97,22 @@ struct EditArticleView: View {
                     .textField(placeholder: Localizable.editArticleTextFieldTagsListPlaceholder(), text: $tagsList)
                 ])
                 AppMainButton(title: Localizable.actionUpdateText()) {
-                    // TODO: Implement in integrate task
+                    viewModel.input.didTapUpdateButton(
+                        title: title,
+                        description: description,
+                        body: articleBody,
+                        tagsList: tagsList
+                    )
                 }
+                .disabled(title.isEmpty && description.isEmpty && articleBody.isEmpty && tagsList.isEmpty)
             }
             .padding()
         }
-    }
-
-    init(slug: String) {
-        self.slug = slug
     }
 }
 
 #if DEBUG
     struct EditArticleView_Previews: PreviewProvider {
-        static var previews: some View { EditArticleView(slug: "") }
+        static var previews: some View { EditArticleView() }
     }
 #endif

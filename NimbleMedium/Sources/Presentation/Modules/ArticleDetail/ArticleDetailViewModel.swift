@@ -12,6 +12,7 @@ import RxSwift
 
 protocol ArticleDetailViewModelInput {
 
+    func bindData(editArticleViewModel: EditArticleViewModelProtocol)
     func fetchArticleDetail()
     func toggleFollowUser()
     func toggleFavouriteArticle()
@@ -104,6 +105,14 @@ final class ArticleDetailViewModel: ObservableObject, ArticleDetailViewModelProt
 }
 
 extension ArticleDetailViewModel: ArticleDetailViewModelInput {
+
+    func bindData(editArticleViewModel: EditArticleViewModelProtocol) {
+        editArticleViewModel.output.didUpdateArticle
+            .emit(with: self) { owner, _ in
+                owner.fetchArticleDetail()
+            }
+            .disposed(by: disposeBag)
+    }
 
     func fetchArticleDetail() {
         fetchArticleDetailTrigger.accept(())
