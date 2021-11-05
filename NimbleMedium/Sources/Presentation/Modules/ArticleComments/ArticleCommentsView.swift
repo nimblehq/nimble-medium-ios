@@ -29,7 +29,7 @@ struct ArticleCommentsView: View {
 
     var body: some View {
         VStack {
-            comments
+            commentsView
             if isAuthenticated {
                 Spacer()
                 commentInput
@@ -61,7 +61,7 @@ struct ArticleCommentsView: View {
         .onAppear { viewModel.input.fetchArticleComments() }
     }
 
-    var comments: some View {
+    var commentsView: some View {
         Group {
             if !isFetchingArticleComments, let viewModels = articleCommentRowViewModels {
                 if !viewModels.isEmpty {
