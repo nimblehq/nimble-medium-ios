@@ -5,8 +5,8 @@
 //  Created by Minh Pham on 18/10/2021.
 //
 
-import Quick
 import Nimble
+import Quick
 import RxNimble
 import RxSwift
 import RxTest
@@ -61,7 +61,7 @@ final class CreateArticleUseCaseSpec: QuickSpec {
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
-                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        outputError = scheduler.createObserver(Error?.self)
                         articleRepository.createArticleParamsReturnValue = .error(TestError.mock)
 
                         usecase.execute(params: CreateArticleParameters.dummy)

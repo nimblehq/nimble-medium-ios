@@ -5,12 +5,12 @@
 //  Created by Minh Pham on 31/08/2021.
 //
 
-import Quick
 import Nimble
+import Quick
+import Resolver
 import RxNimble
 import RxSwift
 import RxTest
-import Resolver
 
 @testable import NimbleMedium
 
@@ -113,16 +113,16 @@ final class LoginViewModelSpec: QuickSpec {
             }
 
             describe("its didTapNoAccountButton() call") {
-                
+
                 it("returns output didSelectNoAccount with non empty signal") {
                     scheduler.scheduleAt(50) {
                         viewModel.input.didTapNoAccountButton()
                     }
-                    
+
                     expect(viewModel.output.didSelectNoAccount)
                         .events(scheduler: scheduler, disposeBag: disposeBag)
                         .notTo(beEmpty())
-                    
+
                     scheduler = nil
                 }
             }

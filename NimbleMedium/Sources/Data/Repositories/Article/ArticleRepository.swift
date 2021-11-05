@@ -28,6 +28,28 @@ final class ArticleRepository: ArticleRepositoryProtocol {
             .map { $0.article as Article }
     }
 
+    func deleteArticle(slug: String) -> Completable {
+        let requestConfiguration = ArticleRequestConfiguration.deleteArticle(slug: slug)
+        return authenticatedNetworkAPI.performRequest(requestConfiguration)
+    }
+
+    func favoriteArticle(slug: String) -> Single<Article> {
+        let requestConfiguration = ArticleRequestConfiguration.favoriteArticle(slug: slug)
+
+        return authenticatedNetworkAPI
+            .performRequest(requestConfiguration, for: APIArticleResponse.self)
+            .map { $0.article as Article }
+    }
+
+    func getArticle(slug: String) -> Single<Article> {
+        let requestConfiguration = ArticleRequestConfiguration
+            .getArticle(slug: slug)
+
+        return networkAPI
+            .performRequest(requestConfiguration, for: APIArticleResponse.self)
+            .map { $0.article as Article }
+    }
+
     func listArticles(params: GetArticlesParameters) -> Single<[Article]> {
         let requestConfiguration = ArticleRequestConfiguration.listArticles(params: params)
 
@@ -36,11 +58,18 @@ final class ArticleRepository: ArticleRepositoryProtocol {
             .map { $0.articles.map { $0 as Article } }
     }
 
-    func getArticle(slug: String) -> Single<Article> {
-        let requestConfiguration = ArticleRequestConfiguration
-            .getArticle(slug: slug)
+    func unfavoriteArticle(slug: String) -> Single<Article> {
+        let requestConfiguration = ArticleRequestConfiguration.unfavoriteArticle(slug: slug)
 
-        return networkAPI
+        return authenticatedNetworkAPI
+            .performRequest(requestConfiguration, for: APIArticleResponse.self)
+            .map { $0.article as Article }
+    }
+
+    func updateArticle(slug: String, params: UpdateMyArticleParameters) -> Single<Article> {
+        let requestConfiguration = ArticleRequestConfiguration.updateArticle(slug: slug, params: params)
+
+        return authenticatedNetworkAPI
             .performRequest(requestConfiguration, for: APIArticleResponse.self)
             .map { $0.article as Article }
     }

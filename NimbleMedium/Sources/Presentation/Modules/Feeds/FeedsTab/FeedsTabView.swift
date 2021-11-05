@@ -5,19 +5,18 @@
 //  Created by Mark G on 11/08/2021.
 //
 
+import PagerTabStripView
 import Refresh
 import Resolver
 import SwiftUI
 import ToastUI
-import PagerTabStripView
 
-struct FeedsTabView: View {
+struct FeedsTabView: View, Equatable {
 
     @ObservedViewModel private var viewModel: FeedsTabViewModelProtocol
-    
+
     @State private var isFirstLoad: Bool = true
     @State private var isErrorToastPresented = false
-    @State private var isShowingCreateArticleScreen = false
     @State private var tabType = TabType.yourFeeds
 
     var body: some View {
@@ -30,24 +29,30 @@ struct FeedsTabView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
-            ToastView(Localizable.errorGeneric()) { } background: { Color.clear }
+            ToastView(Localizable.errorGeneric()) {} background: { Color.clear }
         }
         .onReceive(viewModel.output.didFinishRefresh) { _ in if isFirstLoad { isFirstLoad = false } }
         .onReceive(viewModel.output.didFailToLoadArticle) { _ in isErrorToastPresented = true }
         .bind(viewModel.output.tabType, to: _tabType)
-        .fullScreenCover(isPresented: $isShowingCreateArticleScreen) { CreateArticleView() }
         .onAppear { viewModel.input.refresh() }
     }
 
     init(viewModel: FeedsTabViewModelProtocol) {
         self.viewModel = viewModel
     }
+
+    static func == (lhs: FeedsTabView, rhs: FeedsTabView) -> Bool {
+        lhs.isFirstLoad == rhs.isFirstLoad
+            && lhs.isErrorToastPresented == rhs.isErrorToastPresented
+            && lhs.tabType == rhs.tabType
+    }
 }
 
 // MARK: FeedList
+
 extension FeedsTabView {
 
-     private struct FeedList: View, Equatable {
+    private struct FeedList: View, Equatable {
 
         let viewModel: FeedsTabViewModelProtocol
 
@@ -111,12 +116,16 @@ extension FeedsTabView {
         }
 
         var articleDetailNavigationLink: some View {
-            NavigationLink(
-                destination: ArticleDetailView(slug: activeDetailID),
-                isActive: $isShowingFeedDetail,
-                label: { EmptyView() }
-            )
-            .hidden()
+            Group {
+                if !activeDetailID.isEmpty {
+                    NavigationLink(
+                        destination: ArticleDetailView(slug: activeDetailID),
+                        isActive: $isShowingFeedDetail,
+                        label: { EmptyView() }
+                    )
+                    .hidden()
+                } else { EmptyView() }
+            }
         }
 
         static func == (lhs: FeedsTabView.FeedList, rhs: FeedsTabView.FeedList) -> Bool {
@@ -134,9 +143,9 @@ extension FeedsTabView {
 }
 
 #if DEBUG
-struct FeedsTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedsTabView(viewModel: Resolver.resolve())
+    struct FeedsTabView_Previews: PreviewProvider {
+        static var previews: some View {
+            FeedsTabView(viewModel: Resolver.resolve())
+        }
     }
-}
 #endif

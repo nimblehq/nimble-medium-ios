@@ -33,13 +33,13 @@ struct CreateArticleView: View {
                 .navigationBarColor(backgroundColor: .green)
                 .toolbar { navigationBarLeadingContent }
                 .toast(isPresented: $errorToast, dismissAfter: 3.0) {
-                    ToastView(errorMessage) { } background: {
+                    ToastView(errorMessage) {} background: {
                         Color.clear
                     }
                 }
                 .toast(isPresented: $loadingToast) {
-                    ToastView(String.empty) { }
-                    .toastViewStyle(IndefiniteProgressToastViewStyle())
+                    ToastView(String.empty) {}
+                        .toastViewStyle(IndefiniteProgressToastViewStyle())
                 }
         }
         .accentColor(.white)
@@ -60,24 +60,18 @@ struct CreateArticleView: View {
         }
     }
 
-    // swiftlint:disable closure_body_length
     var contentView: some View {
         ScrollView {
             VStack(spacing: 15.0) {
-                AppTextField(
-                    placeholder: Localizable.createArticleTextFieldTitlePlaceholder(),
-                    text: $title)
+                AppTextField(placeholder: Localizable.createArticleTextFieldTitlePlaceholder(), text: $title)
                     .font(.system(size: 20))
                 AppTextField(
                     placeholder: Localizable.createArticleTextFieldDescriptionPlaceholder(),
-                    text: $description)
-                AppTextView(
-                    placeholder: Localizable.createArticleTextViewBodyPlaceholder(),
-                    text: $articleBody)
+                    text: $description
+                )
+                AppTextView(placeholder: Localizable.createArticleTextViewBodyPlaceholder(), text: $articleBody)
                     .frame(height: 200.0, alignment: .leading)
-                AppTextField(
-                    placeholder: Localizable.createArticleTextFieldTagsListPlaceholder(),
-                    text: $tagsList)
+                AppTextField(placeholder: Localizable.createArticleTextFieldTagsListPlaceholder(), text: $tagsList)
                 AppMainButton(title: Localizable.actionPublishText()) {
                     hideKeyboard()
                     viewModel.input.didTapPublishButton(
@@ -92,7 +86,7 @@ struct CreateArticleView: View {
 }
 
 #if DEBUG
-struct CreateArticleView_Previews: PreviewProvider {
-    static var previews: some View { CreateArticleView() }
-}
+    struct CreateArticleView_Previews: PreviewProvider {
+        static var previews: some View { CreateArticleView() }
+    }
 #endif

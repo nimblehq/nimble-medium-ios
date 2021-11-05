@@ -5,8 +5,8 @@
 //  Created by Minh Pham on 26/08/2021.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
 protocol RequestConfiguration {
 

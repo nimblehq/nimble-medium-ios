@@ -15,7 +15,7 @@ struct NavigationBarModifier: ViewModifier {
     init(backgroundColor: Color, titleColor: Color = .white) {
         self.backgroundColor = backgroundColor
         self.titleColor = titleColor
-        
+
         let coloredAppearance = UINavigationBarAppearance()
         coloredAppearance.configureWithTransparentBackground()
         coloredAppearance.backgroundColor = backgroundColor.uiColor

@@ -5,10 +5,10 @@
 //  Created by Minh Pham on 13/10/2021.
 //
 
-import RxSwift
-import RxCocoa
 import Combine
 import Resolver
+import RxCocoa
+import RxSwift
 
 // sourcery: AutoMockable
 protocol EditProfileViewModelInput {
@@ -42,7 +42,7 @@ final class EditProfileViewModel: ObservableObject, EditProfileViewModelProtocol
     typealias UpdateCurrentUserParams = (
         username: String, email: String, password: String?, avatarURL: String, bio: String
     )
-    
+
     private let disposeBag = DisposeBag()
 
     var input: EditProfileViewModelInput { self }
@@ -66,7 +66,7 @@ final class EditProfileViewModel: ObservableObject, EditProfileViewModelProtocol
             .flatMapLatest { owner, _ in owner.getCurrentUserTriggered(owner: owner) }
             .subscribe()
             .disposed(by: disposeBag)
-        
+
         updateCurrentUserSessionTrigger
             .withUnretained(self)
             .flatMapLatest { owner, inputs in owner.updateCurrentUserTriggered(owner: owner, inputs: inputs) }
@@ -93,11 +93,11 @@ extension EditProfileViewModel: EditProfileViewModelInput {
     }
 }
 
-extension EditProfileViewModel: EditProfileViewModelOutput { }
+extension EditProfileViewModel: EditProfileViewModelOutput {}
 
-private extension EditProfileViewModel {
+extension EditProfileViewModel {
 
-    func getCurrentUserTriggered(owner: EditProfileViewModel) -> Observable<Void> {
+    private func getCurrentUserTriggered(owner: EditProfileViewModel) -> Observable<Void> {
         getCurrentUserUseCase
             .execute()
             .do(
@@ -109,7 +109,7 @@ private extension EditProfileViewModel {
             .catchAndReturn(())
     }
 
-    func updateCurrentUserTriggered(owner: EditProfileViewModel, inputs: UpdateCurrentUserParams) -> Observable<Void> {
+    private func updateCurrentUserTriggered(owner: EditProfileViewModel, inputs: UpdateCurrentUserParams) -> Observable<Void> {
         updateCurrentUserUseCase
             .execute(
                 params: UpdateCurrentUserParameters(
@@ -135,7 +135,7 @@ private extension EditProfileViewModel {
             .catchAndReturn(())
     }
 
-    func generateUIModel(fromUser user: User) -> EditProfileView.UIModel {
+    private func generateUIModel(fromUser user: User) -> EditProfileView.UIModel {
         return EditProfileView.UIModel(
             username: user.username,
             email: user.email,

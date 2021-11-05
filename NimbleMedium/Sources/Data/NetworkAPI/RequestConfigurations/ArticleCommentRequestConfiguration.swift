@@ -20,9 +20,9 @@ extension ArticleCommentRequestConfiguration: RequestConfiguration {
 
     var endpoint: String {
         switch self {
-        case .createComment(let slug, _), .getComments(let slug):
+        case let .createComment(slug, _), let .getComments(slug):
             return "/articles/\(slug)/comments"
-        case .deleteComment(let slug, let id):
+        case let .deleteComment(slug, id):
             return "/articles/\(slug)/comments/\(id)"
         }
     }
@@ -40,7 +40,7 @@ extension ArticleCommentRequestConfiguration: RequestConfiguration {
 
     var parameters: Parameters? {
         switch self {
-        case .createComment(_, let body):
+        case let .createComment(_, body):
             return ["comment": ["body": body]]
         case .deleteComment, .getComments:
             return [:]

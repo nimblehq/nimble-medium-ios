@@ -5,12 +5,12 @@
 //  Created by Mark G on 13/09/2021.
 //
 
-import Quick
 import Nimble
+import Quick
+import Resolver
 import RxNimble
 import RxSwift
 import RxTest
-import Resolver
 
 @testable import NimbleMedium
 
@@ -18,10 +18,18 @@ final class FeedsViewModelSpec: QuickSpec {
 
     @LazyInjected var getCurrentSessionUseCase: GetCurrentSessionUseCaseProtocolMock
 
+    @LazyInjected var sideMenuActionsViewModel: SideMenuActionsViewModelProtocolMock
+
     override func spec() {
+
         var viewModel: FeedsViewModelProtocol!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
+
+        var userSessionViewModel: UserSessionViewModelProtocolMock!
+
+        var sideMenuActionsViewModelOutput: SideMenuActionsViewModelOutputMock!
+        var userSessionViewModelInput: UserSessionViewModelInputMock!
 
         describe("a FeedsViewModel") {
 
@@ -38,6 +46,8 @@ final class FeedsViewModelSpec: QuickSpec {
                         articleTitle: article.title,
                         articleDescription: article.description,
                         articleUpdatedAt: article.updatedAt.format(with: .monthDayYear),
+                        articleFavoriteCount: article.favoritesCount,
+                        articleCanFavorite: false,
                         authorImage: try? article.author.image?.asURL(),
                         authorName: article.author.username
                     )
@@ -51,9 +61,39 @@ final class FeedsViewModelSpec: QuickSpec {
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
                 viewModel = FeedsViewModel()
+                userSessionViewModel = UserSessionViewModelProtocolMock()
+
+                sideMenuActionsViewModelOutput = SideMenuActionsViewModelOutputMock()
+                sideMenuActionsViewModelOutput.underlyingDidLogout = .just(())
+                sideMenuActionsViewModelOutput.underlyingDidLogin = .just(())
+                self.sideMenuActionsViewModel.output = sideMenuActionsViewModelOutput
+
+                userSessionViewModelInput = UserSessionViewModelInputMock()
+                userSessionViewModel.input = userSessionViewModelInput
             }
 
-            describe("its toggleSideMenu() call") {
+            describe("its bindData call") {
+
+                beforeEach {
+                    bindData()
+                }
+
+                context("when sideMenuActionsViewModel didLogin emits event") {
+
+                    it("calls userSessionViewModel's input getUserSession") {
+                        expect(userSessionViewModelInput.getUserSessionCalled) == true
+                    }
+                }
+
+                context("when sideMenuActionsViewModel didLogout emits event") {
+
+                    it("calls userSessionViewModel's input getUserSession") {
+                        expect(userSessionViewModelInput.getUserSessionCalled) == true
+                    }
+                }
+            }
+
+            describe("its toggleSideMenu call") {
 
                 beforeEach {
                     scheduler.scheduleAt(5) {
@@ -68,70 +108,11 @@ final class FeedsViewModelSpec: QuickSpec {
                 }
             }
 
-            describe("its viewOnAppear() call") {
-
-                let user = UserDummy()
-
-                beforeEach {
-                    self.getCurrentSessionUseCase.executeReturnValue = .just(user)
-                }
-
-                context("when getCurrentSessionUseCase returns a valid user session") {
-
-                    beforeEach {
-                        self.getCurrentSessionUseCase.executeReturnValue =
-                            .just(user, on: scheduler, at: 50)
-
-                        viewModel.input.viewOnAppear()
-                    }
-
-                    it("returns output with isAuthenticated as true") {
-                        expect(viewModel.output.isAuthenticated)
-                            .events(scheduler: scheduler, disposeBag: disposeBag)
-                            .to(equal([
-                                .next(0, false),
-                                .next(50, true)
-                            ]))
-                    }
-                }
-
-                context("when getCurrentSessionUseCase returns an invalid user session") {
-
-                    beforeEach {
-                        self.getCurrentSessionUseCase.executeReturnValue =
-                            .just(nil, on: scheduler, at: 50)
-
-                        viewModel.input.viewOnAppear()
-                    }
-
-                    it("returns output with isAuthenticated as false") {
-                        expect(viewModel.output.isAuthenticated)
-                            .events(scheduler: scheduler, disposeBag: disposeBag)
-                            .to(equal([
-                                .next(0, false),
-                                .next(50, false)
-                            ]))
-                    }
-                }
-
-                context("when getCurrentSessionUseCase returns an error getting the user session") {
-
-                    beforeEach {
-                        self.getCurrentSessionUseCase.executeReturnValue =
-                            .error(TestError.mock, on: scheduler, at: 50)
-
-                        viewModel.input.viewOnAppear()
-                    }
-
-                    it("returns output with isAuthenticated as false") {
-                        expect(viewModel.output.isAuthenticated)
-                            .events(scheduler: scheduler, disposeBag: disposeBag)
-                            .to(equal([
-                                .next(0, false),
-                                .next(50, false)
-                            ]))
-                    }
-                }
+            func bindData() {
+                viewModel.input.bindData(
+                    sideMenuActionsViewModel: sideMenuActionsViewModel,
+                    userSessionViewModel: userSessionViewModel
+                )
             }
         }
     }

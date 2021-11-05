@@ -5,8 +5,8 @@
 //  Created by Minh Pham on 29/09/2021.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 import RxSwift
 
 final class AuthenticatedNetworkAPI: AuthenticatedNetworkAPIProtocol {

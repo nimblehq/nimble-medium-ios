@@ -18,7 +18,7 @@ struct APIArticleComment: ArticleComment, Decodable, Equatable {
     let createdAt: Date
     let updatedAt: Date
     let body: String
-    
+
     private let apiAuthor: DecodableProfile
     var author: Profile { apiAuthor }
 }

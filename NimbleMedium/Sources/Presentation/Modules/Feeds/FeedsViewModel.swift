@@ -5,15 +5,18 @@
 //  Created by Mark G on 12/08/2021.
 //
 
-import RxSwift
-import RxCocoa
-import SwiftUI
 import Resolver
+import RxCocoa
+import RxSwift
+import SwiftUI
 
 protocol FeedsViewModelInput {
 
+    func bindData(
+        sideMenuActionsViewModel: SideMenuActionsViewModelProtocol,
+        userSessionViewModel: UserSessionViewModelProtocol
+    )
     func toggleSideMenu()
-    func viewOnAppear()
 }
 
 protocol FeedsViewModelOutput {
@@ -21,7 +24,6 @@ protocol FeedsViewModelOutput {
     var yourFeedsViewModel: FeedsTabViewModelProtocol { get }
     var globalFeedsViewModel: FeedsTabViewModelProtocol { get }
     var didToggleSideMenu: Signal<Void> { get }
-    var isAuthenticated: Driver<Bool> { get }
 }
 
 protocol FeedsViewModelProtocol: ObservableViewModel {
@@ -36,18 +38,15 @@ final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
     var output: FeedsViewModelOutput { self }
 
     private var currentOffset = 0
-    
+
     private let limit = 10
     private let disposeBag = DisposeBag()
     private let getCurrentUserSessionTrigger = PublishRelay<Void>()
 
     @PublishRelayProperty var didToggleSideMenu: Signal<Void>
-    @BehaviorRelayProperty(false) var isAuthenticated: Driver<Bool>
 
     let yourFeedsViewModel: FeedsTabViewModelProtocol
     let globalFeedsViewModel: FeedsTabViewModelProtocol
-
-    @Injected private var getCurrentSessionUseCase: GetCurrentSessionUseCaseProtocol
 
     init() {
         yourFeedsViewModel = Resolver.resolve(
@@ -58,42 +57,33 @@ final class FeedsViewModel: ObservableObject, FeedsViewModelProtocol {
             FeedsTabViewModelProtocol.self,
             args: FeedsTabView.TabType.globalFeeds
         )
-
-        getCurrentUserSessionTrigger
-            .withUnretained(self)
-            .flatMapLatest { owner, _ in owner.getCurrentUserSessionTriggered(owner: owner) }
-            .subscribe()
-            .disposed(by: disposeBag)
     }
 }
 
 extension FeedsViewModel: FeedsViewModelInput {
 
-    func toggleSideMenu() {
-        $didToggleSideMenu.accept(())
+    func bindData(
+        sideMenuActionsViewModel: SideMenuActionsViewModelProtocol,
+        userSessionViewModel: UserSessionViewModelProtocol
+    ) {
+        sideMenuActionsViewModel.output.didLogin.asObservable()
+            .subscribe(
+                with: self,
+                onNext: { _, _ in userSessionViewModel.input.getUserSession() }
+            )
+            .disposed(by: disposeBag)
+
+        sideMenuActionsViewModel.output.didLogout.asObservable()
+            .subscribe(
+                with: self,
+                onNext: { _, _ in userSessionViewModel.input.getUserSession() }
+            )
+            .disposed(by: disposeBag)
     }
 
-    func viewOnAppear() {
-        getCurrentUserSessionTrigger.accept(())
+    func toggleSideMenu() {
+        $didToggleSideMenu.accept(())
     }
 }
 
 extension FeedsViewModel: FeedsViewModelOutput {}
-
-// MARK: - Private
-
-private extension FeedsViewModel {
-
-    func getCurrentUserSessionTriggered(owner: FeedsViewModel) -> Observable<Void> {
-        getCurrentSessionUseCase
-            .execute()
-            .map { $0 != nil }
-            .do(
-                onSuccess: { owner.$isAuthenticated.accept($0) },
-                onError: { _ in owner.$isAuthenticated.accept(false) }
-            )
-            .asObservable()
-            .mapToVoid()
-            .catchAndReturn(())
-    }
-}

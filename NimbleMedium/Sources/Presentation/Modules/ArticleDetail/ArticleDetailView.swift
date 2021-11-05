@@ -5,18 +5,28 @@
 //  Created by Mark G on 14/09/2021.
 //
 
-import SwiftUI
-import SDWebImageSwiftUI
 import Resolver
+import RxSwift
+import SDWebImageSwiftUI
+import SwiftUI
 import ToastUI
 
 struct ArticleDetailView: View {
 
     @ObservedViewModel private var viewModel: ArticleDetailViewModelProtocol
+    let editArticleViewModel: EditArticleViewModelProtocol
 
     @State private var uiModel: UIModel?
     @State private var isErrorToastPresented = false
+    @State private var isLoadingToastPresented = false
     @State private var isFetchArticleDetailFailed = false
+    @State private var isArticleAuthor = false
+    @State private var isEditArticlePresented = false
+
+    // swiftlint:disable identifier_name
+    @State private var isDeleteArticleConfirmationAlertPresented = false
+
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     private let slug: String
 
@@ -31,9 +41,10 @@ struct ArticleDetailView: View {
             }
         }
         .navigationTitle(Localizable.articleDetailTitleText())
+        .toolbar { navigationBarTrailingContent }
         .modifier(NavigationBarPrimaryStyle())
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
-            ToastView(Localizable.errorGeneric()) { } background: {
+            ToastView(Localizable.errorGeneric()) {} background: {
                 Color.clear
             }
         }
@@ -42,10 +53,43 @@ struct ArticleDetailView: View {
             isErrorToastPresented = true
             isFetchArticleDetailFailed = true
         }
-        .onReceive(viewModel.output.didFailToToggleFollow) { _ in
-            isErrorToastPresented = true
+        .onReceive(
+            Observable.of(
+                viewModel.output.didFailToToggleFollow,
+                viewModel.output.didFailToToggleFavouriteArticle
+            )
+            .merge()
+        ) { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                isErrorToastPresented = true
+            }
         }
+        .onReceive(viewModel.output.didDeleteArticle) { _ in
+            presentationMode.wrappedValue.dismiss()
+        }
+        .onReceive(viewModel.output.didFailToDeleteArticle) { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                isErrorToastPresented = true
+            }
+        }
+        .bind(viewModel.output.isLoading, to: _isLoadingToastPresented)
         .bind(viewModel.output.uiModel, to: _uiModel)
+        .bind(viewModel.output.isArticleAuthor, to: _isArticleAuthor)
+        .alert(isPresented: $isDeleteArticleConfirmationAlertPresented) {
+            Alert(
+                title: Text(Localizable.popupConfirmDeleteArticleTitle()),
+                primaryButton: .destructive(
+                    Text(Localizable.actionConfirmText()),
+                    action: { viewModel.input.deleteArticle() }
+                ),
+                secondaryButton: .default(Text(Localizable.actionCancelText()))
+            )
+        }
+        .toast(isPresented: $isLoadingToastPresented) {
+            ToastView(String.empty) {}
+                .toastViewStyle(IndefiniteProgressToastViewStyle())
+        }
+        .fullScreenCover(isPresented: $isEditArticlePresented) { EditArticleView() }
     }
 
     var comments: some View {
@@ -63,13 +107,34 @@ struct ArticleDetailView: View {
         .padding(.all, 16.0)
     }
 
+    var navigationBarTrailingContent: some ToolbarContent {
+        ToolbarItemGroup(placement: .navigationBarTrailing) {
+            if isArticleAuthor {
+                Button(
+                    action: { isDeleteArticleConfirmationAlertPresented = true },
+                    label: { Image(systemName: SystemImageName.minusSquare.rawValue) }
+                )
+                Button(
+                    action: { isEditArticlePresented = true },
+                    label: { Image(systemName: SystemImageName.squareAndPencil.rawValue) }
+                )
+            }
+        }
+    }
+
     init(slug: String) {
         self.slug = slug
-        
+
+        editArticleViewModel = Resolver.resolve(
+            EditArticleViewModelProtocol.self,
+            args: slug
+        )
+
         viewModel = Resolver.resolve(
             ArticleDetailViewModelProtocol.self,
             args: slug
         )
+        viewModel.input.bindData(editArticleViewModel: editArticleViewModel)
     }
 
     func articleDetail(uiModel: UIModel) -> some View {
@@ -82,10 +147,7 @@ struct ArticleDetailView: View {
                 HStack {
                     author(uiModel: uiModel)
                     Spacer()
-
-                    FollowButton(isSelected: uiModel.authorIsFollowing) {
-                        viewModel.input.toggleFollowUser()
-                    }
+                    if !isArticleAuthor { interactionButtons(uiModel: uiModel) }
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -100,6 +162,20 @@ struct ArticleDetailView: View {
         }
     }
 
+    func interactionButtons(uiModel: UIModel) -> some View {
+        Group {
+            FollowButton(isSelected: uiModel.authorIsFollowing) {
+                viewModel.input.toggleFollowUser()
+            }
+            FavouriteButton(
+                count: uiModel.articleFavoriteCount,
+                isSelected: uiModel.articleIsFavorited
+            ) {
+                viewModel.input.toggleFavouriteArticle()
+            }
+        }
+    }
+
     func author(uiModel: UIModel) -> some View {
         AuthorView(
             articleUpdateAt: uiModel.articleUpdatedAt,
@@ -108,5 +184,4 @@ struct ArticleDetailView: View {
         )
         .authorNameColor(.white)
     }
-
 }

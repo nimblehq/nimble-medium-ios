@@ -5,14 +5,17 @@
 //  Created by Mark G on 15/09/2021.
 //
 
-import SwiftUI
 import SDWebImageSwiftUI
+import SwiftUI
+import ToastUI
 
 struct ArticleCommentRow: View {
 
     @ObservedViewModel private var viewModel: ArticleCommentRowViewModelProtocol
 
-    @State var uiModel: UIModel?
+    @State private var uiModel: UIModel?
+    @State private var isLoadingToastPresented = false
+    @State private var isErrorToastPresented = false
 
     var body: some View {
         Group {
@@ -37,8 +40,21 @@ struct ArticleCommentRow: View {
                 EmptyView()
             }
         }
-        .onReceive(viewModel.output.uiModel) {
-            uiModel = $0
+        .bind(viewModel.output.uiModel, to: _uiModel)
+        .bind(viewModel.output.isLoading, to: _isLoadingToastPresented)
+        .onReceive(viewModel.output.didFailToDeleteComment) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                isErrorToastPresented = true
+            }
+        }
+        .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
+            ToastView(Localizable.errorGeneric()) {} background: {
+                Color.clear
+            }
+        }
+        .toast(isPresented: $isLoadingToastPresented) {
+            ToastView(String.empty) {}
+                .toastViewStyle(IndefiniteProgressToastViewStyle())
         }
     }
 
@@ -54,6 +70,14 @@ struct ArticleCommentRow: View {
                 .foregroundColor(.green)
             Text(uiModel.commentUpdatedAt)
                 .foregroundColor(.gray)
+            if uiModel.isAuthor {
+                Spacer()
+                Button(
+                    action: { viewModel.input.deleteComment() },
+                    label: { Image(systemName: SystemImageName.trashFill.rawValue) }
+                )
+                .foregroundColor(.black)
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.all, 16.0)

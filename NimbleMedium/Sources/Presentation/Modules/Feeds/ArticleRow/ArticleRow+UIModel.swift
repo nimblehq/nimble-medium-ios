@@ -15,6 +15,10 @@ extension ArticleRow {
         let articleTitle: String
         let articleDescription: String
         let articleUpdatedAt: String
+        let articleFavoriteCount: Int
+        let articleCanFavorite: Bool
+        var articleIsFavorited: Bool = false
+
         let authorImage: URL?
         let authorName: String
     }

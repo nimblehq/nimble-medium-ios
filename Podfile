@@ -27,6 +27,7 @@ target 'NimbleMedium' do
     pod 'RxNimble', subspecs: ['RxBlocking', 'RxTest']
     pod 'RxSwift'
     pod 'Sourcery'
+    pod 'SwiftFormat/CLI'
   end
 
   target 'NimbleMediumUITests' do

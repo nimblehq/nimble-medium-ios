@@ -66,6 +66,12 @@ extension Resolver: ResolverRegistering {
             DeleteArticleCommentUseCase(articleCommentRepository: resolve())
         }.implements(DeleteArticleCommentUseCaseProtocol.self)
         register {
+            DeleteMyArticleUseCase(articleRepository: resolve())
+        }.implements(DeleteMyArticleUseCaseProtocol.self)
+        register {
+            FollowUserUseCase(userRepository: resolve())
+        }.implements(FollowUserUseCaseProtocol.self)
+        register {
             GetArticleCommentsUseCase(articleCommentRepository: resolve())
         }.implements(GetArticleCommentsUseCaseProtocol.self)
         register {
@@ -126,20 +132,23 @@ extension Resolver: ResolverRegistering {
             GetCreatedArticlesUseCase(articleRepository: resolve())
         }.implements(GetCreatedArticlesUseCaseProtocol.self)
         register {
+            ToggleArticleFavoriteStatusUseCase(articleRepository: resolve())
+        }.implements(ToggleArticleFavoriteStatusUseCaseProtocol.self)
+        register {
             UnfollowUserUseCase(userRepository: resolve())
         }.implements(UnfollowUserUseCaseProtocol.self)
         register {
-            FollowUserUseCase(userRepository: resolve())
-        }.implements(FollowUserUseCaseProtocol.self)
+            UpdateMyArticleUseCase(articleRepository: resolve())
+        }.implements(UpdateMyArticleUseCaseProtocol.self)
     }
 
     private static func registerViewModels() {
         register { _, args in
-            ArticleCommentRowViewModel(comment: args.get())
+            ArticleCommentRowViewModel(args: args.get())
         }.implements(ArticleCommentRowViewModelProtocol.self)
-        register { _, args in
+        register(ArticleCommentsViewModelProtocol.self) { _, args in
             ArticleCommentsViewModel(id: args.get())
-        }.implements(ArticleCommentsViewModelProtocol.self)
+        }.scope(.shared)
         register { _, args in
             ArticleDetailViewModel(id: args.get())
         }.implements(ArticleDetailViewModelProtocol.self)
@@ -168,5 +177,9 @@ extension Resolver: ResolverRegistering {
         register { _, args in
             UserProfileFavouritedArticlesTabViewModel(username: args.get())
         }.implements(UserProfileFavouritedArticlesTabViewModelProtocol.self)
+        register(EditArticleViewModelProtocol.self) { _, args in
+            EditArticleViewModel(slug: args.get())
+        }
+        .scope(.shared)
     }
 }

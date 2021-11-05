@@ -5,20 +5,63 @@
 //  Created by Mark G on 15/09/2021.
 //
 
-import SwiftUI
 import Resolver
+import SwiftUI
 import ToastUI
 
 struct ArticleCommentsView: View {
 
     @ObservedViewModel private var viewModel: ArticleCommentsViewModelProtocol
 
+    @EnvironmentObject private var userSessionViewModel: UserSessionViewModel
+
     @State private var articleCommentRowViewModels: [ArticleCommentRowViewModelProtocol]?
     @State private var isErrorToastPresented = false
     @State private var isFetchingArticleComments = true
     @State private var isFetchArticleCommentsFailed = false
+    @State private var commentContent: String = ""
+    @State private var isCreateCommentEnabled = false
+    @State private var isAuthenticated = false
+
+    private var isPostCommentButtonEnabled: Bool {
+        isCreateCommentEnabled && !commentContent.isEmpty
+    }
 
     var body: some View {
+        VStack {
+            commentsView
+            if isAuthenticated {
+                Spacer()
+                commentInput
+            }
+        }
+        .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
+            ToastView(Localizable.errorGeneric()) {} background: {
+                Color.clear
+            }
+        }
+        .navigationTitle(Localizable.feedCommentsTitle())
+        .modifier(NavigationBarPrimaryStyle())
+        .onReceive(viewModel.output.didFailToFetchArticleComments) { _ in
+            isFetchingArticleComments = false
+            isErrorToastPresented = true
+            isFetchArticleCommentsFailed = true
+        }
+        .onReceive(viewModel.output.didFailToCreateArticleComment) { _ in
+            isErrorToastPresented = true
+        }
+        .onReceive(viewModel.output.didFetchArticleComments) {
+            isFetchingArticleComments = false
+        }
+        .onReceive(viewModel.output.articleCommentRowViewModels) {
+            articleCommentRowViewModels = $0
+        }
+        .bind(viewModel.output.isCreateCommentEnabled, to: _isCreateCommentEnabled)
+        .bind(userSessionViewModel.output.isAuthenticated, to: _isAuthenticated)
+        .onAppear { viewModel.input.fetchArticleComments() }
+    }
+
+    var commentsView: some View {
         Group {
             if !isFetchingArticleComments, let viewModels = articleCommentRowViewModels {
                 if !viewModels.isEmpty {
@@ -39,25 +82,26 @@ struct ArticleCommentsView: View {
                 } else { ProgressView() }
             }
         }
-        .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
-            ToastView(Localizable.errorGeneric()) { } background: {
-                Color.clear
+        .frame(maxHeight: .infinity)
+    }
+
+    var commentInput: some View {
+        HStack {
+            AppTextView(
+                placeholder: Localizable.feedCommentsCommentTextViewPlaceholder(),
+                text: $commentContent
+            )
+            .disabled(!isCreateCommentEnabled)
+            Button {
+                viewModel.input.createArticleComment(content: commentContent)
+            } label: {
+                Image(systemName: SystemImageName.arrowshapeTurnUpForwardCircleFill.rawValue)
+                    .foregroundColor(isPostCommentButtonEnabled ? .black : .gray)
             }
+            .disabled(!isPostCommentButtonEnabled)
         }
-        .navigationTitle(Localizable.feedCommentsTitle())
-        .modifier(NavigationBarPrimaryStyle())
-        .onReceive(viewModel.output.didFailToFetchArticleComments) { _ in
-            isFetchingArticleComments = false
-            isErrorToastPresented = true
-            isFetchArticleCommentsFailed = true
-        }
-        .onReceive(viewModel.output.didFetchArticleComments) {
-            isFetchingArticleComments = false
-        }
-        .onReceive(viewModel.output.articleCommentRowViewModels) {
-            articleCommentRowViewModels = $0
-        }
-        .onAppear { viewModel.input.fetchArticleComments() }
+        .frame(height: 50)
+        .padding(.horizontal, 20.0)
     }
 
     init(id: String) {

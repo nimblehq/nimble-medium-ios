@@ -5,10 +5,10 @@
 //  Created by Minh Pham on 25/08/2021.
 //
 
-import RxSwift
-import RxCocoa
 import Combine
 import Resolver
+import RxCocoa
+import RxSwift
 
 // sourcery: AutoMockable
 protocol SideMenuActionsViewModelInput {
@@ -16,7 +16,8 @@ protocol SideMenuActionsViewModelInput {
     func bindData(
         loginViewModel: LoginViewModelProtocol,
         signupViewModel: SignupViewModelProtocol,
-        homeViewModel: HomeViewModelProtocol
+        homeViewModel: HomeViewModelProtocol,
+        userSessionViewModel: UserSessionViewModelProtocol
     )
     func selectLoginOption()
     func selectLogoutOption()
@@ -28,10 +29,10 @@ protocol SideMenuActionsViewModelInput {
 protocol SideMenuActionsViewModelOutput {
 
     var didLogout: Signal<Void> { get }
+    var didLogin: Signal<Void> { get }
     var didSelectLoginOption: Signal<Bool> { get }
     var didSelectMyProfileOption: Signal<Bool> { get }
     var didSelectSignupOption: Signal<Bool> { get }
-    var isAuthenticated: Driver<Bool> { get }
 }
 
 // sourcery: AutoMockable
@@ -49,25 +50,16 @@ final class SideMenuActionsViewModel: ObservableObject, SideMenuActionsViewModel
     var output: SideMenuActionsViewModelOutput { self }
 
     @PublishRelayProperty var didLogout: Signal<Void>
+    @PublishRelayProperty var didLogin: Signal<Void>
     @PublishRelayProperty var didSelectLoginOption: Signal<Bool>
     @PublishRelayProperty var didSelectMyProfileOption: Signal<Bool>
     @PublishRelayProperty var didSelectSignupOption: Signal<Bool>
 
-    @BehaviorRelayProperty(false) var isAuthenticated: Driver<Bool>
-
-    @Injected var getCurrentSessionUseCase: GetCurrentSessionUseCaseProtocol
     @Injected var logoutUseCase: LogoutUseCaseProtocol
 
-    private let getCurrentUserSessionTrigger = PublishRelay<Void>()
     private let logoutTrigger = PublishRelay<Void>()
 
     init() {
-        getCurrentUserSessionTrigger
-            .withUnretained(self)
-            .flatMapLatest { owner, _ in owner.getCurrentUserSessionTriggered(owner: owner) }
-            .subscribe()
-            .disposed(by: disposeBag)
-
         logoutTrigger
             .withUnretained(self)
             .flatMapLatest { owner, _ in owner.logoutTriggered(owner: owner) }
@@ -81,12 +73,20 @@ extension SideMenuActionsViewModel: SideMenuActionsViewModelInput {
     func bindData(
         loginViewModel: LoginViewModelProtocol,
         signupViewModel: SignupViewModelProtocol,
-        homeViewModel: HomeViewModelProtocol
+        homeViewModel: HomeViewModelProtocol,
+        userSessionViewModel: UserSessionViewModelProtocol
     ) {
         loginViewModel.output.didSelectNoAccount.asObservable()
             .subscribe(
                 with: self,
                 onNext: { owner, _ in owner.selectSignupOption() }
+            )
+            .disposed(by: disposeBag)
+
+        loginViewModel.output.didLogin.asObservable()
+            .subscribe(
+                with: self,
+                onNext: { owner, _ in owner.$didLogin.accept(()) }
             )
             .disposed(by: disposeBag)
 
@@ -99,7 +99,7 @@ extension SideMenuActionsViewModel: SideMenuActionsViewModelInput {
 
         homeViewModel.output.isSideMenuOpenDidChange
             .filter { $0 }
-            .emit(with: self) { owner, _ in owner.getCurrentUserSessionTrigger.accept(()) }
+            .emit(with: self) { _, _ in userSessionViewModel.input.getUserSession() }
             .disposed(by: disposeBag)
     }
 
@@ -120,24 +120,11 @@ extension SideMenuActionsViewModel: SideMenuActionsViewModelInput {
     }
 }
 
-extension SideMenuActionsViewModel: SideMenuActionsViewModelOutput { }
+extension SideMenuActionsViewModel: SideMenuActionsViewModelOutput {}
 
-private extension SideMenuActionsViewModel {
+extension SideMenuActionsViewModel {
 
-    func getCurrentUserSessionTriggered(owner: SideMenuActionsViewModel) -> Observable<Void> {
-        getCurrentSessionUseCase
-            .execute()
-            .map { $0 != nil }
-            .do(
-                onSuccess: { owner.$isAuthenticated.accept($0) },
-                onError: { _ in owner.$isAuthenticated.accept(false) }
-            )
-            .asObservable()
-            .mapToVoid()
-            .catchAndReturn(())
-    }
-
-    func logoutTriggered(owner: SideMenuActionsViewModel) -> Observable<Void> {
+    private func logoutTriggered(owner: SideMenuActionsViewModel) -> Observable<Void> {
         logoutUseCase
             .execute()
             .do(

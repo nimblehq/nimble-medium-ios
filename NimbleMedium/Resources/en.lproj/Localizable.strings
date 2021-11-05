@@ -25,6 +25,12 @@
 
 "default.username.value" = "Current User";
 
+"editArticle.title.text" = "Update Article";
+"editArticle.textFieldDescription.placeholder" = "What's this article about";
+"editArticle.textFieldTagsList.placeholder" = "Enter tags (separated by comma)";
+"editArticle.textFieldTitle.placeholder" = "Article Title";
+"editArticle.textViewBody.placeholder" = "Write your article";
+
 "editProfile.textFieldAvatarURL.placeholder" = "Url of the new profile picture";
 "editProfile.textFieldEmail.placeholder" = "New email";
 "editProfile.textFieldPassword.placeholder" = "New password";
@@ -34,6 +40,7 @@
 
 "error.generic" = "Something went wrong.\nPlease try again later.";
 
+"feedComments.commentTextView.placeholder" = "Write a comment...";
 "feedComments.noComment.message" = "No Comment";
 "feedComments.title" = "Comments History";
 
@@ -58,6 +65,7 @@
 "menu.option.myProfile" = "My Profile";
 "menu.option.signup" = "Signup";
 
+"popup.confirmDeleteArticle.title" = "Are you sure you want to delete this article?";
 "popup.confirmLogout.title" = "Are you sure you want to logout?";
 
 "signup.haveAccount.title" = "Have an account?";

@@ -5,8 +5,8 @@
 //  Created by Mark G on 19/10/2021.
 //
 
-import SwiftUI
 import PagerTabStripView
+import SwiftUI
 
 private final class NavTabViewTheme: ObservableObject {
     @Published var textColor = Color.gray

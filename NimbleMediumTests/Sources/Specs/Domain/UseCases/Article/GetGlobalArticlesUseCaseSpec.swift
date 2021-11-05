@@ -5,8 +5,8 @@
 //  Created by Mark G on 08/09/2021.
 //
 
-import Quick
 import Nimble
+import Quick
 import RxNimble
 import RxSwift
 import RxTest
@@ -59,11 +59,11 @@ final class GetGlobalArticlesUseCaseSpec: QuickSpec {
                 }
 
                 context("when articleRepository.listArticles() returns failure") {
-                    
+
                     var outputError: TestableObserver<Error?>!
 
                     beforeEach {
-                        outputError = scheduler.createObserver(Optional<Error>.self)
+                        outputError = scheduler.createObserver(Error?.self)
                         articleRepository.listArticlesParamsReturnValue = .error(TestError.mock)
 
                         usecase.execute(

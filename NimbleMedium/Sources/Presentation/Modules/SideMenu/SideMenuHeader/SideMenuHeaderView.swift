@@ -5,9 +5,9 @@
 //  Created by Minh Pham on 23/08/2021.
 //
 
-import SwiftUI
-import SDWebImageSwiftUI
 import Resolver
+import SDWebImageSwiftUI
+import SwiftUI
 
 struct SideMenuHeaderView: View {
 
@@ -69,8 +69,8 @@ struct SideMenuHeaderView: View {
                     action: { viewModel.input.selectEditProfileOption() },
                     label: { Image(systemName: SystemImageName.squareAndPencil.rawValue) }
                 )
-                    .foregroundColor(.white)
-                    .padding()
+                .foregroundColor(.white)
+                .padding()
             }
         }
         .fullScreenCover(isPresented: $isShowingEditProfileScreen) {
@@ -80,9 +80,9 @@ struct SideMenuHeaderView: View {
 }
 
 #if DEBUG
-struct SideMenuHeaderView_Previews: PreviewProvider {
-    static var previews: some View {
-        SideMenuHeaderView()
+    struct SideMenuHeaderView_Previews: PreviewProvider {
+        static var previews: some View {
+            SideMenuHeaderView()
+        }
     }
-}
 #endif

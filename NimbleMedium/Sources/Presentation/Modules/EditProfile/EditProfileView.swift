@@ -34,12 +34,12 @@ struct EditProfileView: View {
                 .navigationBarColor(backgroundColor: .green)
                 .toolbar { navigationBarLeadingContent }
                 .toast(isPresented: $errorToast, dismissAfter: 3.0) {
-                    ToastView(errorMessage) { } background: {
+                    ToastView(errorMessage) {} background: {
                         Color.clear
                     }
                 }
                 .toast(isPresented: $loadingToast) {
-                    ToastView(String.empty) { }
+                    ToastView(String.empty) {}
                         .toastViewStyle(IndefiniteProgressToastViewStyle())
                 }
         }
@@ -62,7 +62,6 @@ struct EditProfileView: View {
             errorMessage = Localizable.errorGeneric()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { errorToast.toggle() }
         }
-
     }
 
     var navigationBarLeadingContent: some ToolbarContent {
@@ -80,20 +79,25 @@ struct EditProfileView: View {
             VStack(spacing: 15.0) {
                 AppTextField(
                     placeholder: Localizable.editProfileTextFieldAvatarURLPlaceholder(),
-                    text: $avatarURL)
+                    text: $avatarURL
+                )
                 AppTextField(
                     placeholder: Localizable.editProfileTextFieldUsernamePlaceholder(),
-                    text: $username)
+                    text: $username
+                )
                 AppTextView(
                     placeholder: Localizable.editProfileTextViewBioPlaceholder(),
-                    text: $bio)
-                    .frame(height: 200.0, alignment: .leading)
+                    text: $bio
+                )
+                .frame(height: 200.0, alignment: .leading)
                 AppTextField(
                     placeholder: Localizable.editProfileTextFieldEmailPlaceholder(),
-                    text: $email)
+                    text: $email
+                )
                 AppSecureField(
                     placeholder: Localizable.editProfileTextFieldPasswordPlaceholder(),
-                    text: $password)
+                    text: $password
+                )
                 AppMainButton(title: Localizable.actionUpdateText()) {
                     hideKeyboard()
                     viewModel.input.didTapUpdateButton(
@@ -112,7 +116,7 @@ struct EditProfileView: View {
 }
 
 #if DEBUG
-struct EditProfileView_Previews: PreviewProvider {
-    static var previews: some View { EditProfileView() }
-}
+    struct EditProfileView_Previews: PreviewProvider {
+        static var previews: some View { EditProfileView() }
+    }
 #endif
