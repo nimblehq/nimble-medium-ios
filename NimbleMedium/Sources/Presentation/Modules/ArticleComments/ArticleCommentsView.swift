@@ -17,27 +17,26 @@ struct ArticleCommentsView: View {
     @State private var isErrorToastPresented = false
     @State private var isFetchingArticleComments = true
     @State private var isFetchArticleCommentsFailed = false
+    @State private var commentContent: String = ""
 
     var body: some View {
-        Group {
-            if !isFetchingArticleComments, let viewModels = articleCommentRowViewModels {
-                if !viewModels.isEmpty {
-                    ScrollView(.vertical) {
-                        LazyVStack(alignment: .leading, spacing: 12.0) {
-                            ForEach(viewModels, id: \.output.id) {
-                                ArticleCommentRow(viewModel: $0)
-                            }
-                        }
-                        .padding(.all, 16.0)
-                    }
-                } else {
-                    Text(Localizable.feedCommentsNoCommentMessage())
+        VStack {
+            comments
+            Spacer()
+            HStack {
+                AppTextView(
+                    placeholder: Localizable.feedCommentsCommentTextViewPlaceholder(),
+                    text: $commentContent
+                )
+                Button {
+                    // TODO: Integrate send comment
+                } label: {
+                    Image(systemName: SystemImageName.arrowshapeTurnUpForwardCircleFill.rawValue)
+                        .foregroundColor(.black)
                 }
-            } else {
-                if isFetchArticleCommentsFailed {
-                    Text(Localizable.feedCommentsNoCommentMessage())
-                } else { ProgressView() }
             }
+            .frame(height: 50)
+            .padding(.horizontal, 20.0)
         }
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
             ToastView(Localizable.errorGeneric()) {} background: {
@@ -58,6 +57,30 @@ struct ArticleCommentsView: View {
             articleCommentRowViewModels = $0
         }
         .onAppear { viewModel.input.fetchArticleComments() }
+    }
+
+    var comments: some View {
+        Group {
+            if !isFetchingArticleComments, let viewModels = articleCommentRowViewModels {
+                if !viewModels.isEmpty {
+                    ScrollView(.vertical) {
+                        LazyVStack(alignment: .leading, spacing: 12.0) {
+                            ForEach(viewModels, id: \.output.id) {
+                                ArticleCommentRow(viewModel: $0)
+                            }
+                        }
+                        .padding(.all, 16.0)
+                    }
+                } else {
+                    Text(Localizable.feedCommentsNoCommentMessage())
+                }
+            } else {
+                if isFetchArticleCommentsFailed {
+                    Text(Localizable.feedCommentsNoCommentMessage())
+                } else { ProgressView() }
+            }
+        }
+        .frame(maxHeight: .infinity)
     }
 
     init(id: String) {
