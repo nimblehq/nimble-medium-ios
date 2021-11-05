@@ -93,9 +93,7 @@ extension ArticleCommentsViewModel {
                     owner.$isCreateCommentEnabled.accept(true)
                     owner.$didFetchArticleComments.accept(())
                     owner.$articleCommentRowViewModels.accept(
-                        $0.map {
-                            owner.articleCommentRowViewModel(from: $0)
-                        }
+                        $0.map { owner.articleCommentRowViewModel(from: $0) }
                     )
                 },
                 onError: { _ in

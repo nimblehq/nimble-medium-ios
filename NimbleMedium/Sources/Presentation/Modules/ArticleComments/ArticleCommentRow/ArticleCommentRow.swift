@@ -13,7 +13,6 @@ struct ArticleCommentRow: View {
 
     @ObservedViewModel private var viewModel: ArticleCommentRowViewModelProtocol
 
-    @State private var isAuthor: Bool = false
     @State private var uiModel: UIModel?
     @State private var isLoadingToastPresented = false
     @State private var isErrorToastPresented = false
