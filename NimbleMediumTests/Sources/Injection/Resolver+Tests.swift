@@ -63,6 +63,8 @@ extension Resolver {
             .implements(ToggleArticleFavoriteStatusUseCaseProtocol.self)
         Resolver.mock.register { UpdateMyArticleUseCaseProtocolMock() }
             .implements(UpdateMyArticleUseCaseProtocol.self)
+        Resolver.mock.register { DeleteArticleCommentUseCaseProtocolMock() }
+            .implements(DeleteArticleCommentUseCaseProtocol.self)
     }
 
     private static func registerViewModels() {

@@ -15,5 +15,6 @@ extension ArticleCommentRow {
         let commentUpdatedAt: String
         let authorName: String
         let authorImage: URL?
+        let isAuthor: Bool
     }
 }
