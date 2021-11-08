@@ -156,18 +156,20 @@ extension Resolver: ResolverRegistering {
             ArticleRowViewModel(article: args.get())
         }.implements(ArticleRowViewModelProtocol.self)
         register { CreateArticleViewModel() }.implements(CreateArticleViewModelProtocol.self)
+        register(EditArticleViewModelProtocol.self) { _, args in
+            EditArticleViewModel(slug: args.get())
+        }.scope(.shared)
         register { EditProfileViewModel() }.implements(EditProfileViewModelProtocol.self)
         register { FeedsViewModel() }.implements(FeedsViewModelProtocol.self).scope(.cached)
         register(FeedsTabViewModelProtocol.self) { _, args in
             FeedsTabViewModel(tabType: args.get())
-        }
-        .scope(.unique)
+        }.scope(.unique)
         register { HomeViewModel() }.implements(HomeViewModelProtocol.self).scope(.cached)
-        register { LoginViewModel() }.implements(LoginViewModelProtocol.self).scope(.cached)
-        register { SideMenuActionsViewModel() }.implements(SideMenuActionsViewModelProtocol.self).scope(.cached)
-        register { SideMenuHeaderViewModel() }.implements(SideMenuHeaderViewModelProtocol.self).scope(.cached)
-        register { SideMenuViewModel() }.implements(SideMenuViewModelProtocol.self).scope(.cached)
-        register { SignupViewModel() }.implements(SignupViewModelProtocol.self).scope(.cached)
+        register { LoginViewModel() }.implements(LoginViewModelProtocol.self).scope(.shared)
+        register { SideMenuActionsViewModel() }.implements(SideMenuActionsViewModelProtocol.self).scope(.shared)
+        register { SideMenuHeaderViewModel() }.implements(SideMenuHeaderViewModelProtocol.self).scope(.shared)
+        register { SideMenuViewModel() }.implements(SideMenuViewModelProtocol.self).scope(.shared)
+        register { SignupViewModel() }.implements(SignupViewModelProtocol.self).scope(.shared)
         register { _, args in
             UserProfileViewModel(username: args.get())
         }.implements(UserProfileViewModelProtocol.self)
@@ -177,9 +179,5 @@ extension Resolver: ResolverRegistering {
         register { _, args in
             UserProfileFavouritedArticlesTabViewModel(username: args.get())
         }.implements(UserProfileFavouritedArticlesTabViewModelProtocol.self)
-        register(EditArticleViewModelProtocol.self) { _, args in
-            EditArticleViewModel(slug: args.get())
-        }
-        .scope(.shared)
     }
 }
