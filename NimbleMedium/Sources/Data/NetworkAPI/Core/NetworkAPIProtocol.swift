@@ -21,15 +21,12 @@ extension NetworkAPIProtocol {
         configuration: RequestConfiguration,
         decoder: JSONDecoder
     ) -> Single<T> {
-        var headers = configuration.headers ?? [:]
-        headers["X-Requested-With"] = "XMLHttpRequest"
-
         return session.rx.request(
             configuration.method,
             configuration.url,
             parameters: configuration.parameters,
             encoding: configuration.encoding,
-            headers: headers,
+            headers: configuration.headers,
             interceptor: configuration.interceptor
         )
         .responseData()

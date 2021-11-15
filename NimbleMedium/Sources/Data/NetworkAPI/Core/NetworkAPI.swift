@@ -16,7 +16,7 @@ final class NetworkAPI: NetworkAPIProtocol {
 
     init(decoder: JSONDecoder = .default) {
         self.decoder = decoder
-        session = Session()
+        session = Session(interceptor: CommonInterceptor())
     }
 
     func performRequest<T: Decodable>(_ configuration: RequestConfiguration, for type: T.Type) -> Single<T> {
