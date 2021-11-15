@@ -13,11 +13,11 @@ extension Resolver: ResolverRegistering {
     public static func registerAllServices() {
         defaultScope = .graph
 
-        register { Keychain.default }.implements(KeychainProtocol.self).scope(.application)
-        register { NetworkAPI() }.implements(NetworkAPIProtocol.self).scope(.application)
-        register {
+        register(KeychainProtocol.self) { Keychain.default }.scope(.application)
+        register(NetworkAPIProtocol.self) { NetworkAPI() }.scope(.application)
+        register(AuthenticatedNetworkAPIProtocol.self) {
             AuthenticatedNetworkAPI(keychain: resolve())
-        }.implements(AuthenticatedNetworkAPIProtocol.self).scope(.application)
+        }.scope(.application)
 
         registerRepositories()
         registerUseCases()
@@ -25,159 +25,159 @@ extension Resolver: ResolverRegistering {
     }
 
     private static func registerRepositories() {
-        register {
+        register(AuthRepositoryProtocol.self) {
             AuthRepository(
                 networkAPI: resolve(),
                 authenticatedNetworkAPI: resolve()
             )
-        }.implements(AuthRepositoryProtocol.self)
-        register {
+        }
+        register(ArticleRepositoryProtocol.self) {
             ArticleRepository(
                 authenticatedNetworkAPI: resolve(),
                 networkAPI: resolve()
             )
-        }.implements(ArticleRepositoryProtocol.self)
-        register {
+        }
+        register(ArticleCommentRepositoryProtocol.self) {
             ArticleCommentRepository(
                 authenticatedNetworkAPI: resolve(),
                 networkAPI: resolve()
             )
-        }.implements(ArticleCommentRepositoryProtocol.self)
-        register {
+        }
+        register(UserRepositoryProtocol.self) {
             UserRepository(
                 networkAPI: resolve(),
                 authenticatedNetworkAPI: resolve()
             )
-        }.implements(UserRepositoryProtocol.self)
-        register {
+        }
+        register(UserSessionRepositoryProtocol.self) {
             UserSessionRepository(keychain: resolve())
-        }.implements(UserSessionRepositoryProtocol.self)
+        }
     }
 
     // swiftlint:disable function_body_length
     private static func registerUseCases() {
-        register {
+        register(CreateArticleCommentUseCaseProtocol.self) {
             CreateArticleCommentUseCase(articleCommentRepository: resolve())
-        }.implements(CreateArticleCommentUseCaseProtocol.self)
-        register {
+        }
+        register(CreateArticleUseCaseProtocol.self) {
             CreateArticleUseCase(articleRepository: resolve())
-        }.implements(CreateArticleUseCaseProtocol.self)
-        register {
+        }
+        register(DeleteArticleCommentUseCaseProtocol.self) {
             DeleteArticleCommentUseCase(articleCommentRepository: resolve())
-        }.implements(DeleteArticleCommentUseCaseProtocol.self)
-        register {
+        }
+        register(DeleteMyArticleUseCaseProtocol.self) {
             DeleteMyArticleUseCase(articleRepository: resolve())
-        }.implements(DeleteMyArticleUseCaseProtocol.self)
-        register {
+        }
+        register(FollowUserUseCaseProtocol.self) {
             FollowUserUseCase(userRepository: resolve())
-        }.implements(FollowUserUseCaseProtocol.self)
-        register {
+        }
+        register(GetArticleCommentsUseCaseProtocol.self) {
             GetArticleCommentsUseCase(articleCommentRepository: resolve())
-        }.implements(GetArticleCommentsUseCaseProtocol.self)
-        register {
+        }
+        register(GetArticleUseCaseProtocol.self) {
             GetArticleUseCase(articleRepository: resolve())
-        }.implements(GetArticleUseCaseProtocol.self)
-        register {
+        }
+        register(GetCurrentSessionUseCaseProtocol.self) {
             GetCurrentSessionUseCase(userSessionRepository: resolve())
-        }.implements(GetCurrentSessionUseCaseProtocol.self)
-        register {
+        }
+        register(GetCurrentUserUseCaseProtocol.self) {
             GetCurrentUserUseCase(
                 authRepository: resolve(),
                 userSessionRepository: resolve()
             )
-        }.implements(GetCurrentUserUseCaseProtocol.self)
-        register {
+        }
+        register(UpdateCurrentUserUseCaseProtocol.self) {
             UpdateCurrentUserUseCase(
                 authRepository: resolve(),
                 userSessionRepository: resolve()
             )
-        }.implements(UpdateCurrentUserUseCaseProtocol.self)
-        register {
+        }
+        register(GetGlobalArticlesUseCaseProtocol.self) {
             GetGlobalArticlesUseCase(articleRepository: resolve())
-        }.implements(GetGlobalArticlesUseCaseProtocol.self)
-        register {
+        }
+        register(GetCurrentUserFollowingArticlesUseCaseProtocol.self) {
             GetCurrentUserFollowingArticlesUseCase(
                 articleRepository: resolve(),
                 getCurrentSessionUseCase: resolve()
             )
-        }.implements(GetCurrentUserFollowingArticlesUseCaseProtocol.self)
-        register {
+        }
+        register(GetUserProfileUseCaseProtocol.self) {
             GetUserProfileUseCase(userRepository: resolve())
-        }.implements(GetUserProfileUseCaseProtocol.self)
-        register {
+        }
+        register(LoginUseCaseProtocol.self) {
             LoginUseCase(
                 authRepository: resolve(),
                 userSessionRepository: resolve()
             )
-        }.implements(LoginUseCaseProtocol.self)
-        register {
+        }
+        register(LogoutUseCaseProtocol.self) {
             LogoutUseCase(userSessionRepository: resolve())
-        }.implements(LogoutUseCaseProtocol.self)
-        register {
+        }
+        register(SignupUseCaseProtocol.self) {
             SignupUseCase(
                 authRepository: resolve(),
                 userSessionRepository: resolve()
             )
-        }.implements(SignupUseCaseProtocol.self)
-        register {
+        }
+        register(GetArticleUseCaseProtocol.self) {
             GetArticleUseCase(articleRepository: resolve())
-        }.implements(GetArticleUseCaseProtocol.self)
-        register {
+        }
+        register(GetArticleCommentsUseCaseProtocol.self) {
             GetArticleCommentsUseCase(articleCommentRepository: resolve())
-        }.implements(GetArticleCommentsUseCaseProtocol.self)
-        register {
+        }
+        register(GetFavouritedArticlesUseCaseProtocol.self) {
             GetFavouritedArticlesUseCase(articleRepository: resolve())
-        }.implements(GetFavouritedArticlesUseCaseProtocol.self)
-        register {
+        }
+        register(GetCreatedArticlesUseCaseProtocol.self) {
             GetCreatedArticlesUseCase(articleRepository: resolve())
-        }.implements(GetCreatedArticlesUseCaseProtocol.self)
-        register {
+        }
+        register(ToggleArticleFavoriteStatusUseCaseProtocol.self) {
             ToggleArticleFavoriteStatusUseCase(articleRepository: resolve())
-        }.implements(ToggleArticleFavoriteStatusUseCaseProtocol.self)
-        register {
+        }
+        register(UnfollowUserUseCaseProtocol.self) {
             UnfollowUserUseCase(userRepository: resolve())
-        }.implements(UnfollowUserUseCaseProtocol.self)
-        register {
+        }
+        register(UpdateMyArticleUseCaseProtocol.self) {
             UpdateMyArticleUseCase(articleRepository: resolve())
-        }.implements(UpdateMyArticleUseCaseProtocol.self)
+        }
     }
 
     private static func registerViewModels() {
-        register { _, args in
+        register(ArticleCommentRowViewModelProtocol.self) { _, args in
             ArticleCommentRowViewModel(args: args.get())
-        }.implements(ArticleCommentRowViewModelProtocol.self)
+        }
         register(ArticleCommentsViewModelProtocol.self) { _, args in
             ArticleCommentsViewModel(id: args.get())
         }.scope(.shared)
-        register { _, args in
+        register(ArticleDetailViewModelProtocol.self) { _, args in
             ArticleDetailViewModel(id: args.get())
-        }.implements(ArticleDetailViewModelProtocol.self)
-        register { _, args in
+        }
+        register(ArticleRowViewModelProtocol.self) { _, args in
             ArticleRowViewModel(article: args.get())
-        }.implements(ArticleRowViewModelProtocol.self)
-        register { CreateArticleViewModel() }.implements(CreateArticleViewModelProtocol.self)
+        }
+        register(CreateArticleViewModelProtocol.self) { CreateArticleViewModel() }
         register(EditArticleViewModelProtocol.self) { _, args in
             EditArticleViewModel(slug: args.get())
         }.scope(.shared)
-        register { EditProfileViewModel() }.implements(EditProfileViewModelProtocol.self)
-        register { FeedsViewModel() }.implements(FeedsViewModelProtocol.self).scope(.cached)
+        register(EditProfileViewModelProtocol.self) { EditProfileViewModel() }
+        register(FeedsViewModelProtocol.self) { FeedsViewModel() }.scope(.cached)
         register(FeedsTabViewModelProtocol.self) { _, args in
             FeedsTabViewModel(tabType: args.get())
         }.scope(.unique)
-        register { HomeViewModel() }.implements(HomeViewModelProtocol.self).scope(.cached)
-        register { LoginViewModel() }.implements(LoginViewModelProtocol.self).scope(.shared)
-        register { SideMenuActionsViewModel() }.implements(SideMenuActionsViewModelProtocol.self).scope(.shared)
-        register { SideMenuHeaderViewModel() }.implements(SideMenuHeaderViewModelProtocol.self).scope(.shared)
-        register { SideMenuViewModel() }.implements(SideMenuViewModelProtocol.self).scope(.shared)
-        register { SignupViewModel() }.implements(SignupViewModelProtocol.self).scope(.shared)
-        register { _, args in
+        register(HomeViewModelProtocol.self) { HomeViewModel() }.scope(.cached)
+        register(LoginViewModelProtocol.self) { LoginViewModel() }.scope(.shared)
+        register(SideMenuActionsViewModelProtocol.self) { SideMenuActionsViewModel() }.scope(.shared)
+        register(SideMenuHeaderViewModelProtocol.self) { SideMenuHeaderViewModel() }.scope(.shared)
+        register(SideMenuViewModelProtocol.self) { SideMenuViewModel() }.scope(.shared)
+        register(SignupViewModelProtocol.self) { SignupViewModel() }.scope(.shared)
+        register(UserProfileViewModelProtocol.self) { _, args in
             UserProfileViewModel(username: args.get())
-        }.implements(UserProfileViewModelProtocol.self)
-        register { _, args in
+        }
+        register(UserProfileCreatedArticlesTabViewModelProtocol.self) { _, args in
             UserProfileCreatedArticlesTabViewModel(username: args.get())
-        }.implements(UserProfileCreatedArticlesTabViewModelProtocol.self)
-        register { _, args in
+        }
+        register(UserProfileFavouritedArticlesTabViewModelProtocol.self) { _, args in
             UserProfileFavouritedArticlesTabViewModel(username: args.get())
-        }.implements(UserProfileFavouritedArticlesTabViewModelProtocol.self)
+        }
     }
 }
