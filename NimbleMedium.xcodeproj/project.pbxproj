@@ -100,6 +100,8 @@
 		24C9393926D89FA300547800 /* AppTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393826D89FA300547800 /* AppTextField.swift */; };
 		24C9393B26D8A1A200547800 /* AppSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393A26D8A1A200547800 /* AppSecureField.swift */; };
 		24C9393D26D8A26300547800 /* AppMainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C9393C26D8A26300547800 /* AppMainButton.swift */; };
+		24D6FAFE2743587F00A9522A /* LabeledAppTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D6FAFD2743587F00A9522A /* LabeledAppTextField.swift */; };
+		24D6FB0027435BF900A9522A /* LabeledAppTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D6FAFF27435BF900A9522A /* LabeledAppTextView.swift */; };
 		24D717F8271D3394009B589C /* CreateArticleUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D717F7271D3394009B589C /* CreateArticleUseCaseSpec.swift */; };
 		24D717FA271D3409009B589C /* CreateArticleParameters+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D717F9271D3409009B589C /* CreateArticleParameters+Dummy.swift */; };
 		24E0400C2727FEF400A1985B /* UpdateMyArticleUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E0400B2727FEF400A1985B /* UpdateMyArticleUseCaseSpec.swift */; };
@@ -352,6 +354,8 @@
 		24C9393826D89FA300547800 /* AppTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTextField.swift; sourceTree = "<group>"; };
 		24C9393A26D8A1A200547800 /* AppSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSecureField.swift; sourceTree = "<group>"; };
 		24C9393C26D8A26300547800 /* AppMainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainButton.swift; sourceTree = "<group>"; };
+		24D6FAFD2743587F00A9522A /* LabeledAppTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledAppTextField.swift; sourceTree = "<group>"; };
+		24D6FAFF27435BF900A9522A /* LabeledAppTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabeledAppTextView.swift; sourceTree = "<group>"; };
 		24D717F7271D3394009B589C /* CreateArticleUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateArticleUseCaseSpec.swift; sourceTree = "<group>"; };
 		24D717F9271D3409009B589C /* CreateArticleParameters+Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateArticleParameters+Dummy.swift"; sourceTree = "<group>"; };
 		24E0400B2727FEF400A1985B /* UpdateMyArticleUseCaseSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateMyArticleUseCaseSpec.swift; sourceTree = "<group>"; };
@@ -1246,11 +1250,13 @@
 				24C9393A26D8A1A200547800 /* AppSecureField.swift */,
 				24C9393826D89FA300547800 /* AppTextField.swift */,
 				244E0FF62715316900C01139 /* AppTextView.swift */,
-				24204C9D26D5289900534314 /* Background.swift */,
 				2D17E4EE26F07738001D3F90 /* AuthorView.swift */,
 				2D469D3E2704430A00B36AD6 /* AvatarView.swift */,
+				24204C9D26D5289900534314 /* Background.swift */,
 				2DAF7F1627141C4000C001B8 /* FollowButton.swift */,
 				2D3829F5272B9C6F00047822 /* FavouriteButton.swift */,
+				24D6FAFD2743587F00A9522A /* LabeledAppTextField.swift */,
+				24D6FAFF27435BF900A9522A /* LabeledAppTextView.swift */,
 				2D284134271EAB23005B62D6 /* PagerTabItemTitle.swift */,
 			);
 			path = Views;
@@ -2369,6 +2375,7 @@
 				2D882EDA26F1CBA200DB6560 /* ArticleCommentRepositoryProtocol.swift in Sources */,
 				24C9393D26D8A26300547800 /* AppMainButton.swift in Sources */,
 				24FB783D26FC3A80007534BE /* UserProfileView+UIModel.swift in Sources */,
+				24D6FAFE2743587F00A9522A /* LabeledAppTextField.swift in Sources */,
 				2D73312926F0EFD20052DCC7 /* APIArticleResponse.swift in Sources */,
 				241B99DE26DF34720041207F /* SignupUseCase.swift in Sources */,
 				24A2C701271D1FF7002E4A5A /* Encodable+Dictionary.swift in Sources */,
@@ -2388,6 +2395,7 @@
 				2497356126D34F3200177A7C /* SideMenuActionsView.swift in Sources */,
 				2459B32826D751E300ABCE61 /* LoginUseCase.swift in Sources */,
 				2D29A70F26F44EBC001EA24F /* ArticleRowViewModel.swift in Sources */,
+				24D6FB0027435BF900A9522A /* LabeledAppTextView.swift in Sources */,
 				2424B22C26D4A22B00CF07B5 /* LoginView.swift in Sources */,
 				2D031D5526EB1093009A5158 /* View+Bind.swift in Sources */,
 				2D469D3F2704430A00B36AD6 /* AvatarView.swift in Sources */,
