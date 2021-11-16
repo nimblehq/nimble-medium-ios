@@ -23,8 +23,6 @@ struct FeedsView: View {
     @State private var selectedTabIndex: Int = 0
     @State private var isAuthenticated = false
 
-    @Binding private var isSideMenuDraggingEnabled: Bool
-
     var body: some View {
         NavigationView {
             Group {
@@ -40,8 +38,6 @@ struct FeedsView: View {
                 navigationBarLeadingContent
                 navigationBarTrailingContent
             }
-            .onAppear { isSideMenuDraggingEnabled = true }
-            .onDisappear { isSideMenuDraggingEnabled = false }
         }
         .accentColor(.white)
         .onAppear {
@@ -90,16 +86,12 @@ struct FeedsView: View {
             )
         )
     }
-
-    init(isSideMenuDraggingEnabled: Binding<Bool>) {
-        _isSideMenuDraggingEnabled = isSideMenuDraggingEnabled
-    }
 }
 
 #if DEBUG
     struct FeedsView_Previews: PreviewProvider {
         static var previews: some View {
-            FeedsView(isSideMenuDraggingEnabled: .constant(true))
+            FeedsView()
         }
     }
 #endif
