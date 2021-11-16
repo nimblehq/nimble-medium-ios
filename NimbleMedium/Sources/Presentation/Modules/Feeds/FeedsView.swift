@@ -77,9 +77,9 @@ struct FeedsView: View {
 
     var pagerTabs: some View {
         PagerTabStripView(selection: $selectedTabIndex) {
-            EquatableView(content: FeedsTabView(viewModel: viewModel.output.yourFeedsViewModel))
+            FeedsTabView(viewModel: viewModel.output.yourFeedsViewModel)
                 .pagerTabItem { PagerTabItemTitle(Localizable.feedsYourFeedTabTitle()) }
-            EquatableView(content: FeedsTabView(viewModel: viewModel.output.globalFeedsViewModel))
+            FeedsTabView(viewModel: viewModel.output.globalFeedsViewModel)
                 .pagerTabItem { PagerTabItemTitle(Localizable.feedsGlobalFeedTabTitle()) }
         }
         .pagerTabStripViewStyle(
