@@ -71,7 +71,8 @@ struct LoginView: View {
                 AppTextField(
                     placeholder: Localizable.loginTextFieldEmailPlaceholder(),
                     text: $email,
-                    supportEmailKeyboard: true
+                    emailKeyboard: true,
+                    autoCapitalization: false
                 )
                 AppSecureField(
                     placeholder: Localizable.loginTextFieldPasswordPlaceholder(),

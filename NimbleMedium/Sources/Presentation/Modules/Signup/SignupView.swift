@@ -71,12 +71,14 @@ struct SignupView: View {
             VStack(spacing: 15.0) {
                 AppTextField(
                     placeholder: Localizable.signupTextFieldUsernamePlaceholder(),
-                    text: $username
+                    text: $username,
+                    autoCapitalization: false
                 )
                 AppTextField(
                     placeholder: Localizable.signupTextFieldEmailPlaceholder(),
                     text: $email,
-                    supportEmailKeyboard: true
+                    emailKeyboard: true,
+                    autoCapitalization: false
                 )
                 AppSecureField(
                     placeholder: Localizable.signupTextFieldPasswordPlaceholder(),
