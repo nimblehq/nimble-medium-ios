@@ -19,7 +19,13 @@ final class AuthenticatedNetworkAPI: AuthenticatedNetworkAPIProtocol {
         keychain: KeychainProtocol
     ) {
         self.decoder = decoder
-        session = Session(interceptor: AuthenticatedInterceptor(keychain: keychain))
+        let composite = Interceptor(
+            interceptors: [
+                CommonInterceptor(),
+                AuthenticatedInterceptor(keychain: keychain)
+            ]
+        )
+        session = Session(interceptor: composite)
     }
 
     func performRequest<T>(_ configuration: RequestConfiguration, for type: T.Type) -> Single<T> where T: Decodable {
