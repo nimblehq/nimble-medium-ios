@@ -23,23 +23,19 @@ final class GetCurrentUserFollowingArticlesUseCase: GetCurrentUserFollowingArtic
         self.getCurrentSessionUseCase = getCurrentSessionUseCase
     }
 
-    func execute(
-        limit: Int?,
-        offset: Int?
-    ) -> Single<[Article]> {
+    func execute(limit: Int?, offset: Int?) -> Single<[Article]> {
         getCurrentSessionUseCase.execute()
-            .flatMap {
-                guard let user = $0 else {
-                    return .error(NetworkAPIError.generic)
-                }
-
+            .asObservable()
+            .withUnretained(self)
+            .flatMapLatest { owner, user -> Single<[Article]> in
+                guard let user = user else { return .error(NetworkAPIError.generic) }
                 let params = GetArticlesParameters(
                     favorited: user.username,
                     limit: limit,
                     offset: offset
                 )
-                return self.articleRepository
-                    .listArticles(params: params)
+                return owner.articleRepository.listArticles(params: params)
             }
+            .asSingle()
     }
 }

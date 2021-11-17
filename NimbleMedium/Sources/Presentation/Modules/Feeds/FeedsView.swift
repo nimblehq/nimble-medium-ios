@@ -38,17 +38,21 @@ struct FeedsView: View {
                 navigationBarLeadingContent
                 navigationBarTrailingContent
             }
+            .onAppear { userSessionViewModel.input.getUserSession() }
         }
         .accentColor(.white)
         .onAppear {
-            userSessionViewModel.input.getUserSession()
             viewModel.input.bindData(
                 sideMenuActionsViewModel: sideMenuActionsViewModel,
                 userSessionViewModel: userSessionViewModel
             )
         }
         .bind(userSessionViewModel.output.isAuthenticated, to: _isAuthenticated)
-        .fullScreenCover(isPresented: $isShowingCreateArticleScreen) { CreateArticleView() }
+        .fullScreenCover(
+            isPresented: $isShowingCreateArticleScreen,
+            onDismiss: { userSessionViewModel.input.getUserSession() },
+            content: { CreateArticleView() }
+        )
     }
 
     var navigationBarLeadingContent: some ToolbarContent {

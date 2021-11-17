@@ -71,9 +71,11 @@ extension NetworkAPIProtocol {
 extension ObservableType where Element == (HTTPURLResponse, Data) {
 
     fileprivate func validate() -> Observable<Data> {
-        map { _, data -> Data in
-            // Handle addition data check here if needed
-            data
+        map { response, data -> Data in
+            if response.status == .unauthorized {
+                NotificationCenter.default.post(name: .unauthorized, object: nil)
+            }
+            return data
         }
     }
 }

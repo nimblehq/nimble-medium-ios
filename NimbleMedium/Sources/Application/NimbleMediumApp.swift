@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct App: SwiftUI.App {
+struct NimbleMediumApp: App {
 
     @StateObject var userSessionViewModel = UserSessionViewModel()
 

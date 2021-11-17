@@ -37,11 +37,24 @@ protocol HomeViewModelProtocol: ObservableViewModel {
 final class HomeViewModel: ObservableObject, HomeViewModelProtocol {
 
     private let disposeBag = DisposeBag()
+    private let unauthorizedNotificationTrigger = NotificationCenter.default.rx.notification(.unauthorized)
 
     var input: HomeViewModelInput { self }
     var output: HomeViewModelOutput { self }
 
+    @Injected var logoutUseCase: LogoutUseCaseProtocol
+
+    @PublishRelayProperty var didReceiveUnauthorized: Signal<Void>
+
     @Published var isSideMenuOpen: Bool = false
+
+    init() {
+        unauthorizedNotificationTrigger
+            .withUnretained(self)
+            .flatMapLatest { owner, _ in owner.unauthorizedNotificationTriggered() }
+            .subscribe()
+            .disposed(by: disposeBag)
+    }
 }
 
 extension HomeViewModel: HomeViewModelInput {
@@ -73,5 +86,20 @@ extension HomeViewModel: HomeViewModelOutput {
 
     var isSideMenuOpenDidChange: Signal<Bool> {
         $isSideMenuOpen.asSignal()
+    }
+}
+
+extension HomeViewModel {
+
+    private func unauthorizedNotificationTriggered() -> Observable<Void> {
+        logoutUseCase
+            .execute()
+            .do(
+                onError: { error in print("Logout failed with error: \(error.detail)") },
+                onCompleted: { print("Logout successfully") }
+            )
+            .asObservable()
+            .mapToVoid()
+            .catchAndReturn(())
     }
 }

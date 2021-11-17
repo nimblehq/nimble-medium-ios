@@ -29,7 +29,7 @@ struct FeedsTabView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
-            ToastView(Localizable.errorGeneric()) {} background: { Color.clear }
+            ToastView(Localizable.errorGenericMessage()) {} background: { Color.clear }
         }
         .onReceive(viewModel.output.didFinishRefresh) { _ in if isFirstLoad { isFirstLoad = false } }
         .onReceive(viewModel.output.didFailToLoadArticle) { _ in isErrorToastPresented = true }

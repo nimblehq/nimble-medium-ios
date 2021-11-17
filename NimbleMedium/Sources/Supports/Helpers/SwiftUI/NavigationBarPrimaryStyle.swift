@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NavigationBarPrimaryStyle: ViewModifier {
 
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode) var presentationMode
 
     let isBackButtonHidden: Bool
 

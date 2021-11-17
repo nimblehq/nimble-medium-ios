@@ -22,23 +22,19 @@ struct HomeView: View {
     @State private var isDraggingEnabled = false
 
     var body: some View {
-        GeometryReader { geo in
-            ZStack {
-                FeedsView()
-                sideMenuDimmedBackground
-                GeometryReader { geo in
-                    SideMenuView()
-                        .frame(width: geo.size.width * 2.0 / 3.0, height: geo.size.height)
-                        .background(Color.white)
-                        .offset(x: isSideMenuOpen ? 0 : -geo.size.width * 2.0 / 3.0)
-                        .animation(.linear(duration: 0.3))
-                }
-            }
-            .ignoresSafeArea()
-            .onReceive(viewModel.output.isSideMenuOpenDidChange) { isOpen in
-                isSideMenuOpen = isOpen
+        ZStack {
+            FeedsView()
+            sideMenuDimmedBackground
+            GeometryReader { geo in
+                SideMenuView()
+                    .frame(width: geo.size.width * 2.0 / 3.0, height: geo.size.height)
+                    .background(Color.white)
+                    .offset(x: isSideMenuOpen ? 0 : -geo.size.width * 2.0 / 3.0)
+                    .animation(.linear(duration: 0.3))
             }
         }
+        .ignoresSafeArea()
+        .bind(viewModel.output.isSideMenuOpenDidChange, to: _isSideMenuOpen)
     }
 
     private var sideMenuDimmedBackground: some View {
@@ -48,9 +44,7 @@ struct HomeView: View {
         .background(Color.black.opacity(0.7))
         .opacity(isSideMenuOpen ? 0.75 : 0)
         .animation(Animation.easeIn(duration: 0.3).delay(0.1))
-        .onTapGesture {
-            viewModel.input.toggleSideMenu(false)
-        }
+        .onTapGesture { viewModel.input.toggleSideMenu(false) }
     }
 
     init() {
