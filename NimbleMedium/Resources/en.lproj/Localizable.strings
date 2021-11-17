@@ -47,7 +47,6 @@
 "editProfile.title.text" = "Edit Profile";
 
 "error.generic.message" = "Something went wrong.\nPlease try again later.";
-"error.unauthorized.message" = "Your session has been expired. Please login again.";
 
 "feedComments.commentTextView.placeholder" = "Write a comment...";
 "feedComments.noComment.message" = "No Comment";
