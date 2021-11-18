@@ -22,6 +22,7 @@ struct ArticleCommentsView: View {
     @State private var commentContent: String = ""
     @State private var isCreateCommentEnabled = false
     @State private var isAuthenticated = false
+    @State private var shouldCommentContentInputEndEditing = false
 
     private var isPostCommentButtonEnabled: Bool {
         isCreateCommentEnabled && !commentContent.isEmpty
@@ -33,6 +34,13 @@ struct ArticleCommentsView: View {
             if isAuthenticated {
                 Spacer()
                 commentInput
+            }
+        }
+        .onTapGesture {
+            shouldCommentContentInputEndEditing = true
+            hideKeyboard()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                shouldCommentContentInputEndEditing = false
             }
         }
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
@@ -52,6 +60,9 @@ struct ArticleCommentsView: View {
         }
         .onReceive(viewModel.output.didFetchArticleComments) {
             isFetchingArticleComments = false
+        }
+        .onReceive(viewModel.output.didCreateArticleComment) {
+            commentContent = ""
         }
         .onReceive(viewModel.output.articleCommentRowViewModels) {
             articleCommentRowViewModels = $0
@@ -91,6 +102,7 @@ struct ArticleCommentsView: View {
                 placeholder: Localizable.feedCommentsCommentTextViewPlaceholder(),
                 text: $commentContent
             )
+            .shouldEndEditing(shouldCommentContentInputEndEditing)
             .disabled(!isCreateCommentEnabled)
             Button {
                 viewModel.input.createArticleComment(content: commentContent)

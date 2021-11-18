@@ -194,6 +194,7 @@
 		2D892BA726E8698700579856 /* NetworkAPIProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D892BA626E8698700579856 /* NetworkAPIProtocolMock.swift */; };
 		2D892BA926E89A6100579856 /* APIArticlesResponse+Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D892BA826E89A6100579856 /* APIArticlesResponse+Dummy.swift */; };
 		2D9032D026F04D96005CA3F5 /* ArticleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9032CF26F04D96005CA3F5 /* ArticleDetailView.swift */; };
+		2D93CC6327460A70005C30A0 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 2D93CC6227460A70005C30A0 /* Introspect */; };
 		2D979C30270302650084A3F8 /* GetCreatedArticlesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D979C2F270302650084A3F8 /* GetCreatedArticlesUseCase.swift */; };
 		2D979C322703034C0084A3F8 /* GetCreatedArticlesUseCaseSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D979C312703034C0084A3F8 /* GetCreatedArticlesUseCaseSpec.swift */; };
 		2DA4ABBF26CF90D000CF7D68 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA4ABBE26CF90D000CF7D68 /* AppEnvironment.swift */; };
@@ -521,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2459B35B26D7A7C500ABCE61 /* ToastUI in Frameworks */,
+				2D93CC6327460A70005C30A0 /* Introspect in Frameworks */,
 				2DEF1F8A26E5FD0C00EB93CC /* SDWebImageSwiftUI in Frameworks */,
 				7DB2A8DC1F8863DD01F7D438 /* Pods_NimbleMedium.framework in Frameworks */,
 				24F3D7B726DCEA0300DE2420 /* KeychainAccess in Frameworks */,
@@ -1922,6 +1924,7 @@
 				248E13AB26F054FD00439BCC /* Resolver */,
 				2D5C62B12701A69F00398C96 /* Refresh */,
 				2D531863270EA3D300F8FADD /* PagerTabStripView */,
+				2D93CC6227460A70005C30A0 /* Introspect */,
 			);
 			productName = NimbleMedium;
 			productReference = 2DB2674A26BBEC4300FF05BB /* Nimble Medium - Staging.app */;
@@ -2009,6 +2012,7 @@
 				248E13AA26F054FD00439BCC /* XCRemoteSwiftPackageReference "Resolver" */,
 				2D5C62B02701A69F00398C96 /* XCRemoteSwiftPackageReference "Refresh" */,
 				2D531862270EA3D300F8FADD /* XCRemoteSwiftPackageReference "PagerTabStripView" */,
+				2D93CC6127460A70005C30A0 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 2DB2674B26BBEC4300FF05BB /* Products */;
 			projectDirPath = "";
@@ -3221,6 +3225,14 @@
 				minimumVersion = 1.2.1;
 			};
 		};
+		2D93CC6127460A70005C30A0 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		2DEF1F8826E5FD0C00EB93CC /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
@@ -3261,6 +3273,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2D6EFE1926E9EB8C006B9939 /* XCRemoteSwiftPackageReference "DefaultCodable" */;
 			productName = DefaultCodable;
+		};
+		2D93CC6227460A70005C30A0 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2D93CC6127460A70005C30A0 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
 		};
 		2DEF1F8926E5FD0C00EB93CC /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
