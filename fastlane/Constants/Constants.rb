@@ -63,6 +63,10 @@ class Constants
     'NimbleMediumUITests'
   end
 
+def self.REPORT_TARGET
+    'Nimble Medium - Staging.app'
+  end
+
   # xcov output directory path
   def self.XCOV_OUTPUT_DIRECTORY_PATH
     './fastlane/xcov_output'

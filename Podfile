@@ -37,7 +37,6 @@ target 'NimbleMedium' do
   target 'NimbleMediumUITests' do
     testing_pods
   end
-
   
 end
 

@@ -15,11 +15,11 @@ swiftformat.check_format
 
 # Swiftlint
 swiftlint.binary_path = './Pods/SwiftLint/swiftlint'
-swiftlint.config_file = '.swiftlint.yml'
 swiftlint.max_num_violations = 20
+swiftlint.lint_all_files = true
 swiftlint.lint_files(
-  inline_mode: true, 
-  fail_on_error: true, 
+  inline_mode: true,
+  fail_on_error: true,
   additional_swiftlint_args: '--strict'
 )
 

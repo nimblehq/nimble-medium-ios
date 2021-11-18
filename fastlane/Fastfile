@@ -56,7 +56,8 @@ platform :ios do
     clear_derived_data(derived_data_path: Constants.XCOV_OUTPUT_DIRECTORY_PATH)
     report_manager.produce_report(
       scheme: Constants.TESTS_SCHEME, 
-      workspace: Constants.WORKSPACE_PATH, 
+      workspace: Constants.WORKSPACE_PATH,
+      report_targets: Constants.REPORT_TARGET,
       test_output_directory: Constants.TEST_OUTPUT_DIRECTORY_PATH
     )
   end
