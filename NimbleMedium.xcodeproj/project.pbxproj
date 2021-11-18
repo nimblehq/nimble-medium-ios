@@ -845,6 +845,14 @@
 			path = Rx;
 			sourceTree = "<group>";
 		};
+		24B109B427465F8200A0BB7A /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				2452AFFE2744E31D00414E53 /* HTTPStatusCode.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		24B277CE2701C06100332FEA /* Article */ = {
 			isa = PBXGroup;
 			children = (
@@ -1084,6 +1092,7 @@
 		2D467C3F26BCD68C008F11E1 /* NetworkAPI */ = {
 			isa = PBXGroup;
 			children = (
+				24B109B427465F8200A0BB7A /* Constants */,
 				2459B30A26D748D800ABCE61 /* Core */,
 				2410D49F2704181A009B4A95 /* Interceptors */,
 				2459B31726D74E3700ABCE61 /* Models */,
@@ -1198,7 +1207,6 @@
 				2D72E47D26C2185400861239 /* Constants.swift */,
 				2459B30626D747DF00ABCE61 /* Constants+API.swift */,
 				2D303B3A26C28AC200EEF1C0 /* Constants+String.swift */,
-				2452AFFE2744E31D00414E53 /* HTTPStatusCode.swift */,
 				249042EF26D5042D00E970B6 /* SystemImageName.swift */,
 			);
 			path = Constants;

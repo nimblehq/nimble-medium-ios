@@ -37,7 +37,6 @@ protocol HomeViewModelProtocol: ObservableViewModel {
 final class HomeViewModel: ObservableObject, HomeViewModelProtocol {
 
     private let disposeBag = DisposeBag()
-    private let unauthorizedNotificationTrigger = NotificationCenter.default.rx.notification(.unauthorized)
 
     var input: HomeViewModelInput { self }
     var output: HomeViewModelOutput { self }
@@ -49,7 +48,7 @@ final class HomeViewModel: ObservableObject, HomeViewModelProtocol {
     @Published var isSideMenuOpen: Bool = false
 
     init() {
-        unauthorizedNotificationTrigger
+        NotificationCenter.default.rx.notification(.unauthorized)
             .withUnretained(self)
             .flatMapLatest { owner, _ in owner.unauthorizedNotificationTriggered() }
             .subscribe()
