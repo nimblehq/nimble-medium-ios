@@ -6,7 +6,7 @@ require './fastlane/Constants/Constants'
 warn("This pull request is quite big (#{git.lines_of_code} lines changed), please consider splitting it into multiple pull requests.") if git.lines_of_code > 500
 
 # Warn to encourage that labels should have been used on the PR
-warn("This pull request doesn't have any labels, please consider to add labels to this pull request") if github.pr_labels.empty?
+warn("This pull request doesn't have any labels, please consider to add labels to this pull request.") if github.pr_labels.empty?
 
 # SwiftFormat
 swiftformat.binary_path = './Pods/SwiftFormat/CommandLineTool/swiftformat'
@@ -15,11 +15,11 @@ swiftformat.check_format
 
 # Swiftlint
 swiftlint.binary_path = './Pods/SwiftLint/swiftlint'
+swiftlint.config_file = '.swiftlint.yml'
 swiftlint.max_num_violations = 20
-swiftlint.lint_all_files = true
 swiftlint.lint_files(
-  inline_mode: true,
-  fail_on_error: true,
+  inline_mode: true, 
+  fail_on_error: true, 
   additional_swiftlint_args: '--strict'
 )
 

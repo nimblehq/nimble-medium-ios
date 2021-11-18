@@ -2,7 +2,7 @@ name: Automatic pull request review
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, reopened, edited, synchronize]
 
 jobs:
   review_pull_request:
@@ -51,5 +51,5 @@ jobs:
 
     - name: Review pull request by Danger
       env:
-        DANGER_GITHUB_API_TOKEN: ${{ github.token }}
+        DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: bundle exec danger
