@@ -13,7 +13,6 @@ class ReportManager
       workspace: workspace,
       output_directory: @output_directory,
       xccov_file_direct_path: xccov_file_direct_path,
-      only_project_targets: true,
       markdown_report: true,
       html_report: false
     )
