@@ -21,12 +21,14 @@ struct AppTextView: View {
                 Text(placeholder)
                     .foregroundColor(Color(.label))
                     .padding(.top, 10.0)
+                    .padding(.leading, 5.0)
             }
             TextEditor(text: $text)
                 .opacity(text.isEmpty ? 0.7 : 1.0)
                 .introspectTextView {
                     $0.delegate = delegateResponder
                 }
+                .accentColor(.black)
         }
         .padding([.leading, .trailing], 8.0)
         .overlay(

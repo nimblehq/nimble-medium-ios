@@ -114,6 +114,7 @@ struct ArticleCommentsView: View {
         }
         .frame(height: 50)
         .padding(.horizontal, 20.0)
+        .padding(.bottom, 10.0)
     }
 
     init(id: String) {
