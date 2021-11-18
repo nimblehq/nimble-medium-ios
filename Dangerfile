@@ -6,7 +6,7 @@ require './fastlane/Constants/Constants'
 warn("This pull request is quite big (#{git.lines_of_code} lines changed), please consider splitting it into multiple pull requests.") if git.lines_of_code > 500
 
 # Warn to encourage that labels should have been used on the PR
-warn("This pull request doesn't have any labels, please consider to add labels to this pull request.") if github.pr_labels.empty?
+warn("This pull request doesn't have any labels, please consider to add labels to this pull request") if github.pr_labels.empty?
 
 # SwiftFormat
 swiftformat.binary_path = './Pods/SwiftFormat/CommandLineTool/swiftformat'
