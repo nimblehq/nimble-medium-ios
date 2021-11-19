@@ -13,16 +13,17 @@ import ToastUI
 
 struct UserProfileView: View {
 
+    @ObservedViewModel var viewModel: UserProfileViewModelProtocol
+
     @State private var uiModel: UIModel?
     @State private var errorMessage = ""
     @State private var errorToast = false
-
-    @ObservedViewModel var viewModel: UserProfileViewModelProtocol
+    @State private var selectedTabIndex: Int = 0
+    @State private var createdArticlesViewModel: UserProfileCreatedArticlesTabViewModelProtocol?
+    @State private var favouritedArticlesViewModel: UserProfileFavouritedArticlesTabViewModelProtocol?
 
     private let username: String?
     private var isCurrentUserProfile: Bool { username == nil }
-
-    @State private var selectedTabIndex: Int = 0
 
     var body: some View {
         VStack {
@@ -32,9 +33,13 @@ struct UserProfileView: View {
                 .background(Color.gray)
 
             PagerTabStripView(selection: $selectedTabIndex) {
-                UserProfileCreatedArticlesTab(viewModel: viewModel.output.createdArticlesViewModel)
+                if let viewModel = createdArticlesViewModel {
+                    UserProfileCreatedArticlesTab(viewModel: viewModel)
+                }
 
-                UserProfileFavouritedArticlesTab(viewModel: viewModel.output.favouritedArticlesViewModel)
+                if let viewModel = favouritedArticlesViewModel {
+                    UserProfileFavouritedArticlesTab(viewModel: viewModel)
+                }
             }
             .pagerTabStripViewStyle(
                 .normal(
@@ -52,6 +57,8 @@ struct UserProfileView: View {
                 Color.clear
             }
         }
+        .bind(viewModel.output.createdArticlesViewModel, to: _createdArticlesViewModel)
+        .bind(viewModel.output.favouritedArticlesViewModel, to: _favouritedArticlesViewModel)
         .bind(viewModel.output.userProfileUIModel, to: _uiModel)
         .onReceive(viewModel.output.errorMessage) { _ in
             errorMessage = Localizable.errorGenericMessage()
