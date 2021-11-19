@@ -19,8 +19,8 @@ protocol UserProfileViewModelOutput {
 
     var userProfileUIModel: Driver<UserProfileView.UIModel?> { get }
     var errorMessage: Signal<String> { get }
-    var createdArticlesViewModel: UserProfileCreatedArticlesTabViewModelProtocol { get }
-    var favouritedArticlesViewModel: UserProfileFavouritedArticlesTabViewModelProtocol { get }
+    var createdArticlesViewModel: Driver<UserProfileCreatedArticlesTabViewModelProtocol?> { get }
+    var favouritedArticlesViewModel: Driver<UserProfileFavouritedArticlesTabViewModelProtocol?> { get }
     var didFailToToggleFollow: Signal<Void> { get }
 }
 
@@ -45,6 +45,9 @@ final class UserProfileViewModel: ObservableObject, UserProfileViewModelProtocol
     @PublishRelayProperty var errorMessage: Signal<String>
 
     @BehaviorRelayProperty(nil) var userProfileUIModel: Driver<UserProfileView.UIModel?>
+    @BehaviorRelayProperty(nil) var createdArticlesViewModel: Driver<UserProfileCreatedArticlesTabViewModelProtocol?>
+    // swiftlint:disable line_length
+    @BehaviorRelayProperty(nil) var favouritedArticlesViewModel: Driver<UserProfileFavouritedArticlesTabViewModelProtocol?>
     @PublishRelayProperty var didFailToToggleFollow: Signal<Void>
 
     @Injected var getCurrentUserUseCase: GetCurrentUserUseCaseProtocol
@@ -52,19 +55,8 @@ final class UserProfileViewModel: ObservableObject, UserProfileViewModelProtocol
     @Injected var followUserUseCase: FollowUserUseCaseProtocol
     @Injected var unfollowUserUseCase: UnfollowUserUseCaseProtocol
 
-    let createdArticlesViewModel: UserProfileCreatedArticlesTabViewModelProtocol
-    let favouritedArticlesViewModel: UserProfileFavouritedArticlesTabViewModelProtocol
-
     init(username: String? = nil) {
         self.username = username
-        createdArticlesViewModel = Resolver.resolve(
-            UserProfileCreatedArticlesTabViewModelProtocol.self,
-            args: username
-        )
-        favouritedArticlesViewModel = Resolver.resolve(
-            UserProfileFavouritedArticlesTabViewModelProtocol.self,
-            args: username
-        )
 
         getCurrentUserTrigger
             .withUnretained(self)
@@ -121,6 +113,18 @@ extension UserProfileViewModel {
             .do(
                 onSuccess: {
                     owner.$userProfileUIModel.accept(owner.generateUIModel(fromUser: $0))
+                    owner.$createdArticlesViewModel.accept(
+                        Resolver.resolve(
+                            UserProfileCreatedArticlesTabViewModelProtocol.self,
+                            args: $0.username
+                        )
+                    )
+                    owner.$favouritedArticlesViewModel.accept(
+                        Resolver.resolve(
+                            UserProfileFavouritedArticlesTabViewModelProtocol.self,
+                            args: $0.username
+                        )
+                    )
                 },
                 onError: { error in
                     owner.$errorMessage.accept(error.detail)

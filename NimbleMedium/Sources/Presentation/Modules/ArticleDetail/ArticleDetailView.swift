@@ -26,7 +26,7 @@ struct ArticleDetailView: View {
     // swiftlint:disable identifier_name
     @State private var isDeleteArticleConfirmationAlertPresented = false
 
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode) var presentationMode
 
     private let slug: String
 
@@ -44,7 +44,7 @@ struct ArticleDetailView: View {
         .toolbar { navigationBarTrailingContent }
         .modifier(NavigationBarPrimaryStyle())
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
-            ToastView(Localizable.errorGeneric()) {} background: {
+            ToastView(Localizable.errorGenericMessage()) {} background: {
                 Color.clear
             }
         }

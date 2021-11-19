@@ -48,7 +48,7 @@ struct ArticleRow: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
-            ToastView(Localizable.errorGeneric()) {} background: {
+            ToastView(Localizable.errorGenericMessage()) {} background: {
                 Color.clear
             }
         }

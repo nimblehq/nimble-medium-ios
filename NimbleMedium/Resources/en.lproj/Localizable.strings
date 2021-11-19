@@ -19,17 +19,25 @@
 
 "createArticle.title.text" = "Create Article";
 "createArticle.textFieldDescription.placeholder" = "What's this article about";
+"createArticle.textFieldDescription.title" = "Description";
 "createArticle.textFieldTagsList.placeholder" = "Enter tags (separated by comma)";
+"createArticle.textFieldTagsList.title" = "Tags";
 "createArticle.textFieldTitle.placeholder" = "Article Title";
+"createArticle.textFieldTitle.title" = "Title";
 "createArticle.textViewBody.placeholder" = "Write your article";
+"createArticle.textViewBody.title" = "Body";
 
 "default.username.value" = "Current User";
 
 "editArticle.title.text" = "Update Article";
 "editArticle.textFieldDescription.placeholder" = "What's this article about";
+"editArticle.textFieldDescription.title" = "Description";
 "editArticle.textFieldTagsList.placeholder" = "Enter tags (separated by comma)";
+"editArticle.textFieldTagsList.title" = "Tags";
 "editArticle.textFieldTitle.placeholder" = "Article Title";
+"editArticle.textFieldTitle.title" = "Title";
 "editArticle.textViewBody.placeholder" = "Write your article";
+"editArticle.textViewBody.title" = "Body";
 
 "editProfile.textFieldAvatarURL.placeholder" = "Url of the new profile picture";
 "editProfile.textFieldEmail.placeholder" = "New email";
@@ -38,7 +46,7 @@
 "editProfile.textViewBio.placeholder" = "Short bio about you";
 "editProfile.title.text" = "Edit Profile";
 
-"error.generic" = "Something went wrong.\nPlease try again later.";
+"error.generic.message" = "Something went wrong.\nPlease try again later.";
 
 "feedComments.commentTextView.placeholder" = "Write a comment...";
 "feedComments.noComment.message" = "No Comment";

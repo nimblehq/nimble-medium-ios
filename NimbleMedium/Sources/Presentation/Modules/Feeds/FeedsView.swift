@@ -23,8 +23,6 @@ struct FeedsView: View {
     @State private var selectedTabIndex: Int = 0
     @State private var isAuthenticated = false
 
-    @Binding private var isSideMenuDraggingEnabled: Bool
-
     var body: some View {
         NavigationView {
             Group {
@@ -40,19 +38,21 @@ struct FeedsView: View {
                 navigationBarLeadingContent
                 navigationBarTrailingContent
             }
-            .onAppear { isSideMenuDraggingEnabled = true }
-            .onDisappear { isSideMenuDraggingEnabled = false }
+            .onAppear { userSessionViewModel.input.getUserSession() }
         }
         .accentColor(.white)
         .onAppear {
-            userSessionViewModel.input.getUserSession()
             viewModel.input.bindData(
                 sideMenuActionsViewModel: sideMenuActionsViewModel,
                 userSessionViewModel: userSessionViewModel
             )
         }
         .bind(userSessionViewModel.output.isAuthenticated, to: _isAuthenticated)
-        .fullScreenCover(isPresented: $isShowingCreateArticleScreen) { CreateArticleView() }
+        .fullScreenCover(
+            isPresented: $isShowingCreateArticleScreen,
+            onDismiss: { userSessionViewModel.input.getUserSession() },
+            content: { CreateArticleView() }
+        )
     }
 
     var navigationBarLeadingContent: some ToolbarContent {
@@ -77,9 +77,9 @@ struct FeedsView: View {
 
     var pagerTabs: some View {
         PagerTabStripView(selection: $selectedTabIndex) {
-            EquatableView(content: FeedsTabView(viewModel: viewModel.output.yourFeedsViewModel))
+            FeedsTabView(viewModel: viewModel.output.yourFeedsViewModel)
                 .pagerTabItem { PagerTabItemTitle(Localizable.feedsYourFeedTabTitle()) }
-            EquatableView(content: FeedsTabView(viewModel: viewModel.output.globalFeedsViewModel))
+            FeedsTabView(viewModel: viewModel.output.globalFeedsViewModel)
                 .pagerTabItem { PagerTabItemTitle(Localizable.feedsGlobalFeedTabTitle()) }
         }
         .pagerTabStripViewStyle(
@@ -90,16 +90,12 @@ struct FeedsView: View {
             )
         )
     }
-
-    init(isSideMenuDraggingEnabled: Binding<Bool>) {
-        _isSideMenuDraggingEnabled = isSideMenuDraggingEnabled
-    }
 }
 
 #if DEBUG
     struct FeedsView_Previews: PreviewProvider {
         static var previews: some View {
-            FeedsView(isSideMenuDraggingEnabled: .constant(true))
+            FeedsView()
         }
     }
 #endif

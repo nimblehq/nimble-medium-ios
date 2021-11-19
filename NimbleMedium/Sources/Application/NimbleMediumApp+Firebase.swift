@@ -1,5 +1,5 @@
 //
-//  App+Firebase.swift
+//  NimbleMediumApp+Firebase.swift
 //  NimbleMedium
 //
 //  Created by Mark G on 20/08/2021.
@@ -7,7 +7,7 @@
 
 import Firebase
 
-extension App {
+extension NimbleMediumApp {
 
     func configureFirebase() {
         FirebaseApp.configure()

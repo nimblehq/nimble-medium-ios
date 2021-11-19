@@ -34,7 +34,7 @@ struct EditArticleView: View {
         }
         .accentColor(.white)
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
-            ToastView(Localizable.errorGeneric()) {} background: {
+            ToastView(Localizable.errorGenericMessage()) {} background: {
                 Color.clear
             }
         }
@@ -83,18 +83,30 @@ struct EditArticleView: View {
         }
     }
 
+    // swiftlint:disable closure_body_length
     var form: some View {
         ScrollView {
             VStack(spacing: 15.0) {
-                AppTextField(placeholder: Localizable.editArticleTextFieldTitlePlaceholder(), text: $title)
-                    .font(.system(size: 20))
-                AppTextField(
+                LabeledAppTextField(
+                    title: Localizable.editArticleTextFieldTitleTitle(),
+                    placeholder: Localizable.editArticleTextFieldTitlePlaceholder(),
+                    text: $title
+                ).font(.system(size: 20))
+                LabeledAppTextField(
+                    title: Localizable.editArticleTextFieldDescriptionTitle(),
                     placeholder: Localizable.editArticleTextFieldDescriptionPlaceholder(),
                     text: $description
                 )
-                AppTextView(placeholder: Localizable.editArticleTextViewBodyPlaceholder(), text: $articleBody)
-                    .frame(height: 200.0, alignment: .leading)
-                AppTextField(placeholder: Localizable.editArticleTextFieldTagsListPlaceholder(), text: $tagsList)
+                LabeledAppTextView(
+                    title: Localizable.editArticleTextViewBodyTitle(),
+                    placeholder: Localizable.editArticleTextViewBodyPlaceholder(),
+                    text: $articleBody
+                ).frame(height: 230.0, alignment: .leading)
+                LabeledAppTextField(
+                    title: Localizable.editArticleTextFieldTagsListTitle(),
+                    placeholder: Localizable.editArticleTextFieldTagsListPlaceholder(),
+                    text: $tagsList
+                )
                 AppMainButton(title: Localizable.actionUpdateText()) {
                     viewModel.input.didTapUpdateButton(
                         title: title,
@@ -102,10 +114,8 @@ struct EditArticleView: View {
                         body: articleBody,
                         tagsList: tagsList
                     )
-                }
-                .disabled(title.isEmpty && description.isEmpty && articleBody.isEmpty && tagsList.isEmpty)
-            }
-            .padding()
+                }.disabled(title.isEmpty && description.isEmpty && articleBody.isEmpty && tagsList.isEmpty)
+            }.padding()
         }
     }
 }

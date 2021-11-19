@@ -44,7 +44,7 @@ struct SignupView: View {
             presentationMode.wrappedValue.dismiss()
         }
         .onReceive(viewModel.output.errorMessage) { _ in
-            errorMessage = Localizable.errorGeneric()
+            errorMessage = Localizable.errorGenericMessage()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { errorToast.toggle() }
         }
         .onReceive(viewModel.output.isLoading) {
@@ -71,12 +71,14 @@ struct SignupView: View {
             VStack(spacing: 15.0) {
                 AppTextField(
                     placeholder: Localizable.signupTextFieldUsernamePlaceholder(),
-                    text: $username
+                    text: $username,
+                    autoCapitalization: false
                 )
                 AppTextField(
                     placeholder: Localizable.signupTextFieldEmailPlaceholder(),
                     text: $email,
-                    supportEmailKeyboard: true
+                    emailKeyboard: true,
+                    autoCapitalization: false
                 )
                 AppSecureField(
                     placeholder: Localizable.signupTextFieldPasswordPlaceholder(),

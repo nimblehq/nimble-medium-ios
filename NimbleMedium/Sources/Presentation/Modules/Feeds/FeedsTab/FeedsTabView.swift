@@ -11,7 +11,7 @@ import Resolver
 import SwiftUI
 import ToastUI
 
-struct FeedsTabView: View, Equatable {
+struct FeedsTabView: View {
 
     @ObservedViewModel private var viewModel: FeedsTabViewModelProtocol
 
@@ -24,27 +24,24 @@ struct FeedsTabView: View, Equatable {
             if isFirstLoad {
                 ProgressView()
             } else {
-                EquatableView(content: FeedList(viewModel: viewModel))
+                FeedList(viewModel: viewModel)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
-            ToastView(Localizable.errorGeneric()) {} background: { Color.clear }
+            ToastView(Localizable.errorGenericMessage()) {} background: { Color.clear }
         }
         .onReceive(viewModel.output.didFinishRefresh) { _ in if isFirstLoad { isFirstLoad = false } }
         .onReceive(viewModel.output.didFailToLoadArticle) { _ in isErrorToastPresented = true }
         .bind(viewModel.output.tabType, to: _tabType)
-        .onAppear { viewModel.input.refresh() }
+        .onAppear {
+            guard isFirstLoad else { return }
+            viewModel.input.refresh()
+        }
     }
 
     init(viewModel: FeedsTabViewModelProtocol) {
         self.viewModel = viewModel
-    }
-
-    static func == (lhs: FeedsTabView, rhs: FeedsTabView) -> Bool {
-        lhs.isFirstLoad == rhs.isFirstLoad
-            && lhs.isErrorToastPresented == rhs.isErrorToastPresented
-            && lhs.tabType == rhs.tabType
     }
 }
 
@@ -52,7 +49,7 @@ struct FeedsTabView: View, Equatable {
 
 extension FeedsTabView {
 
-    private struct FeedList: View, Equatable {
+    private struct FeedList: View {
 
         let viewModel: FeedsTabViewModelProtocol
 
@@ -126,10 +123,6 @@ extension FeedsTabView {
                     .hidden()
                 } else { EmptyView() }
             }
-        }
-
-        static func == (lhs: FeedsTabView.FeedList, rhs: FeedsTabView.FeedList) -> Bool {
-            lhs.articleRowViewModels.count != rhs.articleRowViewModels.count
         }
     }
 }

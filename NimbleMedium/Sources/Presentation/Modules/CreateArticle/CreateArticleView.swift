@@ -46,7 +46,7 @@ struct CreateArticleView: View {
         .bind(viewModel.output.isLoading, to: _loadingToast)
         .onReceive(viewModel.output.didCreateArticle) { _ in presentationMode.wrappedValue.dismiss() }
         .onReceive(viewModel.output.errorMessage) { _ in
-            errorMessage = Localizable.errorGeneric()
+            errorMessage = Localizable.errorGenericMessage()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { errorToast.toggle() }
         }
     }
@@ -60,25 +60,36 @@ struct CreateArticleView: View {
         }
     }
 
+    // swiftlint:disable closure_body_length
     var contentView: some View {
         ScrollView {
             VStack(spacing: 15.0) {
-                AppTextField(placeholder: Localizable.createArticleTextFieldTitlePlaceholder(), text: $title)
-                    .font(.system(size: 20))
-                AppTextField(
+                LabeledAppTextField(
+                    title: Localizable.createArticleTextFieldTitleTitle(),
+                    placeholder: Localizable.createArticleTextFieldTitlePlaceholder(),
+                    text: $title
+                ).font(.system(size: 20))
+                LabeledAppTextField(
+                    title: Localizable.createArticleTextFieldDescriptionTitle(),
                     placeholder: Localizable.createArticleTextFieldDescriptionPlaceholder(),
                     text: $description
                 )
-                AppTextView(placeholder: Localizable.createArticleTextViewBodyPlaceholder(), text: $articleBody)
-                    .frame(height: 200.0, alignment: .leading)
-                AppTextField(placeholder: Localizable.createArticleTextFieldTagsListPlaceholder(), text: $tagsList)
+                LabeledAppTextView(
+                    title: Localizable.createArticleTextViewBodyTitle(),
+                    placeholder: Localizable.createArticleTextViewBodyPlaceholder(),
+                    text: $articleBody
+                ).frame(height: 230.0, alignment: .leading)
+                LabeledAppTextField(
+                    title: Localizable.createArticleTextFieldTagsListTitle(),
+                    placeholder: Localizable.createArticleTextFieldTagsListPlaceholder(),
+                    text: $tagsList
+                )
                 AppMainButton(title: Localizable.actionPublishText()) {
                     hideKeyboard()
                     viewModel.input.didTapPublishButton(
                         title: title, description: description, body: articleBody, tagsList: tagsList
                     )
-                }
-                .disabled(title.isEmpty && description.isEmpty && articleBody.isEmpty && tagsList.isEmpty)
+                }.disabled(title.isEmpty && description.isEmpty && articleBody.isEmpty && tagsList.isEmpty)
             }
             .padding()
         }

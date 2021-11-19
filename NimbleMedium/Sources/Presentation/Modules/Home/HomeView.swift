@@ -18,35 +18,23 @@ struct HomeView: View {
     @Injected private var feedsViewModel: FeedsViewModelProtocol
     @Injected private var sideMenuViewModel: SideMenuViewModelProtocol
 
-    @State private var displaySideMenuProgress: CGFloat = 0.0
+    @State private var isSideMenuOpen: Bool = false
     @State private var isDraggingEnabled = false
 
-    private let draggingAnimator = SideMenuDraggingAnimator()
-    private let sideMenuCoordinateSpaceName = "SideMenu"
-
     var body: some View {
-        GeometryReader { geo in
-            ZStack {
-                FeedsView(isSideMenuDraggingEnabled: $isDraggingEnabled)
-                sideMenuDimmedBackground
-                GeometryReader { geo in
-                    SideMenuView()
-                        .frame(width: geo.size.width * 2.0 / 3.0, height: geo.size.height)
-                        .background(Color.white)
-                        .offset(x: (1 - displaySideMenuProgress) * -geo.size.width * 2.0 / 3.0)
-                        .coordinateSpace(name: sideMenuCoordinateSpaceName)
-                }
+        ZStack {
+            FeedsView()
+            sideMenuDimmedBackground
+            GeometryReader { geo in
+                SideMenuView()
+                    .frame(width: geo.size.width * 2.0 / 3.0, height: geo.size.height)
+                    .background(Color.white)
+                    .offset(x: isSideMenuOpen ? 0 : -geo.size.width * 2.0 / 3.0)
+                    .animation(.linear(duration: 0.3))
             }
-            .ignoresSafeArea()
-            .onReceive(viewModel.output.isSideMenuOpenDidChange) { isOpen in
-                withAnimation {
-                    displaySideMenuProgress = isOpen ? 1.0 : 0.0
-                }
-
-                draggingAnimator.reset(isOpen: isOpen)
-            }
-            .gesture(dragGesture(geo: geo))
         }
+        .ignoresSafeArea()
+        .bind(viewModel.output.isSideMenuOpenDidChange, to: _isSideMenuOpen)
     }
 
     private var sideMenuDimmedBackground: some View {
@@ -54,33 +42,13 @@ struct HomeView: View {
             EmptyView()
         }
         .background(Color.black.opacity(0.7))
-        .opacity(Double(displaySideMenuProgress) * 0.75)
-        .onTapGesture {
-            viewModel.input.toggleSideMenu(false)
-        }
+        .opacity(isSideMenuOpen ? 0.75 : 0)
+        .animation(Animation.easeIn(duration: 0.3).delay(0.1))
+        .onTapGesture { viewModel.input.toggleSideMenu(false) }
     }
 
     init() {
         viewModel.input.bindData(feedsViewModel: feedsViewModel, sideMenuViewModel: sideMenuViewModel)
-    }
-
-    private func dragGesture(geo: GeometryProxy) -> some Gesture {
-        DragGesture(coordinateSpace: .named(sideMenuCoordinateSpaceName))
-            .onChanged { gesture in
-                guard isDraggingEnabled else { return }
-                // FIXME: It should return current size of SideMenu
-                let width = geo.frame(in: .named(sideMenuCoordinateSpaceName)).width * 2.0 / 3.0
-
-                draggingAnimator.onDraggingChanged(gesture, width) {
-                    displaySideMenuProgress = $1
-                }
-            }
-            .onEnded { _ in
-                guard isDraggingEnabled else { return }
-                draggingAnimator.onDraggingEnded { isOpen, _ in
-                    viewModel.input.toggleSideMenu(isOpen)
-                }
-            }
     }
 }
 

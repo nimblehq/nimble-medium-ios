@@ -25,4 +25,19 @@ final class AuthenticatedInterceptor: RequestInterceptor {
             completion(.failure(NetworkAPIError.generic))
         }
     }
+
+    func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
+        print("\(#function) : request : \(request), retryCount : \(request.retryCount)")
+        if let status = request.response?.status, status == .unauthorized {
+            NotificationCenter.default.post(name: .unauthorized, object: nil)
+        }
+        completion(.doNotRetry)
+    }
+}
+
+// MARK: - NSNotification.Name
+
+extension NSNotification.Name {
+
+    static let unauthorized = NSNotification.Name("unauthorized")
 }
