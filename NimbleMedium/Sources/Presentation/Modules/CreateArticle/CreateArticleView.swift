@@ -46,7 +46,7 @@ struct CreateArticleView: View {
         .bind(viewModel.output.isLoading, to: _loadingToast)
         .onReceive(viewModel.output.didCreateArticle) { _ in presentationMode.wrappedValue.dismiss() }
         .onReceive(viewModel.output.errorMessage) { _ in
-            errorMessage = Localizable.errorGeneric()
+            errorMessage = Localizable.errorGenericMessage()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { errorToast.toggle() }
         }
     }

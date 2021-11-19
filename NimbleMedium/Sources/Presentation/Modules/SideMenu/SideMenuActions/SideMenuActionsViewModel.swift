@@ -15,9 +15,7 @@ protocol SideMenuActionsViewModelInput {
 
     func bindData(
         loginViewModel: LoginViewModelProtocol,
-        signupViewModel: SignupViewModelProtocol,
-        homeViewModel: HomeViewModelProtocol,
-        userSessionViewModel: UserSessionViewModelProtocol
+        signupViewModel: SignupViewModelProtocol
     )
     func selectLoginOption()
     func selectLogoutOption()
@@ -72,9 +70,7 @@ extension SideMenuActionsViewModel: SideMenuActionsViewModelInput {
 
     func bindData(
         loginViewModel: LoginViewModelProtocol,
-        signupViewModel: SignupViewModelProtocol,
-        homeViewModel: HomeViewModelProtocol,
-        userSessionViewModel: UserSessionViewModelProtocol
+        signupViewModel: SignupViewModelProtocol
     ) {
         loginViewModel.output.didSelectNoAccount.asObservable()
             .subscribe(
@@ -95,11 +91,6 @@ extension SideMenuActionsViewModel: SideMenuActionsViewModelInput {
                 with: self,
                 onNext: { owner, _ in owner.selectLoginOption() }
             )
-            .disposed(by: disposeBag)
-
-        homeViewModel.output.isSideMenuOpenDidChange
-            .filter { $0 }
-            .emit(with: self) { _, _ in userSessionViewModel.input.getUserSession() }
             .disposed(by: disposeBag)
     }
 

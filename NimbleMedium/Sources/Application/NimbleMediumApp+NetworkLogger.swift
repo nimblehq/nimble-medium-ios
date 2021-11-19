@@ -7,7 +7,7 @@
 
 import AlamofireNetworkActivityLogger
 
-extension App {
+extension NimbleMediumApp {
 
     func configureNetworkLogger() {
         #if DEBUG

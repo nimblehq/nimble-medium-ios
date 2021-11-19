@@ -15,7 +15,6 @@ struct SideMenuActionsView: View {
 
     @Injected private var loginViewModel: LoginViewModelProtocol
     @Injected private var signupViewModel: SignupViewModelProtocol
-    @Injected private var homeViewModel: HomeViewModelProtocol
 
     @EnvironmentObject private var userSessionViewModel: UserSessionViewModel
 
@@ -25,25 +24,24 @@ struct SideMenuActionsView: View {
     @State private var isShowingMyProfileScreen = false
     @State private var showLogoutConfirmationAlert = false
 
+    var body: some View {
+        contentView
+            .onAppear {
+                userSessionViewModel.input.getUserSession()
+                viewModel.input.bindData(
+                    loginViewModel: loginViewModel,
+                    signupViewModel: signupViewModel
+                )
+            }
+            .bind(userSessionViewModel.output.isAuthenticated, to: _isAuthenticated)
+    }
+
     @ViewBuilder var contentView: some View {
         if isAuthenticated {
             authenticatedMenuOptions
         } else {
             unauthenticatedMenuHeader
         }
-    }
-
-    var body: some View {
-        contentView
-            .onAppear {
-                viewModel.input.bindData(
-                    loginViewModel: loginViewModel,
-                    signupViewModel: signupViewModel,
-                    homeViewModel: homeViewModel,
-                    userSessionViewModel: userSessionViewModel
-                )
-            }
-            .bind(userSessionViewModel.output.isAuthenticated, to: _isAuthenticated)
     }
 
     var authenticatedMenuOptions: some View {
@@ -54,12 +52,11 @@ struct SideMenuActionsView: View {
             ) {
                 viewModel.input.selectMyProfileOption()
             }
-            .fullScreenCover(isPresented: $isShowingMyProfileScreen) {
-                NavigationView {
-                    UserProfileView()
-                }
-                .accentColor(.white)
-            }
+            .fullScreenCover(
+                isPresented: $isShowingMyProfileScreen,
+                onDismiss: { userSessionViewModel.input.getUserSession() },
+                content: { NavigationView { UserProfileView() }.accentColor(.white) }
+            )
 
             SideMenuActionItemView(
                 text: Localizable.menuOptionLogout(),
@@ -88,9 +85,11 @@ struct SideMenuActionsView: View {
             ) {
                 viewModel.input.selectLoginOption()
             }
-            .fullScreenCover(isPresented: $isShowingLoginScreen) {
-                LoginView()
-            }
+            .fullScreenCover(
+                isPresented: $isShowingLoginScreen,
+                onDismiss: { userSessionViewModel.input.getUserSession() },
+                content: { LoginView() }
+            )
 
             SideMenuActionItemView(
                 text: Localizable.menuOptionSignup(),
@@ -98,9 +97,11 @@ struct SideMenuActionsView: View {
             ) {
                 viewModel.input.selectSignupOption()
             }
-            .fullScreenCover(isPresented: $isShowingSignupScreen) {
-                SignupView()
-            }
+            .fullScreenCover(
+                isPresented: $isShowingLoginScreen,
+                onDismiss: { userSessionViewModel.input.getUserSession() },
+                content: { SignupView() }
+            )
         }
         .bind(viewModel.output.didSelectLoginOption, to: _isShowingLoginScreen)
         .bind(viewModel.output.didSelectSignupOption, to: _isShowingSignupScreen)

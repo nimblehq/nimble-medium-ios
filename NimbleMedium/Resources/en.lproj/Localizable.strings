@@ -46,7 +46,7 @@
 "editProfile.textViewBio.placeholder" = "Short bio about you";
 "editProfile.title.text" = "Edit Profile";
 
-"error.generic" = "Something went wrong.\nPlease try again later.";
+"error.generic.message" = "Something went wrong.\nPlease try again later.";
 
 "feedComments.commentTextView.placeholder" = "Write a comment...";
 "feedComments.noComment.message" = "No Comment";
