@@ -51,5 +51,5 @@ jobs:
 
     - name: Review pull request by Danger
       env:
-        DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DANGER_GITHUB_API_TOKEN: ${{ github.token }}
       run: bundle exec danger
