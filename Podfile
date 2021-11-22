@@ -1,6 +1,16 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
+def testing_pods
+  # Pods for testing
+  pod 'Nimble'
+  pod 'Quick'
+  pod 'RxNimble', subspecs: ['RxBlocking', 'RxTest']
+  pod 'RxSwift'
+  pod 'Sourcery'
+  pod 'SwiftFormat/CLI'
+end
+
 target 'NimbleMedium' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
@@ -21,17 +31,11 @@ target 'NimbleMedium' do
 
   target 'NimbleMediumTests' do
     inherit! :search_paths
-    # Pods for testing
-    pod 'Nimble'
-    pod 'Quick'
-    pod 'RxNimble', subspecs: ['RxBlocking', 'RxTest']
-    pod 'RxSwift'
-    pod 'Sourcery'
-    pod 'SwiftFormat/CLI'
+    testing_pods
   end
 
   target 'NimbleMediumUITests' do
-    # Pods for testing
+    testing_pods
   end
 
 end

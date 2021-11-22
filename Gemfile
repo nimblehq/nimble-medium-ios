@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
-gem "cocoapods", "1.10.2"
-gem 'slather'
+gem "cocoapods"
+gem "slather"
 gem "fastlane"
 gem "xcov"
 gem "danger"
