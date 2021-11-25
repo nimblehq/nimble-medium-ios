@@ -14,7 +14,7 @@ extension Resolver {
 
     // MARK: - Mock Container
 
-    static var mock = Resolver(parent: .main)
+    static var mock = Resolver(child: .main)
 
     // MARK: - Register Mock Services
 
