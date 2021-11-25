@@ -98,7 +98,7 @@ struct SideMenuActionsView: View {
                 viewModel.input.selectSignupOption()
             }
             .fullScreenCover(
-                isPresented: $isShowingLoginScreen,
+                isPresented: $isShowingSignupScreen,
                 onDismiss: { userSessionViewModel.input.getUserSession() },
                 content: { SignupView() }
             )
