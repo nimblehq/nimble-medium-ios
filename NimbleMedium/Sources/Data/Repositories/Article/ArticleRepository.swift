@@ -10,14 +10,9 @@ import RxSwift
 final class ArticleRepository: ArticleRepositoryProtocol {
 
     private let authenticatedNetworkAPI: AuthenticatedNetworkAPIProtocol
-    private let networkAPI: NetworkAPIProtocol
 
-    init(
-        authenticatedNetworkAPI: AuthenticatedNetworkAPIProtocol,
-        networkAPI: NetworkAPIProtocol
-    ) {
+    init(authenticatedNetworkAPI: AuthenticatedNetworkAPIProtocol) {
         self.authenticatedNetworkAPI = authenticatedNetworkAPI
-        self.networkAPI = networkAPI
     }
 
     func createArticle(params: CreateArticleParameters) -> Single<Article> {
@@ -45,7 +40,7 @@ final class ArticleRepository: ArticleRepositoryProtocol {
         let requestConfiguration = ArticleRequestConfiguration
             .getArticle(slug: slug)
 
-        return networkAPI
+        return authenticatedNetworkAPI
             .performRequest(requestConfiguration, for: APIArticleResponse.self)
             .map { $0.article as Article }
     }
@@ -53,7 +48,7 @@ final class ArticleRepository: ArticleRepositoryProtocol {
     func listArticles(params: GetArticlesParameters) -> Single<[Article]> {
         let requestConfiguration = ArticleRequestConfiguration.listArticles(params: params)
 
-        return networkAPI
+        return authenticatedNetworkAPI
             .performRequest(requestConfiguration, for: APIArticlesResponse.self)
             .map { $0.articles.map { $0 as Article } }
     }
