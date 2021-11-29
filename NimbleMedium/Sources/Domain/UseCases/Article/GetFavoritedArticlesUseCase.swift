@@ -1,5 +1,5 @@
 //
-//  GetFavouritedArticlesUseCase.swift
+//  GetFavoritedArticlesUseCase.swift
 //  NimbleMedium
 //
 //  Created by Mark G on 28/09/2021.
@@ -8,12 +8,12 @@
 import RxSwift
 
 // sourcery: AutoMockable
-protocol GetFavouritedArticlesUseCaseProtocol {
+protocol GetFavoritedArticlesUseCaseProtocol {
 
     func execute(username: String) -> Single<[Article]>
 }
 
-final class GetFavouritedArticlesUseCase: GetFavouritedArticlesUseCaseProtocol {
+final class GetFavoritedArticlesUseCase: GetFavoritedArticlesUseCaseProtocol {
 
     private let articleRepository: ArticleRepositoryProtocol
 

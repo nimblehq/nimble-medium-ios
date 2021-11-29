@@ -58,7 +58,7 @@ final class ArticleRowViewModelSpec: QuickSpec {
                     ]
             }
 
-            describe("its toggleFavouriteArticle() call") {
+            describe("its toggleFavoriteArticle() call") {
 
                 beforeEach {
                     SharingScheduler.mock(scheduler: scheduler) {
@@ -73,7 +73,7 @@ final class ArticleRowViewModelSpec: QuickSpec {
                             .executeSlugIsFavoriteReturnValue = .empty(on: scheduler, at: 10)
 
                         scheduler.scheduleAt(5) {
-                            viewModel.input.toggleFavouriteArticle()
+                            viewModel.input.toggleFavoriteArticle()
                         }
                     }
 
@@ -99,12 +99,12 @@ final class ArticleRowViewModelSpec: QuickSpec {
                         )
 
                         scheduler.scheduleAt(5) {
-                            viewModel.input.toggleFavouriteArticle()
+                            viewModel.input.toggleFavoriteArticle()
                         }
                     }
 
-                    it("returns output didFailToToggleFavouriteArticle with signal") {
-                        expect(viewModel.output.didFailToToggleFavouriteArticle)
+                    it("returns output didFailToToggleFavoriteArticle with signal") {
+                        expect(viewModel.output.didFailToToggleFavoriteArticle)
                             .events(scheduler: scheduler, disposeBag: disposeBag)
                             .notTo(beEmpty())
                     }

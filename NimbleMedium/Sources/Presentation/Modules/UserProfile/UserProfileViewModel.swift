@@ -20,7 +20,7 @@ protocol UserProfileViewModelOutput {
     var userProfileUIModel: Driver<UserProfileView.UIModel?> { get }
     var errorMessage: Signal<String> { get }
     var createdArticlesViewModel: Driver<UserProfileCreatedArticlesTabViewModelProtocol?> { get }
-    var favouritedArticlesViewModel: Driver<UserProfileFavouritedArticlesTabViewModelProtocol?> { get }
+    var favoritedArticlesViewModel: Driver<UserProfileFavoritedArticlesTabViewModelProtocol?> { get }
     var didFailToToggleFollow: Signal<Void> { get }
 }
 
@@ -47,7 +47,7 @@ final class UserProfileViewModel: ObservableObject, UserProfileViewModelProtocol
     @BehaviorRelayProperty(nil) var userProfileUIModel: Driver<UserProfileView.UIModel?>
     @BehaviorRelayProperty(nil) var createdArticlesViewModel: Driver<UserProfileCreatedArticlesTabViewModelProtocol?>
     // swiftlint:disable line_length
-    @BehaviorRelayProperty(nil) var favouritedArticlesViewModel: Driver<UserProfileFavouritedArticlesTabViewModelProtocol?>
+    @BehaviorRelayProperty(nil) var favoritedArticlesViewModel: Driver<UserProfileFavoritedArticlesTabViewModelProtocol?>
     @PublishRelayProperty var didFailToToggleFollow: Signal<Void>
 
     @Injected var getCurrentUserUseCase: GetCurrentUserUseCaseProtocol
@@ -119,9 +119,9 @@ extension UserProfileViewModel {
                             args: $0.username
                         )
                     )
-                    owner.$favouritedArticlesViewModel.accept(
+                    owner.$favoritedArticlesViewModel.accept(
                         Resolver.resolve(
-                            UserProfileFavouritedArticlesTabViewModelProtocol.self,
+                            UserProfileFavoritedArticlesTabViewModelProtocol.self,
                             args: $0.username
                         )
                     )

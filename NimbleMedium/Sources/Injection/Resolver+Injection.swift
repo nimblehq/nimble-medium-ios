@@ -122,8 +122,8 @@ extension Resolver: ResolverRegistering {
         register(GetArticleCommentsUseCaseProtocol.self) {
             GetArticleCommentsUseCase(articleCommentRepository: resolve())
         }
-        register(GetFavouritedArticlesUseCaseProtocol.self) {
-            GetFavouritedArticlesUseCase(articleRepository: resolve())
+        register(GetFavoritedArticlesUseCaseProtocol.self) {
+            GetFavoritedArticlesUseCase(articleRepository: resolve())
         }
         register(GetCreatedArticlesUseCaseProtocol.self) {
             GetCreatedArticlesUseCase(articleRepository: resolve())
@@ -173,8 +173,8 @@ extension Resolver: ResolverRegistering {
         register(UserProfileCreatedArticlesTabViewModelProtocol.self) { _, args in
             UserProfileCreatedArticlesTabViewModel(username: args.get())
         }
-        register(UserProfileFavouritedArticlesTabViewModelProtocol.self) { _, args in
-            UserProfileFavouritedArticlesTabViewModel(username: args.get())
+        register(UserProfileFavoritedArticlesTabViewModelProtocol.self) { _, args in
+            UserProfileFavoritedArticlesTabViewModel(username: args.get())
         }
     }
 }
