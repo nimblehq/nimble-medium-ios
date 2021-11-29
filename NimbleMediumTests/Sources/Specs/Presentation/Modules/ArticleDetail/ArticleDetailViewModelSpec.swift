@@ -290,7 +290,7 @@ final class ArticleDetailViewModelSpec: QuickSpec {
                         }
 
                         scheduler.scheduleAt(15) {
-                            viewModel.input.toggleFavouriteArticle()
+                            viewModel.input.toggleFavoriteArticle()
                         }
                     }
 
@@ -322,12 +322,12 @@ final class ArticleDetailViewModelSpec: QuickSpec {
                         }
 
                         scheduler.scheduleAt(15) {
-                            viewModel.input.toggleFavouriteArticle()
+                            viewModel.input.toggleFavoriteArticle()
                         }
                     }
 
-                    it("returns output didFailToToggleFavouriteArticle with signal") {
-                        expect(viewModel.output.didFailToToggleFavouriteArticle)
+                    it("returns output didFailToToggleFavoriteArticle with signal") {
+                        expect(viewModel.output.didFailToToggleFavoriteArticle)
                             .events(scheduler: scheduler, disposeBag: disposeBag)
                             .notTo(beEmpty())
                     }

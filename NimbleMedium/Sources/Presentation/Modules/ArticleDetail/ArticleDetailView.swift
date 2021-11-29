@@ -56,7 +56,7 @@ struct ArticleDetailView: View {
         .onReceive(
             Observable.of(
                 viewModel.output.didFailToToggleFollow,
-                viewModel.output.didFailToToggleFavouriteArticle
+                viewModel.output.didFailToToggleFavoriteArticle
             )
             .merge()
         ) { _ in
@@ -168,11 +168,11 @@ struct ArticleDetailView: View {
             FollowButton(isSelected: uiModel.authorIsFollowing) {
                 viewModel.input.toggleFollowUser()
             }
-            FavouriteButton(
+            FavoriteButton(
                 count: uiModel.articleFavoriteCount,
                 isSelected: uiModel.articleIsFavorited
             ) {
-                viewModel.input.toggleFavouriteArticle()
+                viewModel.input.toggleFavoriteArticle()
             }
         }
     }

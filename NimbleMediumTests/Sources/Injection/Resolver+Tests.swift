@@ -49,8 +49,8 @@ extension Resolver {
         Resolver.mock.register { LogoutUseCaseProtocolMock() }.implements(LogoutUseCaseProtocol.self)
         Resolver.mock.register { GetCreatedArticlesUseCaseProtocolMock() }
             .implements(GetCreatedArticlesUseCaseProtocol.self)
-        Resolver.mock.register { GetFavouritedArticlesUseCaseProtocolMock() }
-            .implements(GetFavouritedArticlesUseCaseProtocol.self)
+        Resolver.mock.register { GetFavoritedArticlesUseCaseProtocolMock() }
+            .implements(GetFavoritedArticlesUseCaseProtocol.self)
         Resolver.mock.register { UpdateCurrentUserUseCaseProtocolMock() }
             .implements(UpdateCurrentUserUseCaseProtocol.self)
         Resolver.mock.register { FollowUserUseCaseProtocolMock() }

@@ -29,7 +29,7 @@ struct ArticleRow: View {
                         )
                         Spacer()
                         if uiModel.articleCanFavorite {
-                            favouriteButton(uiModel: uiModel)
+                            favoriteButton(uiModel: uiModel)
                         }
                     }
                     VStack(alignment: .leading) {
@@ -53,7 +53,7 @@ struct ArticleRow: View {
             }
         }
         .bind(viewModel.output.uiModel, to: _uiModel)
-        .onReceive(viewModel.output.didFailToToggleFavouriteArticle) {
+        .onReceive(viewModel.output.didFailToToggleFavoriteArticle) {
             isErrorToastPresented = true
         }
     }
@@ -62,12 +62,12 @@ struct ArticleRow: View {
         self.viewModel = viewModel
     }
 
-    func favouriteButton(uiModel: UIModel) -> some View {
-        FavouriteButton(
+    func favoriteButton(uiModel: UIModel) -> some View {
+        FavoriteButton(
             count: uiModel.articleFavoriteCount,
             isSelected: uiModel.articleIsFavorited
         ) {
-            viewModel.input.toggleFavouriteArticle()
+            viewModel.input.toggleFavoriteArticle()
         }
     }
 }

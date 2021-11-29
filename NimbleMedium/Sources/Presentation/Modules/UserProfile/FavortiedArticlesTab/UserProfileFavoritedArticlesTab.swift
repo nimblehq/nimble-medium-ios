@@ -1,5 +1,5 @@
 //
-//  UserProfileFavouritedArticlesTab.swift
+//  UserProfileFavoritedArticlesTab.swift
 //  NimbleMedium
 //
 //  Created by Mark G on 06/10/2021.
@@ -9,46 +9,46 @@ import PagerTabStripView
 import SwiftUI
 import ToastUI
 
-struct UserProfileFavouritedArticlesTab: View {
+struct UserProfileFavoritedArticlesTab: View {
 
-    @ObservedViewModel private var viewModel: UserProfileFavouritedArticlesTabViewModelProtocol
+    @ObservedViewModel private var viewModel: UserProfileFavoritedArticlesTabViewModelProtocol
 
     @State private var articleRowViewModels = [ArticleRowViewModelProtocol]()
     @State private var isErrorToastPresented = false
-    @State private var isFavouritedArticlesFetched = false
-    @State private var isFetchFavouritedArticlesFailed = false
+    @State private var isFavoritedArticlesFetched = false
+    @State private var isFetchFavoritedArticlesFailed = false
 
     var body: some View {
         Group {
-            if isFavouritedArticlesFetched {
+            if isFavoritedArticlesFetched {
                 UserProfileArticleList(viewModels: articleRowViewModels)
             } else {
-                if isFetchFavouritedArticlesFailed {
+                if isFetchFavoritedArticlesFailed {
                     Text(Localizable.feedsNoArticle())
                 } else { ProgressView() }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .pagerTabItem {
-            PagerTabItemTitle(Localizable.userProfileFavouritedArticlesTitle())
+            PagerTabItemTitle(Localizable.userProfileFavoritedArticlesTitle())
         }
         .toast(isPresented: $isErrorToastPresented, dismissAfter: 3.0) {
             ToastView(Localizable.errorGenericMessage()) {} background: {
                 Color.clear
             }
         }
-        .onReceive(viewModel.output.didFetchFavouritedArticles) { _ in
-            isFavouritedArticlesFetched = true
+        .onReceive(viewModel.output.didFetchFavoritedArticles) { _ in
+            isFavoritedArticlesFetched = true
         }
-        .onReceive(viewModel.output.didFailToFetchFavouritedArticles) { _ in
+        .onReceive(viewModel.output.didFailToFetchFavoritedArticles) { _ in
             isErrorToastPresented = true
-            isFetchFavouritedArticlesFailed = true
+            isFetchFavoritedArticlesFailed = true
         }
         .bind(viewModel.output.articleRowVieModels, to: _articleRowViewModels)
-        .onAppear { viewModel.input.fetchFavouritedArticles() }
+        .onAppear { viewModel.input.fetchFavoritedArticles() }
     }
 
-    init(viewModel: UserProfileFavouritedArticlesTabViewModelProtocol) {
+    init(viewModel: UserProfileFavoritedArticlesTabViewModelProtocol) {
         self.viewModel = viewModel
     }
 }
