@@ -257,7 +257,7 @@ extension ArticleDetailViewModel {
     private func updateToggleFavouriteArticle() -> Observable<(Bool, Int)> {
         guard let uiModel = $uiModel.value else { return .empty() }
         let isFavourite = uiModel.articleIsFavorited
-        let count = uiModel.articleFavoriteCount + 1 * (!isFavourite ? 1 : -1)
+        let count = uiModel.articleFavoriteCount + (!isFavourite ? 1 : -1)
         updateFavouriteArticle(!isFavourite, count: count)
 
         return .just((!isFavourite, count))
