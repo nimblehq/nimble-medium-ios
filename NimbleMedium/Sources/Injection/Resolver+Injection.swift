@@ -32,10 +32,7 @@ extension Resolver: ResolverRegistering {
             )
         }
         register(ArticleRepositoryProtocol.self) {
-            ArticleRepository(
-                authenticatedNetworkAPI: resolve(),
-                networkAPI: resolve()
-            )
+            ArticleRepository(authenticatedNetworkAPI: resolve())
         }
         register(ArticleCommentRepositoryProtocol.self) {
             ArticleCommentRepository(

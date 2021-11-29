@@ -15,7 +15,7 @@ extension ArticleRow {
         let articleTitle: String
         let articleDescription: String
         let articleUpdatedAt: String
-        let articleFavoriteCount: Int
+        var articleFavoriteCount: Int
         let articleCanFavorite: Bool
         var articleIsFavorited: Bool = false
 
