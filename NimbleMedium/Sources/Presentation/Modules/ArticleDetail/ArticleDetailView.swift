@@ -156,6 +156,7 @@ struct ArticleDetailView: View {
             .background(Color(R.color.dark.name))
 
             Text(uiModel.articleBody)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 8.0)
 
             comments
