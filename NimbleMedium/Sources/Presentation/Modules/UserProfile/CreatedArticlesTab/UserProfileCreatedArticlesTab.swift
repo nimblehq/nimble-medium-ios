@@ -21,7 +21,11 @@ struct UserProfileCreatedArticlesTab: View {
     var body: some View {
         Group {
             if isCreatedArticlesFetched {
-                UserProfileArticleList(viewModels: articleRowViewModels)
+                if articleRowViewModels.isEmpty {
+                    Text(Localizable.feedsNoArticle())
+                } else {
+                    UserProfileArticleList(viewModels: articleRowViewModels)
+                }
             } else {
                 if isFetchCreatedArticlesFailed {
                     Text(Localizable.feedsNoArticle())

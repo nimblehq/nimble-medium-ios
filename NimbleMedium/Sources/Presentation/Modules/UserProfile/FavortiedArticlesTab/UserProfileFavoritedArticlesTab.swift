@@ -21,7 +21,11 @@ struct UserProfileFavoritedArticlesTab: View {
     var body: some View {
         Group {
             if isFavoritedArticlesFetched {
-                UserProfileArticleList(viewModels: articleRowViewModels)
+                if articleRowViewModels.isEmpty {
+                    Text(Localizable.feedsNoArticle())
+                } else {
+                    UserProfileArticleList(viewModels: articleRowViewModels)
+                }
             } else {
                 if isFetchFavoritedArticlesFailed {
                     Text(Localizable.feedsNoArticle())
