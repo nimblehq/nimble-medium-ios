@@ -15,6 +15,7 @@ struct UserProfileFavoritedArticlesTab: View {
 
     @State private var articleRowViewModels = [ArticleRowViewModelProtocol]()
     @State private var isErrorToastPresented = false
+    @State private var isLoadingToastPresented = false
     @State private var isFavoritedArticlesFetched = false
     @State private var isFetchFavoritedArticlesFailed = false
 
@@ -41,6 +42,10 @@ struct UserProfileFavoritedArticlesTab: View {
                 Color.clear
             }
         }
+        .toast(isPresented: $isLoadingToastPresented) {
+            ToastView(String.empty) {}
+                .toastViewStyle(IndefiniteProgressToastViewStyle())
+        }
         .onReceive(viewModel.output.didFetchFavoritedArticles) { _ in
             isFavoritedArticlesFetched = true
         }
@@ -48,6 +53,7 @@ struct UserProfileFavoritedArticlesTab: View {
             isErrorToastPresented = true
             isFetchFavoritedArticlesFailed = true
         }
+        .bind(viewModel.output.isLoading, to: _isLoadingToastPresented)
         .bind(viewModel.output.articleRowVieModels, to: _articleRowViewModels)
         .onAppear { viewModel.input.fetchFavoritedArticles() }
     }

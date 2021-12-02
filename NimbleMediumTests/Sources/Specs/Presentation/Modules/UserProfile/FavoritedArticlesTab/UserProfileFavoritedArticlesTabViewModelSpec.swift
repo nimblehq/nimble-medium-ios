@@ -28,6 +28,19 @@ final class UserProfileFavoritedArticlesTabViewModelSpec: QuickSpec {
 
             beforeEach {
                 Resolver.registerMockServices()
+                Resolver.mock.register(ArticleRowViewModelProtocol.self) { _, args -> ArticleRowViewModelProtocolMock in
+                    let article: Article = args.get()
+
+                    let outputMock = ArticleRowViewModelOutputMock()
+                    outputMock.underlyingIsTogglingFavoriteArticle = .just(false)
+                    outputMock.underlyingDidToggleFavoriteArticle = .just(true)
+                    outputMock.underlyingId = article.id
+
+                    let mock = ArticleRowViewModelProtocolMock()
+                    mock.underlyingOutput = outputMock
+                    return mock
+                }
+                .scope(.unique)
                 viewModel = UserProfileFavoritedArticlesTabViewModel(username: "username")
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()

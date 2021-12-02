@@ -19,6 +19,7 @@ protocol UserProfileFavoritedArticlesTabViewModelInput {
 // sourcery: AutoMockable
 protocol UserProfileFavoritedArticlesTabViewModelOutput {
 
+    var isLoading: Driver<Bool> { get }
     var articleRowVieModels: Driver<[ArticleRowViewModelProtocol]> { get }
     var didFetchFavoritedArticles: Signal<Void> { get }
     var didFailToFetchFavoritedArticles: Signal<Void> { get }
@@ -40,6 +41,7 @@ final class UserProfileFavoritedArticlesTabViewModel: ObservableObject,
     private let username: String?
     private let fetchFavoritedArticlesTrigger = PublishRelay<Void>()
 
+    @BehaviorRelayProperty(false) var isLoading: Driver<Bool>
     @BehaviorRelayProperty([]) var articleRowVieModels: Driver<[ArticleRowViewModelProtocol]>
     @PublishRelayProperty var didFetchFavoritedArticles: Signal<Void>
     @PublishRelayProperty var didFailToFetchFavoritedArticles: Signal<Void>
@@ -80,13 +82,50 @@ extension UserProfileFavoritedArticlesTabViewModel {
             .asSingle()
             .do(
                 onSuccess: {
+                    let viewModels = $0.viewModels
+                    owner.observeArticleRowViewModels(
+                        owner: owner,
+                        viewModels: viewModels
+                    )
+
+                    owner.$isLoading.accept(false)
                     owner.$didFetchFavoritedArticles.accept(())
-                    owner.$articleRowVieModels.accept($0.viewModels)
+                    owner.$articleRowVieModels.accept(viewModels)
                 },
-                onError: { _ in owner.$didFailToFetchFavoritedArticles.accept(()) }
+                onError: { _ in
+                    owner.$didFailToFetchFavoritedArticles.accept(())
+                    owner.$isLoading.accept(false)
+                }
             )
             .asObservable()
             .mapToVoid()
             .catchAndReturn(())
+    }
+
+    func observeArticleRowViewModels(owner: UserProfileFavoritedArticlesTabViewModel, viewModels: [ArticleRowViewModelProtocol]) {
+        Observable.merge(
+            viewModels.map {
+                $0.output.isTogglingFavoriteArticle
+                    .filter { $0 }
+                    .asObservable()
+            }
+        )
+        .subscribe(onNext: {
+            owner.$isLoading.accept($0)
+        })
+        .disposed(by: owner.disposeBag)
+
+        Observable.merge(
+            viewModels.map {
+                $0.output.didToggleFavoriteArticle
+                    .asObservable()
+                    .filter { !$0 }
+                    .mapToVoid()
+            }
+        )
+        .subscribe(onNext: {
+            owner.fetchFavoritedArticles()
+        })
+        .disposed(by: owner.disposeBag)
     }
 }

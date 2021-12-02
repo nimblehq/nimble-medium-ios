@@ -20,7 +20,9 @@ protocol ArticleRowViewModelInput {
 protocol ArticleRowViewModelOutput {
 
     var id: String { get }
+    var isTogglingFavoriteArticle: Driver<Bool> { get }
     var uiModel: Driver<ArticleRow.UIModel?> { get }
+    var didToggleFavoriteArticle: Signal<Bool> { get }
     var didFailToToggleFavoriteArticle: Signal<Void> { get }
 }
 
@@ -44,7 +46,9 @@ final class ArticleRowViewModel: ObservableObject, ArticleRowViewModelProtocol {
     var input: ArticleRowViewModelInput { self }
     var output: ArticleRowViewModelOutput { self }
 
+    @PublishRelayProperty var didToggleFavoriteArticle: Signal<Bool>
     @PublishRelayProperty var didFailToToggleFavoriteArticle: Signal<Void>
+    @BehaviorRelayProperty(false) var isTogglingFavoriteArticle: Driver<Bool>
     @BehaviorRelayProperty(nil) var uiModel: Driver<ArticleRow.UIModel?>
 
     let id: String
@@ -108,7 +112,8 @@ extension ArticleRowViewModel {
         isFavorite: Bool,
         favoritesCount: Int
     ) -> Observable<Void> {
-        toggleArticleFavoriteStatusUseCase
+        $isTogglingFavoriteArticle.accept(true)
+        return toggleArticleFavoriteStatusUseCase
             .execute(slug: id, isFavorite: isFavorite)
             .do(
                 onError: { _ in
@@ -117,10 +122,13 @@ extension ArticleRowViewModel {
                         owner.articleIsFavorite,
                         count: owner.articleFavoritesCount
                     )
+                    owner.$isTogglingFavoriteArticle.accept(false)
                 },
                 onCompleted: {
                     owner.articleIsFavorite = isFavorite
                     owner.articleFavoritesCount = favoritesCount
+                    owner.$didToggleFavoriteArticle.accept(isFavorite)
+                    owner.$isTogglingFavoriteArticle.accept(false)
                 }
             )
             .asObservable()
