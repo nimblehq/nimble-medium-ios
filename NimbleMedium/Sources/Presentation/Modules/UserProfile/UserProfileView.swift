@@ -49,7 +49,9 @@ struct UserProfileView: View {
                 )
             )
         }
-        .navigationTitle(username != nil ? Localizable.userProfileOtherTitle() : Localizable.userProfileCurrentTitle())
+        .navigationTitle(
+            isCurrentUserProfile ? Localizable.userProfileCurrentTitle() : Localizable.userProfileOtherTitle()
+        )
         .modifier(NavigationBarPrimaryStyle())
         .onAppear { viewModel.input.getUserProfile() }
         .toast(isPresented: $errorToast, dismissAfter: 3.0) {

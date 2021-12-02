@@ -142,6 +142,18 @@ extension UserProfileViewModel {
             .do(
                 onSuccess: {
                     owner.$userProfileUIModel.accept(owner.generateUIModel(fromProfile: $0))
+                    owner.$createdArticlesViewModel.accept(
+                        Resolver.resolve(
+                            UserProfileCreatedArticlesTabViewModelProtocol.self,
+                            args: username
+                        )
+                    )
+                    owner.$favoritedArticlesViewModel.accept(
+                        Resolver.resolve(
+                            UserProfileFavoritedArticlesTabViewModelProtocol.self,
+                            args: username
+                        )
+                    )
                 },
                 onError: { error in
                     owner.$errorMessage.accept(error.detail)
