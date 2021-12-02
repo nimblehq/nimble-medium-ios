@@ -64,12 +64,7 @@ extension FeedsTabView {
             GeometryReader { geometry in
                 ScrollView {
                     articleDetailNavigationLink
-                    RefreshHeader(
-                        refreshing: $isRefeshing,
-                        action: { viewModel.input.refresh() },
-                        label: { _ in ProgressView() }
-                    )
-
+                    refreshHeader
                     if !articleRowViewModels.isEmpty {
                         articleRows
                         if !isShowingFeedDetail && hasMore {
@@ -85,7 +80,8 @@ extension FeedsTabView {
                     }
                 }
                 .enableRefresh()
-                .padding(.top, 16.0)
+                .padding(.top, 24.0)
+                .clipped(antialiased: false)
                 .frame(maxHeight: .infinity)
             }
             .onReceive(viewModel.output.didFinishRefresh) { _ in
@@ -108,7 +104,7 @@ extension FeedsTabView {
                         isShowingFeedDetail = true
                     }
             }
-            .padding(.all, 16.0)
+            .padding(.horizontal, 16.0)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
 
@@ -123,6 +119,19 @@ extension FeedsTabView {
                     .hidden()
                 } else { EmptyView() }
             }
+        }
+
+        var refreshHeader: some View {
+            RefreshHeader(
+                refreshing: $isRefeshing,
+                action: { viewModel.input.refresh() },
+                label: { _ in
+                    ZStack {
+                        ProgressView()
+                            .offset(y: -10.0)
+                    }
+                }
+            )
         }
     }
 }
