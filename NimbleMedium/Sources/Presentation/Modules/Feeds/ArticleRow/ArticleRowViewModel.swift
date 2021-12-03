@@ -13,15 +13,17 @@ import RxSwift
 // sourcery: AutoMockable
 protocol ArticleRowViewModelInput {
 
-    func toggleFavouriteArticle()
+    func toggleFavoriteArticle()
 }
 
 // sourcery: AutoMockable
 protocol ArticleRowViewModelOutput {
 
     var id: String { get }
+    var isTogglingFavoriteArticle: Driver<Bool> { get }
     var uiModel: Driver<ArticleRow.UIModel?> { get }
-    var didFailToToggleFavouriteArticle: Signal<Void> { get }
+    var didToggleFavoriteArticle: Signal<Bool> { get }
+    var didFailToToggleFavoriteArticle: Signal<Void> { get }
 }
 
 // sourcery: AutoMockable
@@ -37,20 +39,24 @@ final class ArticleRowViewModel: ObservableObject, ArticleRowViewModelProtocol {
     @Injected private var toggleArticleFavoriteStatusUseCase: ToggleArticleFavoriteStatusUseCaseProtocol
 
     private let disposeBag = DisposeBag()
-    private let toggleFavouriteArticleTrigger = PublishRelay<Void>()
-    private var articleIsFavourite: Bool
+    private let toggleFavoriteArticleTrigger = PublishRelay<Void>()
+    private var articleIsFavorite: Bool
+    private var articleFavoritesCount: Int
 
     var input: ArticleRowViewModelInput { self }
     var output: ArticleRowViewModelOutput { self }
 
-    @PublishRelayProperty var didFailToToggleFavouriteArticle: Signal<Void>
+    @PublishRelayProperty var didToggleFavoriteArticle: Signal<Bool>
+    @PublishRelayProperty var didFailToToggleFavoriteArticle: Signal<Void>
+    @BehaviorRelayProperty(false) var isTogglingFavoriteArticle: Driver<Bool>
     @BehaviorRelayProperty(nil) var uiModel: Driver<ArticleRow.UIModel?>
 
     let id: String
 
     init(article: Article) {
         id = article.id
-        articleIsFavourite = article.favorited
+        articleIsFavorite = article.favorited
+        articleFavoritesCount = article.favoritesCount
 
         getCurrentSessionUseCase.execute()
             .subscribe(with: self) { owner, user in
@@ -62,6 +68,7 @@ final class ArticleRowViewModel: ObservableObject, ArticleRowViewModelProtocol {
                         articleUpdatedAt: article.updatedAt.format(with: .monthDayYear),
                         articleFavoriteCount: article.favoritesCount,
                         articleCanFavorite: user?.username != article.author.username,
+                        articleIsFavorited: article.favorited,
                         authorImage: try? article.author.image?.asURL(),
                         authorName: article.author.username
                     )
@@ -69,12 +76,19 @@ final class ArticleRowViewModel: ObservableObject, ArticleRowViewModelProtocol {
             }
             .disposed(by: disposeBag)
 
-        toggleFavouriteArticleTrigger
+        toggleFavoriteArticleTrigger
             .withUnretained(self)
-            .flatMap { $0.0.updateToggleFavouriteArticle() }
+            .flatMap { $0.0.updateToggleFavoriteArticle() }
             .debounce(.milliseconds(500), scheduler: SharingScheduler.make())
             .withUnretained(self)
-            .flatMapLatest { $0.0.toggleFavouriteArticleTriggered(owner: $0.0, isFavourite: $0.1) }
+            .flatMapLatest { owner, args -> Observable<Void> in
+                let (isFavorite, favoritesCount) = args
+                return owner.toggleFavoriteArticleTriggered(
+                    owner: owner,
+                    isFavorite: isFavorite,
+                    favoritesCount: favoritesCount
+                )
+            }
             .subscribe()
             .disposed(by: disposeBag)
     }
@@ -82,8 +96,8 @@ final class ArticleRowViewModel: ObservableObject, ArticleRowViewModelProtocol {
 
 extension ArticleRowViewModel: ArticleRowViewModelInput {
 
-    func toggleFavouriteArticle() {
-        toggleFavouriteArticleTrigger.accept(())
+    func toggleFavoriteArticle() {
+        toggleFavoriteArticleTrigger.accept(())
     }
 }
 
@@ -93,16 +107,28 @@ extension ArticleRowViewModel: ArticleRowViewModelOutput {}
 
 extension ArticleRowViewModel {
 
-    private func toggleFavouriteArticleTriggered(owner: ArticleRowViewModel, isFavourite: Bool) -> Observable<Void> {
-        toggleArticleFavoriteStatusUseCase
-            .execute(slug: id, isFavorite: isFavourite)
+    private func toggleFavoriteArticleTriggered(
+        owner: ArticleRowViewModel,
+        isFavorite: Bool,
+        favoritesCount: Int
+    ) -> Observable<Void> {
+        $isTogglingFavoriteArticle.accept(true)
+        return toggleArticleFavoriteStatusUseCase
+            .execute(slug: id, isFavorite: isFavorite)
             .do(
                 onError: { _ in
-                    owner.$didFailToToggleFavouriteArticle.accept(())
-                    owner.updateFavouriteArticle(owner.articleIsFavourite)
+                    owner.$didFailToToggleFavoriteArticle.accept(())
+                    owner.updateFavoriteArticle(
+                        owner.articleIsFavorite,
+                        count: owner.articleFavoritesCount
+                    )
+                    owner.$isTogglingFavoriteArticle.accept(false)
                 },
                 onCompleted: {
-                    owner.articleIsFavourite = isFavourite
+                    owner.articleIsFavorite = isFavorite
+                    owner.articleFavoritesCount = favoritesCount
+                    owner.$didToggleFavoriteArticle.accept(isFavorite)
+                    owner.$isTogglingFavoriteArticle.accept(false)
                 }
             )
             .asObservable()
@@ -110,16 +136,19 @@ extension ArticleRowViewModel {
             .catchAndReturn(())
     }
 
-    private func updateToggleFavouriteArticle() -> Observable<Bool> {
+    private func updateToggleFavoriteArticle() -> Observable<(Bool, Int)> {
         guard let uiModel = $uiModel.value else { return .empty() }
-        updateFavouriteArticle(!uiModel.articleIsFavorited)
+        let isFavorite = uiModel.articleIsFavorited
+        let count = uiModel.articleFavoriteCount + (!isFavorite ? 1 : -1)
+        updateFavoriteArticle(!isFavorite, count: count)
 
-        return .just(!uiModel.articleIsFavorited)
+        return .just((!isFavorite, count))
     }
 
-    private func updateFavouriteArticle(_ value: Bool) {
-        var uiModel = $uiModel.value
-        uiModel?.articleIsFavorited = value
+    private func updateFavoriteArticle(_ isFavorite: Bool, count: Int) {
+        guard var uiModel = $uiModel.value else { return }
+        uiModel.articleIsFavorited = isFavorite
+        uiModel.articleFavoriteCount = count
         $uiModel.accept(uiModel)
     }
 }

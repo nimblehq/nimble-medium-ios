@@ -22,7 +22,7 @@ final class UserRepository: UserRepositoryProtocol {
 
     func getUserProfile(username: String) -> Single<Profile> {
         let requestConfiguration = UserRequestConfiguration.profile(username: username)
-        return networkAPI
+        return authenticatedNetworkAPI
             .performRequest(requestConfiguration, for: APIProfileResponse.self)
             .map { $0.profile as Profile }
     }

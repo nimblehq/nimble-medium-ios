@@ -1,6 +1,7 @@
 excluded:
   - NimbleMediumTests/Sources/Mocks/Sourcery/AutoMockable.generated.swift
   - Pods
+  - Derived
   - DerivedData
   - NimbleMedium/Sources/Supports/Helpers/R.generated.swift
   - NimbleMediumTests/Sources/Utilities/R.generated.swift

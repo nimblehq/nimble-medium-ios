@@ -14,7 +14,7 @@ extension ArticleDetailView {
         let articleTitle: String
         let articleBody: String
         let articleUpdatedAt: String
-        let articleFavoriteCount: Int
+        var articleFavoriteCount: Int
         var articleIsFavorited: Bool = false
         let authorName: String
         let authorImage: URL?

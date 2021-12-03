@@ -42,12 +42,12 @@ struct EditProfileView: View {
                     ToastView(String.empty) {}
                         .toastViewStyle(IndefiniteProgressToastViewStyle())
                 }
+                .onAppear {
+                    viewModel.input.getCurrentUserProfile()
+                    firstTimeLoad = true
+                }
         }
         .accentColor(.white)
-        .onAppear {
-            viewModel.input.getCurrentUserProfile()
-            firstTimeLoad = true
-        }
         .bind(viewModel.output.isLoading, to: _loadingToast)
         .onReceive(viewModel.output.editProfileUIModel) { uiModel in
             guard firstTimeLoad else { return }

@@ -20,7 +20,8 @@ struct UserProfileView: View {
     @State private var errorToast = false
     @State private var selectedTabIndex: Int = 0
     @State private var createdArticlesViewModel: UserProfileCreatedArticlesTabViewModelProtocol?
-    @State private var favouritedArticlesViewModel: UserProfileFavouritedArticlesTabViewModelProtocol?
+    @State private var favoritedArticlesViewModel: UserProfileFavoritedArticlesTabViewModelProtocol?
+    @State private var isFirstLoad = true
 
     private let username: String?
     private var isCurrentUserProfile: Bool { username == nil }
@@ -37,8 +38,8 @@ struct UserProfileView: View {
                     UserProfileCreatedArticlesTab(viewModel: viewModel)
                 }
 
-                if let viewModel = favouritedArticlesViewModel {
-                    UserProfileFavouritedArticlesTab(viewModel: viewModel)
+                if let viewModel = favoritedArticlesViewModel {
+                    UserProfileFavoritedArticlesTab(viewModel: viewModel)
                 }
             }
             .pagerTabStripViewStyle(
@@ -49,16 +50,23 @@ struct UserProfileView: View {
                 )
             )
         }
-        .navigationTitle(username != nil ? Localizable.userProfileOtherTitle() : Localizable.userProfileCurrentTitle())
+        .navigationTitle(
+            isCurrentUserProfile ? Localizable.userProfileCurrentTitle() : Localizable.userProfileOtherTitle()
+        )
         .modifier(NavigationBarPrimaryStyle())
-        .onAppear { viewModel.input.getUserProfile() }
+        .onAppear {
+            guard isFirstLoad else { return }
+
+            isFirstLoad = false
+            viewModel.input.getUserProfile()
+        }
         .toast(isPresented: $errorToast, dismissAfter: 3.0) {
             ToastView(errorMessage) {} background: {
                 Color.clear
             }
         }
         .bind(viewModel.output.createdArticlesViewModel, to: _createdArticlesViewModel)
-        .bind(viewModel.output.favouritedArticlesViewModel, to: _favouritedArticlesViewModel)
+        .bind(viewModel.output.favoritedArticlesViewModel, to: _favoritedArticlesViewModel)
         .bind(viewModel.output.userProfileUIModel, to: _uiModel)
         .onReceive(viewModel.output.errorMessage) { _ in
             errorMessage = Localizable.errorGenericMessage()

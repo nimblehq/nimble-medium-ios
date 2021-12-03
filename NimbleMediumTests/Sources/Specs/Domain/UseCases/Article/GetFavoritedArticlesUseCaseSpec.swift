@@ -1,5 +1,5 @@
 //
-//  GetFavouritedArticlesUseCaseSpec.swift
+//  GetFavoritedArticlesUseCaseSpec.swift
 //  NimbleMediumTests
 //
 //  Created by Mark G on 28/09/2021.
@@ -13,20 +13,20 @@ import RxTest
 
 @testable import NimbleMedium
 
-final class GetFavouritedArticlesUseCaseSpec: QuickSpec {
+final class GetFavoritedArticlesUseCaseSpec: QuickSpec {
 
     override func spec() {
-        var usecase: GetFavouritedArticlesUseCase!
+        var usecase: GetFavoritedArticlesUseCase!
         var articleRepository: ArticleRepositoryProtocolMock!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
 
-        describe("an GetFavouritedArticlesUseCase") {
+        describe("an GetFavoritedArticlesUseCase") {
 
             beforeEach {
                 disposeBag = DisposeBag()
                 articleRepository = ArticleRepositoryProtocolMock()
-                usecase = GetFavouritedArticlesUseCase(articleRepository: articleRepository)
+                usecase = GetFavoritedArticlesUseCase(articleRepository: articleRepository)
                 scheduler = TestScheduler(initialClock: 0)
             }
 

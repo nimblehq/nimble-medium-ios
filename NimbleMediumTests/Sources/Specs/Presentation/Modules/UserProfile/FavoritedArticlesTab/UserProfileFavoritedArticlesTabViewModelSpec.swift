@@ -1,5 +1,5 @@
 //
-//  UserProfileFavouritedArticlesTabViewModelSpec.swift
+//  UserProfileFavoritedArticlesTabViewModelSpec.swift
 //  NimbleMediumTests
 //
 //  Created by Mark G on 07/10/2021.
@@ -15,36 +15,49 @@ import RxTest
 @testable import NimbleMedium
 
 // swiftlint:disable type_name
-final class UserProfileFavouritedArticlesTabViewModelSpec: QuickSpec {
+final class UserProfileFavoritedArticlesTabViewModelSpec: QuickSpec {
 
-    @LazyInjected var getFavouritedArticlesUseCase: GetFavouritedArticlesUseCaseProtocolMock
+    @LazyInjected var getFavoritedArticlesUseCase: GetFavoritedArticlesUseCaseProtocolMock
 
     override func spec() {
-        var viewModel: UserProfileFavouritedArticlesTabViewModelProtocol!
+        var viewModel: UserProfileFavoritedArticlesTabViewModelProtocol!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
 
-        describe("a UserProfileFavouritedArticlesTabViewModel") {
+        describe("a UserProfileFavoritedArticlesTabViewModel") {
 
             beforeEach {
                 Resolver.registerMockServices()
-                viewModel = UserProfileFavouritedArticlesTabViewModel(username: "username")
+                Resolver.mock.register(ArticleRowViewModelProtocol.self) { _, args -> ArticleRowViewModelProtocolMock in
+                    let article: Article = args.get()
+
+                    let outputMock = ArticleRowViewModelOutputMock()
+                    outputMock.underlyingIsTogglingFavoriteArticle = .just(false)
+                    outputMock.underlyingDidToggleFavoriteArticle = .just(true)
+                    outputMock.underlyingId = article.id
+
+                    let mock = ArticleRowViewModelProtocolMock()
+                    mock.underlyingOutput = outputMock
+                    return mock
+                }
+                .scope(.unique)
+                viewModel = UserProfileFavoritedArticlesTabViewModel(username: "username")
                 scheduler = TestScheduler(initialClock: 0)
                 disposeBag = DisposeBag()
             }
 
             describe("its fetch() call") {
 
-                context("when GetFavouritedArticlesUseCase return success") {
+                context("when GetFavoritedArticlesUseCase return success") {
 
                     let inputArticles = APIArticlesResponse.dummy.articles
 
                     beforeEach {
-                        self.getFavouritedArticlesUseCase.executeUsernameReturnValue =
+                        self.getFavoritedArticlesUseCase.executeUsernameReturnValue =
                             .just(inputArticles, on: scheduler, at: 10)
 
                         scheduler.scheduleAt(5) {
-                            viewModel.input.fetchFavouritedArticles()
+                            viewModel.input.fetchFavoritedArticles()
                         }
                     }
 
@@ -62,26 +75,26 @@ final class UserProfileFavouritedArticlesTabViewModelSpec: QuickSpec {
                         ]
                     }
 
-                    it("returns output didFetchFavouritedArticles with singal") {
-                        expect(viewModel.output.didFetchFavouritedArticles)
+                    it("returns output didFetchFavoritedArticles with singal") {
+                        expect(viewModel.output.didFetchFavoritedArticles)
                             .events(scheduler: scheduler, disposeBag: disposeBag)
                             .notTo(beEmpty())
                     }
                 }
 
-                context("when GetFavouritedArticlesUseCase return failure") {
+                context("when GetFavoritedArticlesUseCase return failure") {
 
                     beforeEach {
-                        self.getFavouritedArticlesUseCase.executeUsernameReturnValue =
+                        self.getFavoritedArticlesUseCase.executeUsernameReturnValue =
                             .error(TestError.mock, on: scheduler, at: 10)
 
                         scheduler.scheduleAt(5) {
-                            viewModel.input.fetchFavouritedArticles()
+                            viewModel.input.fetchFavoritedArticles()
                         }
                     }
 
-                    it("returns output didFailToFetchFavouritedArticles with singal") {
-                        expect(viewModel.output.didFailToFetchFavouritedArticles)
+                    it("returns output didFailToFetchFavoritedArticles with singal") {
+                        expect(viewModel.output.didFailToFetchFavoritedArticles)
                             .events(scheduler: scheduler, disposeBag: disposeBag)
                             .notTo(beEmpty())
                     }

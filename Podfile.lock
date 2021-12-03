@@ -47,7 +47,7 @@ PODS:
   - Nimble (9.2.1)
   - PromisesObjC (2.0.0)
   - Quick (4.0.0)
-  - R.swift (5.4.0):
+  - R.swift (6.0.0):
     - R.swift.Library (~> 5.3.0)
   - R.swift.Library (5.3.0)
   - RxAlamofire (6.1.1):
@@ -156,7 +156,7 @@ SPEC CHECKSUMS:
   Nimble: e7e615c0335ee4bf5b0d786685451e62746117d5
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   Quick: 6473349e43b9271a8d43839d9ba1c442ed1b7ac4
-  R.swift: c533450b0f7dc494e0993f5f1a1db925d84c3006
+  R.swift: 5ec056f5ba2744de1c3f6deeb4882ae2630f6e63
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
   RxAlamofire: beb75a1c452d0de225651db4903f5d29d034a620
   RxBlocking: 0b29f7d2079109a8de49c411381bed7c33ef1eeb
@@ -173,6 +173,6 @@ SPEC CHECKSUMS:
   SwiftLint: e96c0a8c770c7ebbc4d36c55baf9096bb65c4584
   Wormholy: 2e70f64227e010d363f8d33268369f77faf12471
 
-PODFILE CHECKSUM: 7c9bd7c958c2f9c5b5c9d033a88ac005f13d26d1
+PODFILE CHECKSUM: fad1f5da239c18ca2c0094e0c367fe942b9f644d
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.11.2

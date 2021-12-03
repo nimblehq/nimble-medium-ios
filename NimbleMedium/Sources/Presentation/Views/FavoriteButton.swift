@@ -1,5 +1,5 @@
 //
-//  FavouriteButton.swift
+//  FavoriteButton.swift
 //  NimbleMedium
 //
 //  Created by Mark G on 29/10/2021.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FavouriteButton: View {
+struct FavoriteButton: View {
 
     private let count: Int
     private let isSelected: Bool

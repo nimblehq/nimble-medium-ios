@@ -44,7 +44,7 @@ final class UserRepositorySpec: QuickSpec {
 
                     beforeEach {
                         outputProfile = scheduler.createObserver(DecodableProfile.self)
-                        networkAPI.setPerformRequestForReturnValue(Single.just(inputResponse))
+                        authenticatedNetworkAPI.setPerformRequestForReturnValue(Single.just(inputResponse))
                         repository.getUserProfile(username: "username")
                             .asObservable()
                             .compactMap { $0 as? DecodableProfile }
@@ -66,7 +66,7 @@ final class UserRepositorySpec: QuickSpec {
 
                     beforeEach {
                         outputError = scheduler.createObserver(Error?.self)
-                        networkAPI.setPerformRequestForReturnValue(
+                        authenticatedNetworkAPI.setPerformRequestForReturnValue(
                             Single<APIProfileResponse>.error(TestError.mock)
                         )
                         repository.getUserProfile(username: "username")

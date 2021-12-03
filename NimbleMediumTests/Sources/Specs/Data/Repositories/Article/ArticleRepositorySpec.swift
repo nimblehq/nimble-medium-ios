@@ -19,7 +19,6 @@ final class ArticleRepositorySpec: QuickSpec {
     override func spec() {
         var repository: ArticleRepository!
         var authenticatedNetworkAPI: AuthenticatedNetworkAPIProtocolMock!
-        var networkAPI: NetworkAPIProtocolMock!
         var scheduler: TestScheduler!
         var disposeBag: DisposeBag!
 
@@ -27,12 +26,8 @@ final class ArticleRepositorySpec: QuickSpec {
 
             beforeEach {
                 disposeBag = DisposeBag()
-                networkAPI = NetworkAPIProtocolMock()
                 authenticatedNetworkAPI = AuthenticatedNetworkAPIProtocolMock()
-                repository = ArticleRepository(
-                    authenticatedNetworkAPI: authenticatedNetworkAPI,
-                    networkAPI: networkAPI
-                )
+                repository = ArticleRepository(authenticatedNetworkAPI: authenticatedNetworkAPI)
                 scheduler = TestScheduler(initialClock: 0)
             }
 
@@ -190,7 +185,7 @@ final class ArticleRepositorySpec: QuickSpec {
 
                     beforeEach {
                         outputArticle = scheduler.createObserver(DecodableArticle.self)
-                        networkAPI.setPerformRequestForReturnValue(Single.just(inputResponse))
+                        authenticatedNetworkAPI.setPerformRequestForReturnValue(Single.just(inputResponse))
                         repository.getArticle(slug: "slug")
                             .asObservable()
                             .compactMap {
@@ -211,7 +206,8 @@ final class ArticleRepositorySpec: QuickSpec {
 
                     beforeEach {
                         outputError = scheduler.createObserver(Error?.self)
-                        networkAPI.setPerformRequestForReturnValue(Single<APIArticleResponse>.error(TestError.mock))
+                        authenticatedNetworkAPI
+                            .setPerformRequestForReturnValue(Single<APIArticleResponse>.error(TestError.mock))
                         repository.getArticle(slug: "slug")
                             .asObservable()
                             .materialize()
@@ -239,7 +235,7 @@ final class ArticleRepositorySpec: QuickSpec {
 
                     beforeEach {
                         outputArticles = scheduler.createObserver([DecodableArticle].self)
-                        networkAPI.setPerformRequestForReturnValue(Single.just(inputResponse))
+                        authenticatedNetworkAPI.setPerformRequestForReturnValue(Single.just(inputResponse))
                         repository.listArticles(params: .init())
                             .asObservable()
                             .map { $0.compactMap { $0 as? DecodableArticle } }
@@ -261,7 +257,8 @@ final class ArticleRepositorySpec: QuickSpec {
 
                     beforeEach {
                         outputError = scheduler.createObserver(Error?.self)
-                        networkAPI.setPerformRequestForReturnValue(Single<APIArticlesResponse>.error(TestError.mock))
+                        authenticatedNetworkAPI
+                            .setPerformRequestForReturnValue(Single<APIArticlesResponse>.error(TestError.mock))
                         repository.listArticles(params: .init())
                             .asObservable()
                             .materialize()

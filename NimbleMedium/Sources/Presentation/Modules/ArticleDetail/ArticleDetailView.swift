@@ -56,7 +56,7 @@ struct ArticleDetailView: View {
         .onReceive(
             Observable.of(
                 viewModel.output.didFailToToggleFollow,
-                viewModel.output.didFailToToggleFavouriteArticle
+                viewModel.output.didFailToToggleFavoriteArticle
             )
             .merge()
         ) { _ in
@@ -156,6 +156,7 @@ struct ArticleDetailView: View {
             .background(Color(R.color.dark.name))
 
             Text(uiModel.articleBody)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 8.0)
 
             comments
@@ -167,11 +168,11 @@ struct ArticleDetailView: View {
             FollowButton(isSelected: uiModel.authorIsFollowing) {
                 viewModel.input.toggleFollowUser()
             }
-            FavouriteButton(
+            FavoriteButton(
                 count: uiModel.articleFavoriteCount,
                 isSelected: uiModel.articleIsFavorited
             ) {
-                viewModel.input.toggleFavouriteArticle()
+                viewModel.input.toggleFavoriteArticle()
             }
         }
     }
