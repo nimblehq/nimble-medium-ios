@@ -21,6 +21,7 @@ struct UserProfileView: View {
     @State private var selectedTabIndex: Int = 0
     @State private var createdArticlesViewModel: UserProfileCreatedArticlesTabViewModelProtocol?
     @State private var favoritedArticlesViewModel: UserProfileFavoritedArticlesTabViewModelProtocol?
+    @State private var isFirstLoad = true
 
     private let username: String?
     private var isCurrentUserProfile: Bool { username == nil }
@@ -53,7 +54,12 @@ struct UserProfileView: View {
             isCurrentUserProfile ? Localizable.userProfileCurrentTitle() : Localizable.userProfileOtherTitle()
         )
         .modifier(NavigationBarPrimaryStyle())
-        .onAppear { viewModel.input.getUserProfile() }
+        .onAppear {
+            guard isFirstLoad else { return }
+
+            isFirstLoad = false
+            viewModel.input.getUserProfile()
+        }
         .toast(isPresented: $errorToast, dismissAfter: 3.0) {
             ToastView(errorMessage) {} background: {
                 Color.clear
